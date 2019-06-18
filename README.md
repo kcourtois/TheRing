@@ -10,13 +10,7 @@ With The Ring, you can create a contest for it.
 
 Let's say you have a few movies in your head, but don't know which is the best. You can list them and create rounds, where people will vote.
 
-				        Movie 1
-			Movie 1 <— |
-		   |	        Movie 2
-Movie 1  <—|
-		   |	        Movie 3
-			Movie 4 <—|
-				        Movie 4
+<center><img src="Img/ingredients.png" width="80%" height="80%"/></center>
 
 Here, 4 movies where listed. Movie 1 and 4 where the winners of the first round, and Movie 1 won the second round. It seems like we know which movie is the best !
 
