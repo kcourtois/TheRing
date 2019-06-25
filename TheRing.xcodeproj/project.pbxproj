@@ -10,7 +10,6 @@
 		292376D6822B13660E98F980 /* Pods_TheRingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECCD407A332AE3E978890AA /* Pods_TheRingTests.framework */; };
 		8E5E84CAC738FD5317FC62B9 /* Pods_TheRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3F306C6FFEC5D0CAE2A586 /* Pods_TheRing.framework */; };
 		9E06BB4D22B840F10098E148 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E06BB4C22B840F10098E148 /* AppDelegate.swift */; };
-		9E06BB4F22B840F10098E148 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E06BB4E22B840F10098E148 /* ViewController.swift */; };
 		9E06BB5222B840F10098E148 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5022B840F10098E148 /* Main.storyboard */; };
 		9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5322B840F40098E148 /* Assets.xcassets */; };
 		9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */; };
@@ -18,6 +17,8 @@
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
 		9EA2718B22BD494B00AAC06B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */; };
+		9EA2718D22BE5A7000AAC06B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2718C22BE5A7000AAC06B /* LoginController.swift */; };
+		9EA2718F22BE5AAA00AAC06B /* SignupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2718E22BE5AAA00AAC06B /* SignupController.swift */; };
 		9EF152C122BBC75D0039FCD2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9EF152C022BBC75D0039FCD2 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
@@ -36,7 +37,6 @@
 		462B2695F3CF82F7F9900CDE /* Pods-TheRing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheRing.debug.xcconfig"; path = "Target Support Files/Pods-TheRing/Pods-TheRing.debug.xcconfig"; sourceTree = "<group>"; };
 		9E06BB4922B840F10098E148 /* TheRing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheRing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E06BB4C22B840F10098E148 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E06BB4E22B840F10098E148 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9E06BB5122B840F10098E148 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E06BB5322B840F40098E148 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9E06BB5622B840F40098E148 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +47,8 @@
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		9EA2718C22BE5A7000AAC06B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		9EA2718E22BE5AAA00AAC06B /* SignupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupController.swift; sourceTree = "<group>"; };
 		9EF152C022BBC75D0039FCD2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CC3F306C6FFEC5D0CAE2A586 /* Pods_TheRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1D8F62486C5335702410541 /* Pods-TheRingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheRingTests.release.xcconfig"; path = "Target Support Files/Pods-TheRingTests/Pods-TheRingTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -117,7 +119,8 @@
 		9E06BB6D22B841950098E148 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9E06BB4E22B840F10098E148 /* ViewController.swift */,
+				9EA2718C22BE5A7000AAC06B /* LoginController.swift */,
+				9EA2718E22BE5AAA00AAC06B /* SignupController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -362,7 +365,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E06BB4F22B840F10098E148 /* ViewController.swift in Sources */,
+				9EA2718F22BE5AAA00AAC06B /* SignupController.swift in Sources */,
+				9EA2718D22BE5A7000AAC06B /* LoginController.swift in Sources */,
 				9E06BB4D22B840F10098E148 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
