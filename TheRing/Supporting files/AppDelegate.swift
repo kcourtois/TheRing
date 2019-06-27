@@ -16,7 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        //Config firebase
         FirebaseApp.configure()
+
+//        //Skip login page if user signed in
+//        if Auth.auth().currentUser != nil {
+//            let mainStoryboardIpad: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//            let initialViewControlleripad: UIViewController =
+//                mainStoryboardIpad.instantiateViewController(withIdentifier: "Tabbar") as UIViewController
+//            self.window = UIWindow(frame: UIScreen.main.bounds)
+//            self.window?.rootViewController = initialViewControlleripad
+//            self.window?.makeKeyAndVisible()
+//        }
+
         return true
     }
 
