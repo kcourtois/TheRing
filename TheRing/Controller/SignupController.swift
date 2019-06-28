@@ -77,16 +77,10 @@ class SignupController: UIViewController {
                         } else {
                             if let alert = self.alert {
                                 alert.dismiss(animated: true) {
-                                    self.presentAlertDelay(title: "Success",
-                                                           message: "Your account was created successfully.", delay: 2) {
-                                                            self.performSegue(withIdentifier: "postSignupSegue", sender: self)
-                                    }
+                                    self.performSegue(withIdentifier: "postSignupSegue", sender: self)
                                 }
                             } else {
-                                self.presentAlertDelay(title: "Success",
-                                                       message: "Your account was created successfully.", delay: 2) {
-                                                        self.performSegue(withIdentifier: "postSignupSegue", sender: self)
-                                }
+                                self.performSegue(withIdentifier: "postSignupSegue", sender: self)
                             }
                         }
                     }

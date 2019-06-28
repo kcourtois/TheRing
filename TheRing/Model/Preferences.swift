@@ -23,10 +23,10 @@ class Preferences {
     public var user: User {
         get {
             guard let data = defaults.value(forKey: Keys.user) as? Data else {
-                return User(uid: "", name: "Unknown", gender: .other, email: "", bio: "")
+                return User(uid: "", name: "", gender: .other, email: "", bio: "")
             }
             guard let res = try? JSONDecoder().decode(User.self, from: data) else {
-                return User(uid: "", name: "Unknown", gender: .other, email: "", bio: "")
+                return User(uid: "", name: "", gender: .other, email: "", bio: "")
             }
             return res
         }

@@ -16,14 +16,32 @@ class UserController: UIViewController {
     @IBOutlet weak var biographyLabel: UILabel!
     @IBOutlet weak var mailLabel: UILabel!
 
-    let preferences = Preferences()
+    private let preferences = Preferences()
+    private var alert: UIAlertController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        alert = loadingAlert()
         if let user = Auth.auth().currentUser {
-            FirebaseService.getUserInfo(uid: user.uid)
+            FirebaseService.getUserInfo(uid: user.uid, completion: { user in
+                if let user = user {
+                    self.preferences.user = user
+                    self.setLabels()
+                    if let alert = self.alert {
+                        alert.dismiss(animated: true, completion: nil)
+                    }
+                } else {
+                    print("no user retrieved")
+                    if let alert = self.alert {
+                        alert.dismiss(animated: true, completion: nil)
+                    }
+                }
+            })
         } else {
             print("no user connected")
+            if let alert = self.alert {
+                alert.dismiss(animated: true, completion: nil)
+            }
         }
     }
 

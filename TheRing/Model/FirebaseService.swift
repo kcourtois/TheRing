@@ -11,16 +11,18 @@ import FirebaseDatabase
 
 class FirebaseService {
     //get user info online
-    static func getUserInfo(uid: String) {
-        let preferences = Preferences()
+    static func getUserInfo(uid: String, completion: @escaping (User?) -> Void) {
         let reference = Database.database().reference()
         reference.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
-            preferences.user = User(uid: uid,
-                                    name: value?["username"] as? String ?? "Unknown",
-                                    gender: Gender(rawValue: value?["gender"] as? Int ?? 2) ?? .other,
-                                    email: value?["email"] as? String ?? "Unknown",
-                                    bio: value?["bio"] as? String ?? "Unknown")
+            if let name = value?["username"] as? String,
+                let gender = Gender(rawValue: value?["gender"] as? Int ?? 2),
+                let email = value?["email"] as? String,
+                let bio = value?["bio"] as? String {
+                completion(User(uid: uid, name: name, gender: gender, email: email, bio: bio))
+            } else {
+                completion(nil)
+            }
         })
     }
 
