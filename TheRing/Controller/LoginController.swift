@@ -21,7 +21,6 @@ class LoginController: UIViewController {
         if Auth.auth().currentUser != nil {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
-                print("hi")
             }
         }
     }

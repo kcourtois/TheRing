@@ -8,41 +8,39 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseDatabase
 
 class UserController: UIViewController {
 
-    @IBOutlet weak var nameLabel: UITextField!
-    @IBOutlet weak var genderLabel: UITextField!
-    @IBOutlet weak var biographyLabel: UITextField!
-    @IBOutlet weak var mailLabel: UITextField!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var biographyLabel: UILabel!
+    @IBOutlet weak var mailLabel: UILabel!
+
+    let preferences = Preferences()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         if let user = Auth.auth().currentUser {
-            getUserInfo(uid: user.uid)
+            FirebaseService.getUserInfo(uid: user.uid)
         } else {
             print("no user connected")
         }
     }
 
-    //get user info online
-    private func getUserInfo(uid: String) {
-        let reference = Database.database().reference()
-        reference.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let user = User(username: value?["username"] as? String ?? "Unknown",
-                            gender: value?["gender"] as? String ?? "Unknown",
-                            email: value?["email"] as? String ?? "Unknown",
-                            bio: value?["bio"] as? String ?? "Unknown")
-            self.setLabels(user: user)
-        })
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setLabels()
     }
 
-    private func setLabels(user: User) {
-        mailLabel.text = user.email
-        nameLabel.text = user.username
-        genderLabel.text = user.gender
-        biographyLabel.text = user.bio
+    private func setLabels() {
+        mailLabel.text = preferences.user.email
+        nameLabel.text = preferences.user.name
+        genderLabel.text = preferences.user.gender.asString
+        biographyLabel.text = preferences.user.bio
     }
+
+    @IBAction func updateProfileTapped() {
+        performSegue(withIdentifier: "profileSegue", sender: self)
+    }
+
 }

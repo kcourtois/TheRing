@@ -16,6 +16,7 @@ class SignupController: UIViewController {
     @IBOutlet weak var passwordConfirmField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     private var alert: UIAlertController?
+    private let tabIndex = 1
 
     @IBAction func cancelTapped() {
         dismiss(animated: true, completion: nil)
@@ -42,7 +43,7 @@ class SignupController: UIViewController {
             return
         }
 
-        isUsernameAvailable(username: username) { available in
+        FirebaseService.isUsernameAvailable(name: username) { available in
             if available {
                 self.createUser(email: email, password: password, username: username)
             } else {
@@ -66,17 +67,26 @@ class SignupController: UIViewController {
 
             let values = ["email": email, "username": username, "gender": "unknown", "bio": ""]
 
-            self.registerUserInfo(uid: uid, values: values) { error in
+            FirebaseService.registerUserInfo(uid: uid, values: values) { error in
                 if let error = error {
                     self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error", message: "\(error)")
                 } else {
-                    self.registerUsername(username: username, uid: uid) { error in
+                    FirebaseService.registerUsername(name: username, uid: uid) { error in
                         if let error = error {
                             self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error", message: "\(error)")
                         } else {
-                            self.presentAlertDelay(title: "Success",
-                                                   message: "Your account was created successfully.", delay: 2) {
-                                self.dismiss(animated: true, completion: nil)
+                            if let alert = self.alert {
+                                alert.dismiss(animated: true) {
+                                    self.presentAlertDelay(title: "Success",
+                                                           message: "Your account was created successfully.", delay: 2) {
+                                                            self.performSegue(withIdentifier: "postSignupSegue", sender: self)
+                                    }
+                                }
+                            } else {
+                                self.presentAlertDelay(title: "Success",
+                                                       message: "Your account was created successfully.", delay: 2) {
+                                                        self.performSegue(withIdentifier: "postSignupSegue", sender: self)
+                                }
                             }
                         }
                     }
@@ -84,44 +94,11 @@ class SignupController: UIViewController {
             }
         }
     }
-}
 
-// MARK: - FireBase Calls
-extension SignupController {
-    //check if username is available or aleardy used
-    private func isUsernameAvailable(username: String, completion: @escaping (Bool) -> Void) {
-        let reference = Database.database().reference()
-        reference.child("usernames").child(username).observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.exists() {
-                completion(false)
-            } else {
-                completion(true)
-            }
-        }, withCancel: nil)
-    }
-
-    //register user informations such as username, gender, bio...
-    private func registerUserInfo(uid: String, values: [String: String], completion: @escaping (String?) -> Void) {
-        let reference = Database.database().reference()
-        reference.child("users").child(uid).updateChildValues(values,
-                                                              withCompletionBlock: { (error, _) in
-            if let error = error {
-                completion(error.localizedDescription)
-                return
-            }
-            completion(nil)
-        })
-    }
-
-    //register username for future use
-    private func registerUsername(username: String, uid: String, completion: @escaping (String?) -> Void) {
-        let reference = Database.database().reference()
-        reference.child("usernames").updateChildValues([username: uid], withCompletionBlock: { (error, _) in
-            if let error = error {
-                completion(error.localizedDescription)
-            }
-            completion(nil)
-        })
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "postSignupSegue", let tabBar = segue.destination as? UITabBarController {
+            tabBar.selectedIndex = tabIndex
+        }
     }
 }
 

@@ -8,9 +8,25 @@
 
 import Foundation
 
-struct User {
-    let username: String
-    let gender: String
+struct User: Codable {
+    let uid: String
+    let name: String
+    let gender: Gender
     let email: String
     let bio: String
+}
+
+enum Gender: Int, Codable {
+    case male = 0, female = 1, other = 2
+
+    var asString: String {
+        switch self {
+        case .male:
+            return "Male"
+        case .female:
+            return "Female"
+        case .other:
+            return "Other"
+        }
+    }
 }
