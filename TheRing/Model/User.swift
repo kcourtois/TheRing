@@ -1,5 +1,5 @@
 //
-//  User.swift
+//  TRUser.swift
 //  TheRing
 //
 //  Created by Kévin Courtois on 27/06/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct User: Codable {
+struct TRUser: Codable {
     let uid: String
     let name: String
     let gender: Gender

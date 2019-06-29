@@ -29,6 +29,8 @@ class ProfileController: UIViewController {
                 return
             } else if name != preferences.user.name {
                 checkUsernameAndSave(name: name)
+            } else if mail != preferences.user.email {
+                updateMailAndSave(mail: mail)
             } else {
                 saveUser()
             }
@@ -90,9 +92,22 @@ class ProfileController: UIViewController {
         })
     }
 
+    private func updateMailAndSave(mail: String) {
+        FirebaseService.updateEmail(mail: mail) { error in
+            if error == nil {
+                self.saveUser()
+            } else {
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
+                                                 message: "Error while updating email.")
+                print(error)
+                return
+            }
+        }
+    }
+
     private func savePreferences() {
         if let bio = bioTextField.text, let name = nameTextField.text, let mail = mailTextField.text {
-            let user = User(uid: preferences.user.uid,
+            let user = TRUser(uid: preferences.user.uid,
                             name: name,
                             gender: Gender(rawValue: genderControl.selectedSegmentIndex) ?? .other,
                             email: mail,

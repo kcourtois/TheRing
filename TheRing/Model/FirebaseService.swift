@@ -8,10 +8,11 @@
 
 import Foundation
 import FirebaseDatabase
+import FirebaseAuth
 
 class FirebaseService {
     //get user info online
-    static func getUserInfo(uid: String, completion: @escaping (User?) -> Void) {
+    static func getUserInfo(uid: String, completion: @escaping (TRUser?) -> Void) {
         let reference = Database.database().reference()
         reference.child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             let value = snapshot.value as? NSDictionary
@@ -19,7 +20,7 @@ class FirebaseService {
                 let gender = Gender(rawValue: value?["gender"] as? Int ?? 2),
                 let email = value?["email"] as? String,
                 let bio = value?["bio"] as? String {
-                completion(User(uid: uid, name: name, gender: gender, email: email, bio: bio))
+                completion(TRUser(uid: uid, name: name, gender: gender, email: email, bio: bio))
             } else {
                 completion(nil)
             }
@@ -66,6 +67,32 @@ class FirebaseService {
             }
             registerUsername(name: new, uid: uid, completion: { (error) in
                 completion(error)
+            })
+        }
+    }
+
+    static func updateEmail(mail: String, completion: @escaping (String?) -> Void) {
+        if let user = Auth.auth().currentUser {
+            reauthenticate(user: user, password: "qwerty", completion: { authError in
+                if authError == nil {
+                    user.updateEmail(to: mail) { error in
+                        completion(error?.localizedDescription)
+                    }
+                } else {
+                    completion(authError)
+                }
+            })
+        } else {
+            completion("User not found.")
+        }
+    }
+
+    static func reauthenticate(user: User, password: String, completion: @escaping (String?) -> Void) {
+        if let user = Auth.auth().currentUser {
+            let preferences = Preferences()
+            let cred = EmailAuthProvider.credential(withEmail: preferences.user.email, password: password)
+            user.reauthenticate(with: cred, completion: { (_, error) in
+                completion(error?.localizedDescription)
             })
         }
     }
