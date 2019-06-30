@@ -12,7 +12,6 @@ class ProfileController: UIViewController {
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var genderControl: UISegmentedControl!
     @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var mailTextField: UITextField!
 
     let preferences = Preferences()
     private var alert: UIAlertController?
@@ -22,48 +21,55 @@ class ProfileController: UIViewController {
         setFields()
     }
 
+    @IBAction func modifyEmailTapped() {
+        performSegue(withIdentifier: "updateEmailSegue", sender: self)
+    }
+
+    @IBAction func modifyPasswordTapped() {
+        performSegue(withIdentifier: "updatePasswordSegue", sender: self)
+    }
+
     @IBAction func saveTapped(_ sender: Any) {
-        if let name = nameTextField.text, let mail = mailTextField.text {
-            if fieldsEmpty(name: name, mail: mail) {
-                presentAlert(title: "Error", message: "Username and email must not be empty.")
+        alert = loadingAlert()
+        if let name = nameTextField.text {
+            if name.isEmpty {
+                dismissLoadAlertWithMessage(alert: alert, title: "Error",
+                                            message: "Username and email must not be empty.")
                 return
             } else if name != preferences.user.name {
                 checkUsernameAndSave(name: name)
-            } else if mail != preferences.user.email {
-                updateMailAndSave(mail: mail)
             } else {
                 saveUser()
             }
         } else {
-            presentAlert(title: "Error", message: "An error occured while saving your data.")
+            errorOccured()
         }
     }
 
     private func setFields() {
         bioTextField.text = preferences.user.bio
         nameTextField.text = preferences.user.name
-        mailTextField.text = preferences.user.email
         genderControl.selectedSegmentIndex = preferences.user.gender.rawValue
     }
 
     private func saveUser() {
-        guard let bio = bioTextField.text, let name = nameTextField.text, let mail = mailTextField.text else {
-            self.presentAlert(title: "Error", message: "An error occured. Please try again later.")
+        guard let bio = bioTextField.text, let name = nameTextField.text else {
+            self.errorOccured()
             return
         }
 
         let values = ["bio": bio,
-                      "email": mail,
+                      "email": preferences.user.email,
                       "gender": preferences.user.gender.rawValue,
                       "username": name] as [String: Any]
 
         FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if error != nil {
-                self.presentAlert(title: "Error", message: "An error occured. Please try again later.")
+                
             } else {
                 self.savePreferences()
-                self.presentAlertDelay(title: "Saved", message: "Your modifications were saved.",
-                                       delay: 2, completion: {})
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Saved",
+                                            message: "Your modifications were saved.")
             }
         }
     }
@@ -86,37 +92,38 @@ class ProfileController: UIViewController {
             if error == nil {
                 self.saveUser()
             } else {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
-                                                 message: "An error occured. Please try again later.")
+                self.errorOccured()
             }
         })
     }
 
-    private func updateMailAndSave(mail: String) {
-        FirebaseService.updateEmail(mail: mail) { error in
-            if error == nil {
-                self.saveUser()
-            } else {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
-                                                 message: "Error while updating email.")
-                print(error)
-                return
-            }
-        }
-    }
-
     private func savePreferences() {
-        if let bio = bioTextField.text, let name = nameTextField.text, let mail = mailTextField.text {
+        if let bio = bioTextField.text, let name = nameTextField.text {
             let user = TRUser(uid: preferences.user.uid,
                             name: name,
                             gender: Gender(rawValue: genderControl.selectedSegmentIndex) ?? .other,
-                            email: mail,
+                            email: preferences.user.email,
                             bio: bio)
             preferences.user = user
         }
     }
 
-    private func fieldsEmpty(name: String, mail: String) -> Bool {
-        return name.isEmpty || mail.isEmpty
+    private func errorOccured() {
+        dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
+                                         message: "An error occured. Please try again later.")
+    }
+}
+
+// MARK: - Keyboard
+extension ProfileController: UITextFieldDelegate {
+    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
+        bioTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        bioTextField.resignFirstResponder()
+        nameTextField.resignFirstResponder()
+        return true
     }
 }

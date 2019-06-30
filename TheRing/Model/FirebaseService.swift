@@ -71,11 +71,27 @@ class FirebaseService {
         }
     }
 
-    static func updateEmail(mail: String, completion: @escaping (String?) -> Void) {
+    static func updateEmail(password: String, mail: String, completion: @escaping (String?) -> Void) {
         if let user = Auth.auth().currentUser {
-            reauthenticate(user: user, password: "qwerty", completion: { authError in
+            reauthenticate(user: user, password: password, completion: { authError in
                 if authError == nil {
                     user.updateEmail(to: mail) { error in
+                        completion(error?.localizedDescription)
+                    }
+                } else {
+                    completion(authError)
+                }
+            })
+        } else {
+            completion("User not found.")
+        }
+    }
+
+    static func updatePassword(oldPwd: String, newPwd: String, completion: @escaping (String?) -> Void) {
+        if let user = Auth.auth().currentUser {
+            reauthenticate(user: user, password: oldPwd, completion: { authError in
+                if authError == nil {
+                    user.updatePassword(to: newPwd) { error in
                         completion(error?.localizedDescription)
                     }
                 } else {

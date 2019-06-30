@@ -63,7 +63,7 @@
                                                         <rect key="frame" x="0.0" y="66" width="343" height="50"/>
                                                         <nil key="textColor"/>
                                                         <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="20"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no" textContentType="password"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                         <connections>
                                                             <outlet property="delegate" destination="BYZ-38-t0r" id="4zR-Ge-4ig"/>
                                                         </connections>
@@ -578,13 +578,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="lr1-0W-H5C">
-                                <rect key="frame" x="16" y="152.33333333333334" width="343" height="150.00000000000003"/>
+                                <rect key="frame" x="16" y="152.33333333333337" width="343" height="210"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Z3S-s9-a5d">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVK-oC-Ihj">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="xuj-ai-tM9"/>
                                                 </constraints>
@@ -593,38 +593,21 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4g0-UH-brR">
-                                                <rect key="frame" x="110" y="0.0" width="233" height="30"/>
+                                                <rect key="frame" x="110" y="0.0" width="233" height="34"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fDx-C2-uaw">
-                                        <rect key="frame" x="0.0" y="40" width="343" height="30"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzw-Le-Bji" userLabel="Email">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="VF2-jt-9lI"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PdV-pi-b2X">
-                                                <rect key="frame" x="110" y="0.0" width="233" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" textContentType="username"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9Co-KT-uOk" id="Qfi-lP-aOF"/>
+                                                </connections>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VhU-t4-Vxn">
-                                        <rect key="frame" x="0.0" y="80" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="44" width="343" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sy5-Mf-Fbh" userLabel="Bio">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="nxJ-nu-fZO"/>
                                                 </constraints>
@@ -633,7 +616,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="2" translatesAutoresizingMaskIntoConstraints="NO" id="b2o-O2-zWk">
-                                                <rect key="frame" x="110" y="0.0" width="233" height="31"/>
+                                                <rect key="frame" x="110" y="0.0" width="233" height="35"/>
                                                 <segments>
                                                     <segment title="Male"/>
                                                     <segment title="Female"/>
@@ -644,10 +627,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wzw-av-FtF">
-                                        <rect key="frame" x="0.0" y="119.99999999999997" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="88" width="343" height="34"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6I-KM-gE6" userLabel="Bio">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="sa0-T9-IpI"/>
                                                 </constraints>
@@ -656,11 +639,74 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nuO-kf-xB0">
-                                                <rect key="frame" x="110" y="0.0" width="233" height="30"/>
+                                                <rect key="frame" x="110" y="0.0" width="233" height="34"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="9Co-KT-uOk" id="uQU-Lv-qmd"/>
+                                                </connections>
                                             </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="fDx-C2-uaw">
+                                        <rect key="frame" x="0.0" y="131.99999999999997" width="343" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hzw-Le-Bji" userLabel="Email">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="VF2-jt-9lI"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1O9-mE-IpQ">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="34"/>
+                                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <state key="normal" title="Modify email">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="modifyEmailTapped" destination="9Co-KT-uOk" eventType="touchUpInside" id="D6e-pq-a6d"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="EmL-UB-WHY">
+                                        <rect key="frame" x="0.0" y="175.99999999999997" width="343" height="34"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KB-QU-QOg" userLabel="Email">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="34"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="1au-gV-lWN"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oZa-LB-9EO">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="34"/>
+                                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <state key="normal" title="Modify password">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="modifyPasswordTapped" destination="9Co-KT-uOk" eventType="touchUpInside" id="6PZ-cs-YsE"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
@@ -673,6 +719,7 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="lr1-0W-H5C" firstAttribute="top" secondItem="VhZ-Kj-Stn" secondAttribute="bottom" constant="16" id="OWG-S2-fyq"/>
                             <constraint firstItem="VhZ-Kj-Stn" firstAttribute="centerX" secondItem="lXr-lf-xxX" secondAttribute="centerX" id="XJ9-s3-MVg"/>
@@ -681,6 +728,9 @@
                             <constraint firstItem="lr1-0W-H5C" firstAttribute="leading" secondItem="Hrn-Yl-Mta" secondAttribute="leading" constant="16" id="wO1-EL-yQb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hrn-Yl-Mta"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="nQF-x3-d6E" appends="YES" id="kRW-aK-84W"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="pKp-NU-iF2">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Lw9-wc-jGo">
@@ -692,20 +742,277 @@
                     <connections>
                         <outlet property="bioTextField" destination="nuO-kf-xB0" id="VkF-UE-mD7"/>
                         <outlet property="genderControl" destination="b2o-O2-zWk" id="9ig-pY-suh"/>
-                        <outlet property="mailTextField" destination="PdV-pi-b2X" id="caS-qf-zu3"/>
                         <outlet property="nameTextField" destination="4g0-UH-brR" id="tzs-sG-Q8O"/>
+                        <segue destination="oUw-4s-hNM" kind="show" identifier="updateEmailSegue" id="6r5-tn-j9n"/>
+                        <segue destination="E6D-5x-pzj" kind="show" identifier="updatePasswordSegue" id="Zod-3O-iAK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daS-Zh-R31" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="nQF-x3-d6E">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="9Co-KT-uOk" id="uR1-mQ-4Ub"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3207" y="793"/>
+            <point key="canvasLocation" x="3053.5999999999999" y="792.85714285714289"/>
+        </scene>
+        <!--The Ring-->
+        <scene sceneID="bwy-TV-x5r">
+            <objects>
+                <viewController id="oUw-4s-hNM" customClass="EmailController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YEG-hn-Wnb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yPp-Cm-HmT">
+                                <rect key="frame" x="16" y="152.33333333333334" width="343" height="147.00000000000003"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PNd-ew-N4b">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="42.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ABF-qM-kZg">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="EM9-LB-sph"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OMP-5Y-Z8I">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="42.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="oUw-4s-hNM" id="yt3-bT-cUi"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yP0-L4-bXc">
+                                        <rect key="frame" x="0.0" y="52.333333333333314" width="343" height="42.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ld-cR-tMY" userLabel="Email">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="RKD-le-jAR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your new email here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXu-L7-rtQ">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="42.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="oUw-4s-hNM" id="LZn-y6-UtY"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Pzv-ib-muO">
+                                        <rect key="frame" x="0.0" y="104.66666666666666" width="343" height="42.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9J-S5-yQy" userLabel="Bio">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="DbP-2E-Vz7"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New email confirmation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I8i-O8-OfK">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="42.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" textContentType="email"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="oUw-4s-hNM" id="6Vw-zf-XbE"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUO-1J-Y84">
+                                <rect key="frame" x="69.000000000000014" y="104" width="237.33333333333337" height="32.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Moltors" family="Moltors" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="XJd-3y-ma4" firstAttribute="trailing" secondItem="yPp-Cm-HmT" secondAttribute="trailing" constant="16" id="31j-vk-RzS"/>
+                            <constraint firstItem="yPp-Cm-HmT" firstAttribute="leading" secondItem="XJd-3y-ma4" secondAttribute="leading" constant="16" id="ZJL-mC-e15"/>
+                            <constraint firstItem="zUO-1J-Y84" firstAttribute="top" secondItem="XJd-3y-ma4" secondAttribute="top" constant="16" id="cXV-bQ-ZBD"/>
+                            <constraint firstItem="zUO-1J-Y84" firstAttribute="centerX" secondItem="YEG-hn-Wnb" secondAttribute="centerX" id="cz0-h1-qTf"/>
+                            <constraint firstItem="yPp-Cm-HmT" firstAttribute="top" secondItem="zUO-1J-Y84" secondAttribute="bottom" constant="16" id="p9t-dQ-qmu"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="XJd-3y-ma4"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Ppb-5o-RY3" appends="YES" id="bJN-0V-0RO"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="The Ring" id="eRT-LV-hYV">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kk3-Lk-cFQ">
+                            <connections>
+                                <action selector="saveTapped:" destination="oUw-4s-hNM" id="CkH-Yi-0Gx"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="confirmEmailField" destination="I8i-O8-OfK" id="GkF-ar-22R"/>
+                        <outlet property="newEmailField" destination="aXu-L7-rtQ" id="EDR-IS-ANn"/>
+                        <outlet property="passwordField" destination="OMP-5Y-Z8I" id="2F5-0l-FkL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6kV-px-imZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Ppb-5o-RY3">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="oUw-4s-hNM" id="cgP-Eg-F3P"/>
+                        <outlet property="delegate" destination="oUw-4s-hNM" id="TFT-c4-BLm"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="4026" y="793"/>
+        </scene>
+        <!--The Ring-->
+        <scene sceneID="Nr8-QA-0uV">
+            <objects>
+                <viewController id="E6D-5x-pzj" customClass="PasswordController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="A9k-vs-q2P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2ma-PC-IHL">
+                                <rect key="frame" x="16" y="152.33333333333334" width="343" height="147.00000000000003"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ceX-hy-KCN">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="42.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Old password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I2L-HD-klg">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="Bs9-R4-7v6"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your old password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kZO-n3-9tP">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="42.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="E6D-5x-pzj" id="0vG-iC-6bX"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I9Q-G4-V6q">
+                                        <rect key="frame" x="0.0" y="52.333333333333314" width="343" height="42.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FKq-ld-woP" userLabel="Email">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="y9Y-lf-lNx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Your new password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oOv-jJ-fYZ">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="42.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="E6D-5x-pzj" id="kCd-b5-Z5j"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="7zc-br-nG4">
+                                        <rect key="frame" x="0.0" y="104.66666666666666" width="343" height="42.333333333333343"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Confirm Password" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U5V-RE-Tvq" userLabel="Bio">
+                                                <rect key="frame" x="0.0" y="0.0" width="100" height="42.333333333333336"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="CpB-Op-29B"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New password confirmation" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3zZ-z9-jjY">
+                                                <rect key="frame" x="110" y="0.0" width="233" height="42.333333333333336"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="new-password"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="E6D-5x-pzj" id="Aq7-8w-RBx"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1UR-ZS-FRm">
+                                <rect key="frame" x="28.666666666666657" y="104" width="317.66666666666674" height="32.333333333333343"/>
+                                <fontDescription key="fontDescription" name="Moltors" family="Moltors" pointSize="28"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="2ma-PC-IHL" firstAttribute="leading" secondItem="Afd-Uo-Lo9" secondAttribute="leading" constant="16" id="DCw-56-taP"/>
+                            <constraint firstItem="1UR-ZS-FRm" firstAttribute="centerX" secondItem="A9k-vs-q2P" secondAttribute="centerX" id="LPx-Hj-X1c"/>
+                            <constraint firstItem="2ma-PC-IHL" firstAttribute="top" secondItem="1UR-ZS-FRm" secondAttribute="bottom" constant="16" id="LxR-SS-JQj"/>
+                            <constraint firstItem="1UR-ZS-FRm" firstAttribute="top" secondItem="Afd-Uo-Lo9" secondAttribute="top" constant="16" id="d4q-rK-JfD"/>
+                            <constraint firstItem="Afd-Uo-Lo9" firstAttribute="trailing" secondItem="2ma-PC-IHL" secondAttribute="trailing" constant="16" id="fM3-RB-rvi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Afd-Uo-Lo9"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="zDL-cN-CzK" appends="YES" id="Hbe-LN-QLx"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="The Ring" id="SwD-Zo-bRT">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ErV-U6-Zmp">
+                            <connections>
+                                <action selector="saveTapped:" destination="E6D-5x-pzj" id="ghg-8g-vtK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="confirmField" destination="3zZ-z9-jjY" id="SCg-kH-RtR"/>
+                        <outlet property="newPasswordField" destination="oOv-jJ-fYZ" id="NyA-tE-Gk2"/>
+                        <outlet property="oldPasswordField" destination="kZO-n3-9tP" id="QoS-cO-rhk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9fY-bp-JVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="zDL-cN-CzK">
+                    <connections>
+                        <action selector="dismissKeyboard:" destination="E6D-5x-pzj" id="OjJ-BC-AkW"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="4025" y="1536"/>
         </scene>
     </scenes>
     <resources>
         <image name="xuan-nguyen-725109-unsplash" width="5024" height="3349"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="unn-mL-icd"/>
+        <segue reference="572-hB-pf5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

@@ -48,4 +48,15 @@ extension UIViewController {
             self.presentAlert(title: title, message: message)
         }
     }
+
+    //Creates an alert with a title and a message, and pops to root view controller
+    func presentAlertPopRootVC(title: String, message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { _ in
+            if let nav = self.navigationController {
+                nav.popToRootViewController(animated: true)
+            }
+        }))
+        present(alertVC, animated: true, completion: nil)
+    }
 }
