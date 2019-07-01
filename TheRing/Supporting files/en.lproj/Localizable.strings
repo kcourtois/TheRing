@@ -1,0 +1,24 @@
+/* 
+  Localizable.strings
+  TheRing
+
+  Created by Kévin Courtois on 01/07/2019.
+  Copyright © 2019 Kévin Courtois. All rights reserved.
+*/
+
+
+
+//ALERT TITLES
+
+"Saved" = "Saved";
+"Error" = "Error";
+
+//ALERT MESSAGES
+
+"Your modifications were saved." = "Your modifications were saved.";
+"An error occured. Please try again later." = "An error occured. Please try again later.";
+"Confirm field is wrong." = "Confirm field is wrong.";
+"You already use this email." = "You already use this email.";
+"Fields must not be empty." = "Fields must not be empty.";
+"Username not available." = "Username not available.";
+"Loading..." = "Loading...";

@@ -33,8 +33,8 @@ class ProfileController: UIViewController {
         alert = loadingAlert()
         if let name = nameTextField.text {
             if name.isEmpty {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
-                                            message: "Username and email must not be empty.")
+                dismissAndLocalizedAlert(alert: alert, title: "Error",
+                                            message: "Fields must not be empty.")
                 return
             } else if name != preferences.user.name {
                 checkUsernameAndSave(name: name)
@@ -65,10 +65,11 @@ class ProfileController: UIViewController {
 
         FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if error != nil {
-                
+                self.errorOccured()
+                return
             } else {
                 self.savePreferences()
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Saved",
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Saved",
                                             message: "Your modifications were saved.")
             }
         }
@@ -79,7 +80,7 @@ class ProfileController: UIViewController {
             if available {
                 self.replaceUsernameAndSave(name: name)
             } else {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
                     message: "Username not available.")
                 return
             }
@@ -109,7 +110,7 @@ class ProfileController: UIViewController {
     }
 
     private func errorOccured() {
-        dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
+        dismissAndLocalizedAlert(alert: self.alert, title: "Error",
                                          message: "An error occured. Please try again later.")
     }
 }

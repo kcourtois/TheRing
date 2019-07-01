@@ -27,19 +27,19 @@ class SignupController: UIViewController {
 
         guard let email = emailField.text, let password = passwordField.text,
             let confirm = passwordConfirmField.text, let username = usernameField.text else {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
+                dismissAndLocalizedAlert(alert: alert, title: "Error",
                                             message: "An error occured. Please try again later.")
                 return
         }
 
         if (email == "") || (password == "") || (confirm == "") || (username == "") {
-            dismissLoadAlertWithMessage(alert: alert, title: "Error",
-                                        message: "Please make sure to fill all the fields.")
+            dismissAndLocalizedAlert(alert: alert, title: "Error",
+                                        message: "Fields must not be empty.")
             return
         }
 
         if password != confirm {
-            dismissLoadAlertWithMessage(alert: alert, title: "Error", message: "Password doesn't match.")
+            dismissAndLocalizedAlert(alert: alert, title: "Error", message: "Confirm field is wrong.")
             return
         }
 
@@ -47,7 +47,7 @@ class SignupController: UIViewController {
             if available {
                 self.createUser(email: email, password: password, username: username)
             } else {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error", message: "Username not available.")
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: "Username not available.")
                 return
             }
         }
@@ -56,7 +56,7 @@ class SignupController: UIViewController {
     private func createUser(email: String, password: String, username: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
                                                  message: "\(error.localizedDescription)")
                 return
             }
@@ -69,11 +69,11 @@ class SignupController: UIViewController {
 
             FirebaseService.registerUserInfo(uid: uid, values: values) { error in
                 if let error = error {
-                    self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error", message: "\(error)")
+                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: "\(error)")
                 } else {
                     FirebaseService.registerUsername(name: username, uid: uid) { error in
                         if let error = error {
-                            self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error", message: "\(error)")
+                            self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: "\(error)")
                         } else {
                             if let alert = self.alert {
                                 alert.dismiss(animated: true) {

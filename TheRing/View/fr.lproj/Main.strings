@@ -1,0 +1,180 @@
+
+/* Class = "UINavigationItem"; title = "Title"; ObjectID = "0GN-fc-JNW"; */
+"0GN-fc-JNW.title" = "Titre";
+
+/* Class = "UIButton"; normalTitle = "Modify email"; ObjectID = "1O9-mE-IpQ"; */
+"1O9-mE-IpQ.normalTitle" = "Modifier email";
+
+/* Class = "UILabel"; text = "Update Password"; ObjectID = "1UR-ZS-FRm"; */
+"1UR-ZS-FRm.text" = "Modifier MDP";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "2tc-q5-Ym4"; */
+"2tc-q5-Ym4.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "New password confirmation"; ObjectID = "3zZ-z9-jjY"; */
+"3zZ-z9-jjY.placeholder" = "Confirmation MDP";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "599-a6-Ovu"; */
+"599-a6-Ovu.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "5AR-kc-vdM"; */
+"5AR-kc-vdM.text" = "Email";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "5KB-QU-QOg"; */
+"5KB-QU-QOg.text" = "Mot de passe";
+
+/* Class = "UITabBarItem"; title = "Home"; ObjectID = "5cA-zf-VNM"; */
+"5cA-zf-VNM.title" = "Accueil";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "8J5-iF-F1e"; */
+"8J5-iF-F1e.title" = "Retour";
+
+/* Class = "UILabel"; text = "New Email"; ObjectID = "8ld-cR-tMY"; */
+"8ld-cR-tMY.text" = "Nouveau Email";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "93p-lr-fTQ"; */
+"93p-lr-fTQ.placeholder" = "Mot de passe";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "ABF-qM-kZg"; */
+"ABF-qM-kZg.text" = "Mot de passe";
+
+/* Class = "UITextField"; placeholder = "Password confirmation"; ObjectID = "EXF-Qq-DOM"; */
+"EXF-Qq-DOM.placeholder" = "Confirmation MDP";
+
+/* Class = "UILabel"; text = "New Password"; ObjectID = "FKq-ld-woP"; */
+"FKq-ld-woP.text" = "Nouveau MDP";
+
+/* Class = "UILabel"; text = "Bio"; ObjectID = "GNV-Kq-ou4"; */
+"GNV-Kq-ou4.text" = "Bio";
+
+/* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "GOf-dx-60G"; */
+"GOf-dx-60G.title" = "The Ring";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "HVK-oC-Ihj"; */
+"HVK-oC-Ihj.text" = "Nom d'utilisateur";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "Hzw-Le-Bji"; */
+"Hzw-Le-Bji.text" = "Email";
+
+/* Class = "UILabel"; text = "Old password"; ObjectID = "I2L-HD-klg"; */
+"I2L-HD-klg.text" = "Ancien MDP";
+
+/* Class = "UITextField"; placeholder = "New email confirmation"; ObjectID = "I8i-O8-OfK"; */
+"I8i-O8-OfK.placeholder" = "Confirmation email";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "IRd-m0-ZJd"; */
+"IRd-m0-ZJd.text" = "Genre";
+
+/* Class = "UIButton"; normalTitle = "Sign out"; ObjectID = "MDU-Kd-Oos"; */
+"MDU-Kd-Oos.normalTitle" = "Déconnexion";
+
+/* Class = "UITextView"; text = "Sign up to be a member of The Ring ! Create tournaments, share them with your friends and see which contestant will be victorious !"; ObjectID = "Msh-8W-ab5"; */
+"Msh-8W-ab5.text" = "Inscrivez vous pour devenir membre du Ring ! Créez des tounrois, partagez les avec vos amis et voyez quel concurrent sera victorieux !";
+
+/* Class = "UILabel"; text = "Confirm Email"; ObjectID = "O9J-S5-yQy"; */
+"O9J-S5-yQy.text" = "Confirmer Email";
+
+/* Class = "UITextField"; placeholder = "Type your password"; ObjectID = "OMP-5Y-Z8I"; */
+"OMP-5Y-Z8I.placeholder" = "Votre MDP";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Oug-S7-Fj4"; */
+"Oug-S7-Fj4.text" = "Label";
+
+/* Class = "UILabel"; text = "Don't have an account ?"; ObjectID = "Ph2-xo-CjZ"; */
+"Ph2-xo-CjZ.text" = "Pas de compte ?";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Prx-mW-rcw"; */
+"Prx-mW-rcw.text" = "Label";
+
+/* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "SwD-Zo-bRT"; */
+"SwD-Zo-bRT.title" = "The Ring";
+
+/* Class = "UILabel"; text = "Confirm Password"; ObjectID = "U5V-RE-Tvq"; */
+"U5V-RE-Tvq.text" = "Confirmer MDP";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "Uft-vR-GeN"; */
+"Uft-vR-GeN.text" = "Profil";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "VhZ-Kj-Stn"; */
+"VhZ-Kj-Stn.text" = "Profil";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WZe-YJ-q8P"; */
+"WZe-YJ-q8P.text" = "Label";
+
+/* Class = "UILabel"; text = "The Ring"; ObjectID = "WZs-Rw-8hU"; */
+"WZs-Rw-8hU.text" = "The Ring";
+
+/* Class = "UILabel"; text = "Bio"; ObjectID = "Z6I-KM-gE6"; */
+"Z6I-KM-gE6.text" = "Bio";
+
+/* Class = "UITextField"; placeholder = "Your new email here"; ObjectID = "aXu-L7-rtQ"; */
+"aXu-L7-rtQ.placeholder" = "Nouveau email";
+
+/* Class = "UISegmentedControl"; b2o-O2-zWk.segmentTitles[0] = "Male"; ObjectID = "b2o-O2-zWk"; */
+"b2o-O2-zWk.segmentTitles[0]" = "Homme";
+
+/* Class = "UISegmentedControl"; b2o-O2-zWk.segmentTitles[1] = "Female"; ObjectID = "b2o-O2-zWk"; */
+"b2o-O2-zWk.segmentTitles[1]" = "Femme";
+
+/* Class = "UISegmentedControl"; b2o-O2-zWk.segmentTitles[2] = "Other"; ObjectID = "b2o-O2-zWk"; */
+"b2o-O2-zWk.segmentTitles[2]" = "Autre";
+
+/* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "boU-HJ-cZo"; */
+"boU-HJ-cZo.normalTitle" = "CONNEXION";
+
+/* Class = "UITabBarItem"; title = "User"; ObjectID = "dTu-Mp-wxw"; */
+"dTu-Mp-wxw.title" = "Utilisateur";
+
+/* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "eRT-LV-hYV"; */
+"eRT-LV-hYV.title" = "The Ring";
+
+/* Class = "UILabel"; text = "Tournaments"; ObjectID = "eWt-Vh-KkQ"; */
+"eWt-Vh-KkQ.text" = "Tournois";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "ewJ-Do-tTU"; */
+"ewJ-Do-tTU.placeholder" = "Nom d'utilisateur";
+
+/* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "fdM-cK-Cyh"; */
+"fdM-cK-Cyh.normalTitle" = "Continuer";
+
+/* Class = "UILabel"; text = "Username"; ObjectID = "go6-RC-aGg"; */
+"go6-RC-aGg.text" = "Nom d'utilisateur";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "jDk-3S-fPz"; */
+"jDk-3S-fPz.placeholder" = "Mot de passe";
+
+/* Class = "UITextField"; placeholder = "Your old password"; ObjectID = "kZO-n3-9tP"; */
+"kZO-n3-9tP.placeholder" = "Ancien MDP";
+
+/* Class = "UITextField"; placeholder = "Your new password"; ObjectID = "oOv-jJ-fYZ"; */
+"oOv-jJ-fYZ.placeholder" = "Nouveau MDP";
+
+/* Class = "UIButton"; normalTitle = "Modify password"; ObjectID = "oZa-LB-9EO"; */
+"oZa-LB-9EO.normalTitle" = "Modifier MDP";
+
+/* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "pKp-NU-iF2"; */
+"pKp-NU-iF2.title" = "The Ring";
+
+/* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "qmd-4Y-Krk"; */
+"qmd-4Y-Krk.normalTitle" = "S'inscrire";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "sKY-g7-i4a"; */
+"sKY-g7-i4a.normalTitle" = "Annuler";
+
+/* Class = "UILabel"; text = "Gender"; ObjectID = "sy5-Mf-Fbh"; */
+"sy5-Mf-Fbh.text" = "Genre";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "tPq-YG-ikC"; */
+"tPq-YG-ikC.text" = "Label";
+
+/* Class = "UILabel"; text = "The Ring"; ObjectID = "up7-Ac-vmu"; */
+"up7-Ac-vmu.text" = "The Ring";
+
+/* Class = "UITextField"; placeholder = "Email address"; ObjectID = "xOP-zc-IkT"; */
+"xOP-zc-IkT.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = " Update profile "; ObjectID = "ywr-dm-ooM"; */
+"ywr-dm-ooM.normalTitle" = "Modifier profil";
+
+/* Class = "UILabel"; text = "Update Email"; ObjectID = "zUO-1J-Y84"; */
+"zUO-1J-Y84.text" = "Modifier Email";

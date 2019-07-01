@@ -49,6 +49,14 @@ extension UIViewController {
         }
     }
 
+    //Dismiss loading alert and show localized error alert
+    func dismissAndLocalizedAlert(alert: UIAlertController?, title: String, message: String) {
+        let localizedTitle = NSLocalizedString(title, comment: "")
+        let localizedMessage = NSLocalizedString(message, comment: "")
+        dismissLoadAlertWithMessage(alert: alert, title: localizedTitle,
+                                    message: localizedMessage)
+    }
+
     //Creates an alert with a title and a message, and pops to root view controller
     func presentAlertPopRootVC(title: String, message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)

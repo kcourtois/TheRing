@@ -24,4 +24,4 @@ Here, 4 movies were listed. Movie 1 and 4 were the winners of the first round, a
 - [ ] Share them
 - [ ] Vote
 - [ ] Comments on tournaments
-- [ ] Support of french language
+- [x] Support of french language

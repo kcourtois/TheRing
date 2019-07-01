@@ -21,16 +21,13 @@ class EmailController: UIViewController {
         alert = loadingAlert()
         if let password = passwordField.text, let newMail = newEmailField.text, let confirm = confirmEmailField.text {
             if fieldsEmpty(password: password, mail: newMail, confirm: confirm) {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
-                                            message: "Fields must not be empty.")
+                dismissAndLocalizedAlert(alert: alert, title: "Error", message: "Fields must not be empty.")
                 return
             } else if newMail == preferences.user.email {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
-                                            message: "You already use this email.")
+                dismissAndLocalizedAlert(alert: alert, title: "Error", message: "You already use this email.")
                 return
             } else if newMail != confirm {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
-                                            message: "Confirm email is wrong.")
+                dismissAndLocalizedAlert(alert: alert, title: "Error", message: "Confirm field is wrong.")
                 return
             } else {
                 updateMailAndSave(password: password, mail: newMail)
@@ -54,25 +51,27 @@ extension EmailController {
 
     //Alert when an error occured, with a generic message.
     private func errorOccured() {
-        dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
-                                    message: "An error occured. Please try again later.")
-    }
-
-    //Dismiss loading alert and show save message
-    private func dismissAndSaveAlert() {
-        if let alert = self.alert {
-            alert.dismiss(animated: true) {
-                self.presentAlertPopRootVC(title: "Saved", message: "Your modifications were saved.")
-            }
-        }
+        dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                 message: "An error occured. Please try again later.")
     }
 
     //Check if fields are empty or not
     private func fieldsEmpty(password: String, mail: String, confirm: String) -> Bool {
         return password.isEmpty || mail.isEmpty || confirm.isEmpty
     }
-}
 
+    //Dismiss loading alert and show save message
+    private func dismissAndSaveAlert() {
+        if let alert = self.alert {
+            alert.dismiss(animated: true) {
+                let saveAlertTitle = NSLocalizedString("Saved", comment: "Title for save alert")
+                let saveAlertMessage = NSLocalizedString("Your modifications were saved.",
+                                                         comment: "Message for save alert")
+                self.presentAlertPopRootVC(title: saveAlertTitle, message: saveAlertMessage)
+            }
+        }
+    }
+}
 
 // MARK: - Network
 extension EmailController {

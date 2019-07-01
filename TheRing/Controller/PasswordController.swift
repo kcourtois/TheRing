@@ -21,12 +21,12 @@ class PasswordController: UIViewController {
         alert = loadingAlert()
         if let oldPwd = oldPasswordField.text, let newPwd = newPasswordField.text, let confirm = confirmField.text {
             if fieldsEmpty(oldPwd: oldPwd, newPwd: newPwd, confirm: confirm) {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
+                dismissAndLocalizedAlert(alert: alert, title: "Error",
                                             message: "Fields must not be empty.")
                 return
             } else if newPwd != confirm {
-                dismissLoadAlertWithMessage(alert: alert, title: "Error",
-                                            message: "Confirm password is wrong.")
+                dismissAndLocalizedAlert(alert: alert, title: "Error",
+                                            message: "Confirm field is wrong.")
                 return
             } else {
                 updatePassword(oldPwd: oldPwd, newPwd: newPwd)
@@ -46,7 +46,7 @@ extension PasswordController {
 
     //Alert when an error occured, with a generic message.
     private func errorOccured() {
-        dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
+        dismissAndLocalizedAlert(alert: self.alert, title: "Error",
                                     message: "An error occured. Please try again later.")
     }
 }
@@ -58,7 +58,10 @@ extension PasswordController {
             if error == nil {
                 if let alert = self.alert {
                     alert.dismiss(animated: true) {
-                        self.presentAlertPopRootVC(title: "Saved", message: "Your modifications were saved.")
+                        let saveAlertTitle = NSLocalizedString("Saved", comment: "Title for save alert")
+                        let saveAlertMessage = NSLocalizedString("Your modifications were saved.",
+                                                                 comment: "Message for save alert")
+                        self.presentAlertPopRootVC(title: saveAlertTitle, message: saveAlertMessage)
                     }
                 }
             } else {
