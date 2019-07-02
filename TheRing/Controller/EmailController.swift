@@ -33,7 +33,8 @@ class EmailController: UIViewController {
                 updateMailAndSave(password: password, mail: newMail)
             }
         } else {
-            errorOccured()
+            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                     message: "An error occured. Please try again later.")
         }
     }
 }
@@ -47,12 +48,6 @@ extension EmailController {
                           email: mail,
                           bio: preferences.user.bio)
         preferences.user = user
-    }
-
-    //Alert when an error occured, with a generic message.
-    private func errorOccured() {
-        dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                 message: "An error occured. Please try again later.")
     }
 
     //Check if fields are empty or not
@@ -82,8 +77,8 @@ extension EmailController {
                       "username": preferences.user.name] as [String: Any]
 
         FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
-            if error != nil {
-                self.errorOccured()
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
             } else {
                 self.savePreferences(mail: mail)
                 self.dismissAndSaveAlert()
@@ -93,11 +88,10 @@ extension EmailController {
 
     private func updateMailAndSave(password: String, mail: String) {
         FirebaseService.updateEmail(password: password, mail: mail) { error in
-            if error == nil {
-                self.saveUser(mail: mail)
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
             } else {
-                self.errorOccured()
-                return
+                self.saveUser(mail: mail)
             }
         }
     }

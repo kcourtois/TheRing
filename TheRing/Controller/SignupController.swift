@@ -56,8 +56,12 @@ class SignupController: UIViewController {
     private func createUser(email: String, password: String, username: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
             if let error = error {
+                if let authError = AuthErrorCode(rawValue: error._code) {
+                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                                  message: authError.errorMessage)
+                }
                 self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                                 message: "\(error.localizedDescription)")
+                                                 message: "An error occured. Please try again later.")
                 return
             }
 
@@ -69,11 +73,11 @@ class SignupController: UIViewController {
 
             FirebaseService.registerUserInfo(uid: uid, values: values) { error in
                 if let error = error {
-                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: "\(error)")
+                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
                 } else {
                     FirebaseService.registerUsername(name: username, uid: uid) { error in
                         if let error = error {
-                            self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: "\(error)")
+                            self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
                         } else {
                             if let alert = self.alert {
                                 alert.dismiss(animated: true) {

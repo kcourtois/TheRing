@@ -174,7 +174,7 @@
 "xOP-zc-IkT.placeholder" = "Email";
 
 /* Class = "UIButton"; normalTitle = " Update profile "; ObjectID = "ywr-dm-ooM"; */
-"ywr-dm-ooM.normalTitle" = "Modifier profil";
+"ywr-dm-ooM.normalTitle" = " Modifier profil ";
 
 /* Class = "UILabel"; text = "Update Email"; ObjectID = "zUO-1J-Y84"; */
 "zUO-1J-Y84.text" = "Modifier Email";

@@ -40,7 +40,7 @@ class FirebaseService {
         let reference = Database.database().reference()
         reference.child("users").child(uid).updateChildValues(values,
                                                               withCompletionBlock: { (error, _) in
-            completion(error?.localizedDescription)
+            completion(getAuthError(error: error))
         })
     }
 
@@ -48,7 +48,7 @@ class FirebaseService {
     static func registerUsername(name: String, uid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         reference.child("usernames").updateChildValues([name: uid], withCompletionBlock: { (error, _) in
-            completion(error?.localizedDescription)
+            completion(getAuthError(error: error))
         })
     }
 
@@ -56,7 +56,7 @@ class FirebaseService {
     static func unregisterUsername(name: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         reference.child("usernames/\(name)").removeValue { (error, _) in
-            completion(error?.localizedDescription)
+            completion(getAuthError(error: error))
         }
     }
 
@@ -76,7 +76,7 @@ class FirebaseService {
             reauthenticate(user: user, password: password, completion: { authError in
                 if authError == nil {
                     user.updateEmail(to: mail) { error in
-                        completion(error?.localizedDescription)
+                        completion(getAuthError(error: error))
                     }
                 } else {
                     completion(authError)
@@ -92,7 +92,7 @@ class FirebaseService {
             reauthenticate(user: user, password: oldPwd, completion: { authError in
                 if authError == nil {
                     user.updatePassword(to: newPwd) { error in
-                        completion(error?.localizedDescription)
+                        completion(getAuthError(error: error))
                     }
                 } else {
                     completion(authError)
@@ -108,8 +108,18 @@ class FirebaseService {
             let preferences = Preferences()
             let cred = EmailAuthProvider.credential(withEmail: preferences.user.email, password: password)
             user.reauthenticate(with: cred, completion: { (_, error) in
-                completion(error?.localizedDescription)
+                completion(getAuthError(error: error))
             })
         }
+    }
+
+    static func getAuthError(error: Error?) -> String? {
+        guard let error = error else {
+            return nil
+        }
+        guard let authError = AuthErrorCode(rawValue: error._code) else {
+            return nil
+        }
+        return authError.errorMessage
     }
 }

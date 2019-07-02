@@ -42,7 +42,8 @@ class ProfileController: UIViewController {
                 saveUser()
             }
         } else {
-            errorOccured()
+            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                     message: "An error occured. Please try again later.")
         }
     }
 
@@ -54,7 +55,8 @@ class ProfileController: UIViewController {
 
     private func saveUser() {
         guard let bio = bioTextField.text, let name = nameTextField.text else {
-            self.errorOccured()
+            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                     message: "An error occured. Please try again later.")
             return
         }
 
@@ -63,39 +65,7 @@ class ProfileController: UIViewController {
                       "gender": preferences.user.gender.rawValue,
                       "username": name] as [String: Any]
 
-        FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
-            if error != nil {
-                self.errorOccured()
-                return
-            } else {
-                self.savePreferences()
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Saved",
-                                            message: "Your modifications were saved.")
-            }
-        }
-    }
-
-    private func checkUsernameAndSave(name: String) {
-        FirebaseService.isUsernameAvailable(name: name) { available in
-            if available {
-                self.replaceUsernameAndSave(name: name)
-            } else {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                    message: "Username not available.")
-                return
-            }
-        }
-    }
-
-    private func replaceUsernameAndSave(name: String) {
-        FirebaseService.replaceUsername(old: self.preferences.user.name, new: name,
-                                        uid: self.preferences.user.uid, completion: { (error) in
-            if error == nil {
-                self.saveUser()
-            } else {
-                self.errorOccured()
-            }
-        })
+        registerUserInfo(values: values)
     }
 
     private func savePreferences() {
@@ -108,10 +78,45 @@ class ProfileController: UIViewController {
             preferences.user = user
         }
     }
+}
 
-    private func errorOccured() {
-        dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                         message: "An error occured. Please try again later.")
+// MARK: - Network
+extension ProfileController {
+    private func replaceUsernameAndSave(name: String) {
+        FirebaseService.replaceUsername(old: self.preferences.user.name, new: name,
+                                        uid: self.preferences.user.uid, completion: { (error) in
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                              message: error)
+            } else {
+                self.saveUser()
+            }
+        })
+    }
+
+    private func checkUsernameAndSave(name: String) {
+        FirebaseService.isUsernameAvailable(name: name) { available in
+            if available {
+                self.replaceUsernameAndSave(name: name)
+            } else {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                              message: "Username not available.")
+                return
+            }
+        }
+    }
+
+    private func registerUserInfo(values: [String: Any]) {
+        FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                              message: error)
+            } else {
+                self.savePreferences()
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Saved",
+                                              message: "Your modifications were saved.")
+            }
+        }
     }
 }
 

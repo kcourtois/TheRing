@@ -1,5 +1,5 @@
 //
-//  AlertExtension.swift
+//  AlertExt.swift
 //  TheRing
 //
 //  Created by Kévin Courtois on 26/06/2019.

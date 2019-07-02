@@ -30,8 +30,12 @@ class LoginController: UIViewController {
         if let email = emailField.text, let password = passwordField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
                 if let error = error {
-                    self.dismissLoadAlertWithMessage(alert: self.alert, title: "Error",
-                                                     message: "\(error.localizedDescription)")
+                    if let authError = AuthErrorCode(rawValue: error._code) {
+                        self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                                      message: authError.errorMessage)
+                    }
+                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                                  message: "An error occured. Please try again later.")
                     return
                 } else {
                     if let alert = self.alert {

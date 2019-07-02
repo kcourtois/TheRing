@@ -22,3 +22,13 @@
 "Fields must not be empty." = "Les champs doivent être remplis.";
 "Username not available." = "Nom d'utilisateur indisponible.";
 "Loading..." = "Chargement...";
+
+//FIREBASE AUTH ERROR
+"The email is already in use with another account" = "Email déjà utilisé sur un autre compte";
+"Account not found for the specified user. Please check and try again" = "Aucun compte pour cet utilisateur. Merci de vérifier vos identifiants et réessayer.";
+"Your account has been disabled. Please contact support." = "Votre compte a été désactivé. Merci de contacter le support.";
+"Please enter a valid email" = "Veuillez entrer un email valide.";
+"Network error. Please try again." = "Erreur réseau. Veuillez réessayer.";
+"Your password is too weak. The password must be 6 characters long or more." = "Votre mot de passe est trop court. Il doit faire au moins 6 caractères.";
+"Your password is incorrect. Please try again." = "Mot de passe incorrecte. Veuillez réessayer.";
+"Unknown error occurred" = "Une erreur inconnue est survenue.";

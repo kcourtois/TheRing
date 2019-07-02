@@ -32,7 +32,8 @@ class PasswordController: UIViewController {
                 updatePassword(oldPwd: oldPwd, newPwd: newPwd)
             }
         } else {
-            errorOccured()
+            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                     message: "An error occured. Please try again later.")
         }
     }
 }
@@ -43,19 +44,15 @@ extension PasswordController {
     private func fieldsEmpty(oldPwd: String, newPwd: String, confirm: String) -> Bool {
         return oldPwd.isEmpty || newPwd.isEmpty || confirm.isEmpty
     }
-
-    //Alert when an error occured, with a generic message.
-    private func errorOccured() {
-        dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                    message: "An error occured. Please try again later.")
-    }
 }
 
 // MARK: - Network
 extension PasswordController {
     private func updatePassword(oldPwd: String, newPwd: String) {
         FirebaseService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
-            if error == nil {
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
+            } else {
                 if let alert = self.alert {
                     alert.dismiss(animated: true) {
                         let saveAlertTitle = NSLocalizedString("Saved", comment: "Title for save alert")
@@ -64,9 +61,6 @@ extension PasswordController {
                         self.presentAlertPopRootVC(title: saveAlertTitle, message: saveAlertMessage)
                     }
                 }
-            } else {
-                self.errorOccured()
-                return
             }
         }
     }
