@@ -43,6 +43,10 @@ class SignupController: UIViewController {
             return
         }
 
+        usernameAvailable(username: username, email: email, password: password)
+    }
+
+    private func usernameAvailable(username: String, email: String, password: String) {
         FirebaseService.isUsernameAvailable(name: username) { available in
             if available {
                 self.createUser(email: email, password: password, username: username)
@@ -71,23 +75,31 @@ class SignupController: UIViewController {
 
             let values = ["email": email, "username": username, "gender": "unknown", "bio": ""]
 
-            FirebaseService.registerUserInfo(uid: uid, values: values) { error in
-                if let error = error {
-                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
-                } else {
-                    FirebaseService.registerUsername(name: username, uid: uid) { error in
-                        if let error = error {
-                            self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
-                        } else {
-                            if let alert = self.alert {
-                                alert.dismiss(animated: true) {
-                                    self.performSegue(withIdentifier: "postSignupSegue", sender: self)
-                                }
-                            } else {
-                                self.performSegue(withIdentifier: "postSignupSegue", sender: self)
-                            }
-                        }
+            self.registerUserInfo(uid: uid, username: username, values: values)
+        }
+    }
+
+    private func registerUserInfo(uid: String, username: String, values: [String: Any]) {
+        FirebaseService.registerUserInfo(uid: uid, values: values) { error in
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
+            } else {
+                self.registerUsername(username: username, uid: uid)
+            }
+        }
+    }
+
+    private func registerUsername(username: String, uid: String) {
+        FirebaseService.registerUsername(name: username, uid: uid) { error in
+            if let error = error {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
+            } else {
+                if let alert = self.alert {
+                    alert.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "postSignupSegue", sender: self)
                     }
+                } else {
+                    self.performSegue(withIdentifier: "postSignupSegue", sender: self)
                 }
             }
         }

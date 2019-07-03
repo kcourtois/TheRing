@@ -33,6 +33,7 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+TheRing/Model/ApiKeys.swift
 
 ## Obj-C/Swift specific
 *.hmap

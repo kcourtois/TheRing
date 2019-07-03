@@ -29,25 +29,28 @@ class LoginController: UIViewController {
         alert = loadingAlert()
         if let email = emailField.text, let password = passwordField.text {
             Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
-                if let error = error {
-                    if let authError = AuthErrorCode(rawValue: error._code) {
-                        self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                                      message: authError.errorMessage)
-                    }
-                    self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                                  message: "An error occured. Please try again later.")
-                    return
-                } else {
-                    if let alert = self.alert {
-                        alert.dismiss(animated: true) {
-                            self.performSegue(withIdentifier: "loginSegue", sender: self)
-                        }
-                    }
-                }
+                self.signInHandler(error: error)
             }
         } else {
             dismissLoadAlertWithMessage(alert: alert, title: "Error",
                                         message: "An error occured, please try again later.")
+        }
+    }
+
+    private func signInHandler(error: Error?) {
+        if let error = error {
+            if let authError = AuthErrorCode(rawValue: error._code) {
+                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                              message: authError.errorMessage)
+            }
+            self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
+                                          message: "An error occured. Please try again later.")
+        } else {
+            if let alert = self.alert {
+                alert.dismiss(animated: true) {
+                    self.performSegue(withIdentifier: "loginSegue", sender: self)
+                }
+            }
         }
     }
 }
