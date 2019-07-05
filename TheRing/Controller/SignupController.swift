@@ -32,7 +32,7 @@ class SignupController: UIViewController {
                 return
         }
 
-        if (email == "") || (password == "") || (confirm == "") || (username == "") {
+        if email.isEmpty || password.isEmpty || confirm.isEmpty || username.isEmpty {
             dismissAndLocalizedAlert(alert: alert, title: "Error",
                                         message: "Fields must not be empty.")
             return

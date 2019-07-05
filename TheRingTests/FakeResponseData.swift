@@ -29,4 +29,8 @@ class FakeResponseData {
     static let responseKO = HTTPURLResponse(
         url: URL(string: "http://www.test.com/api/")!,
         statusCode: 500, httpVersion: nil, headerFields: [:])!
+
+    // MARK: - Error
+    class MovieServiceError: Error {}
+    static let error = MovieServiceError()
 }

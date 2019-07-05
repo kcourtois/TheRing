@@ -11,49 +11,58 @@ import Foundation
 struct Movie {
     let title: String
     let description: String
-    let imageData: Data
+    let image: String
 }
 
 struct MovieRequest: Codable {
     let page: Int
+    //swiftlint:disable:next identifier_name
     let total_results: Int
+    //swiftlint:disable:next identifier_name
     let total_pages: Int
     let results: [MovieResult]
 }
 
 struct MovieResult: Codable {
-    let vote_count: String
-    let id: String
-    let video: String
-    let vote_average: String
+    //swiftlint:disable:next identifier_name
+    let vote_count: Int
+    //swiftlint:disable:next identifier_name
+    let id: Int
+    let video: Bool
+    //swiftlint:disable:next identifier_name
+    let vote_average: Double
     let title: String
-    let popularity: String
-    let poster_path: String
+    let popularity: Double
+    //swiftlint:disable:next identifier_name
+    let poster_path: String?
+    //swiftlint:disable:next identifier_name
     let original_language: String
-    let original_title: String
-    let genre_ids: [Int]
 
-    let backdrop_path: String
+    //swiftlint:disable:next identifier_name
+    let original_title: String
+    //swiftlint:disable:next identifier_name
+    let genre_ids: [Int]
+    //swiftlint:disable:next identifier_name
+    let backdrop_path: String?
     let adult: Bool
     let overview: String
+    //swiftlint:disable:next identifier_name
     let release_date: String
 }
 
 class MovieService {
     static var shared = MovieService()
     private var movieSession = URLSession(configuration: .default)
-    private var imageSession = URLSession(configuration: .default)
     private var task: URLSessionDataTask?
     private init() {}
 
     //Init used for tests
-    init(movieSession: URLSession, imageSession: URLSession) {
+    init(movieSession: URLSession) {
         self.movieSession = movieSession
-        self.imageSession = imageSession
     }
 
     //Request to TMDB API, to search a movie given a string
-    func getMovies(search: String, callback: @escaping (Bool, MovieRequest?) -> Void) {
+    func getMovies(search: String, callback: @escaping (Bool, [Movie]?) -> Void) {
 
         let components = URLComponents(string: "http://api.themoviedb.org/3/search/movie")
 
@@ -91,46 +100,15 @@ class MovieService {
                     return
                 }
 
-                guard responseJSON.results.indices.contains(0) else {
-                    callback(false, nil)
-                    return
-                }
-
-                self.getImage(url: responseJSON.results[0].poster_path, completionHandler: { (data) in
-                    guard let data = data else {
-                        callback(false, nil)
-                        return
+                var movies = [Movie]()
+                for res in responseJSON.results {
+                    if let path = res.poster_path {
+                        let movie = Movie(title: responseJSON.results[0].title, description:
+                            responseJSON.results[0].overview, image: path)
+                        movies.append(movie)
                     }
-
-                    let movie = Movie(title: responseJSON.results[0].title, description: responseJSON.results[0].overview, imageData: data)
-
-                    callback(true, movie)
-                })
-            }
-        }
-        task?.resume()
-    }
-
-    //Request to Unsplash API, to get a random image for a weather keyword
-    private func getImage(url: String, completionHandler: @escaping ((Data?) -> Void)) {
-        guard let pictureUrl = URL(string: url) else {
-            completionHandler(nil)
-        }
-
-        task?.cancel()
-        task = imageSession.dataTask(with: pictureUrl) { (data, response, error) in
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else {
-                    completionHandler(nil)
-                    return
                 }
-
-                guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                    completionHandler(nil)
-                    return
-                }
-
-                completionHandler(data)
+                callback(true, movies)
             }
         }
         task?.resume()
