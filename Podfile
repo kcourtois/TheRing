@@ -9,6 +9,7 @@ target 'TheRing' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
+  pod 'Kingfisher', '~> 5.7.0'
 
   target 'TheRingTests' do
     inherit! :search_paths

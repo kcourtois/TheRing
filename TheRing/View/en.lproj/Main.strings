@@ -1,65 +1,69 @@
+
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "0GN-fc-JNW"; */
-"0GN-fc-JNW.title" = "Titre";
+"0GN-fc-JNW.title" = "Title";
 
 /* Class = "UITabBarItem"; title = "Create"; ObjectID = "0fv-mE-1U4"; */
-"0fv-mE-1U4.title" = "Créer";
+"0fv-mE-1U4.title" = "Create";
 
 /* Class = "UIButton"; normalTitle = "Modify email"; ObjectID = "1O9-mE-IpQ"; */
-"1O9-mE-IpQ.normalTitle" = "Modifier email";
+"1O9-mE-IpQ.normalTitle" = "Modify email";
 
 /* Class = "UILabel"; text = "Update Password"; ObjectID = "1UR-ZS-FRm"; */
-"1UR-ZS-FRm.text" = "MAJ Mdp";
+"1UR-ZS-FRm.text" = "Update Password";
+
+/* Class = "UITextView"; text = "Now it's time to select your first contestant."; ObjectID = "2YC-YF-3vE"; */
+"2YC-YF-3vE.text" = "Now it's time to select your first contestant.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "2tc-q5-Ym4"; */
 "2tc-q5-Ym4.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "New password confirmation"; ObjectID = "3zZ-z9-jjY"; */
-"3zZ-z9-jjY.placeholder" = "Confirmation nouveau mdp";
+"3zZ-z9-jjY.placeholder" = "New password confirmation";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "3zx-oh-gw8"; */
-"3zx-oh-gw8.title" = "Retour";
+"3zx-oh-gw8.title" = "Back";
 
 /* Class = "UITextField"; placeholder = "Email address"; ObjectID = "599-a6-Ovu"; */
-"599-a6-Ovu.placeholder" = "Adresse mail";
+"599-a6-Ovu.placeholder" = "Email address";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "5AR-kc-vdM"; */
 "5AR-kc-vdM.text" = "Email";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "5KB-QU-QOg"; */
-"5KB-QU-QOg.text" = "Mot de passe";
+"5KB-QU-QOg.text" = "Password";
 
 /* Class = "UITabBarItem"; title = "Home"; ObjectID = "5cA-zf-VNM"; */
-"5cA-zf-VNM.title" = "Accueil";
+"5cA-zf-VNM.title" = "Home";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "8J5-iF-F1e"; */
-"8J5-iF-F1e.title" = "Retour";
+"8J5-iF-F1e.title" = "Back";
 
 /* Class = "UILabel"; text = "New Email"; ObjectID = "8ld-cR-tMY"; */
-"8ld-cR-tMY.text" = "Nouveau Email";
+"8ld-cR-tMY.text" = "New Email";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "93p-lr-fTQ"; */
-"93p-lr-fTQ.placeholder" = "Mot de passe";
+"93p-lr-fTQ.placeholder" = "Password";
 
 /* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "9g4-7m-zaj"; */
 "9g4-7m-zaj.title" = "The Ring";
 
 /* Class = "UILabel"; text = "Password"; ObjectID = "ABF-qM-kZg"; */
-"ABF-qM-kZg.text" = "Mot de passe";
+"ABF-qM-kZg.text" = "Password";
 
 /* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "CYl-vv-u9l"; */
 "CYl-vv-u9l.title" = "The Ring";
 
 /* Class = "UITextField"; placeholder = "Password confirmation"; ObjectID = "EXF-Qq-DOM"; */
-"EXF-Qq-DOM.placeholder" = "Confirmation mdp";
+"EXF-Qq-DOM.placeholder" = "Password confirmation";
 
 /* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "FBP-WG-GRB"; */
-"FBP-WG-GRB.normalTitle" = "SUIVANT";
+"FBP-WG-GRB.normalTitle" = "NEXT";
 
 /* Class = "UILabel"; text = "New Password"; ObjectID = "FKq-ld-woP"; */
-"FKq-ld-woP.text" = "Nouveau MDP";
+"FKq-ld-woP.text" = "New Password";
 
 /* Class = "UILabel"; text = "Title"; ObjectID = "FYS-vS-8Nw"; */
-"FYS-vS-8Nw.text" = "Titre";
+"FYS-vS-8Nw.text" = "Title";
 
 /* Class = "UILabel"; text = "Bio"; ObjectID = "GNV-Kq-ou4"; */
 "GNV-Kq-ou4.text" = "Bio";
@@ -68,40 +72,46 @@
 "GOf-dx-60G.title" = "The Ring";
 
 /* Class = "UILabel"; text = "Username"; ObjectID = "HVK-oC-Ihj"; */
-"HVK-oC-Ihj.text" = "Pseudo";
+"HVK-oC-Ihj.text" = "Username";
+
+/* Class = "UITextView"; text = "Great. Now, the last step is to pick an ending date for your tournament."; ObjectID = "Hra-TC-b7J"; */
+"Hra-TC-b7J.text" = "Great. Now, the last step is to pick an ending date for your tournament.";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "HvA-Lv-Qe2"; */
-"HvA-Lv-Qe2.title" = "Retour";
+"HvA-Lv-Qe2.title" = "Back";
 
 /* Class = "UILabel"; text = "Email"; ObjectID = "Hzw-Le-Bji"; */
 "Hzw-Le-Bji.text" = "Email";
 
 /* Class = "UILabel"; text = "Old password"; ObjectID = "I2L-HD-klg"; */
-"I2L-HD-klg.text" = "Ancien MDP";
+"I2L-HD-klg.text" = "Old password";
 
 /* Class = "UITextField"; placeholder = "New email confirmation"; ObjectID = "I8i-O8-OfK"; */
-"I8i-O8-OfK.placeholder" = "Confirmation nouveau email";
+"I8i-O8-OfK.placeholder" = "New email confirmation";
 
 /* Class = "UILabel"; text = "Gender"; ObjectID = "IRd-m0-ZJd"; */
-"IRd-m0-ZJd.text" = "Genre";
+"IRd-m0-ZJd.text" = "Gender";
 
 /* Class = "UILabel"; text = "Create Tournament"; ObjectID = "LUi-L6-L8h"; */
-"LUi-L6-L8h.text" = "Créer Tournoi";
+"LUi-L6-L8h.text" = "Create Tournament";
 
 /* Class = "UIButton"; normalTitle = "Sign out"; ObjectID = "MDU-Kd-Oos"; */
-"MDU-Kd-Oos.normalTitle" = "Déconnexion";
+"MDU-Kd-Oos.normalTitle" = "Sign out";
+
+/* Class = "UITextView"; text = "Sign up to be a member of The Ring ! Create tournaments, share them with your friends and see which contestant will be victorious !"; ObjectID = "Msh-8W-ab5"; */
+"Msh-8W-ab5.text" = "Sign up to be a member of The Ring ! Create tournaments, share them with your friends and see which contestant will be victorious !";
 
 /* Class = "UILabel"; text = "Confirm Email"; ObjectID = "O9J-S5-yQy"; */
-"O9J-S5-yQy.text" = "Confirmer Email";
+"O9J-S5-yQy.text" = "Confirm Email";
 
 /* Class = "UITextField"; placeholder = "Type your password"; ObjectID = "OMP-5Y-Z8I"; */
-"OMP-5Y-Z8I.placeholder" = "Mot de passe";
+"OMP-5Y-Z8I.placeholder" = "Type your password";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Oug-S7-Fj4"; */
 "Oug-S7-Fj4.text" = "Label";
 
 /* Class = "UILabel"; text = "Don't have an account ?"; ObjectID = "Ph2-xo-CjZ"; */
-"Ph2-xo-CjZ.text" = "Pas de compte ?";
+"Ph2-xo-CjZ.text" = "Don't have an account ?";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Prx-mW-rcw"; */
 "Prx-mW-rcw.text" = "Label";
@@ -110,16 +120,16 @@
 "SwD-Zo-bRT.title" = "The Ring";
 
 /* Class = "UILabel"; text = "Confirm Password"; ObjectID = "U5V-RE-Tvq"; */
-"U5V-RE-Tvq.text" = "Confirmer MDP";
+"U5V-RE-Tvq.text" = "Confirm Password";
 
 /* Class = "UILabel"; text = "Create Tournament"; ObjectID = "Ufh-Ky-4NV"; */
-"Ufh-Ky-4NV.text" = "Créer Tournoi";
+"Ufh-Ky-4NV.text" = "Create Tournament";
 
 /* Class = "UILabel"; text = "Profile"; ObjectID = "Uft-vR-GeN"; */
-"Uft-vR-GeN.text" = "Profil";
+"Uft-vR-GeN.text" = "Profile";
 
 /* Class = "UILabel"; text = "Profile"; ObjectID = "VhZ-Kj-Stn"; */
-"VhZ-Kj-Stn.text" = "Profil";
+"VhZ-Kj-Stn.text" = "Profile";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "WZe-YJ-q8P"; */
 "WZe-YJ-q8P.text" = "Label";
@@ -131,79 +141,79 @@
 "Z6I-KM-gE6.text" = "Bio";
 
 /* Class = "UITextField"; placeholder = "Your new email here"; ObjectID = "aXu-L7-rtQ"; */
-"aXu-L7-rtQ.placeholder" = "Nouveau email";
+"aXu-L7-rtQ.placeholder" = "Your new email here";
 
 /* Class = "UISegmentedControl"; b2o-O2-zWk.segmentTitles[0] = "Male"; ObjectID = "b2o-O2-zWk"; */
-"b2o-O2-zWk.segmentTitles[0]" = "Homme";
+"b2o-O2-zWk.segmentTitles[0]" = "Male";
 
 /* Class = "UISegmentedControl"; b2o-O2-zWk.segmentTitles[1] = "Female"; ObjectID = "b2o-O2-zWk"; */
-"b2o-O2-zWk.segmentTitles[1]" = "Femme";
+"b2o-O2-zWk.segmentTitles[1]" = "Female";
 
 /* Class = "UISegmentedControl"; b2o-O2-zWk.segmentTitles[2] = "Other"; ObjectID = "b2o-O2-zWk"; */
-"b2o-O2-zWk.segmentTitles[2]" = "Autre";
+"b2o-O2-zWk.segmentTitles[2]" = "Other";
 
 /* Class = "UIButton"; normalTitle = "LOG IN"; ObjectID = "boU-HJ-cZo"; */
-"boU-HJ-cZo.normalTitle" = "CONNEXION";
+"boU-HJ-cZo.normalTitle" = "LOG IN";
 
 /* Class = "UITabBarItem"; title = "User"; ObjectID = "dTu-Mp-wxw"; */
-"dTu-Mp-wxw.title" = "Utilisateur";
+"dTu-Mp-wxw.title" = "User";
 
 /* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "eRT-LV-hYV"; */
 "eRT-LV-hYV.title" = "The Ring";
 
 /* Class = "UILabel"; text = "Tournaments"; ObjectID = "eWt-Vh-KkQ"; */
-"eWt-Vh-KkQ.text" = "Tournois";
+"eWt-Vh-KkQ.text" = "Tournaments";
 
 /* Class = "UILabel"; text = "Create Tournament"; ObjectID = "er3-Ho-n5K"; */
-"er3-Ho-n5K.text" = "Créer Tournoi";
+"er3-Ho-n5K.text" = "Create Tournament";
 
 /* Class = "UITextField"; placeholder = "Username"; ObjectID = "ewJ-Do-tTU"; */
-"ewJ-Do-tTU.placeholder" = "Pseudo";
+"ewJ-Do-tTU.placeholder" = "Username";
 
 /* Class = "UIButton"; normalTitle = "Continue"; ObjectID = "fdM-cK-Cyh"; */
-"fdM-cK-Cyh.normalTitle" = "Continuer";
+"fdM-cK-Cyh.normalTitle" = "Continue";
 
 /* Class = "UILabel"; text = "Username"; ObjectID = "go6-RC-aGg"; */
-"go6-RC-aGg.text" = "Pseudo";
+"go6-RC-aGg.text" = "Username";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "j1y-z1-FdE"; */
-"j1y-z1-FdE.title" = "Retour";
+"j1y-z1-FdE.title" = "Back";
 
 /* Class = "UITextField"; placeholder = "Password"; ObjectID = "jDk-3S-fPz"; */
-"jDk-3S-fPz.placeholder" = "Mot de passe";
+"jDk-3S-fPz.placeholder" = "Password";
 
 /* Class = "UITextField"; placeholder = "Your old password"; ObjectID = "kZO-n3-9tP"; */
-"kZO-n3-9tP.placeholder" = "Ancien MDP";
+"kZO-n3-9tP.placeholder" = "Your old password";
 
 /* Class = "UIButton"; normalTitle = "Pick"; ObjectID = "lz7-zU-Oq3"; */
-"lz7-zU-Oq3.normalTitle" = "Choisir";
+"lz7-zU-Oq3.normalTitle" = "Pick";
 
 /* Class = "UIButton"; normalTitle = "NEXT"; ObjectID = "mms-jd-RLj"; */
-"mms-jd-RLj.normalTitle" = "SUIVANT";
+"mms-jd-RLj.normalTitle" = "NEXT";
 
 /* Class = "UITextField"; placeholder = "Your new password"; ObjectID = "oOv-jJ-fYZ"; */
-"oOv-jJ-fYZ.placeholder" = "Nouveau MDP";
+"oOv-jJ-fYZ.placeholder" = "Your new password";
 
 /* Class = "UIButton"; normalTitle = "Modify password"; ObjectID = "oZa-LB-9EO"; */
-"oZa-LB-9EO.normalTitle" = "Modifier MDP";
+"oZa-LB-9EO.normalTitle" = "Modify password";
 
 /* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "pKp-NU-iF2"; */
 "pKp-NU-iF2.title" = "The Ring";
 
 /* Class = "UIButton"; normalTitle = "Sign up"; ObjectID = "qmd-4Y-Krk"; */
-"qmd-4Y-Krk.normalTitle" = "S'inscrire";
+"qmd-4Y-Krk.normalTitle" = "Sign up";
 
 /* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "r8V-xt-itQ"; */
 "r8V-xt-itQ.title" = "The Ring";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "sKY-g7-i4a"; */
-"sKY-g7-i4a.normalTitle" = "Annuler";
+"sKY-g7-i4a.normalTitle" = "Cancel";
 
 /* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "sTQ-l0-X4J"; */
-"sTQ-l0-X4J.title" = "Retour";
+"sTQ-l0-X4J.title" = "Back";
 
 /* Class = "UILabel"; text = "Gender"; ObjectID = "sy5-Mf-Fbh"; */
-"sy5-Mf-Fbh.text" = "Genre";
+"sy5-Mf-Fbh.text" = "Gender";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "tPq-YG-ikC"; */
 "tPq-YG-ikC.text" = "Label";
@@ -215,25 +225,16 @@
 "vlh-HI-H91.text" = "Description";
 
 /* Class = "UITextField"; placeholder = "Email address"; ObjectID = "xOP-zc-IkT"; */
-"xOP-zc-IkT.placeholder" = "Adresse email";
+"xOP-zc-IkT.placeholder" = "Email address";
 
 /* Class = "UINavigationItem"; title = "The Ring"; ObjectID = "ymo-lK-B1t"; */
 "ymo-lK-B1t.title" = "The Ring";
 
 /* Class = "UILabel"; text = "Contestant 1"; ObjectID = "yqy-wD-dl9"; */
-"yqy-wD-dl9.text" = "Participant 1";
+"yqy-wD-dl9.text" = "Contestant 1";
 
 /* Class = "UIButton"; normalTitle = " Update profile "; ObjectID = "ywr-dm-ooM"; */
-"ywr-dm-ooM.normalTitle" = " MAJ Profil";
+"ywr-dm-ooM.normalTitle" = " Update profile ";
 
 /* Class = "UILabel"; text = "Update Email"; ObjectID = "zUO-1J-Y84"; */
-"zUO-1J-Y84.text" = "MAJ Email";
-
-/* Class = "UILabel"; text = "Great. The last step is to pick an ending date for your tournament"; ObjectID = "LkZ-9L-Wgc"; */
-"LkZ-9L-Wgc.text" = "Super. La dernière étape est de choisir une date de fin pour votre tournoi.";
-
-/* Class = "UILabel"; text = "Now it's time to select your first contestant."; ObjectID = "Fy9-Nc-q8H"; */
-"Fy9-Nc-q8H.text" = "Maintenant, choisissez votre premier participant.";
-
-/* Class = "UILabel"; text = "Sign up to be a member of The Ring ! Create tournaments, share them with your friends and see which contestant will be victorious !"; ObjectID = "CBR-Eg-gZT"; */
-"CBR-Eg-gZT.text" = "Inscrivez vous pour devenir un membre du Ring ! Créez des tournois, partagez les avec vos amis et voyez quel participant sortira vainqueur !";
+"zUO-1J-Y84.text" = "Update Email";

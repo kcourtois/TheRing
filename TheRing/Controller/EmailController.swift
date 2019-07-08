@@ -21,20 +21,23 @@ class EmailController: UIViewController {
         alert = loadingAlert()
         if let password = passwordField.text, let newMail = newEmailField.text, let confirm = confirmEmailField.text {
             if fieldsEmpty(password: password, mail: newMail, confirm: confirm) {
-                dismissAndLocalizedAlert(alert: alert, title: "Error", message: "Fields must not be empty.")
+                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.emptyFields.localizedString)
                 return
             } else if newMail == preferences.user.email {
-                dismissAndLocalizedAlert(alert: alert, title: "Error", message: "You already use this email.")
+                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.mailSelfUse.localizedString)
                 return
             } else if newMail != confirm {
-                dismissAndLocalizedAlert(alert: alert, title: "Error", message: "Confirm field is wrong.")
+                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.confirmWrong.localizedString)
                 return
             } else {
                 updateMailAndSave(password: password, mail: newMail)
             }
         } else {
-            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                     message: "An error occured. Please try again later.")
+            dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                        message: TRStrings.errorOccured.localizedString)
         }
     }
 }
@@ -59,10 +62,8 @@ extension EmailController {
     private func dismissAndSaveAlert() {
         if let alert = self.alert {
             alert.dismiss(animated: true) {
-                let saveAlertTitle = NSLocalizedString("Saved", comment: "Title for save alert")
-                let saveAlertMessage = NSLocalizedString("Your modifications were saved.",
-                                                         comment: "Message for save alert")
-                self.presentAlertPopRootVC(title: saveAlertTitle, message: saveAlertMessage)
+                self.presentAlertPopRootVC(title: TRStrings.saved.localizedString,
+                                           message: TRStrings.modifSaved.localizedString)
             }
         }
     }
@@ -78,7 +79,8 @@ extension EmailController {
 
         FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                            message: error)
             } else {
                 self.savePreferences(mail: mail)
                 self.dismissAndSaveAlert()
@@ -89,7 +91,8 @@ extension EmailController {
     private func updateMailAndSave(password: String, mail: String) {
         FirebaseService.updateEmail(password: password, mail: mail) { error in
             if let error = error {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                                 message: error)
             } else {
                 self.saveUser(mail: mail)
             }

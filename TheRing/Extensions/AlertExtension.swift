@@ -29,7 +29,7 @@ extension UIViewController {
 
     //Creates an alert with an activity indicator (loading screen), and returns it to dismiss later
     func loadingAlert() -> UIAlertController {
-        let alert = UIAlertController(title: nil, message: "Loading...", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil, message: TRStrings.loading.localizedString, preferredStyle: .alert)
         let activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 10, y: 5, width: 50, height: 50))
         activityIndicator.style = UIActivityIndicatorView.Style.gray
         activityIndicator.startAnimating()
@@ -47,14 +47,6 @@ extension UIViewController {
         } else {
             self.presentAlert(title: title, message: message)
         }
-    }
-
-    //Dismiss loading alert and show localized error alert
-    func dismissAndLocalizedAlert(alert: UIAlertController?, title: String, message: String) {
-        let localizedTitle = NSLocalizedString(title, comment: "")
-        let localizedMessage = NSLocalizedString(message, comment: "")
-        dismissLoadAlertWithMessage(alert: alert, title: localizedTitle,
-                                    message: localizedMessage)
     }
 
     //Creates an alert with a title and a message, and pops to root view controller

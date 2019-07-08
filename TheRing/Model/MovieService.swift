@@ -10,7 +10,7 @@ import Foundation
 
 struct Movie {
     let title: String
-    let description: String
+    let release: String
     let image: String
 }
 
@@ -101,10 +101,10 @@ class MovieService {
                 }
 
                 var movies = [Movie]()
-                for res in responseJSON.results {
+                for (index, res) in responseJSON.results.enumerated() {
                     if let path = res.poster_path {
-                        let movie = Movie(title: responseJSON.results[0].title, description:
-                            responseJSON.results[0].overview, image: path)
+                        let movie = Movie(title: responseJSON.results[index].title, release:
+                            responseJSON.results[index].release_date, image: "https://image.tmdb.org/t/p/w500\(path)")
                         movies.append(movie)
                     }
                 }

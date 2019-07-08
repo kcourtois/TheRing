@@ -39,12 +39,14 @@ class LoginController: UIViewController {
 
     private func signInHandler(error: Error?) {
         if let error = error {
-            if let authError = AuthErrorCode(rawValue: error._code) {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                              message: authError.errorMessage)
+            guard let authError = AuthErrorCode(rawValue: error._code) else {
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                                 message: TRStrings.errorOccured.localizedString)
+                return
             }
-            self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                          message: "An error occured. Please try again later.")
+
+            self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                             message: LocalizedString(key: authError.errorMessage).val )
         } else {
             if let alert = self.alert {
                 alert.dismiss(animated: true) {

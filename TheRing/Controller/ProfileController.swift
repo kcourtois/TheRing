@@ -33,8 +33,8 @@ class ProfileController: UIViewController {
         alert = loadingAlert()
         if let name = nameTextField.text {
             if name.isEmpty {
-                dismissAndLocalizedAlert(alert: alert, title: "Error",
-                                            message: "Fields must not be empty.")
+                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                                 message: TRStrings.emptyFields.localizedString)
                 return
             } else if name != preferences.user.name {
                 checkUsernameAndSave(name: name)
@@ -42,8 +42,8 @@ class ProfileController: UIViewController {
                 saveUser()
             }
         } else {
-            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                     message: "An error occured. Please try again later.")
+            dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                             message: TRStrings.errorOccured.localizedString)
         }
     }
 
@@ -55,8 +55,8 @@ class ProfileController: UIViewController {
 
     private func saveUser() {
         guard let bio = bioTextField.text, let name = nameTextField.text else {
-            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                     message: "An error occured. Please try again later.")
+            dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                        message: TRStrings.errorOccured.localizedString)
             return
         }
 
@@ -85,9 +85,9 @@ extension ProfileController {
     private func replaceUsernameAndSave(name: String) {
         FirebaseService.replaceUsername(old: self.preferences.user.name, new: name,
                                         uid: self.preferences.user.uid, completion: { (error) in
-            if let error = error {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                              message: error)
+            if error != nil {
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.errorOccured.localizedString)
             } else {
                 self.saveUser()
             }
@@ -99,8 +99,8 @@ extension ProfileController {
             if available {
                 self.replaceUsernameAndSave(name: name)
             } else {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                              message: "Username not available.")
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.usernameUsed.localizedString)
                 return
             }
         }
@@ -109,12 +109,12 @@ extension ProfileController {
     private func registerUserInfo(values: [String: Any]) {
         FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                              message: error)
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                                 message: error)
             } else {
                 self.savePreferences()
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Saved",
-                                              message: "Your modifications were saved.")
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.saved.localizedString,
+                                                 message: TRStrings.modifSaved.localizedString)
             }
         }
     }

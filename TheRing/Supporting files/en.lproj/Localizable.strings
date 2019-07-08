@@ -10,25 +10,25 @@
 
 //ALERT TITLES
 
-"Saved" = "Saved";
-"Error" = "Error";
+"SAVED" = "Saved";
+"ERROR" = "Error";
 
 //ALERT MESSAGES
 
-"Your modifications were saved." = "Your modifications were saved.";
-"An error occured. Please try again later." = "An error occured. Please try again later.";
-"Confirm field is wrong." = "Confirm field is wrong.";
-"You already use this email." = "You already use this email.";
-"Fields must not be empty." = "Fields must not be empty.";
-"Username not available." = "Username not available.";
-"Loading..." = "Loading...";
+"MODIF_SAVED" = "Your modifications were saved.";
+"ERROR_OCCURED" = "An error occured. Please try again later.";
+"CONFIRM_WRONG" = "Confirm field is wrong.";
+"MAIL_SELF_USE" = "You already use this email.";
+"EMPTY_FIELDS" = "Fields must not be empty.";
+"USERNAME_USED" = "Username not available.";
+"LOADING" = "Loading...";
 
 //FIREBASE AUTH ERROR
-"The email is already in use with another account" = "The email is already in use with another account";
-"Account not found for the specified user. Please check and try again" = "Account not found for the specified user. Please check and try again";
-"Your account has been disabled. Please contact support." = "Your account has been disabled. Please contact support.";
-"Please enter a valid email" = "Please enter a valid email";
-"Network error. Please try again." = "Network error. Please try again.";
-"Your password is too weak. The password must be 6 characters long or more." = "Your password is too weak. The password must be 6 characters long or more.";
-"Your password is incorrect. Please try again or use 'Forgot password' to reset your password" = "Your password is incorrect. Please try again.";
-"Unknown error occurred" = "Unknown error occurred";
+"MAIL_USED" = "The email is already in use with another account";
+"ACCOUNT_NOT_FOUND" = "Account not found for the specified user. Please check and try again";
+"ACCOUNT_DISABLED" = "Your account has been disabled. Please contact support.";
+"WRONG_MAIL" = "Please enter a valid email";
+"NETWORK_ERROR" = "Network error. Please try again.";
+"WEAK_PASSWORD" = "Your password is too weak. The password must be 6 characters long or more.";
+"WRONG_PASSWORD" = "Your password is incorrect. Please try again.";
+

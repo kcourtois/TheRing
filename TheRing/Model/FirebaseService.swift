@@ -120,6 +120,6 @@ class FirebaseService {
         guard let authError = AuthErrorCode(rawValue: error._code) else {
             return nil
         }
-        return authError.errorMessage
+        return LocalizedString(key: authError.errorMessage).val
     }
 }

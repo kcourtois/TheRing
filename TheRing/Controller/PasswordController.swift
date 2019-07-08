@@ -21,19 +21,19 @@ class PasswordController: UIViewController {
         alert = loadingAlert()
         if let oldPwd = oldPasswordField.text, let newPwd = newPasswordField.text, let confirm = confirmField.text {
             if fieldsEmpty(oldPwd: oldPwd, newPwd: newPwd, confirm: confirm) {
-                dismissAndLocalizedAlert(alert: alert, title: "Error",
-                                            message: "Fields must not be empty.")
+                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.emptyFields.localizedString)
                 return
             } else if newPwd != confirm {
-                dismissAndLocalizedAlert(alert: alert, title: "Error",
-                                            message: "Confirm field is wrong.")
+                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                            message: TRStrings.confirmWrong.localizedString)
                 return
             } else {
                 updatePassword(oldPwd: oldPwd, newPwd: newPwd)
             }
         } else {
-            dismissAndLocalizedAlert(alert: self.alert, title: "Error",
-                                     message: "An error occured. Please try again later.")
+            dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                                        message: TRStrings.errorOccured.localizedString)
         }
     }
 }
@@ -51,14 +51,13 @@ extension PasswordController {
     private func updatePassword(oldPwd: String, newPwd: String) {
         FirebaseService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
             if let error = error {
-                self.dismissAndLocalizedAlert(alert: self.alert, title: "Error", message: error)
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                            message: error)
             } else {
                 if let alert = self.alert {
                     alert.dismiss(animated: true) {
-                        let saveAlertTitle = NSLocalizedString("Saved", comment: "Title for save alert")
-                        let saveAlertMessage = NSLocalizedString("Your modifications were saved.",
-                                                                 comment: "Message for save alert")
-                        self.presentAlertPopRootVC(title: saveAlertTitle, message: saveAlertMessage)
+                        self.presentAlertPopRootVC(title: TRStrings.saved.localizedString,
+                                                   message: TRStrings.modifSaved.localizedString)
                     }
                 }
             }

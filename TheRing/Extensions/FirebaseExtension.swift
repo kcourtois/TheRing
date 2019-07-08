@@ -13,21 +13,21 @@ extension AuthErrorCode {
     var errorMessage: String {
         switch self {
         case .emailAlreadyInUse:
-            return "The email is already in use with another account"
+            return "MAIL_USED"
         case .userNotFound:
-            return "Account not found for the specified user. Please check and try again"
+            return "ACCOUNT_NOT_FOUND"
         case .userDisabled:
-            return "Your account has been disabled. Please contact support."
+            return "ACCOUNT_DISABLED"
         case .invalidEmail, .invalidSender, .invalidRecipientEmail:
-            return "Please enter a valid email"
+            return "WRONG_MAIL"
         case .networkError:
-            return "Network error. Please try again."
+            return "NETWORK_ERROR"
         case .weakPassword:
-            return "Your password is too weak. The password must be 6 characters long or more."
+            return "WEAK_PASSWORD"
         case .wrongPassword:
-            return "Your password is incorrect. Please try again."
+            return "WRONG_PASSWORD"
         default:
-            return "Unknown error occurred"
+            return "ERROR_OCCURED"
         }
     }
 }
