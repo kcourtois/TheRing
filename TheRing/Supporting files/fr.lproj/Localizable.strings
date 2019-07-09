@@ -31,3 +31,6 @@
 "NETWORK_ERROR" = "Erreur réseau. Veuillez réessayer.";
 "WEAK_PASSWORD" = "Votre mot de passe est trop court. Il doit faire au moins 6 caractères.";
 "WRONG_PASSWORD" = "Mot de passe incorrecte. Veuillez réessayer.";
+
+//UI
+"ENTER_DESCRIPTION" = "Entrez votre description ici.";

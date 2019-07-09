@@ -1,5 +1,9 @@
 language: swift
 osx_image: xcode10.2
+podfile: Podfile
+before_install:
+  - gem install cocoapods --pre
+  - pod install --repo-update
 install:
   - ./install_swiftlint.sh
 script:

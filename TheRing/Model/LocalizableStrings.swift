@@ -54,6 +54,9 @@ enum TRStrings: LocalizedString {
     case weakPassword = "WEAK_PASSWORD"
     case wrongPassword = "WRONG_PASSWORD"
 
+    //UI
+    case enterDescription = "ENTER_DESCRIPTION"
+
     var localizedString: String {
         return self.rawValue.val
     }

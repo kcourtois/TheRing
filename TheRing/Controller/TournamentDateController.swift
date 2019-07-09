@@ -10,6 +10,8 @@ import UIKit
 
 class TournamentDateController: UIViewController {
 
+    var tournament: Tournament?
+
     @IBAction func doneTapped(_ sender: Any) {
 
     }

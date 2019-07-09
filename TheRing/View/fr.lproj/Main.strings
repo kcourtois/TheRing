@@ -224,7 +224,7 @@
 "yqy-wD-dl9.text" = "Participant 1";
 
 /* Class = "UIButton"; normalTitle = " Update profile "; ObjectID = "ywr-dm-ooM"; */
-"ywr-dm-ooM.normalTitle" = " MAJ Profil";
+"ywr-dm-ooM.normalTitle" = " MAJ Profil ";
 
 /* Class = "UILabel"; text = "Update Email"; ObjectID = "zUO-1J-Y84"; */
 "zUO-1J-Y84.text" = "MAJ Email";

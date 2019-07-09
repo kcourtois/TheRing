@@ -8,22 +8,16 @@
 
 import Foundation
 
-struct Movie {
-    let title: String
-    let release: String
-    let image: String
-}
-
 struct MovieRequest: Codable {
     let page: Int
     //swiftlint:disable:next identifier_name
     let total_results: Int
     //swiftlint:disable:next identifier_name
     let total_pages: Int
-    let results: [MovieResult]
+    let results: [Movie]
 }
 
-struct MovieResult: Codable {
+struct Movie: Codable {
     //swiftlint:disable:next identifier_name
     let vote_count: Int
     //swiftlint:disable:next identifier_name
@@ -48,6 +42,10 @@ struct MovieResult: Codable {
     let overview: String
     //swiftlint:disable:next identifier_name
     let release_date: String
+
+    var image: String {
+        return "https://image.tmdb.org/t/p/w500\(poster_path ?? "")"
+    }
 }
 
 class MovieService {
@@ -72,7 +70,8 @@ class MovieService {
         }
 
         comp.queryItems = [URLQueryItem(name: "api_key", value: ApiKeys.tmdbKey),
-                           URLQueryItem(name: "query", value: search)]
+                           URLQueryItem(name: "query", value: search),
+                           URLQueryItem(name: "language", value: NSLocale.preferredLanguages[0])]
 
         guard let url = comp.url else {
             callback(false, nil)
@@ -101,12 +100,8 @@ class MovieService {
                 }
 
                 var movies = [Movie]()
-                for (index, res) in responseJSON.results.enumerated() {
-                    if let path = res.poster_path {
-                        let movie = Movie(title: responseJSON.results[index].title, release:
-                            responseJSON.results[index].release_date, image: "https://image.tmdb.org/t/p/w500\(path)")
-                        movies.append(movie)
-                    }
+                for res in responseJSON.results where res.poster_path != nil {
+                    movies.append(res)
                 }
                 callback(true, movies)
             }

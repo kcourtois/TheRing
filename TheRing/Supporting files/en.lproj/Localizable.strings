@@ -32,3 +32,5 @@
 "WEAK_PASSWORD" = "Your password is too weak. The password must be 6 characters long or more.";
 "WRONG_PASSWORD" = "Your password is incorrect. Please try again.";
 
+//UI
+"ENTER_DESCRIPTION" = "Enter your description here.";

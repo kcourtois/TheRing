@@ -106,7 +106,7 @@ class MovieTests: XCTestCase {
             let image = "https://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg"
 
             XCTAssertEqual(title, result?[0].title)
-            XCTAssertEqual(release, result?[0].release)
+            XCTAssertEqual(release, result?[0].release_date)
             XCTAssertEqual(image, result?[0].image)
 
             expectation.fulfill()

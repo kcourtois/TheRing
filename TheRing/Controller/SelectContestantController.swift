@@ -11,6 +11,7 @@ import UIKit
 class SelectContestantController: UIViewController {
 
     @IBOutlet weak var contestantView: UIView!
+    var tournament: Tournament?
 
     @IBAction func pickTapped(_ sender: Any) {
         performSegue(withIdentifier: "contestantPickerSegue", sender: self)
