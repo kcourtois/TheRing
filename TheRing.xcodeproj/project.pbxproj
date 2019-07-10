@@ -81,6 +81,7 @@
 		9E06BB5822B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E06BB5D22B840F40098E148 /* TheRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E06BB6322B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E334E2622D6581E00CB3257 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		9EFE1FC922D35F4A003A0410 /* SelectContestantController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectContestantController.swift; sourceTree = "<group>"; };
 		9EFE1FCB22D35F9D003A0410 /* TournamentDateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDateController.swift; sourceTree = "<group>"; };
 		9EFE1FCE22D3A640003A0410 /* SearchMovieController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieController.swift; sourceTree = "<group>"; };
-		9EFE1FDA22D3B5A7003A0410 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		9EFE1FDB22D479BD003A0410 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
 		9EFE1FDF22D4F357003A0410 /* MovieOverview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieOverview.xib; sourceTree = "<group>"; };
@@ -519,7 +519,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				9E06BB5122B840F10098E148 /* Base */,
-				9EFE1FDA22D3B5A7003A0410 /* fr */,
+				9E334E2622D6581E00CB3257 /* fr */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";

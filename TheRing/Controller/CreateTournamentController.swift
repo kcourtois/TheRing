@@ -17,7 +17,7 @@ class CreateTournamentController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionField.textColor = UIColor.lightGray
+        descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         descriptionField.text = TRStrings.enterDescription.localizedString
     }
@@ -60,7 +60,7 @@ class CreateTournamentController: UIViewController {
 extension CreateTournamentController: UITextViewDelegate {
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
+        if textView.textColor == #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1) {
             textView.text = nil
             textView.textColor = UIColor.black
         }
@@ -69,7 +69,7 @@ extension CreateTournamentController: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = TRStrings.enterDescription.localizedString
-            textView.textColor = UIColor.lightGray
+            textView.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         }
     }
 

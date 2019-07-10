@@ -40,6 +40,7 @@
 "RELEASE_DATE" = "Release date";
 "CATEGORY" = "Category";
 "RATING" = "Rating";
+"ROUND_DAYS" = "Days per round";
 
 //GENRES
 "ACTION" = "Action";

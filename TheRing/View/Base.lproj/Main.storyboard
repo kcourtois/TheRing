@@ -160,7 +160,7 @@
         <scene sceneID="zTF-bj-Sde">
             <objects>
                 <navigationController id="ecx-z1-0hs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="User" id="dTu-Mp-wxw"/>
+                    <tabBarItem key="tabBarItem" title="User" image="user" selectedImage="user" id="dTu-Mp-wxw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7f4-3z-RdQ">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -373,7 +373,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rg5-qd-Fs4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="5cA-zf-VNM">
+                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="5cA-zf-VNM">
                         <color key="badgeColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <connections>
@@ -573,7 +573,7 @@
         <scene sceneID="w1U-Nz-NoV">
             <objects>
                 <navigationController id="8AC-Ni-tUT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" id="0fv-mE-1U4"/>
+                    <tabBarItem key="tabBarItem" title="Create" image="plus" selectedImage="plus" id="0fv-mE-1U4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3eO-U9-aBp">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -618,7 +618,7 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your title here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-Wl-yyj">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your title here." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3GI-Wl-yyj">
                                                 <rect key="frame" x="110" y="0.0" width="178" height="33.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="33.5" id="x2F-1x-Ez5"/>
@@ -647,7 +647,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Enter your description here." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5H9-YJ-hXA">
                                                 <rect key="frame" x="110" y="0.0" width="178" height="246.5"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="textColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 <userDefinedRuntimeAttributes>
@@ -657,7 +657,6 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
                                                         <real key="value" value="0.5"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="masksToBounds" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="delegate" destination="92b-7C-laQ" id="Ub0-a1-CEo"/>
@@ -962,13 +961,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="kfT-1d-Ipz">
-                                <rect key="frame" x="0.0" y="236.5" width="320" height="216"/>
-                                <date key="date" timeIntervalSinceReferenceDate="584234779.40713096">
-                                    <!--2019-07-07 23:26:19 +0000-->
-                                </date>
-                            </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great. The last step is to pick an ending date for your tournament" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkZ-9L-Wgc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Great. The last step is to select a duration for each round, and the starting time of the tournament." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkZ-9L-Wgc">
                                 <rect key="frame" x="16" y="160.5" width="288" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="w1P-ou-wxz"/>
@@ -977,18 +970,51 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="7" translatesAutoresizingMaskIntoConstraints="NO" id="0Fb-BP-1nz">
+                                <rect key="frame" x="194" y="240.5" width="94" height="29"/>
+                                <connections>
+                                    <action selector="updateDays:" destination="4jO-B3-4OK" eventType="valueChanged" id="gBn-WK-InK"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Days per round:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M9j-TD-fT2" userLabel="Email">
+                                <rect key="frame" x="32" y="245" width="146" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Starting time:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1g-HS-sNZ" userLabel="Email">
+                                <rect key="frame" x="32" y="275" width="256" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="6b5-1W-gF1">
+                                <rect key="frame" x="0.0" y="303" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="584468367.199669">
+                                    <!--2019-07-10 16:19:27 +0000-->
+                                </date>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="p1g-HS-sNZ" firstAttribute="leading" secondItem="gQc-2J-vLK" secondAttribute="leading" constant="32" id="1Ms-Ig-ljE"/>
+                            <constraint firstItem="M9j-TD-fT2" firstAttribute="centerY" secondItem="0Fb-BP-1nz" secondAttribute="centerY" id="7qe-Kq-bBi"/>
                             <constraint firstItem="gQc-2J-vLK" firstAttribute="trailing" secondItem="LkZ-9L-Wgc" secondAttribute="trailing" constant="16" id="AYO-Xg-1EG"/>
+                            <constraint firstItem="gQc-2J-vLK" firstAttribute="bottom" secondItem="6b5-1W-gF1" secondAttribute="bottom" id="Bs5-aY-pdb"/>
+                            <constraint firstItem="M9j-TD-fT2" firstAttribute="leading" secondItem="gQc-2J-vLK" secondAttribute="leading" constant="32" id="C6f-bm-7Cx"/>
                             <constraint firstItem="gQc-2J-vLK" firstAttribute="trailing" secondItem="Ufh-Ky-4NV" secondAttribute="trailing" constant="16" id="D7U-R9-70a"/>
                             <constraint firstItem="LkZ-9L-Wgc" firstAttribute="top" secondItem="Ufh-Ky-4NV" secondAttribute="bottom" constant="16" id="DM8-wv-LF0"/>
+                            <constraint firstItem="0Fb-BP-1nz" firstAttribute="top" secondItem="LkZ-9L-Wgc" secondAttribute="bottom" constant="20" id="Exf-oF-TgA"/>
+                            <constraint firstItem="0Fb-BP-1nz" firstAttribute="leading" secondItem="M9j-TD-fT2" secondAttribute="trailing" constant="16" id="GPW-1O-RiH"/>
                             <constraint firstItem="Ufh-Ky-4NV" firstAttribute="leading" secondItem="gQc-2J-vLK" secondAttribute="leading" constant="16" id="HUA-iH-JRb"/>
-                            <constraint firstItem="kfT-1d-Ipz" firstAttribute="top" secondItem="LkZ-9L-Wgc" secondAttribute="bottom" constant="16" id="LpJ-Fh-Pv0"/>
+                            <constraint firstItem="gQc-2J-vLK" firstAttribute="trailing" secondItem="0Fb-BP-1nz" secondAttribute="trailing" constant="32" id="Ouj-W1-CTZ"/>
                             <constraint firstItem="LkZ-9L-Wgc" firstAttribute="leading" secondItem="gQc-2J-vLK" secondAttribute="leading" constant="16" id="S0t-Og-ZbP"/>
-                            <constraint firstItem="kfT-1d-Ipz" firstAttribute="leading" secondItem="gQc-2J-vLK" secondAttribute="leading" id="SDn-J8-70E"/>
-                            <constraint firstItem="kfT-1d-Ipz" firstAttribute="trailing" secondItem="gQc-2J-vLK" secondAttribute="trailing" id="Vnx-2z-nxQ"/>
+                            <constraint firstItem="6b5-1W-gF1" firstAttribute="top" secondItem="p1g-HS-sNZ" secondAttribute="bottom" constant="8" id="d4h-55-BVN"/>
+                            <constraint firstItem="6b5-1W-gF1" firstAttribute="leading" secondItem="gQc-2J-vLK" secondAttribute="leading" id="dzZ-RS-1p1"/>
+                            <constraint firstItem="p1g-HS-sNZ" firstAttribute="top" relation="lessThanOrEqual" secondItem="M9j-TD-fT2" secondAttribute="bottom" constant="20" id="fAX-zb-wbd"/>
+                            <constraint firstItem="6b5-1W-gF1" firstAttribute="trailing" secondItem="gQc-2J-vLK" secondAttribute="trailing" id="syd-x6-oTX"/>
                             <constraint firstItem="Ufh-Ky-4NV" firstAttribute="top" secondItem="gQc-2J-vLK" secondAttribute="top" constant="16" id="uL7-kx-WxU"/>
+                            <constraint firstItem="gQc-2J-vLK" firstAttribute="trailing" secondItem="p1g-HS-sNZ" secondAttribute="trailing" constant="32" id="xbF-JP-BuR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gQc-2J-vLK"/>
                     </view>
@@ -999,10 +1025,15 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="datePicker" destination="6b5-1W-gF1" id="ctM-Iz-m7c"/>
+                        <outlet property="daysPerRound" destination="M9j-TD-fT2" id="RV8-Tq-Dex"/>
+                        <outlet property="stepperRound" destination="0Fb-BP-1nz" id="pC7-aG-HRV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pSq-7Y-Mia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4991" y="40"/>
+            <point key="canvasLocation" x="4989.375" y="39.08450704225352"/>
         </scene>
         <!--The Ring-->
         <scene sceneID="ySN-PS-Gc0">
@@ -1445,6 +1476,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="home" width="25" height="25"/>
+        <image name="plus" width="25" height="25"/>
+        <image name="user" width="25" height="25"/>
         <image name="xuan-nguyen-725109-unsplash" width="5024" height="3349"/>
     </resources>
     <inferredMetricsTieBreakers>

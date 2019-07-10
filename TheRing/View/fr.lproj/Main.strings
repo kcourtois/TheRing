@@ -1,3 +1,4 @@
+
 /* Class = "UINavigationItem"; title = "Title"; ObjectID = "0GN-fc-JNW"; */
 "0GN-fc-JNW.title" = "Titre";
 
@@ -230,10 +231,14 @@
 "zUO-1J-Y84.text" = "MAJ Email";
 
 /* Class = "UILabel"; text = "Great. The last step is to pick an ending date for your tournament"; ObjectID = "LkZ-9L-Wgc"; */
-"LkZ-9L-Wgc.text" = "Super. La dernière étape est de choisir une date de fin pour votre tournoi.";
+"LkZ-9L-Wgc.text" = "Super. La dernière étape est de choisir une durée pour chaque tour, ainsi que la date de début du tournoi.";
 
 /* Class = "UILabel"; text = "Now it's time to select your first contestant."; ObjectID = "Fy9-Nc-q8H"; */
 "Fy9-Nc-q8H.text" = "Maintenant, choisissez votre premier participant.";
 
 /* Class = "UILabel"; text = "Sign up to be a member of The Ring ! Create tournaments, share them with your friends and see which contestant will be victorious !"; ObjectID = "CBR-Eg-gZT"; */
 "CBR-Eg-gZT.text" = "Inscrivez vous pour devenir un membre du Ring ! Créez des tournois, partagez les avec vos amis et voyez quel participant sortira vainqueur !";
+
+"3GI-Wl-yyj.placeholder" = "Entrez votre titre ici.";
+
+"p1g-HS-sNZ.text" = "Date de début:";

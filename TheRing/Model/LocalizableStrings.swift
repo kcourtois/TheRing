@@ -83,6 +83,7 @@ enum TRStrings: LocalizedString {
     case releaseDate = "RELEASE_DATE"
     case category = "CATEGORY"
     case rating = "RATING"
+    case roundDays = "ROUND_DAYS"
 
     var localizedString: String {
         return self.rawValue.val

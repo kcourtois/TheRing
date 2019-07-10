@@ -16,6 +16,10 @@ class SearchMovieController: UIViewController {
     var movies = [Movie]()
     weak var searchMovieDelegate: SearchMovieDelegate?
 
+    override func viewDidLoad() {
+        searchMovies(search: "Avengers")
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
@@ -32,7 +36,11 @@ class SearchMovieController: UIViewController {
         guard !text.isEmpty else {
             return
         }
-        MovieService.shared.getMovies(search: text) { (success, movieList) in
+        searchMovies(search: text)
+    }
+
+    func searchMovies(search: String) {
+        MovieService.shared.getMovies(search: search) { (success, movieList) in
             if success, let movieList = movieList {
                 self.movies = movieList
                 self.tableView.reloadData()

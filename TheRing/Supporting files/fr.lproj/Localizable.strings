@@ -40,6 +40,7 @@
 "RELEASE_DATE" = "Date de sortie";
 "CATEGORY" = "Catégorie";
 "RATING" = "Note";
+"ROUND_DAYS" = "Jours par tour";
 
 //GENRES
 "ACTION" = "Action";
