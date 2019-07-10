@@ -54,8 +54,35 @@ enum TRStrings: LocalizedString {
     case weakPassword = "WEAK_PASSWORD"
     case wrongPassword = "WRONG_PASSWORD"
 
+    //Movie genres
+    case action = "ACTION"
+    case adventure = "ADVENTURE"
+    case animation = "ANIMATION"
+    case comedy = "COMEDY"
+    case crime = "CRIME"
+    case documentary = "DOCUMENTARY"
+    case drama = "DRAMA"
+    case family = "FAMILY"
+    case fantasy = "FANTASY"
+    case history = "HISTORY"
+    case horror = "HORROR"
+    case music = "MUSIC"
+    case mystery = "MYSTERY"
+    case romance = "ROMANCE"
+    case scifi = "SCIFI"
+    case tvMovie = "TV_MOVIE"
+    case thriller = "THRILLER"
+    case war = "WAR"
+    case western = "WESTERN"
+
     //UI
     case enterDescription = "ENTER_DESCRIPTION"
+    case selectContestant = "SELECT_CONTESTANT"
+    case contestant = "CONTESTANT"
+    case overview = "OVERVIEW"
+    case releaseDate = "RELEASE_DATE"
+    case category = "CATEGORY"
+    case rating = "RATING"
 
     var localizedString: String {
         return self.rawValue.val

@@ -23,7 +23,10 @@ class CreateTournamentController: UIViewController {
     }
 
     @IBAction func nextTapped(_ sender: Any) {
-        performSegue(withIdentifier: "contestantSegue", sender: self)
+        createTournament()
+        if tournament != nil {
+            performSegue(withIdentifier: "contestantSegue", sender: self)
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,6 +38,21 @@ class CreateTournamentController: UIViewController {
                 return
             }
         }
+    }
+
+    private func createTournament() {
+        guard let title = titleField.text else {
+            presentAlert(title: TRStrings.error.localizedString,
+                         message: TRStrings.errorOccured.localizedString)
+            return
+        }
+
+        if title.isEmpty || descriptionField.text == TRStrings.enterDescription.localizedString {
+            presentAlert(title: TRStrings.error.localizedString,
+                         message: TRStrings.emptyFields.localizedString)
+        }
+
+        tournament = Tournament(title: title, description: descriptionField.text, contestants: [], endTime: Date())
     }
 }
 

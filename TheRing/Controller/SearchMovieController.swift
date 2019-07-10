@@ -14,6 +14,7 @@ class SearchMovieController: UIViewController {
     @IBOutlet weak var searchBar: UITextField!
 
     var movies = [Movie]()
+    weak var searchMovieDelegate: SearchMovieDelegate?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -71,4 +72,14 @@ extension SearchMovieController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = movies[indexPath.row]
+        self.searchMovieDelegate?.passMovie(movie: movie)
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+protocol SearchMovieDelegate: class {
+    func passMovie(movie: Movie)
 }

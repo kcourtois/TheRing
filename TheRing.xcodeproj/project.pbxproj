@@ -23,6 +23,7 @@
 		9E06BB5222B840F10098E148 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5022B840F10098E148 /* Main.storyboard */; };
 		9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5322B840F40098E148 /* Assets.xcassets */; };
 		9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */; };
+		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
 		9EA2718B22BD494B00AAC06B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */; };
@@ -43,6 +44,8 @@
 		9EFE1FCF22D3A640003A0410 /* SearchMovieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FCE22D3A640003A0410 /* SearchMovieController.swift */; };
 		9EFE1FDC22D479BD003A0410 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FDB22D479BD003A0410 /* MovieCell.swift */; };
 		9EFE1FDE22D4BDB7003A0410 /* Tournament.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */; };
+		9EFE1FE022D4F357003A0410 /* MovieOverview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EFE1FDF22D4F357003A0410 /* MovieOverview.xib */; };
+		9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FE122D5036F003A0410 /* MovieOverview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,7 @@
 		9E06BB5822B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E06BB5D22B840F40098E148 /* TheRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E06BB6322B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 		9EFE1FDA22D3B5A7003A0410 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		9EFE1FDB22D479BD003A0410 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
 		9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tournament.swift; sourceTree = "<group>"; };
+		9EFE1FDF22D4F357003A0410 /* MovieOverview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieOverview.xib; sourceTree = "<group>"; };
+		9EFE1FE122D5036F003A0410 /* MovieOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieOverview.swift; sourceTree = "<group>"; };
 		CC3F306C6FFEC5D0CAE2A586 /* Pods_TheRing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheRing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1D8F62486C5335702410541 /* Pods-TheRingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheRingTests.release.xcconfig"; path = "Target Support Files/Pods-TheRingTests/Pods-TheRingTests.release.xcconfig"; sourceTree = "<group>"; };
 		DA1A4B886FEF8325B3CCF427 /* Pods-TheRingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheRingTests.debug.xcconfig"; path = "Target Support Files/Pods-TheRingTests/Pods-TheRingTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +208,8 @@
 				9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */,
 				9E06BB5022B840F10098E148 /* Main.storyboard */,
 				9EFE1FDB22D479BD003A0410 /* MovieCell.swift */,
+				9EFE1FDF22D4F357003A0410 /* MovieOverview.xib */,
+				9EFE1FE122D5036F003A0410 /* MovieOverview.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -216,6 +224,7 @@
 				9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */,
 				9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */,
 				9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */,
+				9E8EBE7922D60B89001A8FE4 /* Genre.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +354,7 @@
 				9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */,
 				9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */,
 				9EF152C122BBC75D0039FCD2 /* GoogleService-Info.plist in Resources */,
+				9EFE1FE022D4F357003A0410 /* MovieOverview.xib in Resources */,
 				9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */,
 				9E064E3E22CA04B5009FE905 /* Localizable.strings in Resources */,
 				9E06BB5222B840F10098E148 /* Main.storyboard in Resources */,
@@ -453,6 +463,7 @@
 				9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
+				9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */,
 				9E064E4422CB06FB009FE905 /* FirebaseExtension.swift in Sources */,
 				9EA2718F22BE5AAA00AAC06B /* SignupController.swift in Sources */,
 				9E064E4622CCD830009FE905 /* MovieService.swift in Sources */,
@@ -462,6 +473,7 @@
 				9EFE1FCA22D35F4A003A0410 /* SelectContestantController.swift in Sources */,
 				9E06BB4D22B840F10098E148 /* AppDelegate.swift in Sources */,
 				9E064E3922C7A55D009FE905 /* EmailController.swift in Sources */,
+				9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */,
 				9EFE1FDC22D479BD003A0410 /* MovieCell.swift in Sources */,
 				9EA2719722C48AD900AAC06B /* TRUser.swift in Sources */,
 				9EFE1FDE22D4BDB7003A0410 /* Tournament.swift in Sources */,

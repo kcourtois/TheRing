@@ -34,3 +34,30 @@
 
 //UI
 "ENTER_DESCRIPTION" = "Enter your description here.";
+"SELECT_CONTESTANT" = "Please, select contestant N°";
+"CONTESTANT" = "Contestant";
+"OVERVIEW" = "Overview";
+"RELEASE_DATE" = "Release date";
+"CATEGORY" = "Category";
+"RATING" = "Rating";
+
+//GENRES
+"ACTION" = "Action";
+"ADVENTURE" = "Adventure";
+"ANIMATION" = "Animation";
+"COMEDY" = "Comedy";
+"CRIME" = "Crime";
+"DOCUMENTARY" = "Documentary";
+"DRAMA" = "Drama";
+"FAMILY" = "Family";
+"FANTASY" = "Fantasy";
+"HISTORY" = "History";
+"HORROR" = "Horror";
+"MUSIC" = "Music";
+"MYSTERY" = "Mystery";
+"ROMANCE" = "Romance";
+"SCIFI" = "Science Fiction";
+"TV_MOVIE" = "TV Movie";
+"THRILLER" = "Thriller";
+"WAR" = "War";
+"WESTERN" = "Western";

@@ -12,6 +12,10 @@ class TournamentDateController: UIViewController {
 
     var tournament: Tournament?
 
+    override func viewDidLoad() {
+
+    }
+
     @IBAction func doneTapped(_ sender: Any) {
 
     }

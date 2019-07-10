@@ -34,3 +34,30 @@
 
 //UI
 "ENTER_DESCRIPTION" = "Entrez votre description ici.";
+"SELECT_CONTESTANT" = "Veuillez choisir le participant N°";
+"CONTESTANT" = "Participant";
+"OVERVIEW" = "Synopsis";
+"RELEASE_DATE" = "Date de sortie";
+"CATEGORY" = "Catégorie";
+"RATING" = "Note";
+
+//GENRES
+"ACTION" = "Action";
+"ADVENTURE" = "Aventure";
+"ANIMATION" = "Animation";
+"COMEDY" = "Comédie";
+"CRIME" = "Crime";
+"DOCUMENTARY" = "Documentaire";
+"DRAMA" = "Drame";
+"FAMILY" = "Familial";
+"FANTASY" = "Fantastique";
+"HISTORY" = "Histoire";
+"HORROR" = "Horreur";
+"MUSIC" = "Musique";
+"MYSTERY" = "Mystère";
+"ROMANCE" = "Romance";
+"SCIFI" = "Science Fiction";
+"TV_MOVIE" = "Téléfilm";
+"THRILLER" = "Thriller";
+"WAR" = "Guerre";
+"WESTERN" = "Western";
