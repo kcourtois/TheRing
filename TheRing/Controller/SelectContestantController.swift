@@ -24,18 +24,19 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
         guard var tournament = tournament, let movie = movie else {
             return
         }
-        if tournament.contestants.count+1 > 3 {
+
+        tournament.contestants.append(movie)
+        self.tournament = tournament
+
+        if tournament.contestants.count > 3 {
             performSegue(withIdentifier: "datepickSegue", sender: self)
             return
         }
-
-        tournament.contestants.append(movie)
 
         sentenceLabel.text = "\(TRStrings.selectContestant.localizedString)\(tournament.contestants.count+1)."
         contestantLabel.text = "\(TRStrings.contestant.localizedString) \(tournament.contestants.count+1)"
         contestantView.setView(movie: nil)
         self.movie = nil
-        self.tournament = tournament
 
     }
 

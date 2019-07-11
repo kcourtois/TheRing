@@ -26,6 +26,23 @@ class TournamentDateController: UIViewController {
     }
 
     @IBAction func doneTapped(_ sender: Any) {
+        updateTournament()
+        if let tournament = tournament {
+            TournamentService.registerTournament(tournament: tournament) { (error) in
+                if let error = error {
+                    self.presentAlert(title: "Test", message: error)
+                } else {
+                    print("MEYDEN")
+                }
+            }
+        }
+    }
 
+    private func updateTournament() {
+        if var tournament = tournament {
+            tournament.roundDuration = Int(stepperRound.value)
+            tournament.startTime = datePicker.date
+            self.tournament = tournament
+        }
     }
 }

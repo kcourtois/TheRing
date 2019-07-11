@@ -52,7 +52,8 @@ class CreateTournamentController: UIViewController {
                          message: TRStrings.emptyFields.localizedString)
         }
 
-        tournament = Tournament(title: title, description: descriptionField.text, contestants: [], endTime: Date())
+        tournament = Tournament(title: title, description: descriptionField.text, contestants: [],
+                                startTime: Date(), roundDuration: 1)
     }
 }
 

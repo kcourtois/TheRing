@@ -12,5 +12,6 @@ struct Tournament {
     var title: String
     var description: String
     var contestants: [Movie]
-    var endTime: Date
+    var startTime: Date
+    var roundDuration: Int
 }

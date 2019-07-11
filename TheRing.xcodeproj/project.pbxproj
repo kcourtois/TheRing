@@ -23,6 +23,7 @@
 		9E06BB5222B840F10098E148 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5022B840F10098E148 /* Main.storyboard */; };
 		9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5322B840F40098E148 /* Assets.xcassets */; };
 		9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */; };
+		9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E2822D67C6700CB3257 /* TournamentService.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -82,6 +83,7 @@
 		9E06BB5D22B840F40098E148 /* TheRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E06BB6322B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E334E2622D6581E00CB3257 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
+		9E334E2822D67C6700CB3257 /* TournamentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentService.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */,
 				9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */,
 				9E8EBE7922D60B89001A8FE4 /* Genre.swift */,
+				9E334E2822D67C6700CB3257 /* TournamentService.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -461,6 +464,7 @@
 				9EA2719B22C5020300AAC06B /* Preferences.swift in Sources */,
 				9EA2719522C3D11D00AAC06B /* UserController.swift in Sources */,
 				9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */,
+				9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
 				9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */,
