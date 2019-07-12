@@ -114,4 +114,33 @@ class MovieTests: XCTestCase {
 
         wait(for: [expectation], timeout: 0.01)
     }
+
+    func testGetMovieNoSearchShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
+        // Given
+        let movieService = MovieService(
+            movieSession: URLSessionFake(
+                data: FakeResponseData.moviePopularData,
+                response: FakeResponseData.responseOK,
+                error: nil))
+
+        // When
+        let expectation = XCTestExpectation(description: "Wait for queue change.")
+        movieService.getMovies(callback: { (success, result) in
+            // Then
+            XCTAssertTrue(success)
+            XCTAssertNotNil(result)
+
+            let title = "Alita: Battle Angel"
+            let release = "2019-01-31"
+            let image = "https://image.tmdb.org/t/p/w500/rV3itKLEALozktTGOCd1EE9vjG6.jpg"
+
+            XCTAssertEqual(title, result?[0].title)
+            XCTAssertEqual(release, result?[0].release_date)
+            XCTAssertEqual(image, result?[0].image)
+
+            expectation.fulfill()
+        })
+
+        wait(for: [expectation], timeout: 0.01)
+    }
 }

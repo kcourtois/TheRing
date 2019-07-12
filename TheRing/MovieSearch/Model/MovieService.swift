@@ -60,9 +60,15 @@ class MovieService {
     }
 
     //Request to TMDB API, to search a movie given a string
-    func getMovies(search: String, callback: @escaping (Bool, [Movie]?) -> Void) {
+    func getMovies(search: String = "", callback: @escaping (Bool, [Movie]?) -> Void) {
 
-        let components = URLComponents(string: "http://api.themoviedb.org/3/search/movie")
+        var components: URLComponents?
+
+        if search.isEmpty {
+            components = URLComponents(string: "https://api.themoviedb.org/3/trending/movie/day?")
+        } else {
+            components = URLComponents(string: "https://api.themoviedb.org/3/search/movie")
+        }
 
         guard var comp = components else {
             callback(false, nil)
@@ -70,8 +76,10 @@ class MovieService {
         }
 
         comp.queryItems = [URLQueryItem(name: "api_key", value: ApiKeys.tmdbKey),
-                           URLQueryItem(name: "query", value: search),
                            URLQueryItem(name: "language", value: NSLocale.preferredLanguages[0])]
+        if !search.isEmpty {
+            comp.queryItems?.append(URLQueryItem(name: "query", value: search))
+        }
 
         guard let url = comp.url else {
             callback(false, nil)

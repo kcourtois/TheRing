@@ -28,7 +28,7 @@ class TournamentDateController: UIViewController {
     @IBAction func doneTapped(_ sender: Any) {
         updateTournament()
         if let tournament = tournament {
-            TournamentService.registerTournament(tournament: tournament) { (error) in
+            TournamentService.createTournament(tournament: tournament) { (error) in
                 if let error = error {
                     self.presentAlert(title: "Test", message: error)
                 } else {

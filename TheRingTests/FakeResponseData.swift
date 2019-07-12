@@ -18,6 +18,13 @@ class FakeResponseData {
         return try! Data(contentsOf: url)
     }
 
+    static var moviePopularData: Data? {
+        let bundle = Bundle(for: FakeResponseData.self)
+        let url = bundle.url(forResource: "Popular", withExtension: "json")!
+        // swiftlint:disable:next force_try
+        return try! Data(contentsOf: url)
+    }
+
     static let incorrectData = "erreur".data(using: .utf8)!
     static let imageData = "image".data(using: .utf8)!
 

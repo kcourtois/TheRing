@@ -17,7 +17,7 @@ class SearchMovieController: UIViewController {
     weak var searchMovieDelegate: SearchMovieDelegate?
 
     override func viewDidLoad() {
-        searchMovies(search: "Avengers")
+        searchMovies()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +39,7 @@ class SearchMovieController: UIViewController {
         searchMovies(search: text)
     }
 
-    func searchMovies(search: String) {
+    func searchMovies(search: String = "") {
         MovieService.shared.getMovies(search: search) { (success, movieList) in
             if success, let movieList = movieList {
                 self.movies = movieList

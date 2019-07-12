@@ -33,7 +33,6 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
-TheRing/Model/ApiKeys.swift
 
 ## Obj-C/Swift specific
 *.hmap
@@ -89,6 +88,7 @@ iOSInjectionProject/
 
 ## Api Keys
 TheRing/Supporting files/GoogleService-Info.plist
+TheRing/GeneralModel/ApiKeys.swift
 
 
 ### Xcode Patch ###

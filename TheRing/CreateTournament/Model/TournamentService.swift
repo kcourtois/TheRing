@@ -11,8 +11,7 @@ import FirebaseDatabase
 
 class TournamentService {
     //register tournament informations
-    static func registerTournament(tournament: Tournament, completion: @escaping (String?) -> Void) {
-        let reference = Database.database().reference()
+    static func createTournament(tournament: Tournament, completion: @escaping (String?) -> Void) {
         let tid = generateId()
         guard let startTime = getEndDate(duration: 0, start: tournament.startTime) else {
             completion(TRStrings.errorOccured.localizedString)
@@ -22,7 +21,15 @@ class TournamentService {
         let values = ["title": tournament.title, "description": tournament.description,
                       "startTime": startTime]
 
+        registerTournament(tid: tid, values: values, tournament: tournament) { (error) in
+            completion(error)
+        }
+    }
+
+    static func registerTournament(tid: String, values: [String: String], tournament: Tournament,
+                                   completion: @escaping (String?) -> Void) {
         //create tournament
+        let reference = Database.database().reference()
         reference.child("tournaments").child(tid).updateChildValues(values, withCompletionBlock: { (error, _) in
             if let error = error {
                 completion(FirebaseAuthService.getAuthError(error: error))
@@ -50,8 +57,8 @@ class TournamentService {
                 rids.append(rid)
                 guard let endDate = getEndDate(duration: tournament.roundDuration*index,
                                                start: tournament.startTime) else {
-                    completion(TRStrings.errorOccured.localizedString)
-                    return
+                                                completion(TRStrings.errorOccured.localizedString)
+                                                return
                 }
                 registerRound(tid: tid, rid: rid, endDate: endDate, completion: { (error) in
                     if let error = error {
@@ -80,8 +87,7 @@ class TournamentService {
         })
     }
 
-    static func registerRound(tid: String, rid: String, endDate: String,
-                              completion: @escaping (String?) -> Void) {
+    static func registerRound(tid: String, rid: String, endDate: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         let values = ["endDate": endDate]
         reference.child("rounds").child(tid).child(rid).updateChildValues(values,
