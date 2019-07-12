@@ -49,7 +49,7 @@ extension PasswordController {
 // MARK: - Network
 extension PasswordController {
     private func updatePassword(oldPwd: String, newPwd: String) {
-        FirebaseService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
+        FirebaseAuthService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                             message: error)

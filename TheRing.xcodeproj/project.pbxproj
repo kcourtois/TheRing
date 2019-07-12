@@ -24,6 +24,7 @@
 		9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5322B840F40098E148 /* Assets.xcassets */; };
 		9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */; };
 		9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E2822D67C6700CB3257 /* TournamentService.swift */; };
+		9E334E3922D873CD00CB3257 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E3822D873CD00CB3257 /* FirebaseAuthService.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -84,6 +85,7 @@
 		9E06BB6322B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E334E2622D6581E00CB3257 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Main.strings; sourceTree = "<group>"; };
 		9E334E2822D67C6700CB3257 /* TournamentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentService.swift; sourceTree = "<group>"; };
+		9E334E3822D873CD00CB3257 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -165,11 +167,15 @@
 		9E06BB4B22B840F10098E148 /* TheRing */ = {
 			isa = PBXGroup;
 			children = (
+				9E06BB5022B840F10098E148 /* Main.storyboard */,
+				9E334E3322D8729B00CB3257 /* Home */,
+				9E334E2F22D871A800CB3257 /* CreateTournament */,
+				9E334E2E22D871A000CB3257 /* Profile */,
+				9E334E2D22D8719900CB3257 /* Signup */,
+				9E334E2C22D8719200CB3257 /* Login */,
 				9E064E4222CB06D2009FE905 /* Extensions */,
 				9E06BB7022B841A80098E148 /* Supporting files */,
-				9E06BB6F22B841A20098E148 /* Model */,
-				9E06BB6E22B8419B0098E148 /* View */,
-				9E06BB6D22B841950098E148 /* Controller */,
+				9E06BB6F22B841A20098E148 /* GeneralModel */,
 			);
 			path = TheRing;
 			sourceTree = "<group>";
@@ -186,50 +192,17 @@
 			path = TheRingTests;
 			sourceTree = "<group>";
 		};
-		9E06BB6D22B841950098E148 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				9EA2718C22BE5A7000AAC06B /* LoginController.swift */,
-				9EA2718E22BE5AAA00AAC06B /* SignupController.swift */,
-				9EA2719022C3790C00AAC06B /* HomeController.swift */,
-				9EA2719422C3D11D00AAC06B /* UserController.swift */,
-				9EA2719822C4E1E400AAC06B /* ProfileController.swift */,
-				9E064E3622C7A53F009FE905 /* PasswordController.swift */,
-				9E064E3822C7A55D009FE905 /* EmailController.swift */,
-				9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */,
-				9EFE1FC922D35F4A003A0410 /* SelectContestantController.swift */,
-				9EFE1FCB22D35F9D003A0410 /* TournamentDateController.swift */,
-				9EFE1FCE22D3A640003A0410 /* SearchMovieController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9E06BB6E22B8419B0098E148 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */,
-				9E06BB5022B840F10098E148 /* Main.storyboard */,
-				9EFE1FDB22D479BD003A0410 /* MovieCell.swift */,
-				9EFE1FDF22D4F357003A0410 /* MovieOverview.xib */,
-				9EFE1FE122D5036F003A0410 /* MovieOverview.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		9E06BB6F22B841A20098E148 /* Model */ = {
+		9E06BB6F22B841A20098E148 /* GeneralModel */ = {
 			isa = PBXGroup;
 			children = (
 				9EA2719622C48AD900AAC06B /* TRUser.swift */,
 				9EA2719A22C5020300AAC06B /* Preferences.swift */,
 				9E064E3322C541E8009FE905 /* FirebaseService.swift */,
-				9E064E4522CCD830009FE905 /* MovieService.swift */,
 				9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */,
 				9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */,
-				9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */,
-				9E8EBE7922D60B89001A8FE4 /* Genre.swift */,
-				9E334E2822D67C6700CB3257 /* TournamentService.swift */,
+				9E334E3822D873CD00CB3257 /* FirebaseAuthService.swift */,
 			);
-			path = Model;
+			path = GeneralModel;
 			sourceTree = "<group>";
 		};
 		9E06BB7022B841A80098E148 /* Supporting files */ = {
@@ -242,9 +215,111 @@
 				9E06BB5822B840F40098E148 /* Info.plist */,
 				9E06BB4C22B840F10098E148 /* AppDelegate.swift */,
 				9E06BB5322B840F40098E148 /* Assets.xcassets */,
+				9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */,
 				9E064E4022CA04B5009FE905 /* Localizable.strings */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		9E334E2C22D8719200CB3257 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9E334E3222D871C600CB3257 /* Model */,
+				9E334E3122D871BE00CB3257 /* View */,
+				9E334E3022D871B500CB3257 /* Controller */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		9E334E2D22D8719900CB3257 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2718E22BE5AAA00AAC06B /* SignupController.swift */,
+			);
+			path = Signup;
+			sourceTree = "<group>";
+		};
+		9E334E2E22D871A000CB3257 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2719422C3D11D00AAC06B /* UserController.swift */,
+				9EA2719822C4E1E400AAC06B /* ProfileController.swift */,
+				9E064E3622C7A53F009FE905 /* PasswordController.swift */,
+				9E064E3822C7A55D009FE905 /* EmailController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9E334E2F22D871A800CB3257 /* CreateTournament */ = {
+			isa = PBXGroup;
+			children = (
+				9E334E3722D872FC00CB3257 /* Model */,
+				9E334E3622D872F500CB3257 /* View */,
+				9E334E3422D872C200CB3257 /* Controller */,
+			);
+			path = CreateTournament;
+			sourceTree = "<group>";
+		};
+		9E334E3022D871B500CB3257 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2718C22BE5A7000AAC06B /* LoginController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9E334E3122D871BE00CB3257 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9E334E3222D871C600CB3257 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9E334E3322D8729B00CB3257 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2719022C3790C00AAC06B /* HomeController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		9E334E3422D872C200CB3257 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */,
+				9EFE1FC922D35F4A003A0410 /* SelectContestantController.swift */,
+				9EFE1FCB22D35F9D003A0410 /* TournamentDateController.swift */,
+				9EFE1FCE22D3A640003A0410 /* SearchMovieController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9E334E3622D872F500CB3257 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EFE1FDB22D479BD003A0410 /* MovieCell.swift */,
+				9EFE1FDF22D4F357003A0410 /* MovieOverview.xib */,
+				9EFE1FE122D5036F003A0410 /* MovieOverview.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9E334E3722D872FC00CB3257 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E334E2822D67C6700CB3257 /* TournamentService.swift */,
+				9E8EBE7922D60B89001A8FE4 /* Genre.swift */,
+				9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */,
+				9E064E4522CCD830009FE905 /* MovieService.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
@@ -467,6 +542,7 @@
 				9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
+				9E334E3922D873CD00CB3257 /* FirebaseAuthService.swift in Sources */,
 				9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */,
 				9E064E4422CB06FB009FE905 /* FirebaseExtension.swift in Sources */,
 				9EA2718F22BE5AAA00AAC06B /* SignupController.swift in Sources */,

@@ -25,7 +25,7 @@ class TournamentService {
         //create tournament
         reference.child("tournaments").child(tid).updateChildValues(values, withCompletionBlock: { (error, _) in
             if let error = error {
-                completion(FirebaseService.getAuthError(error: error))
+                completion(FirebaseAuthService.getAuthError(error: error))
                 return
             }
 
@@ -33,12 +33,11 @@ class TournamentService {
             //create contestants
             for contestant in tournament.contestants {
                 let cid = generateId()
+                cids.append(cid)
                 registerContestant(tid: tid, cid: cid, contestant: contestant, completion: { (error) in
                     if let error = error {
                         completion(error)
                         return
-                    } else {
-                        cids.append(cid)
                     }
                 })
             }
@@ -48,7 +47,9 @@ class TournamentService {
             var rids = [String]()
             for index in 1...roundQt {
                 let rid = generateId()
-                guard let endDate = getEndDate(duration: tournament.roundDuration*index, start: tournament.startTime) else {
+                rids.append(rid)
+                guard let endDate = getEndDate(duration: tournament.roundDuration*index,
+                                               start: tournament.startTime) else {
                     completion(TRStrings.errorOccured.localizedString)
                     return
                 }
@@ -56,15 +57,25 @@ class TournamentService {
                     if let error = error {
                         completion(error)
                         return
-                    } else {
-                        rids.append(rid)
                     }
                 })
             }
 
             //create matches
-            for _ in 0..<tournament.contestants.count/2 {
+            let sequence = stride(from: 0, to: tournament.contestants.count-2, by: 2)
 
+            for index in sequence {
+                print(index)
+                print(index+1)
+                print(cids)
+                let mid = generateId()
+                let ids = ["tid": tid, "rid": rids[0], "mid": mid, "cid1": cids[index], "cid2": cids[index+1]]
+                registerMatch(ids: ids, completion: { (error) in
+                    if let error = error {
+                        completion(error)
+                        return
+                    }
+                })
             }
         })
     }
@@ -75,7 +86,7 @@ class TournamentService {
         let values = ["endDate": endDate]
         reference.child("rounds").child(tid).child(rid).updateChildValues(values,
                                                                                withCompletionBlock: { (error, _) in
-            completion(FirebaseService.getAuthError(error: error))
+            completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
 
@@ -85,7 +96,20 @@ class TournamentService {
         let values = ["name": contestant.title, "image": contestant.image]
         reference.child("contestants").child(tid).child(cid).updateChildValues(values,
                                                                                withCompletionBlock: { (error, _) in
-            completion(FirebaseService.getAuthError(error: error))
+            completion(FirebaseAuthService.getAuthError(error: error))
+        })
+    }
+
+    static func registerMatch(ids: [String: String], completion: @escaping (String?) -> Void) {
+        guard let tid = ids["tid"], let rid = ids["rid"], let mid = ids["mid"],
+            let cid1 = ids["cid1"], let cid2 = ids["cid2"] else {
+            completion(TRStrings.errorOccured.localizedString)
+            return
+        }
+        let reference = Database.database().reference()
+        let values = ["contestant1": cid1, "contestant2": cid2]
+        reference.child("matches/\(tid)/\(rid)/\(mid)").updateChildValues(values, withCompletionBlock: { (error, _) in
+            completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
 
@@ -130,3 +154,6 @@ class TournamentService {
         return 2
     }
 }
+
+//matches/tid/rid/mid - c1, c2
+//comment/tid/idc - uid, username, comment

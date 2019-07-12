@@ -29,10 +29,6 @@ struct LocalizedString: ExpressibleByStringLiteral, Equatable {
     }
 }
 
-func == (lhs: LocalizedString, rhs: LocalizedString) -> Bool {
-    return lhs.val == rhs.val
-}
-
 enum TRStrings: LocalizedString {
     case saved = "SAVED"
     case error = "ERROR"

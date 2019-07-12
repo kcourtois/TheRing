@@ -89,7 +89,7 @@ extension EmailController {
     }
 
     private func updateMailAndSave(password: String, mail: String) {
-        FirebaseService.updateEmail(password: password, mail: mail) { error in
+        FirebaseAuthService.updateEmail(password: password, mail: mail) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)
