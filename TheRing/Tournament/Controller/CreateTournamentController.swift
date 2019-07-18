@@ -12,18 +12,31 @@ class CreateTournamentController: UIViewController {
 
     @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var descriptionField: UITextView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var createTournament: UILabel!
 
+    private let preferences = Preferences()
     var tournament: Tournament?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
+        setTexts()
+    }
+
+    private func setTexts() {
         descriptionField.text = TRStrings.enterDescription.localizedString
+        titleField.placeholder = TRStrings.enterTitle.localizedString
+        titleLabel.text = TRStrings.title.localizedString
+        createTournament.text = TRStrings.createTournaments.localizedString
+        nextButton.setTitle(TRStrings.next.localizedString, for: .normal)
     }
 
     @IBAction func nextTapped(_ sender: Any) {
-        createTournament()
+        addTournament()
         if tournament != nil {
             performSegue(withIdentifier: "contestantSegue", sender: self)
         }
@@ -40,7 +53,7 @@ class CreateTournamentController: UIViewController {
         }
     }
 
-    private func createTournament() {
+    private func addTournament() {
         guard let title = titleField.text else {
             presentAlert(title: TRStrings.error.localizedString,
                          message: TRStrings.errorOccured.localizedString)
@@ -53,7 +66,7 @@ class CreateTournamentController: UIViewController {
         }
 
         tournament = Tournament(title: title, description: descriptionField.text, contestants: [],
-                                startTime: Date(), roundDuration: 1)
+                                startTime: Date(), roundDuration: 1, creator: preferences.user.uid)
     }
 }
 

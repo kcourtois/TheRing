@@ -65,7 +65,7 @@ class MovieService {
         var components: URLComponents?
 
         if search.isEmpty {
-            components = URLComponents(string: "https://api.themoviedb.org/3/trending/movie/day?")
+            components = URLComponents(string: "https://api.themoviedb.org/3/trending/movie/day")
         } else {
             components = URLComponents(string: "https://api.themoviedb.org/3/search/movie")
         }

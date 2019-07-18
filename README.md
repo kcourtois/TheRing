@@ -20,7 +20,9 @@ Here, 4 movies were listed. Movie 1 and 4 were the winners of the first round, a
 - [x] Create an account
 - [x] Login
 - [x] User profile (with possibility to update data)
-- [ ] Create a tournament
+- [ ] Friends system
+- [x] Create a tournament
+- [ ] Consult tournaments
 - [ ] Share them
 - [ ] Vote
 - [ ] Comments on tournaments

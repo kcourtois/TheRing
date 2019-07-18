@@ -11,16 +11,25 @@ import FirebaseAuth
 
 class UserController: UIViewController {
 
+    @IBOutlet weak var profileLabel: UILabel!
+    @IBOutlet weak var usernameDesc: UILabel!
+    @IBOutlet weak var emailDesc: UILabel!
+    @IBOutlet weak var genderDesc: UILabel!
+    @IBOutlet weak var bioDesc: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var biographyLabel: UILabel!
     @IBOutlet weak var mailLabel: UILabel!
+    @IBOutlet weak var updateButton: UIButton!
+    @IBOutlet weak var tournamentsLabel: UILabel!
+    @IBOutlet weak var tournamentsButton: UIButton!
 
     private let preferences = Preferences()
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTexts()
         alert = loadingAlert()
         if let user = Auth.auth().currentUser {
             FirebaseService.getUserInfo(uid: user.uid, completion: { user in
@@ -50,6 +59,14 @@ class UserController: UIViewController {
         setLabels()
     }
 
+    @IBAction func seeTournaments(_ sender: Any) {
+        performSegue(withIdentifier: "TournamentListSegue", sender: self)
+    }
+
+    @IBAction func updateProfileTapped() {
+        performSegue(withIdentifier: "profileSegue", sender: self)
+    }
+
     private func setLabels() {
         mailLabel.text = preferences.user.email
         nameLabel.text = preferences.user.name
@@ -57,8 +74,15 @@ class UserController: UIViewController {
         biographyLabel.text = preferences.user.bio
     }
 
-    @IBAction func updateProfileTapped() {
-        performSegue(withIdentifier: "profileSegue", sender: self)
+    private func setTexts() {
+        profileLabel.text = TRStrings.profile.localizedString
+        usernameDesc.text = TRStrings.username.localizedString
+        emailDesc.text = TRStrings.email.localizedString
+        genderDesc.text = TRStrings.gender.localizedString
+        bioDesc.text = TRStrings.bio.localizedString
+        updateButton.setTitle(TRStrings.updateProfile.localizedString, for: .normal)
+        tournamentsLabel.text = TRStrings.tournaments.localizedString
+        tournamentsButton.setTitle(TRStrings.seeTournaments.localizedString, for: .normal)
     }
 
 }

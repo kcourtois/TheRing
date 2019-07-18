@@ -14,15 +14,27 @@ class LoginController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     private var alert: UIAlertController?
+    @IBOutlet weak var accountLabel: UILabel!
+    @IBOutlet weak var signupButton: UIButton!
+    @IBOutlet weak var loginButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTexts()
         //Skip login page if user signed in FOR TEST PURPOSES
         if Auth.auth().currentUser != nil {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
             }
         }
+    }
+
+    private func setTexts() {
+        accountLabel.text = TRStrings.noAccount.localizedString
+        signupButton.setTitle(TRStrings.signUp.localizedString, for: .normal)
+        loginButton.setTitle(TRStrings.login.localizedString, for: .normal)
+        emailField.placeholder = TRStrings.emailAddress.localizedString
+        passwordField.placeholder = TRStrings.password.localizedString
     }
 
     @IBAction func loginTapped() {

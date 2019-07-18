@@ -13,9 +13,27 @@ class PasswordController: UIViewController {
     @IBOutlet weak var oldPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmField: UITextField!
+    @IBOutlet weak var updatePassLabel: UILabel!
+    @IBOutlet weak var oldPassLabel: UILabel!
+    @IBOutlet weak var newPassLabel: UILabel!
+    @IBOutlet weak var confirmPassLabel: UILabel!
 
     let preferences = Preferences()
     private var alert: UIAlertController?
+
+    override func viewDidLoad() {
+        setTexts()
+    }
+
+    private func setTexts() {
+        updatePassLabel.text = TRStrings.updatePassword.localizedString
+        oldPassLabel.text = TRStrings.oldPassword.localizedString
+        newPassLabel.text = TRStrings.newPassword.localizedString
+        confirmPassLabel.text = TRStrings.confirmPass.localizedString
+        oldPasswordField.placeholder = TRStrings.yourOldPassword.localizedString
+        newPasswordField.placeholder = TRStrings.yourNewPassword.localizedString
+        confirmField.placeholder = TRStrings.newPassConfirm.localizedString
+    }
 
     @IBAction func saveTapped(_ sender: Any) {
         alert = loadingAlert()

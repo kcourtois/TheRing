@@ -15,10 +15,23 @@ class TournamentDateController: UIViewController {
     @IBOutlet weak var stepperRound: UIStepper!
     @IBOutlet weak var daysPerRound: UILabel!
 
+    @IBOutlet weak var createTournament: UILabel!
+    @IBOutlet weak var lastStepLabel: UILabel!
+    @IBOutlet weak var daysLabel: UILabel!
+    @IBOutlet weak var startTimeLabel: UILabel!
+
     override func viewDidLoad() {
         datePicker.minimumDate = Date()
         datePicker.maximumDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
         updateDays(self)
+        setTexts()
+    }
+
+    private func setTexts() {
+        createTournament.text = TRStrings.createTournaments.localizedString
+        lastStepLabel.text = TRStrings.lastStep.localizedString
+        daysLabel.text = TRStrings.daysPerRound.localizedString
+        startTimeLabel.text = TRStrings.startTime.localizedString
     }
 
     @IBAction func updateDays(_ sender: Any) {

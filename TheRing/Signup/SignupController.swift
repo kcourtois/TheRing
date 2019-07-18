@@ -11,12 +11,27 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class SignupController: UIViewController {
+    @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var passwordConfirmField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var continueButton: UIButton!
     private var alert: UIAlertController?
     private let tabIndex = 1
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        descLabel.text = TRStrings.signUpDesc.localizedString
+        emailField.placeholder = TRStrings.emailAddress.localizedString
+        passwordField.placeholder = TRStrings.password.localizedString
+        passwordConfirmField.placeholder = TRStrings.passwordConfirm.localizedString
+        usernameField.placeholder = TRStrings.username.localizedString
+        cancelButton.setTitle(TRStrings.cancel.localizedString, for: .normal)
+        continueButton.setTitle(TRStrings.continueTxt.localizedString, for: .normal)
+
+    }
 
     @IBAction func cancelTapped() {
         dismiss(animated: true, completion: nil)

@@ -33,7 +33,8 @@
 "WRONG_PASSWORD" = "Mot de passe incorrecte. Veuillez réessayer.";
 
 //UI
-"ENTER_DESCRIPTION" = "Entrez votre description ici.";
+"BACK" = "Retour";
+"ENTER_DESCRIPTION" = "Entrez votre description ici";
 "SELECT_CONTESTANT" = "Veuillez choisir le participant N°";
 "CONTESTANT" = "Participant";
 "OVERVIEW" = "Synopsis";
@@ -41,6 +42,54 @@
 "CATEGORY" = "Catégorie";
 "RATING" = "Note";
 "ROUND_DAYS" = "Jours par tour";
+"NO_ACCOUNT" = "Pas de compte ?";
+"SIGN_UP" = "S'inscrire";
+"LOGIN" = "CONNEXION";
+"EMAIL_ADDR" = "Adresse email";
+"PASSWORD" = "Mot de passe";
+"SIGNUP_DESC" = "Inscris toi pour devenir un membre du Ring ! Crée des tournois, partage les avec tes amis et observe pour savoir quel participant remportera la victoire !";
+"PASS_CONFIRM" = "Confirmation MDP";
+"USERNAME" = "Pseudo";
+"CANCEL" = "Annuler";
+"CONTINUE" = "Continuer";
+"PROFILE" = "Profil";
+"EMAIL" = "Email";
+"GENDER" = "Genre";
+"BIO" = "Bio";
+"UPDATE_PROFILE" = " MAJ profil ";
+"TOURNAMENTS" = "Tournois";
+"MOD_EMAIL" = "Modifier email";
+"MOD_PASS" = "Modifier MDP";
+"YOUR_USERNAME" = "Votre pseudo ici";
+"YOUR_BIO" = "Votre biographie ici";
+"UPDATE_MAIL" = "MAJ Email";
+"NEW_MAIL" = "Nouveau Email";
+"CONF_MAIL" = "Confirmer Email";
+"YOUR_PASS" = "Votre MDP ici";
+"YOUR_MAIL" = "Votre nouveau email ici";
+"NEW_MAIL_CONF" = "Confirmer nouvel email";
+"UPDATE_PASS" = "MAJ MDP";
+"OLD_PASS" = "Ancien MDP";
+"NEW_PASS" = "Nouveau MDP";
+"CONFIRM_PASS" = "Confirmer MDP";
+"YOUR_OLD_PASS" = "Votre ancien MDP ici";
+"YOUR_NEW_PASS" = "Votre nouveau MDP ici";
+"NEW_PASS_CONF" = "Confirmer nouveau MDP";
+"SEE_TOURNAMENTS" = " Voir mes tournois ";
+"TITLE" = "Titre";
+"CREATE_TOURNAMENTS" = "Créer Tournois";
+"ENTER_TITLE" = "Entrez votre titre ici";
+"DAYS_PER_ROUND" = "Jours par tour:";
+"START_TIME" = "Date de début:";
+"LAST_STEP" = "Super. La dernière étape est de sélectionner une durée pour chaque tour, et la date de début du tournoi.";
+"NEXT" = "SUIVANT";
+"PICK" = "Choisir";
+"MALE" = "Homme";
+"FEMALE" = "Femme";
+"OTHER" = "Autre";
+"HOME" = "Accueil";
+"USER" = "Profil";
+"CREATE" = "Créer";
 
 //GENRES
 "ACTION" = "Action";

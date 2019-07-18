@@ -12,6 +12,13 @@ class ProfileController: UIViewController {
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var genderControl: UISegmentedControl!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var genderLabel: UILabel!
+    @IBOutlet weak var bioLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var modifyEmail: UIButton!
+    @IBOutlet weak var modifyPassword: UIButton!
 
     let preferences = Preferences()
     private var alert: UIAlertController?
@@ -19,6 +26,22 @@ class ProfileController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setFields()
+        setTexts()
+    }
+
+    private func setTexts() {
+        usernameLabel.text = TRStrings.username.localizedString
+        genderLabel.text = TRStrings.gender.localizedString
+        bioLabel.text = TRStrings.bio.localizedString
+        emailLabel.text = TRStrings.email.localizedString
+        passwordLabel.text = TRStrings.password.localizedString
+        modifyEmail.setTitle(TRStrings.modEmail.localizedString, for: .normal)
+        modifyPassword.setTitle(TRStrings.modPass.localizedString, for: .normal)
+        nameTextField.placeholder = TRStrings.yourUsername.localizedString
+        bioTextField.placeholder = TRStrings.yourBio.localizedString
+        genderControl.setTitle(TRStrings.male.localizedString, forSegmentAt: 0)
+        genderControl.setTitle(TRStrings.female.localizedString, forSegmentAt: 1)
+        genderControl.setTitle(TRStrings.other.localizedString, forSegmentAt: 2)
     }
 
     @IBAction func modifyEmailTapped() {

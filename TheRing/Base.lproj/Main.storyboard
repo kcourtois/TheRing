@@ -142,8 +142,11 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="accountLabel" destination="Ph2-xo-CjZ" id="zei-5V-iFC"/>
                         <outlet property="emailField" destination="xOP-zc-IkT" id="JXL-IC-clH"/>
+                        <outlet property="loginButton" destination="boU-HJ-cZo" id="qEC-y8-WUv"/>
                         <outlet property="passwordField" destination="93p-lr-fTQ" id="hb1-e4-e3D"/>
+                        <outlet property="signupButton" destination="qmd-4Y-Krk" id="zhT-ah-Col"/>
                         <segue destination="iCD-e0-iax" kind="show" identifier="loginSegue" id="572-hB-pf5"/>
                     </connections>
                 </viewController>
@@ -156,11 +159,11 @@
             </objects>
             <point key="canvasLocation" x="54" y="21"/>
         </scene>
-        <!--User-->
+        <!--Navigation Controller-->
         <scene sceneID="zTF-bj-Sde">
             <objects>
                 <navigationController id="ecx-z1-0hs" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="User" image="user" selectedImage="user" id="dTu-Mp-wxw"/>
+                    <tabBarItem key="tabBarItem" title="" image="user" selectedImage="user" id="dTu-Mp-wxw"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7f4-3z-RdQ">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -294,55 +297,289 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fTe-zL-FBq">
-                                <rect key="frame" x="0.0" y="359" width="320" height="160"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" id="WxO-ru-Wp6">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WxO-ru-Wp6" id="vVd-Az-eFd">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8p-vV-Beq">
+                                <rect key="frame" x="71.5" y="359" width="177" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                <state key="normal" title=" See my tournaments ">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="seeTournaments:" destination="3bW-Xm-ben" eventType="touchUpInside" id="Mo5-UO-vDD"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eWt-Vh-KkQ" firstAttribute="centerX" secondItem="I24-jt-39E" secondAttribute="centerX" id="7MU-Vk-jXO"/>
-                            <constraint firstItem="8iC-sY-n37" firstAttribute="bottom" secondItem="fTe-zL-FBq" secondAttribute="bottom" id="7l5-fc-MkP"/>
+                            <constraint firstItem="T8p-vV-Beq" firstAttribute="top" secondItem="eWt-Vh-KkQ" secondAttribute="bottom" constant="16" id="BD3-Oc-Olc"/>
                             <constraint firstItem="Uft-vR-GeN" firstAttribute="top" secondItem="8iC-sY-n37" secondAttribute="top" constant="16" id="JJl-EU-duO"/>
                             <constraint firstItem="eWt-Vh-KkQ" firstAttribute="top" secondItem="ywr-dm-ooM" secondAttribute="bottom" constant="16" id="PAQ-Ba-i4d"/>
                             <constraint firstItem="Uft-vR-GeN" firstAttribute="centerX" secondItem="I24-jt-39E" secondAttribute="centerX" id="Quk-Rb-MIC"/>
                             <constraint firstItem="I5T-WY-WXY" firstAttribute="top" secondItem="Uft-vR-GeN" secondAttribute="bottom" constant="16" id="bJJ-jE-l6p"/>
                             <constraint firstItem="ywr-dm-ooM" firstAttribute="centerX" secondItem="I24-jt-39E" secondAttribute="centerX" id="cgI-ZO-PbZ"/>
+                            <constraint firstItem="T8p-vV-Beq" firstAttribute="centerX" secondItem="I24-jt-39E" secondAttribute="centerX" id="dra-8J-7e7"/>
                             <constraint firstItem="I5T-WY-WXY" firstAttribute="leading" secondItem="8iC-sY-n37" secondAttribute="leading" constant="16" id="i3l-4R-qYi"/>
                             <constraint firstItem="8iC-sY-n37" firstAttribute="trailing" secondItem="I5T-WY-WXY" secondAttribute="trailing" constant="16" id="uoo-K8-9Tu"/>
-                            <constraint firstItem="fTe-zL-FBq" firstAttribute="top" secondItem="eWt-Vh-KkQ" secondAttribute="bottom" constant="16" id="vkV-m2-JIp"/>
                             <constraint firstItem="ywr-dm-ooM" firstAttribute="top" secondItem="I5T-WY-WXY" secondAttribute="bottom" constant="16" id="wDn-RT-sq5"/>
-                            <constraint firstItem="8iC-sY-n37" firstAttribute="trailing" secondItem="fTe-zL-FBq" secondAttribute="trailing" id="xZQ-vY-7oc"/>
-                            <constraint firstItem="fTe-zL-FBq" firstAttribute="leading" secondItem="8iC-sY-n37" secondAttribute="leading" id="zaC-wL-y5y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="8iC-sY-n37"/>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="GOf-dx-60G">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="8J5-iF-F1e"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="8J5-iF-F1e"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bioDesc" destination="GNV-Kq-ou4" id="8lF-Vf-qgz"/>
                         <outlet property="biographyLabel" destination="WZe-YJ-q8P" id="sDs-Q6-5bJ"/>
+                        <outlet property="emailDesc" destination="5AR-kc-vdM" id="4pe-0a-BMm"/>
+                        <outlet property="genderDesc" destination="IRd-m0-ZJd" id="XYM-qn-t3T"/>
                         <outlet property="genderLabel" destination="Prx-mW-rcw" id="zBe-o4-6bp"/>
                         <outlet property="mailLabel" destination="Oug-S7-Fj4" id="dw6-w8-SJB"/>
                         <outlet property="nameLabel" destination="2tc-q5-Ym4" id="CUo-PX-3qS"/>
+                        <outlet property="profileLabel" destination="Uft-vR-GeN" id="ECH-HJ-Mry"/>
+                        <outlet property="tournamentsButton" destination="T8p-vV-Beq" id="g8U-Lr-b6S"/>
+                        <outlet property="tournamentsLabel" destination="eWt-Vh-KkQ" id="e4E-eL-EbR"/>
+                        <outlet property="updateButton" destination="ywr-dm-ooM" id="Dhv-yM-4H8"/>
+                        <outlet property="usernameDesc" destination="go6-RC-aGg" id="zxz-Go-zF9"/>
                         <segue destination="9Co-KT-uOk" kind="show" identifier="profileSegue" id="heX-42-pgJ"/>
+                        <segue destination="ULo-Xc-afY" kind="show" identifier="TournamentListSegue" id="ApP-wJ-mgk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HRB-Gv-hru" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2022" y="793"/>
         </scene>
-        <!--Home-->
+        <!--The Ring-->
+        <scene sceneID="P0u-tM-ahO">
+            <objects>
+                <viewController id="ULo-Xc-afY" customClass="TournamentListController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eQJ-jw-cGa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="eXP-ah-acU">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" rowHeight="92" id="RYN-qU-xcx" customClass="TournamentCell" customModule="TheRing" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RYN-qU-xcx" id="l4e-7d-GUk">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CWb-kz-15U">
+                                                    <rect key="frame" x="8" y="8" width="304" height="75.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="de6-8N-OBZ" userLabel="Email">
+                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="21.5"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="desc" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8G-f9-hOX" userLabel="Email">
+                                                            <rect key="frame" x="0.0" y="56.5" width="304" height="19"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="CWb-kz-15U" firstAttribute="top" secondItem="l4e-7d-GUk" secondAttribute="top" constant="8" id="2nk-eZ-XFz"/>
+                                                <constraint firstAttribute="bottom" secondItem="CWb-kz-15U" secondAttribute="bottom" constant="8" id="KGq-5c-yW9"/>
+                                                <constraint firstAttribute="trailing" secondItem="CWb-kz-15U" secondAttribute="trailing" constant="8" id="pYk-2z-ajk"/>
+                                                <constraint firstItem="CWb-kz-15U" firstAttribute="leading" secondItem="l4e-7d-GUk" secondAttribute="leading" constant="8" id="q4G-hE-7Zs"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="r8G-f9-hOX" id="Xki-3I-zuj"/>
+                                            <outlet property="titleLabel" destination="de6-8N-OBZ" id="hb4-Ie-cfX"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="ULo-Xc-afY" id="8Rs-5G-ec8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eXP-ah-acU" firstAttribute="leading" secondItem="Fp6-Im-U9a" secondAttribute="leading" id="EdQ-Vd-ugn"/>
+                            <constraint firstItem="eXP-ah-acU" firstAttribute="top" secondItem="Fp6-Im-U9a" secondAttribute="top" id="JJV-Vb-tyv"/>
+                            <constraint firstItem="Fp6-Im-U9a" firstAttribute="trailing" secondItem="eXP-ah-acU" secondAttribute="trailing" id="VRC-i0-jK6"/>
+                            <constraint firstItem="Fp6-Im-U9a" firstAttribute="bottom" secondItem="eXP-ah-acU" secondAttribute="bottom" id="Yfj-dn-BAx"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Fp6-Im-U9a"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="The Ring" id="GTx-ey-oED">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Psm-gG-46d"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="eXP-ah-acU" id="0aC-u9-GKG"/>
+                        <segue destination="W1Y-nB-SYu" kind="show" identifier="DetailTournamentSegue" id="y0S-O0-HRC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fJa-Ft-r0N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2019.375" y="1650"/>
+        </scene>
+        <!--The Ring-->
+        <scene sceneID="B4T-UU-RXw">
+            <objects>
+                <viewController id="W1Y-nB-SYu" customClass="TournamentDetailController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pht-sZ-I2d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KF5-AB-xC6">
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-3A-hB6">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="171.5"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Em-Io-T3o">
+                                                <rect key="frame" x="0.0" y="0.0" width="320" height="171.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tournament" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ov6-Uw-e9O">
+                                                        <rect key="frame" x="8" y="8" width="304" height="32.5"/>
+                                                        <fontDescription key="fontDescription" name="Moltors" family="Moltors" pointSize="28"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="FRv-qs-cIc">
+                                                        <rect key="frame" x="8" y="56.5" width="304" height="107"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Myb-DI-5al">
+                                                                <rect key="frame" x="0.0" y="0.0" width="304" height="21.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVK-MG-IMh">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="21.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="100" id="kAO-sv-1hk"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XE0-hl-j1U">
+                                                                        <rect key="frame" x="110" y="0.0" width="194" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="D8c-LX-rMZ">
+                                                                <rect key="frame" x="0.0" y="28.5" width="304" height="21.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmU-Xx-p2O" userLabel="Email">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="21.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="100" id="LTW-dv-IxX"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6nT-OE-957">
+                                                                        <rect key="frame" x="110" y="0.0" width="194" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iVC-IS-Kgp">
+                                                                <rect key="frame" x="0.0" y="57" width="304" height="21.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start time" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CBl-dZ-xpW" userLabel="Bio">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="21.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="100" id="X97-lH-6u1"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jMG-EG-MXa">
+                                                                        <rect key="frame" x="110" y="0.0" width="194" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uCA-1P-4tL">
+                                                                <rect key="frame" x="0.0" y="85.5" width="304" height="21.5"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Creator" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al9-8j-vZb" userLabel="Bio">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="21.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="100" id="gUV-0g-bwO"/>
+                                                                        </constraints>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4d-dd-slC">
+                                                                        <rect key="frame" x="110" y="0.0" width="194" height="21.5"/>
+                                                                        <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="ov6-Uw-e9O" secondAttribute="trailing" constant="8" id="408-xV-lXr"/>
+                                                    <constraint firstAttribute="trailing" secondItem="FRv-qs-cIc" secondAttribute="trailing" constant="8" id="9FH-Lb-Hd8"/>
+                                                    <constraint firstItem="FRv-qs-cIc" firstAttribute="leading" secondItem="4Em-Io-T3o" secondAttribute="leading" constant="8" id="A41-j7-8tD"/>
+                                                    <constraint firstAttribute="bottom" secondItem="FRv-qs-cIc" secondAttribute="bottom" constant="8" id="BHQ-9j-6uy"/>
+                                                    <constraint firstItem="ov6-Uw-e9O" firstAttribute="top" secondItem="4Em-Io-T3o" secondAttribute="top" constant="8" id="Pe9-S6-nmP"/>
+                                                    <constraint firstItem="ov6-Uw-e9O" firstAttribute="leading" secondItem="4Em-Io-T3o" secondAttribute="leading" constant="8" id="e5g-za-Kts"/>
+                                                    <constraint firstItem="FRv-qs-cIc" firstAttribute="top" secondItem="ov6-Uw-e9O" secondAttribute="bottom" constant="16" id="rzR-mQ-hLJ"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="8mm-3A-hB6" firstAttribute="width" secondItem="KF5-AB-xC6" secondAttribute="width" id="337-3F-Rvs"/>
+                                    <constraint firstAttribute="trailing" secondItem="8mm-3A-hB6" secondAttribute="trailing" id="7Ow-Pi-UqK"/>
+                                    <constraint firstItem="8mm-3A-hB6" firstAttribute="leading" secondItem="KF5-AB-xC6" secondAttribute="leading" id="C02-qi-T9I"/>
+                                    <constraint firstItem="8mm-3A-hB6" firstAttribute="top" secondItem="KF5-AB-xC6" secondAttribute="top" id="Iz3-Qa-dfP"/>
+                                    <constraint firstAttribute="bottom" secondItem="8mm-3A-hB6" secondAttribute="bottom" id="TRs-Nl-ktk"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="KF5-AB-xC6" firstAttribute="top" secondItem="Cka-Og-TbN" secondAttribute="top" id="UOD-53-7jw"/>
+                            <constraint firstItem="KF5-AB-xC6" firstAttribute="leading" secondItem="Cka-Og-TbN" secondAttribute="leading" id="VKd-BX-PHC"/>
+                            <constraint firstItem="Cka-Og-TbN" firstAttribute="bottom" secondItem="KF5-AB-xC6" secondAttribute="bottom" id="dIg-vb-qzH"/>
+                            <constraint firstItem="Cka-Og-TbN" firstAttribute="trailing" secondItem="KF5-AB-xC6" secondAttribute="trailing" id="iEt-3d-Mip"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Cka-Og-TbN"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="The Ring" id="ica-3h-Eyk">
+                        <barButtonItem key="backBarButtonItem" title=" " id="CV2-sN-6cj"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uUO-55-rAY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2951" y="1650"/>
+        </scene>
+        <!--Home Controller-->
         <scene sceneID="2Xu-qV-4eJ">
             <objects>
                 <viewController id="dkz-mk-nab" customClass="HomeController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
@@ -373,7 +610,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rg5-qd-Fs4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="5cA-zf-VNM">
+                    <tabBarItem key="tabBarItem" title="" image="home" selectedImage="home" id="5cA-zf-VNM">
                         <color key="badgeColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <connections>
@@ -553,6 +790,9 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="cancelButton" destination="sKY-g7-i4a" id="NQG-oI-Aq3"/>
+                        <outlet property="continueButton" destination="fdM-cK-Cyh" id="v4d-yP-jIz"/>
+                        <outlet property="descLabel" destination="CBR-Eg-gZT" id="rlu-sX-vWP"/>
                         <outlet property="emailField" destination="599-a6-Ovu" id="yOh-cV-0c8"/>
                         <outlet property="passwordConfirmField" destination="EXF-Qq-DOM" id="87m-Mr-0jR"/>
                         <outlet property="passwordField" destination="jDk-3S-fPz" id="fjd-Qf-AK8"/>
@@ -569,11 +809,11 @@
             </objects>
             <point key="canvasLocation" x="54" y="793"/>
         </scene>
-        <!--Create-->
+        <!--Navigation Controller-->
         <scene sceneID="w1U-Nz-NoV">
             <objects>
                 <navigationController id="8AC-Ni-tUT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Create" image="plus" selectedImage="plus" id="0fv-mE-1U4"/>
+                    <tabBarItem key="tabBarItem" title="" image="plus" selectedImage="plus" id="0fv-mE-1U4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="3eO-U9-aBp">
                         <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -699,11 +939,15 @@
                         <viewLayoutGuide key="safeArea" id="5FP-8P-ptL"/>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="r8V-xt-itQ">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="3zx-oh-gw8"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="HkE-VE-uSK"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="createTournament" destination="er3-Ho-n5K" id="Hrb-6G-IJT"/>
                         <outlet property="descriptionField" destination="5H9-YJ-hXA" id="fLw-nY-tm9"/>
+                        <outlet property="descriptionLabel" destination="vlh-HI-H91" id="sYN-wK-30D"/>
+                        <outlet property="nextButton" destination="mms-jd-RLj" id="gme-Ot-us6"/>
                         <outlet property="titleField" destination="3GI-Wl-yyj" id="yeO-oE-d6N"/>
+                        <outlet property="titleLabel" destination="FYS-vS-8Nw" id="q1d-d9-zLl"/>
                         <segue destination="twN-Po-HhQ" kind="show" identifier="contestantSegue" id="ble-cD-jMI"/>
                     </connections>
                 </viewController>
@@ -818,7 +1062,7 @@
                         <viewLayoutGuide key="safeArea" id="9mX-uO-nLA"/>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="9g4-7m-zaj">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="HvA-Lv-Qe2"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="HvA-Lv-Qe2"/>
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="bS6-Rc-lHh" id="DeC-NI-P89"/>
@@ -933,11 +1177,14 @@
                         <viewLayoutGuide key="safeArea" id="XVg-QJ-nbJ"/>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="CYl-vv-u9l">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="j1y-z1-FdE"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="j1y-z1-FdE"/>
                     </navigationItem>
                     <connections>
                         <outlet property="contestantLabel" destination="yqy-wD-dl9" id="Aeg-9T-f1U"/>
                         <outlet property="contestantView" destination="Vl8-b5-SUY" id="dUL-E2-uAw"/>
+                        <outlet property="createTournaments" destination="LUi-L6-L8h" id="6gy-ck-3Oz"/>
+                        <outlet property="nextButton" destination="FBP-WG-GRB" id="P9W-wk-Bva"/>
+                        <outlet property="pickButton" destination="lz7-zU-Oq3" id="Cp3-EQ-mtN"/>
                         <outlet property="sentenceLabel" destination="Fy9-Nc-q8H" id="e6k-87-YO9"/>
                         <segue destination="4jO-B3-4OK" kind="show" identifier="datepickSegue" id="4MI-Bb-6LN"/>
                         <segue destination="5ge-uP-mFt" kind="show" identifier="contestantPickerSegue" id="Anc-Nh-97b"/>
@@ -1019,6 +1266,7 @@
                         <viewLayoutGuide key="safeArea" id="gQc-2J-vLK"/>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="ymo-lK-B1t">
+                        <barButtonItem key="backBarButtonItem" title=" " id="1V9-pj-5MA"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="I80-fe-kHN">
                             <connections>
                                 <action selector="doneTapped:" destination="4jO-B3-4OK" id="7QS-Ay-zKa"/>
@@ -1026,8 +1274,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="createTournament" destination="Ufh-Ky-4NV" id="tQI-Mv-qzp"/>
                         <outlet property="datePicker" destination="6b5-1W-gF1" id="ctM-Iz-m7c"/>
+                        <outlet property="daysLabel" destination="M9j-TD-fT2" id="QS6-ae-QrS"/>
                         <outlet property="daysPerRound" destination="M9j-TD-fT2" id="RV8-Tq-Dex"/>
+                        <outlet property="lastStepLabel" destination="LkZ-9L-Wgc" id="ERx-zV-COh"/>
+                        <outlet property="startTimeLabel" destination="p1g-HS-sNZ" id="0mt-OJ-NCc"/>
                         <outlet property="stepperRound" destination="0Fb-BP-1nz" id="pC7-aG-HRV"/>
                     </connections>
                 </viewController>
@@ -1199,7 +1451,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="pKp-NU-iF2">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="sTQ-l0-X4J"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="sTQ-l0-X4J"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="Lw9-wc-jGo">
                             <connections>
                                 <action selector="saveTapped:" destination="9Co-KT-uOk" id="rDL-TH-HQu"/>
@@ -1207,9 +1459,16 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="bioLabel" destination="Z6I-KM-gE6" id="l1e-XM-Pml"/>
                         <outlet property="bioTextField" destination="nuO-kf-xB0" id="VkF-UE-mD7"/>
+                        <outlet property="emailLabel" destination="Hzw-Le-Bji" id="1cY-gE-06c"/>
                         <outlet property="genderControl" destination="b2o-O2-zWk" id="9ig-pY-suh"/>
+                        <outlet property="genderLabel" destination="sy5-Mf-Fbh" id="vKG-5G-Zre"/>
+                        <outlet property="modifyEmail" destination="1O9-mE-IpQ" id="c64-pn-9Sl"/>
+                        <outlet property="modifyPassword" destination="oZa-LB-9EO" id="wq6-tl-lLy"/>
                         <outlet property="nameTextField" destination="4g0-UH-brR" id="tzs-sG-Q8O"/>
+                        <outlet property="passwordLabel" destination="5KB-QU-QOg" id="9z3-Da-LHU"/>
+                        <outlet property="usernameLabel" destination="HVK-oC-Ihj" id="nMb-Tt-vNg"/>
                         <segue destination="oUw-4s-hNM" kind="show" identifier="updateEmailSegue" id="6r5-tn-j9n"/>
                         <segue destination="E6D-5x-pzj" kind="show" identifier="updatePasswordSegue" id="Zod-3O-iAK"/>
                     </connections>
@@ -1327,6 +1586,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="The Ring" id="eRT-LV-hYV">
+                        <barButtonItem key="backBarButtonItem" title=" " id="Ulq-Ok-pbU"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="kk3-Lk-cFQ">
                             <connections>
                                 <action selector="saveTapped:" destination="oUw-4s-hNM" id="CkH-Yi-0Gx"/>
@@ -1335,8 +1595,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="confirmEmailField" destination="I8i-O8-OfK" id="GkF-ar-22R"/>
+                        <outlet property="confirmLabel" destination="O9J-S5-yQy" id="btF-iu-h3m"/>
                         <outlet property="newEmailField" destination="aXu-L7-rtQ" id="EDR-IS-ANn"/>
+                        <outlet property="newMailLabel" destination="8ld-cR-tMY" id="VNt-BG-Oij"/>
                         <outlet property="passwordField" destination="OMP-5Y-Z8I" id="2F5-0l-FkL"/>
+                        <outlet property="passwordLabel" destination="ABF-qM-kZg" id="nD5-59-IVD"/>
+                        <outlet property="updateLabel" destination="zUO-1J-Y84" id="Nc6-Ox-aP8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kV-px-imZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1461,8 +1725,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="confirmField" destination="3zZ-z9-jjY" id="SCg-kH-RtR"/>
+                        <outlet property="confirmPassLabel" destination="U5V-RE-Tvq" id="ZCG-AN-6Pr"/>
+                        <outlet property="newPassLabel" destination="FKq-ld-woP" id="DyA-7y-d2U"/>
                         <outlet property="newPasswordField" destination="oOv-jJ-fYZ" id="NyA-tE-Gk2"/>
+                        <outlet property="oldPassLabel" destination="I2L-HD-klg" id="lvY-86-TkZ"/>
                         <outlet property="oldPasswordField" destination="kZO-n3-9tP" id="QoS-cO-rhk"/>
+                        <outlet property="updatePassLabel" destination="1UR-ZS-FRm" id="aYo-bR-BCo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fY-bp-JVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1472,7 +1740,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4025" y="1536"/>
+            <point key="canvasLocation" x="4989" y="792"/>
         </scene>
     </scenes>
     <resources>

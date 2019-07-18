@@ -14,4 +14,5 @@ struct Tournament {
     var contestants: [Movie]
     var startTime: Date
     var roundDuration: Int
+    var creator: String
 }
