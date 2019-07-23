@@ -1,14 +1,9 @@
 language: swift
 osx_image: xcode10.2
-podfile: Podfile
-before_install:
-  - gem install cocoapods
-  - pod install
-  - pod update
 install:
   - ./install_swiftlint.sh
 script:
   - swiftlint
-  - xcodebuild -scheme TheRing -project TheRing.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.2' build test -quiet
+  - xcodebuild -scheme TheRing -workspace TheRing.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.2' build test -quiet
 after_success:
   - bash <(curl -s https://codecov.io/bash)
