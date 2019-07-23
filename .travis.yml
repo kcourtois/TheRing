@@ -2,6 +2,12 @@ language: swift
 osx_image: xcode10.2
 install:
   - ./install_swiftlint.sh
+before_install:
+  - gem install cocoapods --pre
+  - pod deintegrate
+  - pod clean
+  - pod install
+  - pod update
 script:
   - swiftlint
   - xcodebuild -scheme TheRing -workspace TheRing.xcworkspace -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.2' build test -quiet
