@@ -16,7 +16,7 @@ class TournamentView: UIView {
     @IBOutlet weak var stage3: UIImageView!
     @IBOutlet weak var stage2: UIImageView!
     @IBOutlet weak var stage1: UIImageView!
-    @IBOutlet var contestantImg:[UIImageView]!
+    @IBOutlet var contestantImg: [UIImageView]!
 
     enum Stage1 {
         case grey, leftLeft, rightRight, leftRight, rightLeft
@@ -38,6 +38,7 @@ class TournamentView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         contentView.frame = bounds
         addSubview(contentView)
+        initTapGesures()
     }
 
     //TODO: Replace with FULL Tournament, not created yet.
@@ -87,6 +88,49 @@ class TournamentView: UIView {
         }
 
         stage3.image = #imageLiteral(resourceName: "n3-1")
+    }
+
+    //Adds tap gestures to imageViews in array
+    func initTapGesures() {
+        for imageView in contestantImg {
+            let tapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                              action: #selector(contestantTapped(sender:)))
+            imageView.addGestureRecognizer(tapGestureRecognizer)
+        }
+    }
+
+    //func triggered when an imageview is tapped. Sends a notification to the viewcontroller
+    @objc private func contestantTapped(sender: UITapGestureRecognizer) {
+        if let view = sender.view {
+            let name = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
+            NotificationCenter.default.post(name: name, object: nil,
+                                            userInfo: [NotificationStrings.didTapContestantParameterKey: view.tag])
+        }
+    }
+
+    func colorBackground(index: Int) {
+        switch index {
+        case 0:
+            contestantImg[0].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            contestantImg[1].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        case 1:
+            contestantImg[1].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            contestantImg[0].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        case 2:
+            contestantImg[2].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            contestantImg[3].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        case 3:
+            contestantImg[3].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            contestantImg[2].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        case 4:
+            contestantImg[4].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            contestantImg[5].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        case 5:
+            contestantImg[5].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+            contestantImg[4].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        default:
+            break
+        }
     }
 
     //Get class name and turn it to a string

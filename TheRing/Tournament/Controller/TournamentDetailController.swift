@@ -27,19 +27,39 @@ class TournamentDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let tid = tid {
-            TournamentService.getTournamentFull(tid: tid) { (tournament) in
-                self.tournament = tournament
-                if self.tournament != nil {
-                    self.setTexts()
-                    self.tournamentView.setView(tournament: tournament)
-                } else {
-                    self.presentAlertPopRootVC(title: TRStrings.error.localizedString,
-                                               message: TRStrings.errorCreator.localizedString)
-                }
-            }
+            initController(tid: tid)
         } else {
             presentAlertPopRootVC(title: TRStrings.error.localizedString,
                                   message: TRStrings.errorCreator.localizedString)
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        //Notification observer for didTapContestant
+        let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidTapContestant(_:)),
+                                               name: nameTapContNotif, object: nil)
+    }
+
+    //Triggers on notification didTapImage
+    @objc private func onDidTapContestant(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: Int] {
+            for (_, tag) in data {
+                tournamentView.colorBackground(index: tag)
+            }
+        }
+    }
+
+    private func initController(tid: String) {
+        TournamentService.getTournamentFull(tid: tid) { (tournament) in
+            self.tournament = tournament
+            if self.tournament != nil {
+                self.setTexts()
+                self.tournamentView.setView(tournament: tournament)
+            } else {
+                self.presentAlertPopRootVC(title: TRStrings.error.localizedString,
+                                           message: TRStrings.errorCreator.localizedString)
+            }
         }
     }
 

@@ -124,7 +124,6 @@ class TournamentService {
 
     //returns matches for a round
     static func getMatches(tid: String, rid: String, completion: @escaping ([Match]) -> Void) {
-        print("hi")
         let reference = Database.database().reference()
         var matches = [Match]()
         let group = DispatchGroup()
