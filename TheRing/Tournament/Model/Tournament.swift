@@ -9,6 +9,7 @@
 import Foundation
 
 struct Tournament {
+    var tid: String
     var title: String
     var description: String
     var contestants: [Movie]

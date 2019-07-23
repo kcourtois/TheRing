@@ -38,7 +38,6 @@ class MovieOverview: UIView {
             let url = URL(string: movie.image)
             imageView.kf.setImage(with: url)
             title.text = movie.title
-            //todo trstrings
             releaseDate.text = "\(TRStrings.releaseDate.localizedString): \(movie.release_date)"
             note.text = "\(TRStrings.rating.localizedString): \(movie.vote_average)"
             overview.text = movie.overview

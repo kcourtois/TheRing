@@ -52,6 +52,11 @@ class UserController: UIViewController {
                 alert.dismiss(animated: true, completion: nil)
             }
         }
+        if let items = tabBarController?.tabBar.items {
+            items[0].title = TRStrings.home.localizedString
+            items[1].title = TRStrings.user.localizedString
+            items[2].title = TRStrings.create.localizedString
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

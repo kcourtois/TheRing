@@ -25,6 +25,11 @@ class CreateTournamentController: UIViewController {
         descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         setTexts()
+        if let items = tabBarController?.tabBar.items {
+            items[0].title = TRStrings.home.localizedString
+            items[1].title = TRStrings.user.localizedString
+            items[2].title = TRStrings.create.localizedString
+        }
     }
 
     private func setTexts() {
@@ -65,7 +70,7 @@ class CreateTournamentController: UIViewController {
                          message: TRStrings.emptyFields.localizedString)
         }
 
-        tournament = Tournament(title: title, description: descriptionField.text, contestants: [],
+        tournament = Tournament(tid: "", title: title, description: descriptionField.text, contestants: [],
                                 startTime: Date(), roundDuration: 1, creator: preferences.user.uid)
     }
 }

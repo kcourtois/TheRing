@@ -41,6 +41,7 @@ enum TRStrings: LocalizedString {
     case emptyFields = "EMPTY_FIELDS"
     case usernameUsed = "USERNAME_USED"
     case loading = "LOADING"
+    case errorCreator = "ERROR_CREATOR"
 
     //FIREBASE AUTH ERROR
     case mailUsed = "MAIL_USED"
@@ -97,6 +98,7 @@ enum TRStrings: LocalizedString {
     case bio = "BIO"
     case updateProfile = "UPDATE_PROFILE"
     case tournaments = "TOURNAMENTS"
+    case tournament = "TOURNAMENT"
     case modEmail = "MOD_EMAIL"
     case modPass = "MOD_PASS"
     case yourUsername = "YOUR_USERNAME"
@@ -121,6 +123,9 @@ enum TRStrings: LocalizedString {
     case home = "HOME"
     case user = "USER"
     case create = "CREATE"
+    case creator = "CREATOR"
+    case round = "ROUND"
+    case endsOn = "ENDS_ON"
 
     case title = "TITLE"
     case next = "NEXT"

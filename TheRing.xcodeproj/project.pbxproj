@@ -30,6 +30,9 @@
 		9E334E4822DDCF7D00CB3257 /* TournamentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E4722DDCF7D00CB3257 /* TournamentCell.swift */; };
 		9E334E4B22DE005400CB3257 /* BarButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */; };
 		9E334E4E22E04B6300CB3257 /* TournamentDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E4D22E04B6300CB3257 /* TournamentDetailController.swift */; };
+		9E334E5022E0AC1F00CB3257 /* TournamentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E334E4F22E0AC1F00CB3257 /* TournamentView.xib */; };
+		9E334E5222E0B2C800CB3257 /* TournamentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E5122E0B2C800CB3257 /* TournamentView.swift */; };
+		9E334E5422E31C0800CB3257 /* TournamentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E5322E31C0800CB3257 /* TournamentData.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -95,6 +98,9 @@
 		9E334E4722DDCF7D00CB3257 /* TournamentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentCell.swift; sourceTree = "<group>"; };
 		9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonExtension.swift; sourceTree = "<group>"; };
 		9E334E4D22E04B6300CB3257 /* TournamentDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDetailController.swift; sourceTree = "<group>"; };
+		9E334E4F22E0AC1F00CB3257 /* TournamentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TournamentView.xib; sourceTree = "<group>"; };
+		9E334E5122E0B2C800CB3257 /* TournamentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentView.swift; sourceTree = "<group>"; };
+		9E334E5322E31C0800CB3257 /* TournamentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentData.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -295,6 +301,7 @@
 				9E334E2822D67C6700CB3257 /* TournamentService.swift */,
 				9E8EBE7922D60B89001A8FE4 /* Genre.swift */,
 				9EFE1FDD22D4BDB7003A0410 /* Tournament.swift */,
+				9E334E5322E31C0800CB3257 /* TournamentData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -339,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				9E334E4722DDCF7D00CB3257 /* TournamentCell.swift */,
+				9E334E4F22E0AC1F00CB3257 /* TournamentView.xib */,
+				9E334E5122E0B2C800CB3257 /* TournamentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -463,6 +472,7 @@
 				9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */,
 				9EF152C122BBC75D0039FCD2 /* GoogleService-Info.plist in Resources */,
 				9EFE1FE022D4F357003A0410 /* MovieOverview.xib in Resources */,
+				9E334E5022E0AC1F00CB3257 /* TournamentView.xib in Resources */,
 				9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */,
 				9E064E3E22CA04B5009FE905 /* Localizable.strings in Resources */,
 				9E06BB5222B840F10098E148 /* Main.storyboard in Resources */,
@@ -572,6 +582,7 @@
 				9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */,
 				9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
+				9E334E5222E0B2C800CB3257 /* TournamentView.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
 				9E334E3922D873CD00CB3257 /* FirebaseAuthService.swift in Sources */,
 				9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */,
@@ -588,6 +599,7 @@
 				9E064E3922C7A55D009FE905 /* EmailController.swift in Sources */,
 				9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */,
 				9E334E4E22E04B6300CB3257 /* TournamentDetailController.swift in Sources */,
+				9E334E5422E31C0800CB3257 /* TournamentData.swift in Sources */,
 				9EFE1FDC22D479BD003A0410 /* MovieCell.swift in Sources */,
 				9EA2719722C48AD900AAC06B /* TRUser.swift in Sources */,
 				9EFE1FDE22D4BDB7003A0410 /* Tournament.swift in Sources */,

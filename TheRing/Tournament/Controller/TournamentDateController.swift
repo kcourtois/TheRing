@@ -23,14 +23,13 @@ class TournamentDateController: UIViewController {
     override func viewDidLoad() {
         datePicker.minimumDate = Date()
         datePicker.maximumDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
-        updateDays(self)
         setTexts()
+        updateDays(self)
     }
 
     private func setTexts() {
         createTournament.text = TRStrings.createTournaments.localizedString
         lastStepLabel.text = TRStrings.lastStep.localizedString
-        daysLabel.text = TRStrings.daysPerRound.localizedString
         startTimeLabel.text = TRStrings.startTime.localizedString
     }
 

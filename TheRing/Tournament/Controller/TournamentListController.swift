@@ -13,6 +13,11 @@ class TournamentListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var tournaments: [Tournament] = []
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         TournamentService.getUserTournaments(completion: { (tournaments) in
@@ -27,7 +32,7 @@ class TournamentListController: UIViewController {
             let tournamentIndex = tableView.indexPathForSelectedRow?.row else {
                 return
         }
-        tournamentDetailVC.tournament = tournaments[tournamentIndex]
+        tournamentDetailVC.tid = tournaments[tournamentIndex].tid
     }
 }
 
@@ -55,10 +60,6 @@ extension TournamentListController: UITableViewDataSource {
 }
 
 extension TournamentListController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 140
-    }
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "DetailTournamentSegue", sender: self)
     }

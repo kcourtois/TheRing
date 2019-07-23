@@ -63,7 +63,7 @@ class TournamentService {
                 let startTime = value?["startTime"] as? String,
                 let creator = value?["creator"] as? String {
                 if let date = stringToDate(str: startTime) {
-                    completion(Tournament(title: title, description: description, contestants: [],
+                    completion(Tournament(tid: tid, title: title, description: description, contestants: [],
                                           startTime: date, roundDuration: 0, creator: creator))
                 } else {
                     completion(nil)
@@ -75,24 +75,108 @@ class TournamentService {
     }
 
     //returns tournament data from tid
-    static func getTournamentFull(tid: String, completion: @escaping (Tournament?) -> Void) {
+    static func getTournamentFull(tid: String, completion: @escaping (TournamentData?) -> Void) {
+        getTournament(tid: tid) { (tournament) in
+            if let tournament = tournament {
+                getRounds(tid: tid, completion: { (rounds) in
+                    FirebaseService.getUserInfo(uid: tournament.creator, completion: { (user) in
+                        if let user = user {
+                            let comp = TournamentData(tid: tid, title: tournament.title,
+                                                      description: tournament.description,
+                                                      creator: user, startTime: tournament.startTime, rounds: rounds)
+                            completion(comp)
+                        } else {
+                            completion(nil)
+                        }
+                    })
+                })
+            } else {
+                completion(nil)
+            }
+        }
+    }
+
+    //returns rounds for a tournament
+    static func getRounds(tid: String, completion: @escaping ([Round]) -> Void) {
         let reference = Database.database().reference()
-        reference.child("tournaments").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            if let title = value?["title"] as? String,
-                let description = value?["description"] as? String,
-                let startTime = value?["startTime"] as? String,
-                let creator = value?["creator"] as? String {
-                if let date = stringToDate(str: startTime) {
-                    completion(Tournament(title: title, description: description, contestants: [],
-                                          startTime: date, roundDuration: 0, creator: creator))
-                } else {
-                    completion(nil)
+        var rounds = [Round]()
+        let group = DispatchGroup()
+        group.enter()
+        reference.child("rounds").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
+            for case let data as DataSnapshot in snapshot.children {
+                let value = data.value as? NSDictionary
+                if let endDate = value?["endDate"] as? String {
+                    if let end = stringToDate(str: endDate) {
+                        group.enter()
+                        getMatches(tid: tid, rid: data.key, completion: { (matches) in
+                            rounds.append(Round(rid: data.key, endDate: end, matches: matches))
+                            group.leave()
+                        })
+                    }
                 }
+            }
+            group.leave()
+        })
+        group.notify(queue: .main) {
+            completion(rounds.sorted(by: { $0.endDate.compare($1.endDate) == .orderedAscending}))
+        }
+    }
+
+    //returns matches for a round
+    static func getMatches(tid: String, rid: String, completion: @escaping ([Match]) -> Void) {
+        print("hi")
+        let reference = Database.database().reference()
+        var matches = [Match]()
+        let group = DispatchGroup()
+        group.enter()
+        reference.child("matches").child(tid).child(rid).observeSingleEvent(of: .value, with: { (snapshot) in
+            for case let data as DataSnapshot in snapshot.children {
+                let value = data.value as? NSDictionary
+                if let cid1 = value?["contestant1"] as? String, let cid2 = value?["contestant2"] as? String {
+                    group.enter()
+                    getContestant(tid: tid, cid: cid1, completion: { (contestant) in
+                        if let cont1 = contestant {
+                            group.enter()
+                            getContestant(tid: tid, cid: cid2, completion: { (contestant) in
+                                if let cont2 = contestant {
+                                    matches.append(Match(mid: data.key, contestant1: cont1, contestant2: cont2))
+                                }
+                                group.leave()
+                            })
+                        }
+                        group.leave()
+                    })
+                }
+            }
+            group.leave()
+        })
+        group.notify(queue: .main) {
+            completion(matches)
+        }
+    }
+
+    //returns rounds for a match
+    static func getContestant(tid: String, cid: String, completion: @escaping (Contestant?) -> Void) {
+        let reference = Database.database().reference()
+        reference.child("contestants").child(tid).child(cid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            if let name = value?["name"] as? String,
+                let image = value?["image"] as? String {
+                completion(Contestant(cid: cid, image: image, name: name))
             } else {
                 completion(nil)
             }
         })
+    }
+
+    //return current round index
+    static func getCurrentRoundIndex(rounds: [Round]) -> Int {
+        for (index, round) in rounds.enumerated() {
+            if Date() < round.endDate {
+                return index
+            }
+        }
+        return rounds.count-1
     }
 
     static private func registerUserTournament(tid: String, completion: @escaping (String?) -> Void) {
@@ -149,8 +233,7 @@ class TournamentService {
             }
 
             //create matches
-            let sequence = stride(from: 0, to: tournament.contestants.count-2, by: 2)
-
+            let sequence = stride(from: 0, to: tournament.contestants.count-1, by: 2)
             for index in sequence {
                 let mid = generateId()
                 let ids = ["tid": tid, "rid": rids[0], "mid": mid, "cid1": cids[index], "cid2": cids[index+1]]
@@ -203,7 +286,11 @@ class TournamentService {
             completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
+}
 
+// MARK: - Utilities
+
+extension TournamentService {
     //Generate id based on date and random int
     static private func generateId() -> String {
         let rand = Int.random(in: 1000 ..< 9000)

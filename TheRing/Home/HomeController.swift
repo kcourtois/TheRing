@@ -19,6 +19,11 @@ class HomeController: UIViewController {
         } else {
             print("no user connected")
         }
+        if let items = tabBarController?.tabBar.items {
+            items[0].title = TRStrings.home.localizedString
+            items[1].title = TRStrings.user.localizedString
+            items[2].title = TRStrings.create.localizedString
+        }
     }
 
     @IBAction func signOutTapped() {

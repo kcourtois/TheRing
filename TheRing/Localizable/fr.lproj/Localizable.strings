@@ -22,6 +22,7 @@
 "EMPTY_FIELDS" = "Les champs doivent être remplis.";
 "USERNAME_USED" = "Nom d'utilisateur indisponible.";
 "LOADING" = "Chargement...";
+"ERROR_CREATOR" = "Impossible de récupérer les données du créateur.";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "Email déjà utilisé sur un autre compte";
@@ -58,6 +59,7 @@
 "BIO" = "Bio";
 "UPDATE_PROFILE" = " MAJ profil ";
 "TOURNAMENTS" = "Tournois";
+"TOURNAMENT" = "Tournoi";
 "MOD_EMAIL" = "Modifier email";
 "MOD_PASS" = "Modifier MDP";
 "YOUR_USERNAME" = "Votre pseudo ici";
@@ -79,8 +81,8 @@
 "TITLE" = "Titre";
 "CREATE_TOURNAMENTS" = "Créer Tournois";
 "ENTER_TITLE" = "Entrez votre titre ici";
-"DAYS_PER_ROUND" = "Jours par tour:";
-"START_TIME" = "Date de début:";
+"DAYS_PER_ROUND" = "Jours par tour";
+"START_TIME" = "Date de début";
 "LAST_STEP" = "Super. La dernière étape est de sélectionner une durée pour chaque tour, et la date de début du tournoi.";
 "NEXT" = "SUIVANT";
 "PICK" = "Choisir";
@@ -90,6 +92,9 @@
 "HOME" = "Accueil";
 "USER" = "Profil";
 "CREATE" = "Créer";
+"CREATOR" = "Créateur";
+"ROUND" = "Tour";
+"ENDS_ON" = "Fini le";
 
 //GENRES
 "ACTION" = "Action";

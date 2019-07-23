@@ -22,6 +22,7 @@
 "EMPTY_FIELDS" = "Fields must not be empty.";
 "USERNAME_USED" = "Username not available.";
 "LOADING" = "Loading...";
+"ERROR_CREATOR" = "Couldn't retrieve creator data.";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "The email is already in use with another account";
@@ -58,6 +59,7 @@
 "BIO" = "Bio";
 "UPDATE_PROFILE" = " Update profile ";
 "TOURNAMENTS" = "Tournaments";
+"TOURNAMENT" = "Tournament";
 "MOD_EMAIL" = "Modify email";
 "MOD_PASS" = "Modify password";
 "YOUR_USERNAME" = "Your username here";
@@ -79,7 +81,7 @@
 "TITLE" = "Title";
 "CREATE_TOURNAMENTS" = "Create Tournaments";
 "ENTER_TITLE" = "Enter your title here";
-"DAYS_PER_ROUND" = "Days per round:";
+"DAYS_PER_ROUND" = "Days per round";
 "START_TIME" = "Starting time";
 "LAST_STEP" = "Great. The last step is to select a duration for each round, and the starting time of the tournament.";
 "NEXT" = "NEXT";
@@ -90,6 +92,9 @@
 "HOME" = "Home";
 "USER" = "User";
 "CREATE" = "Create";
+"CREATOR" = "Creator";
+"ROUND" = "Round";
+"ENDS_ON" = "Ends on";
 
 //GENRES
 "ACTION" = "Action";
