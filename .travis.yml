@@ -3,6 +3,7 @@ osx_image: xcode10.2
 install:
   - ./install_swiftlint.sh
 before_install:
+  - pod deintegrate
   - pod update
 script:
   - swiftlint
