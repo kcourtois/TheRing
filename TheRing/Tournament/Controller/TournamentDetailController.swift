@@ -45,7 +45,63 @@ class TournamentDetailController: UIViewController {
     @objc private func onDidTapContestant(_ notification: Notification) {
         if let data = notification.userInfo as? [String: Int] {
             for (_, tag) in data {
-                tournamentView.colorBackground(index: tag)
+                contestantTapped(tag: tag)
+            }
+        }
+    }
+
+    private func contestantTapped(tag: Int) {
+        let pref = Preferences()
+        if let tournament = tournament {
+            let round = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
+            switch round {
+            case 0:
+                if tag < 4 {
+                    tournamentView.colorBackground(index: tag)
+                    TournamentService.registerVote(rid: tournament.rounds[round].rid, uid: pref.user.uid,
+                                                   cid: tournament.contestants[tag].cid) { (error) in
+                        if let error = error {
+                            self.presentAlert(title: TRStrings.error.localizedString, message: error)
+                        }
+                    }
+                }
+            case 1:
+                if tag > 3 {
+                    tournamentView.colorBackground(index: tag)
+                    TournamentService.registerVote(rid: tournament.rounds[round].rid, uid: pref.user.uid,
+                                                   cid: tournament.contestants[tag].cid) { (error) in
+                        if let error = error {
+                            self.presentAlert(title: TRStrings.error.localizedString, message: error)
+                        }
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
+
+    private func loadVotes() {
+        let pref = Preferences()
+        if let tournament = tournament {
+            TournamentService.getVote(uid: pref.user.uid, rid: tournament.rounds[0].rid) { (cid) in
+                if let cid = cid {
+                    for (index, cont) in tournament.contestants.enumerated() where cid == cont.cid {
+                        self.tournamentView.colorBackground(index: index)
+                    }
+                }
+            }
+            TournamentService.getVote(uid: pref.user.uid, rid: tournament.rounds[1].rid) { (cid) in
+                if let cid = cid {
+                    switch cid {
+                    case tournament.contestants[0].cid, tournament.contestants[1].cid:
+                        self.tournamentView.colorBackground(index: 4)
+                    case tournament.contestants[2].cid, tournament.contestants[3].cid:
+                        self.tournamentView.colorBackground(index: 5)
+                    default:
+                        break
+                    }
+                }
             }
         }
     }
@@ -56,6 +112,7 @@ class TournamentDetailController: UIViewController {
             if self.tournament != nil {
                 self.setTexts()
                 self.tournamentView.setView(tournament: tournament)
+                self.loadVotes()
             } else {
                 self.presentAlertPopRootVC(title: TRStrings.error.localizedString,
                                            message: TRStrings.errorCreator.localizedString)

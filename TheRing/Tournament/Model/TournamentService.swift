@@ -78,16 +78,19 @@ class TournamentService {
     static func getTournamentFull(tid: String, completion: @escaping (TournamentData?) -> Void) {
         getTournament(tid: tid) { (tournament) in
             if let tournament = tournament {
-                getRounds(tid: tid, completion: { (rounds) in
-                    FirebaseService.getUserInfo(uid: tournament.creator, completion: { (user) in
-                        if let user = user {
-                            let comp = TournamentData(tid: tid, title: tournament.title,
-                                                      description: tournament.description,
-                                                      creator: user, startTime: tournament.startTime, rounds: rounds)
-                            completion(comp)
-                        } else {
-                            completion(nil)
-                        }
+                getContestants(tid: tid, completion: { (contestants) in
+                    getRounds(tid: tid, completion: { (rounds) in
+                        FirebaseService.getUserInfo(uid: tournament.creator, completion: { (user) in
+                            if let user = user {
+                                let comp = TournamentData(tid: tid, title: tournament.title,
+                                                          description: tournament.description,
+                                                          creator: user, startTime: tournament.startTime,
+                                                          rounds: rounds, contestants: contestants)
+                                completion(comp)
+                            } else {
+                                completion(nil)
+                            }
+                        })
                     })
                 })
             } else {
@@ -107,11 +110,7 @@ class TournamentService {
                 let value = data.value as? NSDictionary
                 if let endDate = value?["endDate"] as? String {
                     if let end = stringToDate(str: endDate) {
-                        group.enter()
-                        getMatches(tid: tid, rid: data.key, completion: { (matches) in
-                            rounds.append(Round(rid: data.key, endDate: end, matches: matches))
-                            group.leave()
-                        })
+                        rounds.append(Round(rid: data.key, endDate: end))
                     }
                 }
             }
@@ -122,39 +121,7 @@ class TournamentService {
         }
     }
 
-    //returns matches for a round
-    static func getMatches(tid: String, rid: String, completion: @escaping ([Match]) -> Void) {
-        let reference = Database.database().reference()
-        var matches = [Match]()
-        let group = DispatchGroup()
-        group.enter()
-        reference.child("matches").child(tid).child(rid).observeSingleEvent(of: .value, with: { (snapshot) in
-            for case let data as DataSnapshot in snapshot.children {
-                let value = data.value as? NSDictionary
-                if let cid1 = value?["contestant1"] as? String, let cid2 = value?["contestant2"] as? String {
-                    group.enter()
-                    getContestant(tid: tid, cid: cid1, completion: { (contestant) in
-                        if let cont1 = contestant {
-                            group.enter()
-                            getContestant(tid: tid, cid: cid2, completion: { (contestant) in
-                                if let cont2 = contestant {
-                                    matches.append(Match(mid: data.key, contestant1: cont1, contestant2: cont2))
-                                }
-                                group.leave()
-                            })
-                        }
-                        group.leave()
-                    })
-                }
-            }
-            group.leave()
-        })
-        group.notify(queue: .main) {
-            completion(matches)
-        }
-    }
-
-    //returns rounds for a match
+    //returns contestant data
     static func getContestant(tid: String, cid: String, completion: @escaping (Contestant?) -> Void) {
         let reference = Database.database().reference()
         reference.child("contestants").child(tid).child(cid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -168,6 +135,35 @@ class TournamentService {
         })
     }
 
+    //returns vote for given user and round if exists
+    static func getVote(uid: String, rid: String, completion: @escaping (String?) -> Void) {
+        let reference = Database.database().reference()
+        reference.child("votes").child(rid).observeSingleEvent(of: .value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            completion(value?[uid] as? String)
+        })
+    }
+
+    //returns all contestants from a tid
+    //returns rounds for a tournament
+    static func getContestants(tid: String, completion: @escaping ([Contestant]) -> Void) {
+        let reference = Database.database().reference()
+        var contestants = [Contestant]()
+        let group = DispatchGroup()
+        group.enter()
+        reference.child("contestants").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
+            for case let data as DataSnapshot in snapshot.children {
+                let value = data.value as? NSDictionary
+                if let image = value?["image"] as? String, let name = value?["name"] as? String {
+                    contestants.append(Contestant(cid: data.key, image: image, name: name))
+                }
+            }
+            group.leave()
+        })
+        group.notify(queue: .main) {
+            completion(contestants)
+        }
+    }
     //return current round index
     static func getCurrentRoundIndex(rounds: [Round]) -> Int {
         for (index, round) in rounds.enumerated() {
@@ -176,6 +172,16 @@ class TournamentService {
             }
         }
         return rounds.count-1
+    }
+
+    static func registerVote(rid: String, uid: String, cid: String,
+                             completion: @escaping (String?) -> Void) {
+        let reference = Database.database().reference()
+        let values = [uid: cid]
+        reference.child("votes").child(rid).updateChildValues(values,
+                                                                         withCompletionBlock: { (error, _) in
+            completion(FirebaseAuthService.getAuthError(error: error))
+        })
     }
 
     static private func registerUserTournament(tid: String, completion: @escaping (String?) -> Void) {
@@ -231,19 +237,6 @@ class TournamentService {
                 })
             }
 
-            //create matches
-            let sequence = stride(from: 0, to: tournament.contestants.count-1, by: 2)
-            for index in sequence {
-                let mid = generateId()
-                let ids = ["tid": tid, "rid": rids[0], "mid": mid, "cid1": cids[index], "cid2": cids[index+1]]
-                registerMatch(ids: ids, completion: { (error) in
-                    if let error = error {
-                        completion(error)
-                        return
-                    }
-                })
-            }
-
             registerUserTournament(tid: tid) { error in
                 if let error = error {
                     completion(error)
@@ -269,19 +262,6 @@ class TournamentService {
         let values = ["name": contestant.title, "image": contestant.image]
         reference.child("contestants").child(tid).child(cid).updateChildValues(values,
                                                                                withCompletionBlock: { (error, _) in
-            completion(FirebaseAuthService.getAuthError(error: error))
-        })
-    }
-
-    static private func registerMatch(ids: [String: String], completion: @escaping (String?) -> Void) {
-        guard let tid = ids["tid"], let rid = ids["rid"], let mid = ids["mid"],
-            let cid1 = ids["cid1"], let cid2 = ids["cid2"] else {
-            completion(TRStrings.errorOccured.localizedString)
-            return
-        }
-        let reference = Database.database().reference()
-        let values = ["contestant1": cid1, "contestant2": cid2]
-        reference.child("matches/\(tid)/\(rid)/\(mid)").updateChildValues(values, withCompletionBlock: { (error, _) in
             completion(FirebaseAuthService.getAuthError(error: error))
         })
     }

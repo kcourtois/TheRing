@@ -18,6 +18,8 @@ class TournamentView: UIView {
     @IBOutlet weak var stage1: UIImageView!
     @IBOutlet var contestantImg: [UIImageView]!
 
+    var tournament: TournamentData?
+
     enum Stage1 {
         case grey, leftLeft, rightRight, leftRight, rightLeft
     }
@@ -41,17 +43,14 @@ class TournamentView: UIView {
         initTapGesures()
     }
 
-    //TODO: Replace with FULL Tournament, not created yet.
+    //TODO: Handle setview for round 2 and tournament done
     func setView(tournament: TournamentData?) {
         if let tournament = tournament {
+            self.tournament = tournament
             let idx = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
-            let urls = [URL(string: tournament.rounds[idx].matches[0].contestant1.image),
-                        URL(string: tournament.rounds[idx].matches[0].contestant2.image),
-                        URL(string: tournament.rounds[idx].matches[1].contestant1.image),
-                        URL(string: tournament.rounds[idx].matches[1].contestant2.image)]
 
             for index in 0..<4 {
-                contestantImg[index].kf.setImage(with: urls[index])
+                contestantImg[index].kf.setImage(with: URL(string: tournament.contestants[index].image))
             }
 
             roundLabel.text = "\(TRStrings.round.localizedString) \(idx+1)"
@@ -110,18 +109,11 @@ class TournamentView: UIView {
 
     func colorBackground(index: Int) {
         switch index {
-        case 0:
-            contestantImg[0].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
-            contestantImg[1].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
-        case 1:
-            contestantImg[1].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
-            contestantImg[0].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
-        case 2:
-            contestantImg[2].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
-            contestantImg[3].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
-        case 3:
-            contestantImg[3].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
-            contestantImg[2].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+        case 0, 1, 2, 3:
+            for ind in 0..<4 {
+                contestantImg[ind].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)
+            }
+            contestantImg[index].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
         case 4:
             contestantImg[4].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
             contestantImg[5].backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 0)

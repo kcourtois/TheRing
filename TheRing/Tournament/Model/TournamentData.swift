@@ -15,18 +15,12 @@ struct TournamentData {
     let creator: TRUser
     let startTime: Date
     var rounds: [Round]
+    var contestants: [Contestant]
 }
 
 struct Round {
     let rid: String
     let endDate: Date
-    var matches: [Match]
-}
-
-struct Match {
-    let mid: String
-    let contestant1: Contestant
-    let contestant2: Contestant
 }
 
 struct Contestant {
