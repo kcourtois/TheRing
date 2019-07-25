@@ -36,6 +36,7 @@
 		9E334E5622E76DD400CB3257 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E334E5522E76DD400CB3257 /* GoogleService-Info.plist */; };
 		9E36669C22E7AD2C0041B51E /* NotificationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */; };
 		9E36669E22E9E4100041B51E /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36669D22E9E4100041B51E /* CommentController.swift */; };
+		9E4F967D22EA7207006959FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F967F22EA7207006959FF /* InfoPlist.strings */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -106,6 +107,8 @@
 		9E334E5522E76DD400CB3257 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStrings.swift; sourceTree = "<group>"; };
 		9E36669D22E9E4100041B51E /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
+		9E4F968022EA720A006959FF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9E4F968122EA721B006959FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -363,6 +366,7 @@
 			children = (
 				9E064E4022CA04B5009FE905 /* Localizable.strings */,
 				9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */,
+				9E4F967F22EA7207006959FF /* InfoPlist.strings */,
 			);
 			path = Localizable;
 			sourceTree = "<group>";
@@ -482,6 +486,7 @@
 				9E064E3E22CA04B5009FE905 /* Localizable.strings in Resources */,
 				9E334E5622E76DD400CB3257 /* GoogleService-Info.plist in Resources */,
 				9E06BB5222B840F10098E148 /* Main.storyboard in Resources */,
+				9E4F967D22EA7207006959FF /* InfoPlist.strings in Resources */,
 				9EA2718722BD466400AAC06B /* moltors.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +670,15 @@
 				9E064E3B22C9FF83009FE905 /* fr */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9E4F967F22EA7207006959FF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9E4F968022EA720A006959FF /* fr */,
+				9E4F968122EA721B006959FF /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

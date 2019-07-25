@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  TheRing
+
+  Created by Kévin Courtois on 26/07/2019.
+  Copyright © 2019 Kévin Courtois. All rights reserved.
+*/
+
+"NSPhotoLibraryAddUsageDescription" = "Used to share a tournament as an image.";
+"NSPhotoLibraryUsageDescription" = "Used to share a tournament as an image.";
