@@ -87,7 +87,7 @@ iOSInjectionProject/
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## Api Keys
-#TheRing/Supporting files/GoogleService-Info.plist
+TheRing/Supporting files/GoogleService-Info.plist
 TheRing/GeneralModel/ApiKeys.swift
 
 

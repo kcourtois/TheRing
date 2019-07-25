@@ -20,14 +20,6 @@ class TournamentView: UIView {
 
     var tournament: TournamentData?
 
-    enum Stage1 {
-        case grey, leftLeft, rightRight, leftRight, rightLeft
-    }
-
-    enum Stage2 {
-        case grey, left, right
-    }
-
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -43,7 +35,6 @@ class TournamentView: UIView {
         initTapGesures()
     }
 
-    //TODO: Handle setview for round 2 and tournament done
     func setView(tournament: TournamentData?) {
         if let tournament = tournament {
             self.tournament = tournament
@@ -58,35 +49,39 @@ class TournamentView: UIView {
         }
     }
 
-    private func setStages(first: Stage1, second: Stage2) {
-        switch first {
-        case .grey:
-            stage1.image = #imageLiteral(resourceName: "n1-0")
-            stage2.image = #imageLiteral(resourceName: "n2-0")
-            stage3.image = #imageLiteral(resourceName: "n3-0")
+    func setFirstStage(cids: [String]) {
+        guard let tournament = tournament, cids.count == 2 else {
             return
-        case .leftLeft:
+        }
+        if cids[0] == tournament.contestants[0].cid && cids[1] == tournament.contestants[2].cid {
             stage1.image = #imageLiteral(resourceName: "n1-LL")
-        case .rightRight:
-            stage1.image = #imageLiteral(resourceName: "n1-RR")
-        case .leftRight:
+            contestantImg[4].image = contestantImg[0].image
+            contestantImg[5].image = contestantImg[2].image
+        } else if cids[0] == tournament.contestants[0].cid && cids[1] == tournament.contestants[3].cid {
             stage1.image = #imageLiteral(resourceName: "n1-LR")
-        case .rightLeft:
+            contestantImg[4].image = contestantImg[0].image
+            contestantImg[5].image = contestantImg[3].image
+        } else if cids[0] == tournament.contestants[1].cid && cids[1] == tournament.contestants[3].cid {
+            stage1.image = #imageLiteral(resourceName: "n1-RR")
+            contestantImg[4].image = contestantImg[1].image
+            contestantImg[5].image = contestantImg[3].image
+        } else if cids[0] == tournament.contestants[1].cid && cids[1] == tournament.contestants[2].cid {
             stage1.image = #imageLiteral(resourceName: "n1-RL")
+            contestantImg[4].image = contestantImg[1].image
+            contestantImg[5].image = contestantImg[2].image
         }
+    }
 
-        switch second {
-        case .grey:
-            stage2.image = #imageLiteral(resourceName: "n2-0")
-            stage3.image = #imageLiteral(resourceName: "n3-0")
+    func setSecondStage(cid: String) {
+        guard let tournament = tournament else {
             return
-        case .left:
-            stage2.image = #imageLiteral(resourceName: "n2-L")
-        case .right:
-            stage2.image = #imageLiteral(resourceName: "n2-R")
         }
 
-        stage3.image = #imageLiteral(resourceName: "n3-1")
+        for (index, contestant) in tournament.contestants.enumerated() where cid == contestant.cid {
+            contestantImg[6].image = contestantImg[index].image
+            stage2.image = index < tournament.contestants.count/2 ? #imageLiteral(resourceName: "n2-L") : #imageLiteral(resourceName: "n2-R")
+            stage3.image = #imageLiteral(resourceName: "n3-1")
+        }
     }
 
     //Adds tap gestures to imageViews in array

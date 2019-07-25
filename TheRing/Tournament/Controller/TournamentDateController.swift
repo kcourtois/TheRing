@@ -39,7 +39,9 @@ class TournamentDateController: UIViewController {
 
     @IBAction func doneTapped(_ sender: Any) {
         updateTournament()
-        if let tournament = tournament {
+        if var tournament = tournament { //Put let instead of var
+            //remove next line
+            tournament.startTime = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
             TournamentService.createTournament(tournament: tournament) { (error) in
                 if let error = error {
                     self.presentAlert(title: "Test", message: error)
