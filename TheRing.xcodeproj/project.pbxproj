@@ -35,6 +35,7 @@
 		9E334E5422E31C0800CB3257 /* TournamentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E5322E31C0800CB3257 /* TournamentData.swift */; };
 		9E334E5622E76DD400CB3257 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E334E5522E76DD400CB3257 /* GoogleService-Info.plist */; };
 		9E36669C22E7AD2C0041B51E /* NotificationStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */; };
+		9E36669E22E9E4100041B51E /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36669D22E9E4100041B51E /* CommentController.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -104,6 +105,7 @@
 		9E334E5322E31C0800CB3257 /* TournamentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentData.swift; sourceTree = "<group>"; };
 		9E334E5522E76DD400CB3257 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationStrings.swift; sourceTree = "<group>"; };
+		9E36669D22E9E4100041B51E /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 				9EFE1FCB22D35F9D003A0410 /* TournamentDateController.swift */,
 				9E334E4422DDCDBF00CB3257 /* TournamentListController.swift */,
 				9E334E4D22E04B6300CB3257 /* TournamentDetailController.swift */,
+				9E36669D22E9E4100041B51E /* CommentController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9EA2719B22C5020300AAC06B /* Preferences.swift in Sources */,
+				9E36669E22E9E4100041B51E /* CommentController.swift in Sources */,
 				9EA2719522C3D11D00AAC06B /* UserController.swift in Sources */,
 				9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */,
 				9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */,

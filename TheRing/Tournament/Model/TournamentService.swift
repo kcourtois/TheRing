@@ -257,7 +257,7 @@ extension TournamentService {
         let values = [uid: uid]
         reference.child("votes").child(rid).child(cid).updateChildValues(values,
                                                                          withCompletionBlock: { (error, _) in
-                                                                            completion(FirebaseAuthService.getAuthError(error: error))
+            completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
 
@@ -292,43 +292,38 @@ extension TournamentService {
 
 // MARK: - Comments
 
+//comment/tid/idc - uid, username, comment
+
 extension TournamentService {
     static func registerComment(tid: String, user: TRUser, comment: String,
-                             completion: @escaping (String?) -> Void) {
+                                completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
-        let values = [uid: uid]
-        reference.child("comments").child(tid).child(uid).updateChildValues(values,
+        guard let date = dateToString(date: Date()) else {
+            return
+        }
+        let values = ["uid": user.uid, "username": user.name, "comment": comment, "date": date]
+        let cid = generateId()
+        reference.child("comments").child(tid).child(cid).updateChildValues(values,
                                                                          withCompletionBlock: { (error, _) in
             completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
 
     //returns vote for given user and round if exists
-    static func getUserVote(uid: String, rid: String, completion: @escaping (String?) -> Void) {
+    static func getComments(tid: String, completion: @escaping ([Comment]) -> Void) {
         let reference = Database.database().reference()
-        reference.child("votes").child(rid).observeSingleEvent(of: .value, with: { (snapshot) in
+        var comments = [Comment]()
+        reference.child("comments").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
             for case let data as DataSnapshot in snapshot.children {
                 let value = data.value as? NSDictionary
-                if (value?[uid] as? String) != nil {
-                    completion(data.key)
+                if let uid = value?["uid"] as? String,
+                   let username = value?["username"] as? String,
+                   let comment = value?["comment"] as? String {
+                    comments.append(Comment(cid: data.key, uid: uid, username: username, comment: comment))
                 }
             }
-            completion(nil)
+            completion(comments)
         })
-    }
-
-    //returns vote for given user and round if exists
-    static func getVotes(cid: String, rid: String, completion: @escaping (UInt?) -> Void) {
-        let reference = Database.database().reference()
-        reference.child("votes").child(rid).child(cid).observeSingleEvent(of: .value, with: { (snapshot) in
-            completion(snapshot.childrenCount)
-        })
-        completion(nil)
-    }
-
-    static func removeUserVote(uid: String, rid: String, cid: String) {
-        let reference = Database.database().reference()
-        reference.child("votes").child(rid).child(cid).child(uid).removeValue()
     }
 }
 
@@ -386,6 +381,3 @@ extension TournamentService {
         return 2
     }
 }
-
-//matches/tid/rid/mid - c1, c2
-//comment/tid/idc - uid, username, comment

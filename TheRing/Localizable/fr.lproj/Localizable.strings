@@ -95,6 +95,8 @@
 "CREATOR" = "Créateur";
 "ROUND" = "Tour";
 "ENDS_ON" = "Fini le";
+"COMMENTS" = "Commentaires";
+"SEND" = "Envoyer ";
 
 //GENRES
 "ACTION" = "Action";

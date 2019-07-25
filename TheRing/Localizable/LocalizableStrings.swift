@@ -126,7 +126,6 @@ enum TRStrings: LocalizedString {
     case creator = "CREATOR"
     case round = "ROUND"
     case endsOn = "ENDS_ON"
-
     case title = "TITLE"
     case next = "NEXT"
     case pick = "PICK"
@@ -135,6 +134,8 @@ enum TRStrings: LocalizedString {
     case daysPerRound = "DAYS_PER_ROUND"
     case startTime = "START_TIME"
     case lastStep = "LAST_STEP"
+    case comments = "COMMENTS"
+    case send = "SEND"
 
     var localizedString: String {
         return self.rawValue.val

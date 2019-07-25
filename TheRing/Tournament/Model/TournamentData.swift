@@ -28,3 +28,10 @@ struct Contestant {
     let image: String
     let name: String
 }
+
+struct Comment {
+    let cid: String
+    let uid: String
+    let username: String
+    let comment: String
+}

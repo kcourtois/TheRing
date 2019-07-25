@@ -204,4 +204,12 @@ class TournamentDetailController: UIViewController {
         startTimeDataLabel.text = "\(tournament.startTime)"
         creatorDataLabel.text = tournament.creator.name
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "commentSegue",
+            let commentVC = segue.destination as? CommentController else {
+                return
+        }
+        commentVC.tid = tid
+    }
 }

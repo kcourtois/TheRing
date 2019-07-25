@@ -95,6 +95,8 @@
 "CREATOR" = "Creator";
 "ROUND" = "Round";
 "ENDS_ON" = "Ends on";
+"COMMENTS" = "Comments";
+"SEND" = "Send";
 
 //GENRES
 "ACTION" = "Action";
