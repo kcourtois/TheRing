@@ -292,8 +292,6 @@ extension TournamentService {
 
 // MARK: - Comments
 
-//comment/tid/idc - uid, username, comment
-
 extension TournamentService {
     static func registerComment(tid: String, user: TRUser, comment: String,
                                 completion: @escaping (String?) -> Void) {

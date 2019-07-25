@@ -12,6 +12,8 @@
 
 "SAVED" = "Sauvegardé";
 "ERROR" = "Erreur";
+"SHARE_FAILED" = "Echec du partage";
+"SHARE_SUCCEEDED" = "Partage réussi";
 
 //ALERT MESSAGES
 
@@ -23,6 +25,8 @@
 "USERNAME_USED" = "Nom d'utilisateur indisponible.";
 "LOADING" = "Chargement...";
 "ERROR_CREATOR" = "Impossible de récupérer les données du créateur.";
+"FAILED_TO_SHARE" = "Nous n'avons pas réussi à partager le tournoi.";
+"SUCCESS_SHARE" = "Tournoi partagé avec succès !";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "Email déjà utilisé sur un autre compte";
@@ -97,6 +101,7 @@
 "ENDS_ON" = "Fini le";
 "COMMENTS" = "Commentaires";
 "SEND" = "Envoyer ";
+"PICK_CONTESTANT" = "Choisir un participant";
 
 //GENRES
 "ACTION" = "Action";

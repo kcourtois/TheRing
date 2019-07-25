@@ -13,7 +13,6 @@ class EmailController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var newEmailField: UITextField!
     @IBOutlet weak var confirmEmailField: UITextField!
-    @IBOutlet weak var updateLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var newMailLabel: UILabel!
     @IBOutlet weak var confirmLabel: UILabel!
@@ -26,7 +25,7 @@ class EmailController: UIViewController {
     }
 
     private func setTexts() {
-        updateLabel.text = TRStrings.updateEmail.localizedString
+        self.title = TRStrings.updateEmail.localizedString
         passwordLabel.text = TRStrings.password.localizedString
         newMailLabel.text = TRStrings.newMail.localizedString
         confirmLabel.text = TRStrings.confirmMail.localizedString

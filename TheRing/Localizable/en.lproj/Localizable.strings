@@ -12,6 +12,8 @@
 
 "SAVED" = "Saved";
 "ERROR" = "Error";
+"SHARE_FAILED" = "Share failed";
+"SHARE_SUCCEEDED" = "Share succeeded";
 
 //ALERT MESSAGES
 
@@ -23,6 +25,8 @@
 "USERNAME_USED" = "Username not available.";
 "LOADING" = "Loading...";
 "ERROR_CREATOR" = "Couldn't retrieve creator data.";
+"FAILED_TO_SHARE" = "We were not able to share the tournament.";
+"SUCCESS_SHARE" = "Tournament was shared successfully !";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "The email is already in use with another account";
@@ -97,6 +101,7 @@
 "ENDS_ON" = "Ends on";
 "COMMENTS" = "Comments";
 "SEND" = "Send";
+"PICK_CONTESTANT" = "Pick a contestant";
 
 //GENRES
 "ACTION" = "Action";

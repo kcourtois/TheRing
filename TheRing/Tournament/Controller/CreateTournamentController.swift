@@ -15,7 +15,6 @@ class CreateTournamentController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
-    @IBOutlet weak var createTournament: UILabel!
 
     private let preferences = Preferences()
     var tournament: Tournament?
@@ -36,7 +35,7 @@ class CreateTournamentController: UIViewController {
         descriptionField.text = TRStrings.enterDescription.localizedString
         titleField.placeholder = TRStrings.enterTitle.localizedString
         titleLabel.text = TRStrings.title.localizedString
-        createTournament.text = TRStrings.createTournaments.localizedString
+        self.title = TRStrings.createTournaments.localizedString
         nextButton.setTitle(TRStrings.next.localizedString, for: .normal)
     }
 

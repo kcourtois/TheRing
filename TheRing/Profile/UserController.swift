@@ -10,8 +10,6 @@ import UIKit
 import FirebaseAuth
 
 class UserController: UIViewController {
-
-    @IBOutlet weak var profileLabel: UILabel!
     @IBOutlet weak var usernameDesc: UILabel!
     @IBOutlet weak var emailDesc: UILabel!
     @IBOutlet weak var genderDesc: UILabel!
@@ -80,7 +78,7 @@ class UserController: UIViewController {
     }
 
     private func setTexts() {
-        profileLabel.text = TRStrings.profile.localizedString
+        self.title = TRStrings.profile.localizedString
         usernameDesc.text = TRStrings.username.localizedString
         emailDesc.text = TRStrings.email.localizedString
         genderDesc.text = TRStrings.gender.localizedString

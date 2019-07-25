@@ -14,7 +14,6 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var contestantView: MovieOverview!
     @IBOutlet weak var pickButton: UIButton!
-    @IBOutlet weak var createTournaments: UILabel!
     var tournament: Tournament?
     private var movie: Movie?
     private var step: Int = 1
@@ -30,7 +29,7 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
     }
 
     private func setTexts() {
-        createTournaments.text = TRStrings.createTournaments.localizedString
+        self.title = TRStrings.createTournaments.localizedString
         pickButton.setTitle(TRStrings.pick.localizedString, for: .normal)
         nextButton.setTitle(TRStrings.next.localizedString, for: .normal)
         sentenceLabel.text = "\(TRStrings.selectContestant.localizedString)1."

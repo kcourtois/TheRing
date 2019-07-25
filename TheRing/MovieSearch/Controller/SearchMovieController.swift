@@ -18,6 +18,7 @@ class SearchMovieController: UIViewController {
 
     override func viewDidLoad() {
         searchMovies()
+        self.title = TRStrings.pickContestant.localizedString
     }
 
     override func viewWillAppear(_ animated: Bool) {

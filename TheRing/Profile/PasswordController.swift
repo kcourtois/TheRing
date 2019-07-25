@@ -13,7 +13,6 @@ class PasswordController: UIViewController {
     @IBOutlet weak var oldPasswordField: UITextField!
     @IBOutlet weak var newPasswordField: UITextField!
     @IBOutlet weak var confirmField: UITextField!
-    @IBOutlet weak var updatePassLabel: UILabel!
     @IBOutlet weak var oldPassLabel: UILabel!
     @IBOutlet weak var newPassLabel: UILabel!
     @IBOutlet weak var confirmPassLabel: UILabel!
@@ -26,7 +25,7 @@ class PasswordController: UIViewController {
     }
 
     private func setTexts() {
-        updatePassLabel.text = TRStrings.updatePassword.localizedString
+        self.title = TRStrings.updatePassword.localizedString
         oldPassLabel.text = TRStrings.oldPassword.localizedString
         newPassLabel.text = TRStrings.newPassword.localizedString
         confirmPassLabel.text = TRStrings.confirmPass.localizedString

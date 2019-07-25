@@ -16,6 +16,7 @@ class TournamentListController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        self.title = TRStrings.tournaments.localizedString
     }
 
     override func viewWillAppear(_ animated: Bool) {

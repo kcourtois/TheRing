@@ -7,18 +7,16 @@
 //
 
 import UIKit
+import Photos
 
 class TournamentDetailController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var creatorLabel: UILabel!
-    @IBOutlet weak var titleDataLabel: UILabel!
     @IBOutlet weak var descDataLabel: UILabel!
     @IBOutlet weak var startTimeDataLabel: UILabel!
     @IBOutlet weak var creatorDataLabel: UILabel!
-    @IBOutlet weak var tournamentLabel: UILabel!
     @IBOutlet weak var tournamentView: TournamentView!
 
     var tid: String?
@@ -39,6 +37,12 @@ class TournamentDetailController: UIViewController {
         let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapContestant(_:)),
                                                name: nameTapContNotif, object: nil)
+    }
+
+    @IBAction func shareTapped(_ sender: Any) {
+        if checkPermission() {
+            shareTournament()
+        }
     }
 
     //Triggers on notification didTapImage
@@ -194,15 +198,79 @@ class TournamentDetailController: UIViewController {
     }
 
     private func setTexts() {
-        titleLabel.text = TRStrings.title.localizedString
         startTimeLabel.text = TRStrings.startTime.localizedString
         creatorLabel.text = TRStrings.creator.localizedString
-        tournamentLabel.text = TRStrings.tournament.localizedString
+        self.title = TRStrings.tournament.localizedString
         guard let tournament = tournament else { return }
-        titleDataLabel.text = tournament.title
         descDataLabel.text = tournament.description
         startTimeDataLabel.text = "\(tournament.startTime)"
         creatorDataLabel.text = tournament.creator.name
+    }
+
+    //Present view to user for image share
+    private func shareTournament() {
+        let items = [getTournamentAsImage()]
+        let act = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        act.completionWithItemsHandler = { activity, completed, items, error in
+            if !completed {
+                self.presentAlert(title: TRStrings.shareFailed.localizedString,
+                                  message: TRStrings.failedToShare.localizedString)
+            } else {
+                self.presentAlert(title: TRStrings.shareSucceeded.localizedString,
+                                  message: TRStrings.successShare.localizedString)
+            }
+        }
+
+        present(act, animated: true, completion: nil)
+    }
+
+    //Convert tournamentView to an image
+    private func getTournamentAsImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: tournamentView.bounds.size)
+        let image = renderer.image { _ in
+            tournamentView.drawHierarchy(in: tournamentView.bounds, afterScreenUpdates: true)
+        }
+        return image
+    }
+
+    //Check photo library permission
+    private func checkPermission() -> Bool {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
+            return true
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization { _ in }
+            return checkPermission()
+        case .restricted:
+            presentPermissionDeniedAlert()
+            return false
+        case .denied:
+            presentPermissionDeniedAlert()
+            return false
+        @unknown default:
+            return false
+        }
+    }
+
+    //Shows a popup to access settings if user denied photolibrary permission
+    private func presentPermissionDeniedAlert() {
+        //Initialisation of the alert
+        let alertController = UIAlertController(title: "Permission denied",
+                                                message: "Please go to Settings and turn on the permissions for Photo access.",
+                                                preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        //Shows alert
+        present(alertController, animated: true, completion: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

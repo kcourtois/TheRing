@@ -15,7 +15,6 @@ class TournamentDateController: UIViewController {
     @IBOutlet weak var stepperRound: UIStepper!
     @IBOutlet weak var daysPerRound: UILabel!
 
-    @IBOutlet weak var createTournament: UILabel!
     @IBOutlet weak var lastStepLabel: UILabel!
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
@@ -28,7 +27,7 @@ class TournamentDateController: UIViewController {
     }
 
     private func setTexts() {
-        createTournament.text = TRStrings.createTournaments.localizedString
+        self.title = TRStrings.createTournaments.localizedString
         lastStepLabel.text = TRStrings.lastStep.localizedString
         startTimeLabel.text = TRStrings.startTime.localizedString
     }

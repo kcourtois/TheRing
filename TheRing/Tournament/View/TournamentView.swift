@@ -11,6 +11,7 @@ import Kingfisher
 
 class TournamentView: UIView {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var endDateLabel: UILabel!
     @IBOutlet weak var stage3: UIImageView!
@@ -46,6 +47,7 @@ class TournamentView: UIView {
 
             roundLabel.text = "\(TRStrings.round.localizedString) \(idx+1)"
             endDateLabel.text = "\(TRStrings.endsOn.localizedString) \(tournament.rounds[idx].endDate)"
+            titleLabel.text = tournament.title
         }
     }
 
