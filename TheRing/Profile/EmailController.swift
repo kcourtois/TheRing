@@ -94,7 +94,7 @@ extension EmailController {
                       "gender": preferences.user.gender.rawValue,
                       "username": preferences.user.name] as [String: Any]
 
-        FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
+        UserService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                             message: error)

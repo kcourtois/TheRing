@@ -31,9 +31,8 @@ class CommentController: UIViewController {
     }
 
     @IBAction func sendComment(_ sender: Any) {
-        let pref = Preferences()
         if let tid = tid, let comment = commentField.text {
-            TournamentService.registerComment(tid: tid, user: pref.user, comment: comment) { (error) in
+            TournamentService.registerComment(tid: tid, comment: comment) { (error) in
                 if let error = error {
                     self.presentAlert(title: TRStrings.error.localizedString, message: error)
                 }

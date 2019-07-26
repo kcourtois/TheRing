@@ -35,6 +35,7 @@ enum TRStrings: LocalizedString {
     case back = "BACK"
     case shareFailed = "SHARE_FAILED"
     case shareSucceeded = "SHARE_SUCCEEDED"
+    case permissionDenied = "PERMISSION_DENIED"
 
     case modifSaved = "MODIF_SAVED"
     case errorOccured = "ERROR_OCCURED"
@@ -46,6 +47,7 @@ enum TRStrings: LocalizedString {
     case errorCreator = "ERROR_CREATOR"
     case failedToShare = "FAILED_TO_SHARE"
     case successShare = "SUCCESS_SHARE"
+    case goToSettings = "GO_TO_SETTINGS"
 
     //FIREBASE AUTH ERROR
     case mailUsed = "MAIL_USED"
@@ -141,6 +143,13 @@ enum TRStrings: LocalizedString {
     case comments = "COMMENTS"
     case send = "SEND"
     case pickContestant = "PICK_CONTESTANT"
+    case mySubscribers = "MY_SUBSCRIBERS"
+    case mySubscriptions = "MY_SUBSCRIPTIONS"
+    case subscribers = "SUBSCRIBERS"
+    case subscriptions = "SUBSCRIPTIONS"
+    case subscribe = "SUBSCRIBE"
+    case unsubscribe = "UNSUBSCRIBE"
+    case settings = "SETTINGS"
 
     var localizedString: String {
         return self.rawValue.val

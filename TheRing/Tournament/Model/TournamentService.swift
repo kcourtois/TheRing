@@ -80,7 +80,7 @@ class TournamentService {
             if let tournament = tournament {
                 getContestants(tid: tid, completion: { (contestants) in
                     getRounds(tid: tid, completion: { (rounds) in
-                        FirebaseService.getUserInfo(uid: tournament.creator, completion: { (user) in
+                        UserService.getUserInfo(uid: tournament.creator, completion: { (user) in
                             if let user = user {
                                 let comp = TournamentData(tid: tid, title: tournament.title,
                                                           description: tournament.description,
@@ -293,13 +293,15 @@ extension TournamentService {
 // MARK: - Comments
 
 extension TournamentService {
-    static func registerComment(tid: String, user: TRUser, comment: String,
+    //registers a comment for the current user
+    static func registerComment(tid: String, comment: String,
                                 completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
+        let pref = Preferences()
         guard let date = dateToString(date: Date()) else {
             return
         }
-        let values = ["uid": user.uid, "username": user.name, "comment": comment, "date": date]
+        let values = ["uid": pref.user.uid, "username": pref.user.name, "comment": comment, "date": date]
         let cid = generateId()
         reference.child("comments").child(tid).child(cid).updateChildValues(values,
                                                                          withCompletionBlock: { (error, _) in

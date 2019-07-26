@@ -224,6 +224,17 @@ class TournamentDetailController: UIViewController {
         present(act, animated: true, completion: nil)
     }
 
+    //TODO Essayer ce share sur mon iphone
+    private func shareWithUrlAndText() {
+        let text = "This is the text...."
+        let image = getTournamentAsImage()
+        let myWebsite = URL(string: "https://github.com/kcourtois/TheRing")
+        let shareAll = [text, image, myWebsite!] as [Any]
+        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+
     //Convert tournamentView to an image
     private func getTournamentAsImage() -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: tournamentView.bounds.size)
@@ -233,6 +244,18 @@ class TournamentDetailController: UIViewController {
         return image
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "commentSegue",
+            let commentVC = segue.destination as? CommentController else {
+                return
+        }
+        commentVC.tid = tid
+    }
+}
+
+// MARK: - Photo permission
+
+extension TournamentDetailController {
     //Check photo library permission
     private func checkPermission() -> Bool {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
@@ -256,28 +279,20 @@ class TournamentDetailController: UIViewController {
     //Shows a popup to access settings if user denied photolibrary permission
     private func presentPermissionDeniedAlert() {
         //Initialisation of the alert
-        let alertController = UIAlertController(title: "Permission denied",
-                                                message: "Please go to Settings and turn on the permissions for Photo access.",
+        let alertController = UIAlertController(title: TRStrings.permissionDenied.localizedString,
+                                                message: TRStrings.goToSettings.localizedString,
                                                 preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+        let settingsAction = UIAlertAction(title: TRStrings.settings.localizedString, style: .default) { (_) -> Void in
             if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
                 if UIApplication.shared.canOpenURL(settingsUrl) {
                     UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
                 }
             }
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let cancelAction = UIAlertAction(title: TRStrings.cancel.localizedString, style: .default, handler: nil)
         alertController.addAction(cancelAction)
         alertController.addAction(settingsAction)
         //Shows alert
         present(alertController, animated: true, completion: nil)
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "commentSegue",
-            let commentVC = segue.destination as? CommentController else {
-                return
-        }
-        commentVC.tid = tid
     }
 }

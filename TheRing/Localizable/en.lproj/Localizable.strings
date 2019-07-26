@@ -14,6 +14,7 @@
 "ERROR" = "Error";
 "SHARE_FAILED" = "Share failed";
 "SHARE_SUCCEEDED" = "Share succeeded";
+"PERMISSION_DENIED" = "Permission denied";
 
 //ALERT MESSAGES
 
@@ -27,6 +28,7 @@
 "ERROR_CREATOR" = "Couldn't retrieve creator data.";
 "FAILED_TO_SHARE" = "We were not able to share the tournament.";
 "SUCCESS_SHARE" = "Tournament was shared successfully !";
+"GO_TO_SETTINGS" = "Please go to Settings and turn on the permissions for Photo access.";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "The email is already in use with another account";
@@ -61,7 +63,7 @@
 "EMAIL" = "Email";
 "GENDER" = "Gender";
 "BIO" = "Bio";
-"UPDATE_PROFILE" = " Update profile ";
+"UPDATE_PROFILE" = "Update profile";
 "TOURNAMENTS" = "Tournaments";
 "TOURNAMENT" = "Tournament";
 "MOD_EMAIL" = "Modify email";
@@ -81,7 +83,7 @@
 "YOUR_OLD_PASS" = "Your old password here";
 "YOUR_NEW_PASS" = "Your new password here";
 "NEW_PASS_CONF" = "Confirm new password";
-"SEE_TOURNAMENTS" = " See my tournaments ";
+"SEE_TOURNAMENTS" = "My tournaments";
 "TITLE" = "Title";
 "CREATE_TOURNAMENTS" = "Create Tournaments";
 "ENTER_TITLE" = "Enter your title here";
@@ -102,6 +104,13 @@
 "COMMENTS" = "Comments";
 "SEND" = "Send";
 "PICK_CONTESTANT" = "Pick a contestant";
+"MY_SUBSCRIBERS" = "My subscribers";
+"MY_SUBSCRIPTIONS" = "My subscriptions";
+"SUBSCRIBERS" = "Subscribers";
+"SUBSCRIPTIONS" = "Subscriptions";
+"SUBSCRIBE" = "Subscribe";
+"UNSUBSCRIBE" = "Unsubscribe";
+"SETTINGS" = "Settings";
 
 //GENRES
 "ACTION" = "Action";

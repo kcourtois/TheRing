@@ -106,7 +106,7 @@ class ProfileController: UIViewController {
 // MARK: - Network
 extension ProfileController {
     private func replaceUsernameAndSave(name: String) {
-        FirebaseService.replaceUsername(old: self.preferences.user.name, new: name,
+        UserService.replaceUsername(old: self.preferences.user.name, new: name,
                                         uid: self.preferences.user.uid, completion: { (error) in
             if error != nil {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
@@ -118,7 +118,7 @@ extension ProfileController {
     }
 
     private func checkUsernameAndSave(name: String) {
-        FirebaseService.isUsernameAvailable(name: name) { available in
+        UserService.isUsernameAvailable(name: name) { available in
             if available {
                 self.replaceUsernameAndSave(name: name)
             } else {
@@ -130,7 +130,7 @@ extension ProfileController {
     }
 
     private func registerUserInfo(values: [String: Any]) {
-        FirebaseService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
+        UserService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)

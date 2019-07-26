@@ -63,7 +63,7 @@ class SignupController: UIViewController {
     }
 
     private func usernameAvailable(username: String, email: String, password: String) {
-        FirebaseService.isUsernameAvailable(name: username) { available in
+        UserService.isUsernameAvailable(name: username) { available in
             if available {
                 self.createUser(email: email, password: password, username: username)
             } else {
@@ -98,7 +98,7 @@ class SignupController: UIViewController {
     }
 
     private func registerUserInfo(uid: String, username: String, values: [String: Any]) {
-        FirebaseService.registerUserInfo(uid: uid, values: values) { error in
+        UserService.registerUserInfo(uid: uid, values: values) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)
@@ -109,7 +109,7 @@ class SignupController: UIViewController {
     }
 
     private func registerUsername(username: String, uid: String) {
-        FirebaseService.registerUsername(name: username, uid: uid) { error in
+        UserService.registerUsername(name: username, uid: uid) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)
