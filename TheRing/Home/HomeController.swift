@@ -12,13 +12,36 @@ import FirebaseAuth
 class HomeController: UIViewController {
 
     @IBOutlet weak var homeLabel: UILabel!
+    private let preferences = Preferences()
+    private var alert: UIAlertController?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let user = Auth.auth().currentUser {
-            homeLabel.text = user.email
+        setTexts()
+        if let currUser = Auth.auth().currentUser {
+            self.homeLabel.text = currUser.email
+            if preferences.user.uid != currUser.uid {
+                loadUserPref(uid: currUser.uid)
+            }
         } else {
-            print("no user connected")
+            userNotLogged()
         }
+    }
+
+    @IBAction func signOutTapped() {
+        do {
+            try Auth.auth().signOut()
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } catch {
+            print("can't disconnect user")
+        }
+    }
+}
+
+// MARK: - UI & Preferences setup
+extension HomeController {
+    //sets label texts
+    private func setTexts() {
         if let items = tabBarController?.tabBar.items {
             items[0].title = TRStrings.home.localizedString
             items[1].title = TRStrings.user.localizedString
@@ -26,12 +49,36 @@ class HomeController: UIViewController {
         }
     }
 
-    @IBAction func signOutTapped() {
-        do {
-            try Auth.auth().signOut()
-            dismiss(animated: true, completion: nil)
-        } catch {
-            print("can't disconnect user")
+    //sends user back to login screen
+    private func userNotLogged() {
+        if let alert = self.alert {
+            alert.dismiss(animated: true, completion: {
+                self.presentAlertDelay(title: TRStrings.error.localizedString,
+                                       message: TRStrings.notLogged.localizedString,
+                                       delay: 2.0, completion: {
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                })
+            })
+        }
+    }
+
+    //loads user in preferences
+    private func loadUserPref(uid: String) {
+        alert = loadingAlert()
+        UserService.getUserInfo(uid: uid) { (userData) in
+            if let user = userData {
+                self.preferences.user = user
+                if let alert = self.alert {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                if let alert = self.alert {
+                    alert.dismiss(animated: true, completion: {
+                        self.presentAlert(title: TRStrings.error.localizedString,
+                                          message: TRStrings.userNotRetrieved.localizedString)
+                    })
+                }
+            }
         }
     }
 }

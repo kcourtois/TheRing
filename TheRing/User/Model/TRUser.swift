@@ -22,11 +22,11 @@ enum Gender: Int, Codable {
     var asString: String {
         switch self {
         case .male:
-            return "Male"
+            return TRStrings.male.localizedString
         case .female:
-            return "Female"
+            return TRStrings.female.localizedString
         case .other:
-            return "Other"
+            return TRStrings.other.localizedString
         }
     }
 }

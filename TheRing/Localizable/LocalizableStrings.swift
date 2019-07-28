@@ -48,6 +48,8 @@ enum TRStrings: LocalizedString {
     case failedToShare = "FAILED_TO_SHARE"
     case successShare = "SUCCESS_SHARE"
     case goToSettings = "GO_TO_SETTINGS"
+    case notLogged = "NOT_LOGGED"
+    case userNotRetrieved = "USER_NOT_RETRIEVED"
 
     //FIREBASE AUTH ERROR
     case mailUsed = "MAIL_USED"

@@ -30,7 +30,6 @@ class SignupController: UIViewController {
         usernameField.placeholder = TRStrings.username.localizedString
         cancelButton.setTitle(TRStrings.cancel.localizedString, for: .normal)
         continueButton.setTitle(TRStrings.continueTxt.localizedString, for: .normal)
-
     }
 
     @IBAction func cancelTapped() {
@@ -91,9 +90,11 @@ class SignupController: UIViewController {
                 return
             }
 
-            let values = ["email": email, "username": username, "gender": "unknown", "bio": ""]
+            let values = ["email": email, "username": username,
+                          "gender": Gender.other.rawValue, "bio": ""] as [String: Any]
 
             self.registerUserInfo(uid: uid, username: username, values: values)
+            Preferences().user = TRUser(uid: uid, name: username, gender: .other, email: email, bio: "")
         }
     }
 

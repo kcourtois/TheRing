@@ -29,6 +29,8 @@
 "FAILED_TO_SHARE" = "We were not able to share the tournament.";
 "SUCCESS_SHARE" = "Tournament was shared successfully !";
 "GO_TO_SETTINGS" = "Please go to Settings and turn on the permissions for Photo access.";
+"NOT_LOGGED" = "User not logged in.";
+"USER_NOT_RETRIEVED" = "Couldn't retrieve user data.";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "The email is already in use with another account";

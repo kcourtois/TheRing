@@ -30,44 +30,20 @@ class UserController: UIViewController {
     @IBOutlet weak var scanCodeButton: UIButton!
 
     private let preferences = Preferences()
-    private var alert: UIAlertController?
     private var userType: UserListType = .subscriptions
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setTexts()
-        alert = loadingAlert()
-        if let user = Auth.auth().currentUser {
-            UserService.getUserInfo(uid: user.uid, completion: { user in
-                if let user = user {
-                    self.preferences.user = user
-                    self.setLabels()
-                    if let alert = self.alert {
-                        alert.dismiss(animated: true, completion: nil)
-                    }
-                } else {
-                    print("no user retrieved")
-                    if let alert = self.alert {
-                        alert.dismiss(animated: true, completion: nil)
-                    }
-                }
-            })
-        } else {
-            print("no user connected")
-            if let alert = self.alert {
-                alert.dismiss(animated: true, completion: nil)
+        if let currUser = Auth.auth().currentUser {
+            if preferences.user.uid != currUser.uid {
+                loadUserPref(uid: currUser.uid)
+            } else {
+                self.setLabels()
             }
+        } else {
+            userNotLogged()
         }
-        if let items = tabBarController?.tabBar.items {
-            items[0].title = TRStrings.home.localizedString
-            items[1].title = TRStrings.user.localizedString
-            items[2].title = TRStrings.create.localizedString
-        }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setLabels()
     }
 
     @IBAction func seeTournaments(_ sender: Any) {
@@ -102,7 +78,31 @@ class UserController: UIViewController {
             userListVC.userType = userType
         }
     }
+}
 
+// MARK: - UI & Preferences setup
+extension UserController {
+    //sets description label texts
+    private func setTexts() {
+        self.title = TRStrings.profile.localizedString
+        usernameDesc.text = TRStrings.username.localizedString
+        emailDesc.text = TRStrings.email.localizedString
+        genderDesc.text = TRStrings.gender.localizedString
+        bioDesc.text = TRStrings.bio.localizedString
+        subscribersDesc.text = TRStrings.subscribers.localizedString
+        subscriptionsDesc.text = TRStrings.subscriptions.localizedString
+        updateButton.setTitle(TRStrings.updateProfile.localizedString, for: .normal)
+        tournamentsButton.setTitle(TRStrings.seeTournaments.localizedString, for: .normal)
+        subscribersButton.setTitle(TRStrings.mySubscribers.localizedString, for: .normal)
+        subscriptionsButton.setTitle(TRStrings.mySubscriptions.localizedString, for: .normal)
+        if let items = tabBarController?.tabBar.items {
+            items[0].title = TRStrings.home.localizedString
+            items[1].title = TRStrings.user.localizedString
+            items[2].title = TRStrings.create.localizedString
+        }
+    }
+
+    //sets data label texts
     private func setLabels() {
         mailLabel.text = preferences.user.email
         nameLabel.text = preferences.user.name
@@ -120,18 +120,31 @@ class UserController: UIViewController {
         }
     }
 
-    private func setTexts() {
-        self.title = TRStrings.profile.localizedString
-        usernameDesc.text = TRStrings.username.localizedString
-        emailDesc.text = TRStrings.email.localizedString
-        genderDesc.text = TRStrings.gender.localizedString
-        bioDesc.text = TRStrings.bio.localizedString
-        subscribersDesc.text = TRStrings.subscribers.localizedString
-        subscriptionsDesc.text = TRStrings.subscriptions.localizedString
-        updateButton.setTitle(TRStrings.updateProfile.localizedString, for: .normal)
-        tournamentsButton.setTitle(TRStrings.seeTournaments.localizedString, for: .normal)
-        subscribersButton.setTitle(TRStrings.mySubscribers.localizedString, for: .normal)
-        subscriptionsButton.setTitle(TRStrings.mySubscriptions.localizedString, for: .normal)
+    //sends user back to login screen
+    private func userNotLogged() {
+        self.presentAlertDelay(title: TRStrings.error.localizedString,
+                               message: TRStrings.notLogged.localizedString,
+                               delay: 2.0, completion: {
+                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        })
     }
 
+    //loads user in preferences
+    private func loadUserPref(uid: String) {
+        let alert = loadingAlert()
+        UserService.getUserInfo(uid: uid) { (userData) in
+            if let user = userData {
+                self.preferences.user = user
+                alert.dismiss(animated: true, completion: {
+                    print(alert)
+                    self.setLabels()
+                })
+            } else {
+                alert.dismiss(animated: true, completion: {
+                    self.presentAlert(title: TRStrings.error.localizedString,
+                                      message: TRStrings.userNotRetrieved.localizedString)
+                })
+            }
+        }
+    }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class CreateTournamentController: UIViewController {
 
@@ -17,6 +18,7 @@ class CreateTournamentController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
 
     private let preferences = Preferences()
+    private var alert: UIAlertController?
     var tournament: Tournament?
 
     override func viewDidLoad() {
@@ -24,19 +26,14 @@ class CreateTournamentController: UIViewController {
         descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
         setTexts()
-        if let items = tabBarController?.tabBar.items {
-            items[0].title = TRStrings.home.localizedString
-            items[1].title = TRStrings.user.localizedString
-            items[2].title = TRStrings.create.localizedString
-        }
-    }
 
-    private func setTexts() {
-        descriptionField.text = TRStrings.enterDescription.localizedString
-        titleField.placeholder = TRStrings.enterTitle.localizedString
-        titleLabel.text = TRStrings.title.localizedString
-        self.title = TRStrings.createTournaments.localizedString
-        nextButton.setTitle(TRStrings.next.localizedString, for: .normal)
+        if let currUser = Auth.auth().currentUser {
+            if preferences.user.uid != currUser.uid {
+                loadUserPref(uid: currUser.uid)
+            }
+        } else {
+            userNotLogged()
+        }
     }
 
     @IBAction func nextTapped(_ sender: Any) {
@@ -74,9 +71,58 @@ class CreateTournamentController: UIViewController {
     }
 }
 
-//Used to handle keyboard dismiss and create a placeholder
-extension CreateTournamentController: UITextViewDelegate {
+// MARK: - UI & Preferences setup
+extension CreateTournamentController {
+    //sends user back to login screen
+    private func userNotLogged() {
+        if let alert = self.alert {
+            alert.dismiss(animated: true, completion: {
+                self.presentAlertDelay(title: TRStrings.error.localizedString,
+                                       message: TRStrings.notLogged.localizedString,
+                                       delay: 2.0, completion: {
+                                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                })
+            })
+        }
+    }
 
+    //loads user in preferences
+    private func loadUserPref(uid: String) {
+        alert = loadingAlert()
+        UserService.getUserInfo(uid: uid) { (userData) in
+            if let user = userData {
+                self.preferences.user = user
+                if let alert = self.alert {
+                    alert.dismiss(animated: true, completion: nil)
+                }
+            } else {
+                if let alert = self.alert {
+                    alert.dismiss(animated: true, completion: {
+                        self.presentAlert(title: TRStrings.error.localizedString,
+                                          message: TRStrings.userNotRetrieved.localizedString)
+                    })
+                }
+            }
+        }
+    }
+
+    //sets label texts
+    private func setTexts() {
+        descriptionField.text = TRStrings.enterDescription.localizedString
+        titleField.placeholder = TRStrings.enterTitle.localizedString
+        titleLabel.text = TRStrings.title.localizedString
+        self.title = TRStrings.createTournaments.localizedString
+        nextButton.setTitle(TRStrings.next.localizedString, for: .normal)
+        if let items = tabBarController?.tabBar.items {
+            items[0].title = TRStrings.home.localizedString
+            items[1].title = TRStrings.user.localizedString
+            items[2].title = TRStrings.create.localizedString
+        }
+    }
+}
+
+// MARK: - Keyboard dismiss and placeholders setup
+extension CreateTournamentController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1) {
             textView.text = nil
