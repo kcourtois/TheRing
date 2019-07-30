@@ -14,6 +14,8 @@ class CommentController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var commentView: UIView!
+    @IBOutlet weak var bottomComment: NSLayoutConstraint!
 
     var tid: String?
     private var comments: [Comment] = []
@@ -28,6 +30,32 @@ class CommentController: UIViewController {
                 self.tableView.reloadData()
             })
         }
+        setKeyboardObservers()
+    }
+
+    private func setKeyboardObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    @objc private func handleKeyboardWillShow(notification: Notification) {
+        let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+        let tabBarHeight = self.tabBarController!.tabBar.frame.size.height
+        let height = (keyboardFrame?.height)! - tabBarHeight
+        bottomComment.constant = height
+        self.view.layoutIfNeeded()
+    }
+
+    @objc private func handleKeyboardWillHide(notification: Notification) {
+        bottomComment.constant = 0
+        self.view.layoutIfNeeded()
     }
 
     @IBAction func sendComment(_ sender: Any) {
@@ -82,5 +110,9 @@ extension CommentController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         commentField.resignFirstResponder()
         return true
+    }
+
+    override func didChange(_ changeKind: NSKeyValueChange, valuesAt indexes: IndexSet, forKey key: String) {
+        print("hi")
     }
 }

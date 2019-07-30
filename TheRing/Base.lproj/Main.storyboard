@@ -137,9 +137,6 @@
                             <constraint firstItem="bvB-dE-8eW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="xYg-65-oO6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="OZn-Es-SBg" appends="YES" id="99x-Vq-rsX"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="accountLabel" destination="Ph2-xo-CjZ" id="zei-5V-iFC"/>
@@ -151,11 +148,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="OZn-Es-SBg">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="BYZ-38-t0r" id="zAh-Dj-731"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="54" y="21"/>
         </scene>
@@ -803,7 +795,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="687"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-3A-hB6">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1231.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1171.5"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="82x-cM-trc" customClass="TournamentView" customModule="TheRing" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
@@ -898,13 +890,6 @@
                                                     <segue destination="7rQ-Nm-ofF" kind="embed" identifier="commentSegue" id="xa3-04-grA"/>
                                                 </connections>
                                             </containerView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-Pd-Msn">
-                                                <rect key="frame" x="0.0" y="1171.5" width="320" height="60"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="60" id="yK4-Gw-2aa"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zAZ-dD-BAq">
@@ -1161,9 +1146,6 @@
                             <constraint firstItem="gUG-sr-RTK" firstAttribute="top" secondItem="wBG-C6-qwJ" secondAttribute="top" constant="20" id="sR7-jq-6vu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wBG-C6-qwJ"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="1DF-Pz-t4c" appends="YES" id="lHd-Xg-FtU"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="cancelButton" destination="sKY-g7-i4a" id="NQG-oI-Aq3"/>
@@ -1177,11 +1159,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVz-rv-0Yp" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="1DF-Pz-t4c">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="Ilv-1l-DID" id="Ofh-Py-ifA"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="54" y="793"/>
         </scene>
@@ -1218,6 +1195,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FYS-vS-8Nw">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="33.5"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="i7h-mZ-T47"/>
                                                 </constraints>
@@ -1234,7 +1212,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" textContentType="username"/>
                                                 <connections>
-                                                    <outlet property="delegate" destination="92b-7C-laQ" id="5qU-GN-jDv"/>
+                                                    <outlet property="delegate" destination="92b-7C-laQ" id="eef-6F-Hb8"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -1244,6 +1222,7 @@
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vlh-HI-H91" userLabel="Bio">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="337.5"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="UkC-NK-FJb"/>
                                                 </constraints>
@@ -1266,7 +1245,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="delegate" destination="92b-7C-laQ" id="Ub0-a1-CEo"/>
+                                                    <outlet property="delegate" destination="92b-7C-laQ" id="2lm-QO-Je2"/>
                                                 </connections>
                                             </textView>
                                         </subviews>
@@ -1315,11 +1294,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yy4-pn-RlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="LyT-xE-oPf">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="92b-7C-laQ" id="MtI-ZP-LBP"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2992.5" y="40"/>
         </scene>
@@ -1336,6 +1310,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="5ge-uP-mFt" id="bLB-B1-Vva"/>
+                                </connections>
                             </textField>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="FTW-9f-BNy">
                                 <rect key="frame" x="8" y="110" width="304" height="401"/>
@@ -1778,9 +1755,6 @@
                             <constraint firstItem="lr1-0W-H5C" firstAttribute="leading" secondItem="Hrn-Yl-Mta" secondAttribute="leading" constant="16" id="wO1-EL-yQb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Hrn-Yl-Mta"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="nQF-x3-d6E" appends="YES" id="kRW-aK-84W"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="pKp-NU-iF2">
                         <barButtonItem key="backBarButtonItem" title=" " id="sTQ-l0-X4J"/>
@@ -1806,11 +1780,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="daS-Zh-R31" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="nQF-x3-d6E">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="9Co-KT-uOk" id="uR1-mQ-4Ub"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2993" y="793"/>
         </scene>
@@ -1905,9 +1874,6 @@
                             <constraint firstItem="yPp-Cm-HmT" firstAttribute="top" secondItem="XJd-3y-ma4" secondAttribute="top" constant="16" id="gV5-m1-Rlg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="XJd-3y-ma4"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="Ppb-5o-RY3" appends="YES" id="bJN-0V-0RO"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Update email" id="eRT-LV-hYV">
                         <barButtonItem key="backBarButtonItem" title=" " id="Ulq-Ok-pbU"/>
@@ -1927,12 +1893,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6kV-px-imZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Ppb-5o-RY3">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="oUw-4s-hNM" id="cgP-Eg-F3P"/>
-                        <outlet property="delegate" destination="oUw-4s-hNM" id="TFT-c4-BLm"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3990" y="793"/>
         </scene>
@@ -2027,9 +1987,6 @@
                             <constraint firstItem="Afd-Uo-Lo9" firstAttribute="trailing" secondItem="2ma-PC-IHL" secondAttribute="trailing" constant="16" id="fM3-RB-rvi"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Afd-Uo-Lo9"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="zDL-cN-CzK" appends="YES" id="Hbe-LN-QLx"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Update password" id="SwD-Zo-bRT">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="ErV-U6-Zmp">
@@ -2048,11 +2005,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9fY-bp-JVZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="zDL-cN-CzK">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="E6D-5x-pzj" id="OjJ-BC-AkW"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4989" y="792"/>
         </scene>
@@ -2074,7 +2026,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8gc-r2-B7H">
-                                        <rect key="frame" x="0.0" y="32.5" width="256" height="417.5"/>
+                                        <rect key="frame" x="0.0" y="32.5" width="256" height="447.5"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" textLabel="JSS-JP-k2E" detailTextLabel="wqZ-BE-o9k" rowHeight="94" style="IBUITableViewCellStyleSubtitle" id="hEE-Au-rmW">
@@ -2107,11 +2059,16 @@
                                             <outlet property="dataSource" destination="7rQ-Nm-ofF" id="FgO-x6-2ut"/>
                                         </connections>
                                     </tableView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nDY-bz-7xT">
+                                <rect key="frame" x="0.0" y="466" width="288" height="34"/>
+                                <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zrr-w2-Djt">
-                                        <rect key="frame" x="0.0" y="450" width="256" height="30"/>
+                                        <rect key="frame" x="20" y="2" width="268" height="30"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOO-Ey-X3d">
-                                                <rect key="frame" x="0.0" y="0.0" width="191" height="30"/>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Type your comment here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qOO-Ey-X3d">
+                                                <rect key="frame" x="0.0" y="0.0" width="203" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -2120,7 +2077,7 @@
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ENd-nQ-Sjf">
-                                                <rect key="frame" x="201" y="0.0" width="55" height="30"/>
+                                                <rect key="frame" x="213" y="0.0" width="55" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="55" id="BHJ-X1-ex3"/>
                                                 </constraints>
@@ -2130,9 +2087,18 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </stackView>
                                 </subviews>
-                            </stackView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Zrr-w2-Djt" secondAttribute="bottom" constant="2" id="B9v-eK-arh"/>
+                                    <constraint firstItem="Zrr-w2-Djt" firstAttribute="leading" secondItem="nDY-bz-7xT" secondAttribute="leading" constant="20" symbolic="YES" id="EdD-yj-lW4"/>
+                                    <constraint firstAttribute="height" constant="34" id="NKv-6v-Uf7"/>
+                                    <constraint firstItem="Zrr-w2-Djt" firstAttribute="top" secondItem="nDY-bz-7xT" secondAttribute="top" constant="2" id="PhS-v4-LzV"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zrr-w2-Djt" secondAttribute="trailing" id="Zfa-lj-E8C"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <gestureRecognizers/>
@@ -2140,6 +2106,9 @@
                             <constraint firstAttribute="bottomMargin" secondItem="RpQ-3o-gK3" secondAttribute="bottom" id="BkL-NL-0vR"/>
                             <constraint firstItem="RpQ-3o-gK3" firstAttribute="leading" secondItem="WrM-tc-HDu" secondAttribute="leadingMargin" id="Rj3-d2-xnl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RpQ-3o-gK3" secondAttribute="trailing" id="SMm-Iw-8bI"/>
+                            <constraint firstItem="YCl-Aq-7iV" firstAttribute="bottom" secondItem="nDY-bz-7xT" secondAttribute="bottom" id="f0g-B5-OvD"/>
+                            <constraint firstItem="nDY-bz-7xT" firstAttribute="leading" secondItem="YCl-Aq-7iV" secondAttribute="leading" id="fjo-Ie-VZt"/>
+                            <constraint firstItem="YCl-Aq-7iV" firstAttribute="trailing" secondItem="nDY-bz-7xT" secondAttribute="trailing" id="qYy-7C-zri"/>
                             <constraint firstItem="RpQ-3o-gK3" firstAttribute="top" secondItem="WrM-tc-HDu" secondAttribute="topMargin" id="sGh-w0-AAR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YCl-Aq-7iV"/>
@@ -2149,7 +2118,9 @@
                     </view>
                     <size key="freeformSize" width="288" height="500"/>
                     <connections>
+                        <outlet property="bottomComment" destination="f0g-B5-OvD" id="O1O-dG-lBl"/>
                         <outlet property="commentField" destination="qOO-Ey-X3d" id="jb6-XD-C5b"/>
+                        <outlet property="commentView" destination="nDY-bz-7xT" id="o37-2e-JtS"/>
                         <outlet property="sendButton" destination="ENd-nQ-Sjf" id="JtS-SG-iCk"/>
                         <outlet property="tableView" destination="8gc-r2-B7H" id="qf3-36-WBh"/>
                         <outlet property="titleLabel" destination="ED5-dp-mCU" id="Lua-hM-Ibp"/>

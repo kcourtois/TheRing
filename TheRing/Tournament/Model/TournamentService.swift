@@ -62,7 +62,7 @@ class TournamentService {
                 let description = value?["description"] as? String,
                 let startTime = value?["startTime"] as? String,
                 let creator = value?["creator"] as? String {
-                if let date = stringToDate(str: startTime) {
+                if let date = DateFormatting.stringToDate(str: startTime) {
                     completion(Tournament(tid: tid, title: title, description: description, contestants: [],
                                           startTime: date, roundDuration: 0, creator: creator))
                 } else {
@@ -109,7 +109,7 @@ class TournamentService {
             for case let data as DataSnapshot in snapshot.children {
                 let value = data.value as? NSDictionary
                 if let endDate = value?["endDate"] as? String {
-                    if let end = stringToDate(str: endDate) {
+                    if let end = DateFormatting.stringToDate(str: endDate) {
                         rounds.append(Round(rid: data.key, endDate: end))
                     }
                 }
@@ -298,7 +298,7 @@ extension TournamentService {
                                 completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         let pref = Preferences()
-        guard let date = dateToString(date: Date()) else {
+        guard let date = DateFormatting.dateToString(date: Date()) else {
             return
         }
         let values = ["uid": pref.user.uid, "username": pref.user.name, "comment": comment, "date": date]
@@ -345,22 +345,10 @@ extension TournamentService {
         let date = calendar.date(byAdding: .day, value: duration, to: start)
 
         if let result = date {
-            return dateToString(date: result)
+            return DateFormatting.dateToString(date: result)
         } else {
             return nil
         }
-    }
-
-    static private func dateToString(date: Date) -> String? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        return dateFormatter.string(from: date)
-    }
-
-    static private func stringToDate(str: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        return dateFormatter.date(from: str)
     }
 
     //return powered result (ex pow(2,4) = 16)

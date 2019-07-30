@@ -27,6 +27,7 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
         setFields()
         setTexts()
+        hideKeyboardWhenTappedAround()
     }
 
     private func setTexts() {

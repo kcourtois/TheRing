@@ -41,6 +41,8 @@
 		9E4F968B22EBB183006959FF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968A22EBB183006959FF /* UserCell.swift */; };
 		9E4F968D22EBB453006959FF /* UserListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968C22EBB453006959FF /* UserListType.swift */; };
 		9E4F968F22EBB5B6006959FF /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968E22EBB5B6006959FF /* UserDetailController.swift */; };
+		9E4F969422EF4353006959FF /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969322EF4353006959FF /* DateFormatting.swift */; };
+		9E4F969622F00F12006959FF /* TapDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969522F00F12006959FF /* TapDismiss.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -117,6 +119,8 @@
 		9E4F968A22EBB183006959FF /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		9E4F968C22EBB453006959FF /* UserListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListType.swift; sourceTree = "<group>"; };
 		9E4F968E22EBB5B6006959FF /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
+		9E4F969322EF4353006959FF /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
+		9E4F969522F00F12006959FF /* TapDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapDismiss.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 				9E064E4322CB06FB009FE905 /* FirebaseExtension.swift */,
 				9EA2719222C38CA500AAC06B /* AlertExtension.swift */,
 				9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */,
+				9E4F969522F00F12006959FF /* TapDismiss.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -234,6 +239,7 @@
 				9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */,
 				9E334E3822D873CD00CB3257 /* FirebaseAuthService.swift */,
 				9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */,
+				9E4F969322EF4353006959FF /* DateFormatting.swift */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -660,12 +666,14 @@
 				9EFE1FDC22D479BD003A0410 /* MovieCell.swift in Sources */,
 				9E4F968422EBA1F5006959FF /* UserListController.swift in Sources */,
 				9EA2719722C48AD900AAC06B /* TRUser.swift in Sources */,
+				9E4F969622F00F12006959FF /* TapDismiss.swift in Sources */,
 				9E4F968D22EBB453006959FF /* UserListType.swift in Sources */,
 				9EFE1FDE22D4BDB7003A0410 /* Tournament.swift in Sources */,
 				9EFE1FCC22D35F9D003A0410 /* TournamentDateController.swift in Sources */,
 				9E064E3722C7A53F009FE905 /* PasswordController.swift in Sources */,
 				9E334E4822DDCF7D00CB3257 /* TournamentCell.swift in Sources */,
 				9E4F968B22EBB183006959FF /* UserCell.swift in Sources */,
+				9E4F969422EF4353006959FF /* DateFormatting.swift in Sources */,
 				9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */,
 				9E4F968F22EBB5B6006959FF /* UserDetailController.swift in Sources */,
 				9EA2719922C4E1E400AAC06B /* ProfileController.swift in Sources */,

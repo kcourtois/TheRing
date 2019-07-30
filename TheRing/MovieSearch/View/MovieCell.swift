@@ -17,8 +17,23 @@ class MovieCell: UITableViewCell {
 
     func configure(movie: Movie) {
         title.text = movie.title
-        detail.text = movie.release_date
+        detail.text = "\(TRStrings.releaseDate.localizedString): \(localizedDetail(from: movie.release_date))"
         let url = URL(string: movie.image)
         poster.kf.setImage(with: url)
+    }
+
+    //func to localize release date
+    private func localizedDetail(from string: String) -> String {
+        if let date = DateFormatting.yearMonthDayStrToDate(str: string) {
+            let dateStr = DateFormatting.dateToLocalizedString(date: date)
+            let final = String(dateStr.split(separator: " ")[0])
+            if final.last == "," {
+                return String(final.prefix(final.count-1))
+            } else {
+                return final
+            }
+        } else {
+            return string
+        }
     }
 }

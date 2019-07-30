@@ -17,6 +17,7 @@ class SearchMovieController: UIViewController {
     weak var searchMovieDelegate: SearchMovieDelegate?
 
     override func viewDidLoad() {
+        hideKeyboardWhenTappedAround()
         searchMovies()
         self.title = TRStrings.pickContestant.localizedString
     }
@@ -83,6 +84,15 @@ extension SearchMovieController: UITableViewDelegate {
         navigationController?.popViewController(animated: true)
     }
 }
+
+// MARK: - Keyboard dismiss and placeholders setup
+extension SearchMovieController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
+    }
+}
+
 
 protocol SearchMovieDelegate: class {
     func passMovie(movie: Movie)

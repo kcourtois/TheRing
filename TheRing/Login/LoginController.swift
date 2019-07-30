@@ -20,6 +20,7 @@ class LoginController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         setTexts()
         //Skip login page if user signed in FOR TEST PURPOSES
         if Auth.auth().currentUser != nil {

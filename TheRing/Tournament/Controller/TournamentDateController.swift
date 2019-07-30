@@ -40,7 +40,7 @@ class TournamentDateController: UIViewController {
         updateTournament()
         if var tournament = tournament { //Put let instead of var
             //remove next line
-            tournament.startTime = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
+            //tournament.startTime = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
             TournamentService.createTournament(tournament: tournament) { (error) in
                 if let error = error {
                     self.presentAlert(title: "Test", message: error)

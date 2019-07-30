@@ -22,6 +22,7 @@ class EmailController: UIViewController {
 
     override func viewDidLoad() {
         setTexts()
+        hideKeyboardWhenTappedAround()
     }
 
     private func setTexts() {
@@ -119,11 +120,6 @@ extension EmailController {
 
 // MARK: - Keyboard
 extension EmailController: UITextFieldDelegate {
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        passwordField.resignFirstResponder()
-        newEmailField.resignFirstResponder()
-        confirmEmailField.resignFirstResponder()
-    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         passwordField.resignFirstResponder()
         newEmailField.resignFirstResponder()

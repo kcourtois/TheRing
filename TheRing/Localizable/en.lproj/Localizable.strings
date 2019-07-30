@@ -113,6 +113,8 @@
 "SUBSCRIBE" = "Subscribe";
 "UNSUBSCRIBE" = "Unsubscribe";
 "SETTINGS" = "Settings";
+"SHARE_TOURNAMENT" = "Come see this tournament and many others on The Ring !";
+"ENDED" = "Ended";
 
 //GENRES
 "ACTION" = "Action";

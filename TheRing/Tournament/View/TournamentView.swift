@@ -45,8 +45,14 @@ class TournamentView: UIView {
                 contestantImg[index].kf.setImage(with: URL(string: tournament.contestants[index].image))
             }
 
-            roundLabel.text = "\(TRStrings.round.localizedString) \(idx+1)"
-            endDateLabel.text = "\(TRStrings.endsOn.localizedString) \(tournament.rounds[idx].endDate)"
+            if Date() > tournament.rounds[idx].endDate {
+                roundLabel.text = "\(TRStrings.round.localizedString) \(idx+2)"
+                endDateLabel.text = "\(TRStrings.ended.localizedString)"
+            } else {
+                roundLabel.text = "\(TRStrings.round.localizedString) \(idx+1)"
+                endDateLabel.text = "\(TRStrings.endsOn.localizedString) " +
+                DateFormatting.dateToLocalizedString(date: tournament.rounds[idx].endDate)
+            }
             titleLabel.text = tournament.title
         }
     }
@@ -57,20 +63,20 @@ class TournamentView: UIView {
         }
         if cids[0] == tournament.contestants[0].cid && cids[1] == tournament.contestants[2].cid {
             stage1.image = #imageLiteral(resourceName: "n1-LL")
-            contestantImg[4].image = contestantImg[0].image
-            contestantImg[5].image = contestantImg[2].image
+            contestantImg[4].kf.setImage(with: URL(string: tournament.contestants[0].image))
+            contestantImg[5].kf.setImage(with: URL(string: tournament.contestants[2].image))
         } else if cids[0] == tournament.contestants[0].cid && cids[1] == tournament.contestants[3].cid {
             stage1.image = #imageLiteral(resourceName: "n1-LR")
-            contestantImg[4].image = contestantImg[0].image
-            contestantImg[5].image = contestantImg[3].image
+            contestantImg[4].kf.setImage(with: URL(string: tournament.contestants[0].image))
+            contestantImg[5].kf.setImage(with: URL(string: tournament.contestants[3].image))
         } else if cids[0] == tournament.contestants[1].cid && cids[1] == tournament.contestants[3].cid {
             stage1.image = #imageLiteral(resourceName: "n1-RR")
-            contestantImg[4].image = contestantImg[1].image
-            contestantImg[5].image = contestantImg[3].image
+            contestantImg[4].kf.setImage(with: URL(string: tournament.contestants[1].image))
+            contestantImg[5].kf.setImage(with: URL(string: tournament.contestants[3].image))
         } else if cids[0] == tournament.contestants[1].cid && cids[1] == tournament.contestants[2].cid {
             stage1.image = #imageLiteral(resourceName: "n1-RL")
-            contestantImg[4].image = contestantImg[1].image
-            contestantImg[5].image = contestantImg[2].image
+            contestantImg[4].kf.setImage(with: URL(string: tournament.contestants[1].image))
+            contestantImg[5].kf.setImage(with: URL(string: tournament.contestants[2].image))
         }
     }
 
@@ -80,7 +86,7 @@ class TournamentView: UIView {
         }
 
         for (index, contestant) in tournament.contestants.enumerated() where cid == contestant.cid {
-            contestantImg[6].image = contestantImg[index].image
+            contestantImg[6].kf.setImage(with: URL(string: tournament.contestants[index].image))
             stage2.image = index < tournament.contestants.count/2 ? #imageLiteral(resourceName: "n2-L") : #imageLiteral(resourceName: "n2-R")
             stage3.image = #imageLiteral(resourceName: "n3-1")
         }

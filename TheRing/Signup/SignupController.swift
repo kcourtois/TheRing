@@ -23,6 +23,11 @@ class SignupController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
+        setTexts()
+    }
+
+    private func setTexts() {
         descLabel.text = TRStrings.signUpDesc.localizedString
         emailField.placeholder = TRStrings.emailAddress.localizedString
         passwordField.placeholder = TRStrings.password.localizedString

@@ -113,6 +113,8 @@
 "SUBSCRIBE" = "S'abonner";
 "UNSUBSCRIBE" = "Se désabonner";
 "SETTINGS" = "Options";
+"SHARE_TOURNAMENT" = "Venez voir ce tournoi et plein d'autres sur The Ring !";
+"ENDED" = "Terminé";
 
 //GENRES
 "ACTION" = "Action";

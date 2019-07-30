@@ -40,9 +40,7 @@ class TournamentDetailController: UIViewController {
     }
 
     @IBAction func shareTapped(_ sender: Any) {
-        if checkPermission() {
-            shareTournament()
-        }
+        checkPermission()
     }
 
     //Triggers on notification didTapImage
@@ -203,13 +201,18 @@ class TournamentDetailController: UIViewController {
         self.title = TRStrings.tournament.localizedString
         guard let tournament = tournament else { return }
         descDataLabel.text = tournament.description
-        startTimeDataLabel.text = "\(tournament.startTime)"
+        startTimeDataLabel.text = DateFormatting.dateToLocalizedString(date: tournament.startTime)
         creatorDataLabel.text = tournament.creator.name
     }
 
     //Present view to user for image share
     private func shareTournament() {
-        let items = [getTournamentAsImage()]
+        guard let url = URL(string: "https://github.com/kcourtois/TheRing") else {
+            presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
+            return
+        }
+        let text = TRStrings.shareTournament.localizedString
+        let items = [text, url, getTournamentAsImage()] as [Any]
         let act = UIActivityViewController(activityItems: items, applicationActivities: nil)
         act.completionWithItemsHandler = { activity, completed, items, error in
             if !completed {
@@ -224,12 +227,15 @@ class TournamentDetailController: UIViewController {
         present(act, animated: true, completion: nil)
     }
 
-    //TODO Essayer ce share sur mon iphone
     private func shareWithUrlAndText() {
-        let text = "This is the text...."
+        guard let url = URL(string: "https://github.com/kcourtois/TheRing") else {
+            presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
+            return
+        }
+        let text = TRStrings.shareTournament.localizedString
         let image = getTournamentAsImage()
-        let myWebsite = URL(string: "https://github.com/kcourtois/TheRing")
-        let shareAll = [text, image, myWebsite!] as [Any]
+
+        let shareAll = [text, image, url] as [Any]
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
         self.present(activityViewController, animated: true, completion: nil)
@@ -257,22 +263,26 @@ class TournamentDetailController: UIViewController {
 
 extension TournamentDetailController {
     //Check photo library permission
-    private func checkPermission() -> Bool {
+    private func checkPermission() {
         let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
         switch photoAuthorizationStatus {
         case .authorized:
-            return true
+            shareWithUrlAndText()
         case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { _ in }
-            return checkPermission()
+            PHPhotoLibrary.requestAuthorization { result in
+                if result == .authorized {
+                    self.presentAlert(title: "Permission accordée",
+                                      message: "Vous pouvez maintenant partager les tournois.")
+                } else {
+                    self.presentPermissionDeniedAlert()
+                }
+            }
         case .restricted:
             presentPermissionDeniedAlert()
-            return false
         case .denied:
             presentPermissionDeniedAlert()
-            return false
         @unknown default:
-            return false
+            presentPermissionDeniedAlert()
         }
     }
 

@@ -152,6 +152,8 @@ enum TRStrings: LocalizedString {
     case subscribe = "SUBSCRIBE"
     case unsubscribe = "UNSUBSCRIBE"
     case settings = "SETTINGS"
+    case shareTournament = "SHARE_TOURNAMENT"
+    case ended = "ENDED"
 
     var localizedString: String {
         return self.rawValue.val

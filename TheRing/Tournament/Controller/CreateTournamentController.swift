@@ -34,6 +34,8 @@ class CreateTournamentController: UIViewController {
         } else {
             userNotLogged()
         }
+
+        hideKeyboardWhenTappedAround()
     }
 
     @IBAction func nextTapped(_ sender: Any) {
@@ -122,7 +124,7 @@ extension CreateTournamentController {
 }
 
 // MARK: - Keyboard dismiss and placeholders setup
-extension CreateTournamentController: UITextViewDelegate {
+extension CreateTournamentController: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1) {
             textView.text = nil
@@ -137,7 +139,8 @@ extension CreateTournamentController: UITextViewDelegate {
         }
     }
 
-    @IBAction func dismissKeyboard(_ sender: Any) {
-        descriptionField.resignFirstResponder()
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }

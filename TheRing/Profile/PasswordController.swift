@@ -22,6 +22,7 @@ class PasswordController: UIViewController {
 
     override func viewDidLoad() {
         setTexts()
+        hideKeyboardWhenTappedAround()
     }
 
     private func setTexts() {
@@ -84,11 +85,6 @@ extension PasswordController {
 
 // MARK: - Keyboard
 extension PasswordController: UITextFieldDelegate {
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        oldPasswordField.resignFirstResponder()
-        newPasswordField.resignFirstResponder()
-        confirmField.resignFirstResponder()
-    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         oldPasswordField.resignFirstResponder()
         newPasswordField.resignFirstResponder()
