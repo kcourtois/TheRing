@@ -18,7 +18,6 @@ class CreateTournamentController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
 
     private let preferences = Preferences()
-    private var alert: UIAlertController?
     var tournament: Tournament?
 
     override func viewDidLoad() {
@@ -77,33 +76,25 @@ class CreateTournamentController: UIViewController {
 extension CreateTournamentController {
     //sends user back to login screen
     private func userNotLogged() {
-        if let alert = self.alert {
-            alert.dismiss(animated: true, completion: {
-                self.presentAlertDelay(title: TRStrings.error.localizedString,
-                                       message: TRStrings.notLogged.localizedString,
-                                       delay: 2.0, completion: {
-                                        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-                })
-            })
-        }
+        self.presentAlertDelay(title: TRStrings.error.localizedString,
+                               message: TRStrings.notLogged.localizedString,
+                               delay: 2.0, completion: {
+                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        })
     }
 
     //loads user in preferences
     private func loadUserPref(uid: String) {
-        alert = loadingAlert()
+        let alert = loadingAlert()
         UserService.getUserInfo(uid: uid) { (userData) in
             if let user = userData {
                 self.preferences.user = user
-                if let alert = self.alert {
-                    alert.dismiss(animated: true, completion: nil)
-                }
+                alert.dismiss(animated: true, completion: nil)
             } else {
-                if let alert = self.alert {
-                    alert.dismiss(animated: true, completion: {
-                        self.presentAlert(title: TRStrings.error.localizedString,
-                                          message: TRStrings.userNotRetrieved.localizedString)
-                    })
-                }
+                alert.dismiss(animated: true, completion: {
+                    self.presentAlert(title: TRStrings.error.localizedString,
+                                      message: TRStrings.userNotRetrieved.localizedString)
+                })
             }
         }
     }

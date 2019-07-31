@@ -12,6 +12,7 @@ class UserListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     private var users: [TRUser] = []
     var userType: UserListType?
+    var userTapped: TRUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +38,14 @@ class UserListController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "DetailUserSegue",
             let userDetailVC = segue.destination as? UserDetailController,
-            let userIndex = tableView.indexPathForSelectedRow?.row else {
+            let theUser = userTapped else {
                 return
         }
-        UserService.getUserInfo(uid: users[userIndex].uid) { (user) in
-            userDetailVC.user = user
+        userDetailVC.user = theUser
+        if let userType = userType {
+            if userType == .subscriptions {
+                userDetailVC.subbed = true
+            }
         }
     }
 }
@@ -71,6 +75,9 @@ extension UserListController: UITableViewDataSource {
 
 extension UserListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "DetailUserSegue", sender: self)
+        UserService.getUserInfo(uid: users[indexPath.row].uid) { (user) in
+            self.userTapped = user
+            self.performSegue(withIdentifier: "DetailUserSegue", sender: self)
+        }
     }
 }

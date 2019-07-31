@@ -138,7 +138,6 @@ extension UserController {
             if let user = userData {
                 self.preferences.user = user
                 alert.dismiss(animated: true, completion: {
-                    print(alert)
                     self.setLabels()
                 })
             } else {

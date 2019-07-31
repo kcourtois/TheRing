@@ -23,6 +23,15 @@ class UserDetailController: UIViewController {
     @IBOutlet weak var subscribeButton: UIButton!
 
     var user: TRUser?
+    var subbed: Bool = false {
+        didSet {
+            if subbed {
+                self.subscribeButton.setTitle(TRStrings.unsubscribe.localizedString, for: .normal)
+            } else {
+                self.subscribeButton.setTitle(TRStrings.subscribe.localizedString, for: .normal)
+            }
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,6 +40,18 @@ class UserDetailController: UIViewController {
     }
 
     @IBAction func subscribeTapped(_ sender: Any) {
+        if let user = user {
+            if subbed {
+                UserService.unsubToUser(uid: user.uid)
+            } else {
+                UserService.subToUser(uid: user.uid) { (error) in
+                    if let error = error {
+                        self.presentAlert(title: TRStrings.error.localizedString, message: error)
+                    }
+                }
+            }
+            subbed = !subbed
+        }
     }
 
     private func setDescs() {
@@ -40,7 +61,6 @@ class UserDetailController: UIViewController {
             self.genderDesc.text = user.gender.asString
             self.bioDesc.text = user.bio
             self.title = user.name
-            self.subscribeButton.setTitle(TRStrings.subscribe.localizedString, for: .normal)
             UserService.getSubsciptionsCount(uid: user.uid) { (num) in
                 if let num = num {
                     self.subscriptionsDesc.text = "\(num)"
@@ -50,6 +70,9 @@ class UserDetailController: UIViewController {
                 if let num = num {
                     self.subscribersDesc.text = "\(num)"
                 }
+            }
+            UserService.isUserSubbedToUid(uid: user.uid) { (isSubbed) in
+                self.subbed = isSubbed
             }
         }
     }

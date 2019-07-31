@@ -593,16 +593,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="tEA-ke-CWf">
-                                                    <rect key="frame" x="8" y="8" width="304" height="75.5"/>
+                                                    <rect key="frame" x="16" y="8" width="288" height="75.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dCs-MU-Umb" userLabel="Email">
-                                                            <rect key="frame" x="0.0" y="0.0" width="304" height="21.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="21.5"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="desc" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnk-Q2-RlP" userLabel="Email">
-                                                            <rect key="frame" x="0.0" y="56.5" width="304" height="19"/>
+                                                            <rect key="frame" x="0.0" y="56.5" width="288" height="19"/>
                                                             <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -611,9 +611,9 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="tEA-ke-CWf" secondAttribute="trailing" constant="8" id="2j4-Za-0jw"/>
+                                                <constraint firstAttribute="trailing" secondItem="tEA-ke-CWf" secondAttribute="trailing" constant="16" id="2j4-Za-0jw"/>
                                                 <constraint firstItem="tEA-ke-CWf" firstAttribute="top" secondItem="jID-B5-TLZ" secondAttribute="top" constant="8" id="ADc-Eh-5f0"/>
-                                                <constraint firstItem="tEA-ke-CWf" firstAttribute="leading" secondItem="jID-B5-TLZ" secondAttribute="leading" constant="8" id="Kov-jU-l9s"/>
+                                                <constraint firstItem="tEA-ke-CWf" firstAttribute="leading" secondItem="jID-B5-TLZ" secondAttribute="leading" constant="16" id="Kov-jU-l9s"/>
                                                 <constraint firstAttribute="bottom" secondItem="tEA-ke-CWf" secondAttribute="bottom" constant="8" id="v2e-jx-zRb"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -624,8 +624,8 @@
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
-                                    <outlet property="dataSource" destination="ULo-Xc-afY" id="3Vz-fd-VjB"/>
-                                    <outlet property="delegate" destination="ULo-Xc-afY" id="MYM-a4-rUb"/>
+                                    <outlet property="dataSource" destination="Sne-Va-JEi" id="YQG-1x-8L2"/>
+                                    <outlet property="delegate" destination="Sne-Va-JEi" id="7aK-GY-0Vv"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -2143,7 +2143,7 @@
                                 <rect key="frame" x="32" y="291" width="256" height="34"/>
                                 <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
-                                <state key="normal" title="Subscribe">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -2196,7 +2196,7 @@
         <image name="xuan-nguyen-725109-unsplash" width="5024" height="3349"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aOK-rP-b17"/>
+        <segue reference="zMa-SI-6oa"/>
         <segue reference="572-hB-pf5"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

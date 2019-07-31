@@ -1,5 +1,7 @@
 # The Ring
-The Ring is a social app where you can create contests and vote for a winner.
+The Ring is a social app where you can create movie contests and vote for a winner.  
+I use TMDB API for all the movie searching part, and to gather movie data.
+[If you want to hear more about it, check their website.](https://www.themoviedb.org/)
 
 [![Build Status](https://travis-ci.com/kcourtois/TheRing.svg?branch=master)](https://travis-ci.com/kcourtois/TheRing) [![codecov](https://codecov.io/gh/kcourtois/TheRing/branch/master/graph/badge.svg)](https://codecov.io/gh/kcourtois/TheRing)
 
@@ -20,10 +22,12 @@ Here, 4 movies were listed. Movie 1 and 4 were the winners of the first round, a
 - [x] Create an account
 - [x] Login
 - [x] User profile (with possibility to update data)
-- [ ] Friends system
+- [x] Friends system
 - [x] Create a tournament
-- [ ] Consult tournaments
-- [ ] Share them
-- [ ] Vote
-- [ ] Comments on tournaments
+- [x] Consult tournaments
+- [x] Share them
+- [x] Vote
+- [x] Comments on tournaments
 - [x] Support of french language
+- [ ] Tournament search by titles
+- [ ] Home feed

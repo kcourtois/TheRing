@@ -124,9 +124,49 @@ class UserService {
     }
 
     //returns subscribers count for given user
+    static func isUserSubbedToUid(uid: String, completion: @escaping (Bool) -> Void) {
+        let reference = Database.database().reference()
+        let user = Preferences().user.uid
+        reference.child("user_subscriptions").child(user).child(uid).observeSingleEvent(of: .value,
+                                                                                            with: { (snapshot) in
+            print("uid \(uid) subbed \(snapshot.exists())")
+            if snapshot.exists() {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        })
+    }
+
+    //sub current user to provided user
+    static func subToUser(uid: String, completion: @escaping (String?) -> Void) {
+        registerSubscription(uid: uid) { (error) in
+            if let error = error {
+                completion(error)
+                return
+            } else {
+                registerSubscriber(uid: uid, completion: { (error) in
+                    if let error = error {
+                        completion(error)
+                        return
+                    } else {
+                        completion(nil)
+                    }
+                })
+            }
+        }
+    }
+
+    //sub current user to provided user
+    static func unsubToUser(uid: String) {
+        unregisterSubscription(uid: uid)
+        unregisterSubscriber(uid: uid)
+    }
+
+    //returns subscribers count for given user
     static func getSubscribersCount(uid: String, completion: @escaping (UInt?) -> Void) {
         let reference = Database.database().reference()
-        reference.child("username_subscribers").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        reference.child("user_subscribers").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             completion(snapshot.childrenCount)
         })
         completion(nil)
@@ -135,7 +175,7 @@ class UserService {
     //returns subscriptions count for given user
     static func getSubsciptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
         let reference = Database.database().reference()
-        reference.child("username_subscriptions").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+        reference.child("user_subscriptions").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             completion(snapshot.childrenCount)
         })
         completion(nil)
@@ -143,21 +183,33 @@ class UserService {
 
     static private func registerSubscriber(uid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
-        let pref = Preferences()
-        let values = [pref.user.uid: pref.user.uid]
+        let user = Preferences().user.uid
+        let values = [user: user]
         reference.child("user_subscribers").child(uid).updateChildValues(values,
                                                                          withCompletionBlock: { (error, _) in
             completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
 
+    static private func unregisterSubscriber(uid: String) {
+        let reference = Database.database().reference()
+        let user = Preferences().user.uid
+        reference.child("user_subscribers").child(uid).child(user).removeValue()
+    }
+
     static private func registerSubscription(uid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
-        let currId = Preferences().user.uid
+        let user = Preferences().user.uid
         let values = [uid: uid]
-        reference.child("user_subscriptions").child(currId).updateChildValues(values,
+        reference.child("user_subscriptions").child(user).updateChildValues(values,
                                                                               withCompletionBlock: { (error, _) in
             completion(FirebaseAuthService.getAuthError(error: error))
         })
+    }
+
+    static private func unregisterSubscription(uid: String) {
+        let reference = Database.database().reference()
+        let user = Preferences().user.uid
+        reference.child("user_subscriptions").child(user).child(uid).removeValue()
     }
 }
