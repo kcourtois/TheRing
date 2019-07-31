@@ -118,6 +118,7 @@
 "SHARE_TOURNAMENT" = "Venez voir ce tournoi et plein d'autres sur The Ring !";
 "ENDED" = "Terminé";
 "SCANNER" = "Scanneur";
+"SEARCH" = "Recherche";
 
 //GENRES
 "ACTION" = "Action";

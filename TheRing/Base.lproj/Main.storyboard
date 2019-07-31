@@ -850,7 +850,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7T-Jn-t1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021" y="-1818"/>
+            <point key="canvasLocation" x="2019" y="-2321"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cM1-og-TVB">
@@ -867,6 +867,7 @@
                         <segue destination="dkz-mk-nab" kind="relationship" relationship="viewControllers" id="h3h-13-Nig"/>
                         <segue destination="ecx-z1-0hs" kind="relationship" relationship="viewControllers" id="PBr-qi-NX9"/>
                         <segue destination="8AC-Ni-tUT" kind="relationship" relationship="viewControllers" id="10e-o4-yYH"/>
+                        <segue destination="55C-7i-rfY" kind="relationship" relationship="viewControllers" id="BJA-J0-LuO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIJ-fJ-gck" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1166,6 +1167,128 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yy4-pn-RlJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2992.5" y="40"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="fg5-pg-RNq">
+            <objects>
+                <viewController id="zqx-uc-xBK" customClass="SearchController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wds-PF-TPP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gki-K0-16y">
+                                <rect key="frame" x="272" y="72" width="40" height="30"/>
+                                <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="d72-YF-geG"/>
+                                </constraints>
+                                <state key="normal" title="Go !">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-HM-Npq">
+                                <rect key="frame" x="8" y="110" width="304" height="401"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TournamentCell" rowHeight="92" id="dGO-Bh-gic" customClass="TournamentCell" customModule="TheRing" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="304" height="92"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dGO-Bh-gic" id="zIh-Pk-4Mm">
+                                            <rect key="frame" x="0.0" y="0.0" width="304" height="91.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="fF6-Pz-9fn">
+                                                    <rect key="frame" x="8" y="8" width="288" height="75.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="751" text="title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMA-tu-SKa" userLabel="Email">
+                                                            <rect key="frame" x="0.0" y="0.0" width="288" height="21.5"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="desc" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgw-yO-Otq" userLabel="Email">
+                                                            <rect key="frame" x="0.0" y="56.5" width="288" height="19"/>
+                                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="fF6-Pz-9fn" secondAttribute="bottom" constant="8" id="Fda-uC-ymc"/>
+                                                <constraint firstItem="fF6-Pz-9fn" firstAttribute="top" secondItem="zIh-Pk-4Mm" secondAttribute="top" constant="8" id="OnI-JU-b0k"/>
+                                                <constraint firstItem="fF6-Pz-9fn" firstAttribute="leading" secondItem="zIh-Pk-4Mm" secondAttribute="leading" constant="8" id="oHX-aZ-CRP"/>
+                                                <constraint firstAttribute="trailing" secondItem="fF6-Pz-9fn" secondAttribute="trailing" constant="8" id="wwR-3W-VKc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="descriptionLabel" destination="Lgw-yO-Otq" id="XfB-JT-5Wk"/>
+                                            <outlet property="titleLabel" destination="wMA-tu-SKa" id="PMw-a3-nVP"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="zqx-uc-xBK" id="xRl-aR-EtU"/>
+                                    <outlet property="delegate" destination="zqx-uc-xBK" id="oub-9J-ZvM"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Research" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="iXA-mK-0II">
+                                <rect key="frame" x="8" y="72" width="256" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zqx-uc-xBK" id="cV2-sF-t0T"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ml2-HM-Npq" firstAttribute="top" secondItem="iXA-mK-0II" secondAttribute="bottom" constant="8" id="5zq-or-iS5"/>
+                            <constraint firstItem="iXA-mK-0II" firstAttribute="top" secondItem="bpU-VB-dka" secondAttribute="top" constant="8" id="JUb-GY-qyf"/>
+                            <constraint firstItem="bpU-VB-dka" firstAttribute="trailing" secondItem="ml2-HM-Npq" secondAttribute="trailing" constant="8" id="LgM-og-9tw"/>
+                            <constraint firstItem="iXA-mK-0II" firstAttribute="leading" secondItem="bpU-VB-dka" secondAttribute="leading" constant="8" id="Ogg-3h-6PN"/>
+                            <constraint firstItem="gki-K0-16y" firstAttribute="top" secondItem="bpU-VB-dka" secondAttribute="top" constant="8" id="Ovf-IR-zZj"/>
+                            <constraint firstItem="gki-K0-16y" firstAttribute="leading" secondItem="iXA-mK-0II" secondAttribute="trailing" constant="8" id="Q9w-9l-kki"/>
+                            <constraint firstItem="bpU-VB-dka" firstAttribute="trailing" secondItem="gki-K0-16y" secondAttribute="trailing" constant="8" id="Y1m-fL-xzS"/>
+                            <constraint firstItem="ml2-HM-Npq" firstAttribute="leading" secondItem="bpU-VB-dka" secondAttribute="leading" constant="8" id="b8b-Cx-hWn"/>
+                            <constraint firstItem="bpU-VB-dka" firstAttribute="bottom" secondItem="ml2-HM-Npq" secondAttribute="bottom" constant="8" id="fA8-du-2VT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bpU-VB-dka"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="zqe-ts-3Gz"/>
+                    <connections>
+                        <outlet property="searchBar" destination="iXA-mK-0II" id="h3l-8l-YmY"/>
+                        <outlet property="tableView" destination="ml2-HM-Npq" id="TAc-d4-psd"/>
+                        <segue destination="W1Y-nB-SYu" kind="show" identifier="DetailTournamentSegue" id="6Nj-ej-58f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E82-IX-PTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2993" y="-1469"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GsM-4O-pNJ">
+            <objects>
+                <navigationController id="55C-7i-rfY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="search" id="vfu-F8-6Pp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kEN-bb-wTI">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="zqx-uc-xBK" kind="relationship" relationship="rootViewController" id="AFy-BN-nbU"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TPj-nj-TrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2021" y="-1469"/>
         </scene>
         <!--Pick a contestant-->
         <scene sceneID="tZf-nr-W4z">
@@ -2008,7 +2131,6 @@
         <!--username-->
         <scene sceneID="h6t-N0-Lwq">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wyg-fe-9g6" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="gPN-TO-rPS" customClass="UserDetailController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4BL-W9-c51">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -2185,6 +2307,7 @@
                         <outlet property="usernameDesc" destination="oBc-eu-sCd" id="bLJ-yt-DAe"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wyg-fe-9g6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1163" y="2612"/>
         </scene>
@@ -2192,12 +2315,14 @@
     <resources>
         <image name="home" width="25" height="25"/>
         <image name="plus" width="25" height="25"/>
+        <image name="search" width="25" height="25"/>
         <image name="user" width="25" height="25"/>
         <image name="xuan-nguyen-725109-unsplash" width="5024" height="3349"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zMa-SI-6oa"/>
+        <segue reference="aOK-rP-b17"/>
         <segue reference="572-hB-pf5"/>
+        <segue reference="6Nj-ej-58f"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

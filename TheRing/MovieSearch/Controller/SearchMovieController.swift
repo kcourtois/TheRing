@@ -20,6 +20,7 @@ class SearchMovieController: UIViewController {
         hideKeyboardWhenTappedAround()
         searchMovies()
         self.title = TRStrings.pickContestant.localizedString
+        searchBar.placeholder = TRStrings.search.localizedString
     }
 
     override func viewWillAppear(_ animated: Bool) {

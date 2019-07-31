@@ -45,6 +45,7 @@
 		9E4F969622F00F12006959FF /* TapDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969522F00F12006959FF /* TapDismiss.swift */; };
 		9E4F969922F06A1D006959FF /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969822F06A1D006959FF /* ScannerController.swift */; };
 		9E4F969B22F0998E006959FF /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969A22F0998E006959FF /* QRCodeController.swift */; };
+		9E4F969E22F24CD9006959FF /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969D22F24CD9006959FF /* SearchController.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -125,6 +126,7 @@
 		9E4F969522F00F12006959FF /* TapDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapDismiss.swift; sourceTree = "<group>"; };
 		9E4F969822F06A1D006959FF /* ScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerController.swift; sourceTree = "<group>"; };
 		9E4F969A22F0998E006959FF /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
+		9E4F969D22F24CD9006959FF /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 				9E334E2E22D871A000CB3257 /* Profile */,
 				9E4F969722F06973006959FF /* QRCode */,
 				9E334E2F22D871A800CB3257 /* Tournament */,
+				9E4F969C22F24C8F006959FF /* Search */,
 				9E334E3A22D8C1B200CB3257 /* MovieSearch */,
 				9E334E4C22DE179F00CB3257 /* Localizable */,
 				9E064E4222CB06D2009FE905 /* Extensions */,
@@ -433,6 +436,14 @@
 				9E4F969A22F0998E006959FF /* QRCodeController.swift */,
 			);
 			path = QRCode;
+			sourceTree = "<group>";
+		};
+		9E4F969C22F24C8F006959FF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				9E4F969D22F24CD9006959FF /* SearchController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
@@ -684,6 +695,7 @@
 				9E4F969622F00F12006959FF /* TapDismiss.swift in Sources */,
 				9E4F968D22EBB453006959FF /* UserListType.swift in Sources */,
 				9E4F969922F06A1D006959FF /* ScannerController.swift in Sources */,
+				9E4F969E22F24CD9006959FF /* SearchController.swift in Sources */,
 				9EFE1FDE22D4BDB7003A0410 /* Tournament.swift in Sources */,
 				9EFE1FCC22D35F9D003A0410 /* TournamentDateController.swift in Sources */,
 				9E064E3722C7A53F009FE905 /* PasswordController.swift in Sources */,

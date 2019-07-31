@@ -118,6 +118,7 @@
 "SHARE_TOURNAMENT" = "Come see this tournament and many others on The Ring !";
 "ENDED" = "Ended";
 "SCANNER" = "Scanner";
+"SEARCH" = "Search";
 
 //GENRES
 "ACTION" = "Action";

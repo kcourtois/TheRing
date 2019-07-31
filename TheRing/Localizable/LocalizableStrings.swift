@@ -157,6 +157,7 @@ enum TRStrings: LocalizedString {
     case shareTournament = "SHARE_TOURNAMENT"
     case ended = "ENDED"
     case scanner = "SCANNER"
+    case search = "SEARCH"
 
     var localizedString: String {
         return self.rawValue.val

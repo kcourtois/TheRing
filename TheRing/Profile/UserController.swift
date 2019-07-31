@@ -101,6 +101,7 @@ extension UserController {
             items[0].title = TRStrings.home.localizedString
             items[1].title = TRStrings.user.localizedString
             items[2].title = TRStrings.create.localizedString
+            items[3].title = TRStrings.search.localizedString
         }
     }
 
