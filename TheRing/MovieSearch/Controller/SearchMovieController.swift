@@ -93,7 +93,6 @@ extension SearchMovieController: UITextFieldDelegate {
     }
 }
 
-
 protocol SearchMovieDelegate: class {
     func passMovie(movie: Movie)
 }

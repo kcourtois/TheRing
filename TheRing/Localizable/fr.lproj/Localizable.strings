@@ -15,6 +15,7 @@
 "SHARE_FAILED" = "Echec du partage";
 "SHARE_SUCCEEDED" = "Partage réussi";
 "PERMISSION_DENIED" = "Permission refusée";
+"SCAN_NOT_SUPPORTED" = "Scan non supporté";
 
 //ALERT MESSAGES
 
@@ -31,6 +32,7 @@
 "GO_TO_SETTINGS" = "Merci de vous rendre dans Options pour activer l'accès aux Photos.";
 "NOT_LOGGED" = "Aucun utilisateur connecté.";
 "USER_NOT_RETRIEVED" = "Impossible de récupérer les données utilisateur.";
+"DEVICE_NO_CAMERA" = "Votre téléphone ne supporte pas le scan de code. Merci d'utiliser un périphérique équipé d'une caméra.";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "Email déjà utilisé sur un autre compte";
@@ -115,6 +117,7 @@
 "SETTINGS" = "Options";
 "SHARE_TOURNAMENT" = "Venez voir ce tournoi et plein d'autres sur The Ring !";
 "ENDED" = "Terminé";
+"SCANNER" = "Scanneur";
 
 //GENRES
 "ACTION" = "Action";

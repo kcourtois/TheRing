@@ -36,6 +36,7 @@ enum TRStrings: LocalizedString {
     case shareFailed = "SHARE_FAILED"
     case shareSucceeded = "SHARE_SUCCEEDED"
     case permissionDenied = "PERMISSION_DENIED"
+    case scanNotSupported = "SCAN_NOT_SUPPORTED"
 
     case modifSaved = "MODIF_SAVED"
     case errorOccured = "ERROR_OCCURED"
@@ -50,6 +51,7 @@ enum TRStrings: LocalizedString {
     case goToSettings = "GO_TO_SETTINGS"
     case notLogged = "NOT_LOGGED"
     case userNotRetrieved = "USER_NOT_RETRIEVED"
+    case deviceNoCamera = "DEVICE_NO_CAMERA"
 
     //FIREBASE AUTH ERROR
     case mailUsed = "MAIL_USED"
@@ -154,6 +156,7 @@ enum TRStrings: LocalizedString {
     case settings = "SETTINGS"
     case shareTournament = "SHARE_TOURNAMENT"
     case ended = "ENDED"
+    case scanner = "SCANNER"
 
     var localizedString: String {
         return self.rawValue.val

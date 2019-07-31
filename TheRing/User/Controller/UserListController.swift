@@ -40,7 +40,9 @@ class UserListController: UIViewController {
             let userIndex = tableView.indexPathForSelectedRow?.row else {
                 return
         }
-        userDetailVC.uid = users[userIndex].uid
+        UserService.getUserInfo(uid: users[userIndex].uid) { (user) in
+            userDetailVC.user = user
+        }
     }
 }
 

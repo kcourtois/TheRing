@@ -8,3 +8,4 @@
 
 "NSPhotoLibraryAddUsageDescription" = "Used to share a tournament as an image.";
 "NSPhotoLibraryUsageDescription" = "Used to share a tournament as an image.";
+"NSCameraUsageDescription" = "Used to scan a user code.";

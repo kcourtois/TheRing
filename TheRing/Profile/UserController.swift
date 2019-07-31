@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import AVFoundation
 
 class UserController: UIViewController {
     @IBOutlet weak var subscribersDesc: UILabel!
@@ -65,11 +66,12 @@ class UserController: UIViewController {
     }
 
     @IBAction func myCodeTapped(_ sender: Any) {
-        performSegue(withIdentifier: "myCodeSegue", sender: self)
+        performSegue(withIdentifier: "showCodeSegue", sender: self)
     }
 
     @IBAction func scanCodeTapped(_ sender: Any) {
-        performSegue(withIdentifier: "scanCodeSegue", sender: self)
+        proceedWithCameraAccess(identifier: "scannerSegue")
+        //performSegue(withIdentifier: "scannerSegue", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -146,5 +148,41 @@ extension UserController {
                 })
             }
         }
+    }
+}
+
+// MARK: - Camera permission
+extension UserController {
+    //ask permission for camera if not done, and perform segue
+    func proceedWithCameraAccess(identifier: String) {
+        AVCaptureDevice.requestAccess(for: .video) { success in
+            if success {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: identifier, sender: nil)
+                }
+            } else {
+                self.presentPermissionDeniedAlert()
+            }
+        }
+    }
+
+    //Shows a popup to access settings if user denied photolibrary permission
+    private func presentPermissionDeniedAlert() {
+        //Initialisation of the alert
+        let alertController = UIAlertController(title: TRStrings.permissionDenied.localizedString,
+                                                message: TRStrings.goToSettings.localizedString,
+                                                preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: TRStrings.settings.localizedString, style: .default) { (_) -> Void in
+            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+                if UIApplication.shared.canOpenURL(settingsUrl) {
+                    UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
+                }
+            }
+        }
+        let cancelAction = UIAlertAction(title: TRStrings.cancel.localizedString, style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        alertController.addAction(settingsAction)
+        //Shows alert
+        present(alertController, animated: true, completion: nil)
     }
 }
