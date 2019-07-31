@@ -24,8 +24,8 @@ class UserDetailController: UIViewController {
 
     var user: TRUser?
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setTexts()
         setDescs()
     }

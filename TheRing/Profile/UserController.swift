@@ -33,8 +33,8 @@ class UserController: UIViewController {
     private let preferences = Preferences()
     private var userType: UserListType = .subscriptions
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setTexts()
         if let currUser = Auth.auth().currentUser {
             if preferences.user.uid != currUser.uid {

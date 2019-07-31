@@ -86,7 +86,7 @@ class ProfileController: UIViewController {
 
         let values = ["bio": bio,
                       "email": preferences.user.email,
-                      "gender": preferences.user.gender.rawValue,
+                      "gender": genderControl.selectedSegmentIndex,
                       "username": name] as [String: Any]
 
         registerUserInfo(values: values)

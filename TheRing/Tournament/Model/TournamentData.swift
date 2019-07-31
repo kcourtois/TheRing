@@ -16,6 +16,14 @@ struct TournamentData {
     let startTime: Date
     var rounds: [Round]
     var contestants: [Contestant]
+
+    func getCids() -> [String] {
+        var cids = [String]()
+        for cont in contestants {
+            cids.append(cont.cid)
+        }
+        return cids
+    }
 }
 
 struct Round {

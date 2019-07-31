@@ -16,7 +16,7 @@ class TournamentDetailController: UIViewController {
     @IBOutlet weak var creatorLabel: UILabel!
     @IBOutlet weak var descDataLabel: UILabel!
     @IBOutlet weak var startTimeDataLabel: UILabel!
-    @IBOutlet weak var creatorDataLabel: UILabel!
+    @IBOutlet weak var creatorDataButton: UIButton!
     @IBOutlet weak var tournamentView: TournamentView!
 
     var tid: String?
@@ -43,6 +43,10 @@ class TournamentDetailController: UIViewController {
         checkPermission()
     }
 
+    @IBAction func creatorTapped(_ sender: Any) {
+        performSegue(withIdentifier: "DetailUserSegue", sender: self)
+    }
+
     //Triggers on notification didTapImage
     @objc private func onDidTapContestant(_ notification: Notification) {
         if let data = notification.userInfo as? [String: Int] {
@@ -62,9 +66,9 @@ class TournamentDetailController: UIViewController {
                     vote(round: round, cid: tournament.contestants[tag].cid)
                 }
             case 1:
-                if tag > 3 && tag < 6 {
+                if tag > 3 && tag < 6 && tournament.rounds[round].endDate > Date() {
                     tournamentView.colorBackground(index: tag)
-                    getWinner(round: round-1) { (res) in
+                    getWinner(round: 0, cids: tournament.getCids()) { (res) in
                         if let cid = res {
                             self.vote(round: round, cid: cid[tag-4])
                         }
@@ -97,22 +101,24 @@ class TournamentDetailController: UIViewController {
         }
     }
 
-    private func getWinner(round: Int, completion: @escaping ([String]?) -> Void) {
+    //Returns the winner of a given round
+    private func getWinner(round: Int, cids: [String], completion: @escaping ([String]?) -> Void) {
         guard let tournament = tournament else {
             completion(nil)
             return
         }
         var contRes = [UInt]()
-        let max = tournament.contestants.count/(round+1)
         let dispatchGroup = DispatchGroup()
 
-        for _ in 0..<max {
+        //Append blank votes results for each contestant
+        for _ in 0..<cids.count {
             contRes.append(0)
         }
 
-        for ind in 0..<max {
+        //get votes count
+        for ind in 0..<cids.count {
             dispatchGroup.enter()
-            TournamentService.getVotes(cid: tournament.contestants[ind].cid,
+            TournamentService.getVotes(cid: cids[ind],
                                        rid: tournament.rounds[round].rid) { (res) in
                 if let res = res {
                     contRes[ind] = res
@@ -123,11 +129,11 @@ class TournamentDetailController: UIViewController {
 
         dispatchGroup.notify(queue: .main) {
             var result = [String]()
-            for index in stride(from: 0, to: max-1, by: 2) {
+            for index in stride(from: 0, to: cids.count-1, by: 2) {
                 if contRes[index] >= contRes[index+1] {
-                    result.append(tournament.contestants[index].cid)
+                    result.append(cids[index])
                 } else {
-                    result.append(tournament.contestants[index+1].cid)
+                    result.append(cids[index+1])
                 }
             }
             completion(result)
@@ -149,6 +155,7 @@ class TournamentDetailController: UIViewController {
         }
     }
 
+    //loads user votes
     private func loadVotes() {
         let pref = Preferences()
         if let tournament = tournament {
@@ -174,22 +181,25 @@ class TournamentDetailController: UIViewController {
         }
     }
 
+    //load UI for stages of the tournament, showing winner of rounds etc.
     private func loadStages() {
         guard let tournament = tournament else {
             return
         }
         let round = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
         if round > 0 {
-            getWinner(round: round-1) { (cids) in
-                if let cids = cids {
+            getWinner(round: round-1, cids: tournament.getCids()) { (result) in
+                if let cids = result {
                     self.tournamentView.setFirstStage(cids: cids)
-                }
-            }
-            if tournament.rounds[round].endDate < Date() {
-                getWinner(round: round) { (cids) in
-                    if let cids = cids {
-                        self.tournamentView.setSecondStage(cid: cids[0])
+                    if tournament.rounds[round].endDate < Date() {
+                        self.getWinner(round: round, cids: cids) { (result) in
+                            if let res = result {
+                                self.tournamentView.setSecondStage(cid: res[0])
+                            }
+                        }
                     }
+                } else {
+                    return
                 }
             }
         }
@@ -202,7 +212,7 @@ class TournamentDetailController: UIViewController {
         guard let tournament = tournament else { return }
         descDataLabel.text = tournament.description
         startTimeDataLabel.text = DateFormatting.dateToLocalizedString(date: tournament.startTime)
-        creatorDataLabel.text = tournament.creator.name
+        creatorDataButton.setTitle(tournament.creator.name, for: .normal)
     }
 
     //Present view to user for image share
@@ -251,11 +261,18 @@ class TournamentDetailController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "commentSegue",
-            let commentVC = segue.destination as? CommentController else {
-                return
+        switch segue.identifier {
+        case "commentSegue":
+            if let commentVC = segue.destination as? CommentController {
+                commentVC.tid = tid
+            }
+        case "DetailUserSegue":
+            if let userDetailVC = segue.destination as? UserDetailController {
+                userDetailVC.user = tournament?.creator
+            }
+        default:
+            break
         }
-        commentVC.tid = tid
     }
 }
 

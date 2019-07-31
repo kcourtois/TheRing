@@ -37,10 +37,9 @@ class UserService {
     //register user informations such as username, gender, bio...
     static func registerUserInfo(uid: String, values: [String: Any], completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
-        reference.child("users").child(uid).updateChildValues(values,
-                                                              withCompletionBlock: { (error, _) in
+        reference.child("users").child(uid).updateChildValues(values) { (error, _) in
             completion(FirebaseAuthService.getAuthError(error: error))
-        })
+        }
     }
 
     //register username for future use
