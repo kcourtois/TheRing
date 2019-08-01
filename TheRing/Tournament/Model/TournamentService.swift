@@ -53,6 +53,29 @@ class TournamentService {
         }
     }
 
+    //returns a list of tournaments created by current user
+    static func getAllTournaments(completion: @escaping ([Tournament]) -> Void) {
+        var tournaments = [Tournament]()
+        let reference = Database.database().reference()
+        let group = DispatchGroup()
+        group.enter()
+        reference.child("tournaments").observeSingleEvent(of: .value, with: { (snapshot) in
+            for case let data as DataSnapshot in snapshot.children {
+                group.enter()
+                getTournament(tid: data.key, completion: { (tournament) in
+                    if let tournament = tournament {
+                        tournaments.append(tournament)
+                        group.leave()
+                    }
+                })
+            }
+            group.leave()
+        })
+        group.notify(queue: .main) {
+            completion(tournaments)
+        }
+    }
+
     //returns tournament data from tid (without rounds and matches)
     static func getTournament(tid: String, completion: @escaping (Tournament?) -> Void) {
         let reference = Database.database().reference()
@@ -223,6 +246,7 @@ class TournamentService {
                     completion(error)
                     return
                 }
+                completion(nil)
             }
         })
     }

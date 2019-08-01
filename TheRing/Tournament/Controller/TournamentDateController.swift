@@ -42,9 +42,11 @@ class TournamentDateController: UIViewController {
             //tournament.startTime = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
             TournamentService.createTournament(tournament: tournament) { (error) in
                 if let error = error {
-                    self.presentAlert(title: "Test", message: error)
+                    self.presentAlert(title: TRStrings.error.localizedString, message: error)
                 } else {
-                    print("MEYDEN")
+                    self.presentAlertDelay(title: "Success", message: "Tournament Created successfully", delay: 2, completion: {
+                        self.navigationController?.popToRootViewController(animated: false)
+                    })
                 }
             }
         }

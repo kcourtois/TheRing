@@ -22,9 +22,6 @@ class CreateTournamentController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
-        descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
-        setTexts()
 
         if let currUser = Auth.auth().currentUser {
             if preferences.user.uid != currUser.uid {
@@ -35,6 +32,13 @@ class CreateTournamentController: UIViewController {
         }
 
         hideKeyboardWhenTappedAround()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
+        descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
+        setTexts()
     }
 
     @IBAction func nextTapped(_ sender: Any) {
@@ -103,6 +107,7 @@ extension CreateTournamentController {
     private func setTexts() {
         descriptionField.text = TRStrings.enterDescription.localizedString
         titleField.placeholder = TRStrings.enterTitle.localizedString
+        titleField.text = ""
         titleLabel.text = TRStrings.title.localizedString
         self.title = TRStrings.createTournaments.localizedString
         nextButton.setTitle(TRStrings.next.localizedString, for: .normal)

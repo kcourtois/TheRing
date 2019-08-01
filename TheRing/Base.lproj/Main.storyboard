@@ -653,7 +653,7 @@
         <!--Tournament-->
         <scene sceneID="B4T-UU-RXw">
             <objects>
-                <viewController id="W1Y-nB-SYu" customClass="TournamentDetailController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailTournament" id="W1Y-nB-SYu" customClass="TournamentDetailController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pht-sZ-I2d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="800"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -667,6 +667,7 @@
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="82x-cM-trc" customClass="TournamentView" customModule="TheRing" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <accessibility key="accessibilityConfiguration" identifier="detailTournament"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="500" id="TY7-6g-Q29"/>
                                                 </constraints>
@@ -850,7 +851,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n7T-Jn-t1q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2019" y="-2321"/>
+            <point key="canvasLocation" x="2021" y="-1531"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="cM1-og-TVB">
@@ -1190,6 +1191,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="goTapped:" destination="zqx-uc-xBK" eventType="touchUpInside" id="LSc-4G-jXH"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-HM-Npq">
                                 <rect key="frame" x="8" y="110" width="304" height="401"/>
@@ -1271,7 +1275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E82-IX-PTg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2993" y="-1469"/>
+            <point key="canvasLocation" x="2993" y="-765"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GsM-4O-pNJ">
@@ -1288,7 +1292,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TPj-nj-TrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2021" y="-1469"/>
+            <point key="canvasLocation" x="2021" y="-764"/>
         </scene>
         <!--Pick a contestant-->
         <scene sceneID="tZf-nr-W4z">
@@ -1404,7 +1408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GQ4-Gw-FYv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3990" y="-707.74647887323943"/>
+            <point key="canvasLocation" x="4988" y="40"/>
         </scene>
         <!--Create tournament-->
         <scene sceneID="Fmg-87-NbS">
@@ -1595,7 +1599,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pSq-7Y-Mia" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4989.375" y="39.08450704225352"/>
+            <point key="canvasLocation" x="5972" y="40"/>
         </scene>
         <!--Profile-->
         <scene sceneID="ySN-PS-Gc0">

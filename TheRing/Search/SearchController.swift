@@ -32,10 +32,17 @@ class SearchController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        TournamentService.getUserTournaments(completion: { (tournaments) in
-            self.tournaments = tournaments
-            self.tableView.reloadData()
-        })
+        getAllTournaments()
+    }
+
+    @IBAction func goTapped(_ sender: Any) {
+        if let text = searchBar.text {
+            if !text.isEmpty {
+                searchTournaments(search: text)
+            } else {
+                getAllTournaments()
+            }
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,6 +52,26 @@ class SearchController: UIViewController {
                 return
         }
         tournamentDetailVC.tid = tournaments[tournamentIndex].tid
+    }
+
+    private func searchTournaments(search: String) {
+        TournamentService.getAllTournaments(completion: { (tournaments) in
+            var tmp = [Tournament]()
+            for tournament in tournaments {
+                if tournament.title.lowercased().contains(search.lowercased()) {
+                    tmp.append(tournament)
+                }
+            }
+            self.tournaments = tmp.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
+            self.tableView.reloadData()
+        })
+    }
+
+    private func getAllTournaments() {
+        TournamentService.getAllTournaments(completion: { (tournaments) in
+            self.tournaments = tournaments.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
+            self.tableView.reloadData()
+        })
     }
 
 }
