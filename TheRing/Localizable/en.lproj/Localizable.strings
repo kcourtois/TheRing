@@ -16,6 +16,7 @@
 "SHARE_SUCCEEDED" = "Share succeeded";
 "PERMISSION_DENIED" = "Permission denied";
 "SCAN_NOT_SUPPORTED" = "Scanning not supported";
+"SUCCESS" = "Success";
 
 //ALERT MESSAGES
 
@@ -33,6 +34,7 @@
 "NOT_LOGGED" = "User not logged in.";
 "USER_NOT_RETRIEVED" = "Couldn't retrieve user data.";
 "DEVICE_NO_CAMERA" = "Your device does not support scanning a code. Please use a device with a camera.";
+"TOURNAMENT_CREATED" = "Tournament created successfully !";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "The email is already in use with another account";
@@ -119,6 +121,10 @@
 "ENDED" = "Ended";
 "SCANNER" = "Scanner";
 "SEARCH" = "Search";
+"LOGOUT" = "Log out";
+"TYPE_COMMENT" = "Type your comment here...";
+"SCAN_CODE" = "Scan a code";
+"MY_CODE" = "My code";
 
 //GENRES
 "ACTION" = "Action";

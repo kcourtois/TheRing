@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Full tournament struct, that can contain all db data
 struct TournamentData {
     let tid: String
     let title: String

@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Basic tournament struct, used mostly in tournament creation
 struct Tournament {
     var tid: String
     var title: String

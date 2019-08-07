@@ -19,13 +19,15 @@ class TournamentDetailController: UIViewController {
     @IBOutlet weak var creatorDataButton: UIButton!
     @IBOutlet weak var tournamentView: TournamentView!
 
-    var tid: String?
     var tournament: TournamentData?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let tid = tid {
-            initController(tid: tid)
+        if let tournament = tournament {
+            self.setTexts()
+            self.tournamentView.setView(tournament: tournament)
+            self.loadVotes()
+            self.loadStages()
         } else {
             presentAlertPopRootVC(title: TRStrings.error.localizedString,
                                   message: TRStrings.errorCreator.localizedString)
@@ -37,6 +39,11 @@ class TournamentDetailController: UIViewController {
         let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapContestant(_:)),
                                                name: nameTapContNotif, object: nil)
+    }
+
+    deinit {
+        let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
+        NotificationCenter.default.removeObserver(self, name: nameTapContNotif, object: nil)
     }
 
     @IBAction func shareTapped(_ sender: Any) {
@@ -137,21 +144,6 @@ class TournamentDetailController: UIViewController {
                 }
             }
             completion(result)
-        }
-    }
-
-    private func initController(tid: String) {
-        TournamentService.getTournamentFull(tid: tid) { (tournament) in
-            self.tournament = tournament
-            if self.tournament != nil {
-                self.setTexts()
-                self.tournamentView.setView(tournament: tournament)
-                self.loadVotes()
-                self.loadStages()
-            } else {
-                self.presentAlertPopRootVC(title: TRStrings.error.localizedString,
-                                           message: TRStrings.errorCreator.localizedString)
-            }
         }
     }
 
@@ -264,7 +256,7 @@ class TournamentDetailController: UIViewController {
         switch segue.identifier {
         case "commentSegue":
             if let commentVC = segue.destination as? CommentController {
-                commentVC.tid = tid
+                commentVC.tid = tournament?.tid
             }
         case "DetailUserSegue":
             if let userDetailVC = segue.destination as? UserDetailController {

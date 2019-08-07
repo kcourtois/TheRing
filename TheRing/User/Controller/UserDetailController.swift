@@ -9,36 +9,28 @@
 import UIKit
 
 class UserDetailController: UIViewController {
-    @IBOutlet weak var subscribersDesc: UILabel!
-    @IBOutlet weak var subscriptionsDesc: UILabel!
-    @IBOutlet weak var usernameDesc: UILabel!
-    @IBOutlet weak var emailDesc: UILabel!
-    @IBOutlet weak var genderDesc: UILabel!
-    @IBOutlet weak var bioDesc: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var biographyLabel: UILabel!
-    @IBOutlet weak var subscribersLabel: UILabel!
-    @IBOutlet weak var subscriptionsLabel: UILabel!
+
+    @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var subscribeButton: UIButton!
 
     var user: TRUser?
-    var subbed: Bool = false {
+    private var subbed: Bool = false {
         didSet {
             if subbed {
-                self.subscribeButton.setTitle(TRStrings.unsubscribe.localizedString, for: .normal)
+                subscribeButton.setTitle(TRStrings.unsubscribe.localizedString, for: .normal)
             } else {
-                self.subscribeButton.setTitle(TRStrings.subscribe.localizedString, for: .normal)
+                subscribeButton.setTitle(TRStrings.subscribe.localizedString, for: .normal)
             }
         }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //set texts for this screen
         setTexts()
-        setDescs()
     }
 
+    //Sub / Unsub to user when button tapped
     @IBAction func subscribeTapped(_ sender: Any) {
         if let user = user {
             if subbed {
@@ -54,35 +46,27 @@ class UserDetailController: UIViewController {
         }
     }
 
-    private func setDescs() {
+    //set texts for this screen
+    private func setTexts() {
         if let user = user {
-            self.emailDesc.text = user.email
-            self.usernameDesc.text = user.name
-            self.genderDesc.text = user.gender.asString
-            self.bioDesc.text = user.bio
+            userInfoView.setUser(user: user)
             self.title = user.name
+            //fetch subscriptions count
             UserService.getSubsciptionsCount(uid: user.uid) { (num) in
                 if let num = num {
-                    self.subscriptionsDesc.text = "\(num)"
+                    self.userInfoView.setSubscriptionsCount(count: num)
                 }
             }
+            //fetch subscribers count
             UserService.getSubscribersCount(uid: user.uid) { (num) in
                 if let num = num {
-                    self.subscribersDesc.text = "\(num)"
+                    self.userInfoView.setSubscribersCount(count: num)
                 }
             }
+            //check if current user is subbed to detail user
             UserService.isUserSubbedToUid(uid: user.uid) { (isSubbed) in
                 self.subbed = isSubbed
             }
         }
-    }
-
-    private func setTexts() {
-        nameLabel.text = TRStrings.username.localizedString
-        emailDesc.text = TRStrings.email.localizedString
-        genderLabel.text = TRStrings.gender.localizedString
-        biographyLabel.text = TRStrings.bio.localizedString
-        subscribersLabel.text = TRStrings.subscribers.localizedString
-        subscriptionsLabel.text = TRStrings.subscriptions.localizedString
     }
 }

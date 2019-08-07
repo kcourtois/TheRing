@@ -8,70 +8,75 @@
 
 import UIKit
 import FirebaseAuth
-import AVFoundation
 
 class UserController: UIViewController {
-    @IBOutlet weak var subscribersDesc: UILabel!
-    @IBOutlet weak var subscriptionsDesc: UILabel!
-    @IBOutlet weak var usernameDesc: UILabel!
-    @IBOutlet weak var emailDesc: UILabel!
-    @IBOutlet weak var genderDesc: UILabel!
-    @IBOutlet weak var bioDesc: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var mailLabel: UILabel!
-    @IBOutlet weak var genderLabel: UILabel!
-    @IBOutlet weak var biographyLabel: UILabel!
-    @IBOutlet weak var subscribersLabel: UILabel!
-    @IBOutlet weak var subscriptionsLabel: UILabel!
-    @IBOutlet weak var updateButton: UIButton!
-    @IBOutlet weak var tournamentsButton: UIButton!
-    @IBOutlet weak var subscribersButton: UIButton!
-    @IBOutlet weak var subscriptionsButton: UIButton!
+
+    @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var myCodeButton: UIButton!
-    @IBOutlet weak var scanCodeButton: UIButton!
 
     private let preferences = Preferences()
     private var userType: UserListType = .subscriptions
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //set texts for this screen
         setTexts()
+        //Check if user logged
         if let currUser = Auth.auth().currentUser {
+            //Check if user pref are up to date
             if preferences.user.uid != currUser.uid {
                 loadUserPref(uid: currUser.uid)
             } else {
-                self.setLabels()
+                //set texts that requires data
+                setLabels()
+                setObservers()
             }
         } else {
             userNotLogged()
         }
     }
 
-    @IBAction func seeTournaments(_ sender: Any) {
-        performSegue(withIdentifier: "TournamentListSegue", sender: self)
+    private func setObservers() {
+        super.viewDidLoad()
+        //Notification observer for didTapSubscribers
+        let subscribersNotif = Notification.Name(rawValue: NotificationStrings.didTapSubscribersNotificationName)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidTapSubscribers),
+                                               name: subscribersNotif, object: nil)
+        //Notification observer for didTapSubscriptions
+        let subscriptionsNotif = Notification.Name(rawValue:
+            NotificationStrings.didTapSubscriptionsNotificationName)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidTapSubscriptions),
+                                               name: subscriptionsNotif, object: nil)
+    }
+
+    //removes observers on deinit
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        let subscribersNotif = Notification.Name(rawValue: NotificationStrings.didTapSubscribersNotificationName)
+        let subscriptionsNotif = Notification.Name(rawValue:
+            NotificationStrings.didTapSubscriptionsNotificationName)
+        NotificationCenter.default.removeObserver(self, name: subscribersNotif, object: nil)
+        NotificationCenter.default.removeObserver(self, name: subscriptionsNotif, object: nil)
+    }
+
+    //Triggers on notification didTapSubscribers
+    @objc private func onDidTapSubscribers(_ notification: Notification) {
+        userType = .subscribers
+        performSegue(withIdentifier: "userListSegue", sender: self)
+    }
+
+    //Triggers on notification didTapSubscriptions
+    @objc private func onDidTapSubscriptions(_ notification: Notification) {
+        userType = .subscriptions
+        performSegue(withIdentifier: "userListSegue", sender: self)
     }
 
     @IBAction func updateProfileTapped() {
         performSegue(withIdentifier: "profileSegue", sender: self)
     }
 
-    @IBAction func subscribersTapped(_ sender: Any) {
-        userType = .subscribers
-        performSegue(withIdentifier: "userListSegue", sender: self)
-    }
-
-    @IBAction func subscriptionsTapped(_ sender: Any) {
-        userType = .subscriptions
-        performSegue(withIdentifier: "userListSegue", sender: self)
-    }
-
     @IBAction func myCodeTapped(_ sender: Any) {
         performSegue(withIdentifier: "showCodeSegue", sender: self)
-    }
-
-    @IBAction func scanCodeTapped(_ sender: Any) {
-        proceedWithCameraAccess(identifier: "scannerSegue")
-        //performSegue(withIdentifier: "scannerSegue", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,41 +89,28 @@ class UserController: UIViewController {
 
 // MARK: - UI & Preferences setup
 extension UserController {
-    //sets description label texts
+    //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.profile.localizedString
-        usernameDesc.text = TRStrings.username.localizedString
-        emailDesc.text = TRStrings.email.localizedString
-        genderDesc.text = TRStrings.gender.localizedString
-        bioDesc.text = TRStrings.bio.localizedString
-        subscribersDesc.text = TRStrings.subscribers.localizedString
-        subscriptionsDesc.text = TRStrings.subscriptions.localizedString
-        updateButton.setTitle(TRStrings.updateProfile.localizedString, for: .normal)
-        tournamentsButton.setTitle(TRStrings.seeTournaments.localizedString, for: .normal)
-        subscribersButton.setTitle(TRStrings.mySubscribers.localizedString, for: .normal)
-        subscriptionsButton.setTitle(TRStrings.mySubscriptions.localizedString, for: .normal)
+        myCodeButton.setTitle(TRStrings.myCode.localizedString, for: .normal)
         if let items = tabBarController?.tabBar.items {
             items[0].title = TRStrings.home.localizedString
             items[1].title = TRStrings.user.localizedString
-            items[2].title = TRStrings.create.localizedString
-            items[3].title = TRStrings.search.localizedString
+            items[2].title = TRStrings.tournaments.localizedString
         }
     }
 
     //sets data label texts
     private func setLabels() {
-        mailLabel.text = preferences.user.email
-        nameLabel.text = preferences.user.name
-        genderLabel.text = preferences.user.gender.asString
-        biographyLabel.text = preferences.user.bio
+        userInfoView.setUser(user: preferences.user)
         UserService.getSubsciptionsCount(uid: preferences.user.uid) { (num) in
             if let num = num {
-                self.subscriptionsLabel.text = "\(num)"
+                self.userInfoView.setSubscriptionsCount(count: num)
             }
         }
         UserService.getSubscribersCount(uid: preferences.user.uid) { (num) in
             if let num = num {
-                self.subscribersLabel.text = "\(num)"
+                self.userInfoView.setSubscribersCount(count: num)
             }
         }
     }
@@ -148,41 +140,5 @@ extension UserController {
                 })
             }
         }
-    }
-}
-
-// MARK: - Camera permission
-extension UserController {
-    //ask permission for camera if not done, and perform segue
-    func proceedWithCameraAccess(identifier: String) {
-        AVCaptureDevice.requestAccess(for: .video) { success in
-            if success {
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: identifier, sender: nil)
-                }
-            } else {
-                self.presentPermissionDeniedAlert()
-            }
-        }
-    }
-
-    //Shows a popup to access settings if user denied photolibrary permission
-    private func presentPermissionDeniedAlert() {
-        //Initialisation of the alert
-        let alertController = UIAlertController(title: TRStrings.permissionDenied.localizedString,
-                                                message: TRStrings.goToSettings.localizedString,
-                                                preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: TRStrings.settings.localizedString, style: .default) { (_) -> Void in
-            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
-                }
-            }
-        }
-        let cancelAction = UIAlertAction(title: TRStrings.cancel.localizedString, style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        alertController.addAction(settingsAction)
-        //Shows alert
-        present(alertController, animated: true, completion: nil)
     }
 }

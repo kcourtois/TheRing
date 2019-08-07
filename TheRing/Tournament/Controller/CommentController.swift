@@ -76,6 +76,8 @@ class CommentController: UIViewController {
     private func setTexts() {
         titleLabel.text = TRStrings.comments.localizedString
         sendButton.setTitle(TRStrings.send.localizedString, for: .normal)
+        commentField.attributedPlaceholder = NSAttributedString(string: TRStrings.typeComment.localizedString,
+                                                                attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.9999018312, green: 1, blue: 0.9998798966, alpha: 0.6)])
     }
 }
 

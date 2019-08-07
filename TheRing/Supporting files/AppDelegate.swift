@@ -18,16 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         //Config firebase
         FirebaseApp.configure()
-
-//        //Skip login page if user signed in
-//        if Auth.auth().currentUser != nil {
-//            let mainStoryboardIpad: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//            let initialViewControlleripad: UIViewController =
-//                mainStoryboardIpad.instantiateViewController(withIdentifier: "Tabbar") as UIViewController
-//            self.window = UIWindow(frame: UIScreen.main.bounds)
-//            self.window?.rootViewController = initialViewControlleripad
-//            self.window?.makeKeyAndVisible()
-//        }
+        //Dark keyboard for all textfields
+        UITextField.appearance().keyboardAppearance = .dark
+        //Red selected color for tableviews
+        let colorView = UIView()
+        colorView.backgroundColor = #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1)
+        UITableViewCell.appearance().selectedBackgroundView = colorView
 
         return true
     }

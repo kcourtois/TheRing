@@ -21,10 +21,13 @@ class PasswordController: UIViewController {
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
+        //set texts for this screen
         setTexts()
+        //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
     }
 
+    //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.updatePassword.localizedString
         oldPassLabel.text = TRStrings.oldPassword.localizedString
@@ -36,17 +39,22 @@ class PasswordController: UIViewController {
     }
 
     @IBAction func saveTapped(_ sender: Any) {
+        //show loading alert
         alert = loadingAlert()
+
+        //get all fields to variables
         if let oldPwd = oldPasswordField.text, let newPwd = newPasswordField.text, let confirm = confirmField.text {
             if fieldsEmpty(oldPwd: oldPwd, newPwd: newPwd, confirm: confirm) {
                 dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                             message: TRStrings.emptyFields.localizedString)
                 return
+            //check if new password matches confirm field
             } else if newPwd != confirm {
                 dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                             message: TRStrings.confirmWrong.localizedString)
                 return
             } else {
+                //updates password
                 updatePassword(oldPwd: oldPwd, newPwd: newPwd)
             }
         } else {
@@ -66,6 +74,7 @@ extension PasswordController {
 
 // MARK: - Network
 extension PasswordController {
+    //update user password
     private func updatePassword(oldPwd: String, newPwd: String) {
         FirebaseAuthService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
             if let error = error {

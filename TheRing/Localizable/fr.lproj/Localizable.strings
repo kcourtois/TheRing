@@ -16,6 +16,7 @@
 "SHARE_SUCCEEDED" = "Partage réussi";
 "PERMISSION_DENIED" = "Permission refusée";
 "SCAN_NOT_SUPPORTED" = "Scan non supporté";
+"SUCCESS" = "Succès";
 
 //ALERT MESSAGES
 
@@ -33,6 +34,7 @@
 "NOT_LOGGED" = "Aucun utilisateur connecté.";
 "USER_NOT_RETRIEVED" = "Impossible de récupérer les données utilisateur.";
 "DEVICE_NO_CAMERA" = "Votre téléphone ne supporte pas le scan de code. Merci d'utiliser un périphérique équipé d'une caméra.";
+"TOURNAMENT_CREATED" = "Tournoi créé avec succès !";
 
 //FIREBASE AUTH ERROR
 "MAIL_USED" = "Email déjà utilisé sur un autre compte";
@@ -119,6 +121,10 @@
 "ENDED" = "Terminé";
 "SCANNER" = "Scanneur";
 "SEARCH" = "Recherche";
+"LOGOUT" = "Déconnexion";
+"TYPE_COMMENT" = "Entrez votre commentaire ici...";
+"SCAN_CODE" = "Scanner un code";
+"MY_CODE" = "Mon code";
 
 //GENRES
 "ACTION" = "Action";

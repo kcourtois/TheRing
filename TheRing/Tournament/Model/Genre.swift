@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Genres matching TMDB API
 enum Genre: Int {
     case action = 28
     case adventure = 12

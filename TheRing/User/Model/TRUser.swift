@@ -8,6 +8,7 @@
 
 import Foundation
 
+//The ring user, couldn't call it user because of firebase
 struct TRUser: Codable {
     let uid: String
     let name: String

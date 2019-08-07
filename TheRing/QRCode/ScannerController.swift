@@ -17,6 +17,7 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //SETUP OF THE VIEW AND CAPTURE
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()
         self.title = TRStrings.scanner.localizedString
@@ -59,7 +60,7 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        //runs capture if not running
         if captureSession?.isRunning == false {
             captureSession.startRunning()
         }
@@ -67,7 +68,7 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
+        //stops capture when view disappear
         if captureSession?.isRunning == true {
             captureSession.stopRunning()
         }
@@ -81,16 +82,19 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
+            //When code found, call found func, with the string captured as parameter
             found(code: stringValue)
         }
     }
 
+    //prints an alert if capture fails
     private func failed() {
         presentAlert(title: TRStrings.scanNotSupported.localizedString,
                      message: TRStrings.deviceNoCamera.localizedString)
         captureSession = nil
     }
 
+    //get user info with code given, and present an alert if code invalid
     private func found(code: String) {
         UserService.getUserInfo(uid: code) { (user) in
             if let user = user {
@@ -105,6 +109,7 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
         }
     }
 
+    //set user before segue to detail view
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailUserSegue",
             let userDetailVC = segue.destination as? UserDetailController {

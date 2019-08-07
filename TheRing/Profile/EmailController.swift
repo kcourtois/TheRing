@@ -21,10 +21,13 @@ class EmailController: UIViewController {
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
+        //set texts for this screen
         setTexts()
+        //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
     }
 
+    //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.updateEmail.localizedString
         passwordLabel.text = TRStrings.password.localizedString
@@ -36,21 +39,27 @@ class EmailController: UIViewController {
     }
 
     @IBAction func saveTapped(_ sender: Any) {
+        //show loading alert
         alert = loadingAlert()
+
+        //get all fields to variables
         if let password = passwordField.text, let newMail = newEmailField.text, let confirm = confirmEmailField.text {
             if fieldsEmpty(password: password, mail: newMail, confirm: confirm) {
                 dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                             message: TRStrings.emptyFields.localizedString)
                 return
+            //check if new mail is not equal to old one
             } else if newMail == preferences.user.email {
                 dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                             message: TRStrings.mailSelfUse.localizedString)
                 return
+            //check if new mail matches confirm field
             } else if newMail != confirm {
                 dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                             message: TRStrings.confirmWrong.localizedString)
                 return
             } else {
+                //update mail
                 updateMailAndSave(password: password, mail: newMail)
             }
         } else {
@@ -89,6 +98,7 @@ extension EmailController {
 
 // MARK: - Network
 extension EmailController {
+    //save user to update with provided email
     private func saveUser(mail: String) {
         let values = ["bio": preferences.user.bio,
                       "email": mail,
@@ -106,6 +116,7 @@ extension EmailController {
         }
     }
 
+    //updates email and saves user
     private func updateMailAndSave(password: String, mail: String) {
         FirebaseAuthService.updateEmail(password: password, mail: mail) { error in
             if let error = error {

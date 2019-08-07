@@ -13,6 +13,8 @@ class TournamentService {
     //create a tournament with given parameters
     static func createTournament(tournament: Tournament, completion: @escaping (String?) -> Void) {
         let tid = generateId()
+
+        //puts start time as a string
         guard let startTime = getEndDate(duration: 0, start: tournament.startTime) else {
             completion(TRStrings.errorOccured.localizedString)
             return
@@ -26,19 +28,21 @@ class TournamentService {
         }
     }
 
-    //returns a list of tournaments created by current user
-    static func getUserTournaments(completion: @escaping ([Tournament]) -> Void) {
-        var tournaments = [Tournament]()
+    //returns a list of tournaments created by current user (with all the datas)
+    static func getUserTournamentsWithData(completion: @escaping ([TournamentData]) -> Void) {
+        var tournaments = [TournamentData]()
         let reference = Database.database().reference()
         let preferences = Preferences()
         let group = DispatchGroup()
         group.enter()
         reference.child("user_tournaments").child(preferences.user.uid).observeSingleEvent(of: .value,
                                                                                            with: { (snapshot) in
+            //for all tids found (for current user)
             for case let data as DataSnapshot in snapshot.children {
                 group.enter()
                 if let tid = data.value as? String {
-                    getTournament(tid: tid, completion: { (tournament) in
+                    //get tournament data
+                    getTournamentFull(tid: tid, completion: { (tournament) in
                         if let tournament = tournament {
                             tournaments.append(tournament)
                             group.leave()
@@ -54,15 +58,17 @@ class TournamentService {
     }
 
     //returns a list of tournaments created by current user
-    static func getAllTournaments(completion: @escaping ([Tournament]) -> Void) {
-        var tournaments = [Tournament]()
+    static func getAllTournaments(completion: @escaping ([TournamentData]) -> Void) {
+        var tournaments = [TournamentData]()
         let reference = Database.database().reference()
         let group = DispatchGroup()
         group.enter()
         reference.child("tournaments").observeSingleEvent(of: .value, with: { (snapshot) in
+            //for all tids found
             for case let data as DataSnapshot in snapshot.children {
                 group.enter()
-                getTournament(tid: data.key, completion: { (tournament) in
+                //get tournament data
+                getTournamentFull(tid: data.key, completion: { (tournament) in
                     if let tournament = tournament {
                         tournaments.append(tournament)
                         group.leave()
@@ -80,11 +86,13 @@ class TournamentService {
     static func getTournament(tid: String, completion: @escaping (Tournament?) -> Void) {
         let reference = Database.database().reference()
         reference.child("tournaments").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
+            //get all keys as variables
             let value = snapshot.value as? NSDictionary
             if let title = value?["title"] as? String,
                 let description = value?["description"] as? String,
                 let startTime = value?["startTime"] as? String,
                 let creator = value?["creator"] as? String {
+                //converts the date from string to date type
                 if let date = DateFormatting.stringToDate(str: startTime) {
                     completion(Tournament(tid: tid, title: title, description: description, contestants: [],
                                           startTime: date, roundDuration: 0, creator: creator))
@@ -129,10 +137,14 @@ class TournamentService {
         let group = DispatchGroup()
         group.enter()
         reference.child("rounds").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
+            //for each round in the given tid
             for case let data as DataSnapshot in snapshot.children {
+                //transform values as variables
                 let value = data.value as? NSDictionary
                 if let endDate = value?["endDate"] as? String {
+                    //gets date from string to date type
                     if let end = DateFormatting.stringToDate(str: endDate) {
+                        //add the round
                         rounds.append(Round(rid: data.key, endDate: end))
                     }
                 }
@@ -140,6 +152,7 @@ class TournamentService {
             group.leave()
         })
         group.notify(queue: .main) {
+            //sort rounds by date in completion
             completion(rounds.sorted(by: { $0.endDate.compare($1.endDate) == .orderedAscending}))
         }
     }
@@ -159,13 +172,13 @@ class TournamentService {
     }
 
     //returns all contestants from a tid
-    //returns rounds for a tournament
     static func getContestants(tid: String, completion: @escaping ([Contestant]) -> Void) {
         let reference = Database.database().reference()
         var contestants = [Contestant]()
         let group = DispatchGroup()
         group.enter()
         reference.child("contestants").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
+            //for each contestant in given tid, get the values to var
             for case let data as DataSnapshot in snapshot.children {
                 let value = data.value as? NSDictionary
                 if let image = value?["image"] as? String, let name = value?["name"] as? String {
@@ -178,6 +191,7 @@ class TournamentService {
             completion(contestants)
         }
     }
+
     //return current round index
     static func getCurrentRoundIndex(rounds: [Round]) -> Int {
         for (index, round) in rounds.enumerated() {
@@ -188,6 +202,7 @@ class TournamentService {
         return rounds.count-1
     }
 
+    //register a tournament for the given user (creator)
     static private func registerUserTournament(tid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         let preferences = Preferences()
@@ -241,6 +256,7 @@ class TournamentService {
                 })
             }
 
+            //registers tournament in the list of the user
             registerUserTournament(tid: tid) { error in
                 if let error = error {
                     completion(error)
@@ -251,6 +267,7 @@ class TournamentService {
         })
     }
 
+    //registers a round in the database
     static private func registerRound(tid: String, rid: String, endDate: String,
                                       completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
@@ -261,6 +278,7 @@ class TournamentService {
         })
     }
 
+    //registers a contestant in the database
     static private func registerContestant(tid: String, cid: String, contestant: Movie,
                                            completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
@@ -273,8 +291,8 @@ class TournamentService {
 }
 
 // MARK: - Votes
-
 extension TournamentService {
+    //register a vote in the database
     static func registerVote(rid: String, uid: String, cid: String,
                              completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
@@ -289,8 +307,10 @@ extension TournamentService {
     static func getUserVote(uid: String, rid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         reference.child("votes").child(rid).observeSingleEvent(of: .value, with: { (snapshot) in
+            //loop through contestants of a round
             for case let data as DataSnapshot in snapshot.children {
                 let value = data.value as? NSDictionary
+                //if the uid of the user is a valid key, this is his vote
                 if (value?[uid] as? String) != nil {
                     completion(data.key)
                 }
@@ -299,7 +319,7 @@ extension TournamentService {
         })
     }
 
-    //returns vote for given user and round if exists
+    //returns vote count for given contestant/round
     static func getVotes(cid: String, rid: String, completion: @escaping (UInt?) -> Void) {
         let reference = Database.database().reference()
         reference.child("votes").child(rid).child(cid).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -308,6 +328,7 @@ extension TournamentService {
         completion(nil)
     }
 
+    //remove a vote for given user/round/contestant
     static func removeUserVote(uid: String, rid: String, cid: String) {
         let reference = Database.database().reference()
         reference.child("votes").child(rid).child(cid).child(uid).removeValue()
@@ -322,22 +343,25 @@ extension TournamentService {
                                 completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
         let pref = Preferences()
+        //get current date to string
         guard let date = DateFormatting.dateToString(date: Date()) else {
             return
         }
         let values = ["uid": pref.user.uid, "username": pref.user.name, "comment": comment, "date": date]
         let cid = generateId()
+        //add comment in database
         reference.child("comments").child(tid).child(cid).updateChildValues(values,
                                                                          withCompletionBlock: { (error, _) in
             completion(FirebaseAuthService.getAuthError(error: error))
         })
     }
 
-    //returns vote for given user and round if exists
+    //returns comments for given tournament
     static func getComments(tid: String, completion: @escaping ([Comment]) -> Void) {
         let reference = Database.database().reference()
         var comments = [Comment]()
         reference.child("comments").child(tid).observeSingleEvent(of: .value, with: { (snapshot) in
+            //get values for each comment (child of the tournament)
             for case let data as DataSnapshot in snapshot.children {
                 let value = data.value as? NSDictionary
                 if let uid = value?["uid"] as? String,

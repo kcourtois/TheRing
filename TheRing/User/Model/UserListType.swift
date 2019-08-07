@@ -8,6 +8,7 @@
 
 import Foundation
 
-enum UserListType {
+//used to know if a user list is representing subscribers or subscriptions
+enum UserListType: String {
     case subscribers, subscriptions
 }

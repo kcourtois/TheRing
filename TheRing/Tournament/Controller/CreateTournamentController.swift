@@ -22,22 +22,14 @@ class CreateTournamentController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let currUser = Auth.auth().currentUser {
-            if preferences.user.uid != currUser.uid {
-                loadUserPref(uid: currUser.uid)
-            }
-        } else {
-            userNotLogged()
-        }
-
+        descriptionField.keyboardAppearance = .dark
         hideKeyboardWhenTappedAround()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        descriptionField.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
-        descriptionField.layer.borderColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
+        descriptionField.textColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
+        descriptionField.layer.borderColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
         setTexts()
     }
 
@@ -78,31 +70,6 @@ class CreateTournamentController: UIViewController {
 
 // MARK: - UI & Preferences setup
 extension CreateTournamentController {
-    //sends user back to login screen
-    private func userNotLogged() {
-        self.presentAlertDelay(title: TRStrings.error.localizedString,
-                               message: TRStrings.notLogged.localizedString,
-                               delay: 2.0, completion: {
-                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        })
-    }
-
-    //loads user in preferences
-    private func loadUserPref(uid: String) {
-        let alert = loadingAlert()
-        UserService.getUserInfo(uid: uid) { (userData) in
-            if let user = userData {
-                self.preferences.user = user
-                alert.dismiss(animated: true, completion: nil)
-            } else {
-                alert.dismiss(animated: true, completion: {
-                    self.presentAlert(title: TRStrings.error.localizedString,
-                                      message: TRStrings.userNotRetrieved.localizedString)
-                })
-            }
-        }
-    }
-
     //sets label texts
     private func setTexts() {
         descriptionField.text = TRStrings.enterDescription.localizedString
@@ -111,28 +78,22 @@ extension CreateTournamentController {
         titleLabel.text = TRStrings.title.localizedString
         self.title = TRStrings.createTournaments.localizedString
         nextButton.setTitle(TRStrings.next.localizedString, for: .normal)
-        if let items = tabBarController?.tabBar.items {
-            items[0].title = TRStrings.home.localizedString
-            items[1].title = TRStrings.user.localizedString
-            items[2].title = TRStrings.create.localizedString
-            items[3].title = TRStrings.search.localizedString
-        }
     }
 }
 
 // MARK: - Keyboard dismiss and placeholders setup
 extension CreateTournamentController: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1) {
+        if textView.textColor == #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1) {
             textView.text = nil
-            textView.textColor = UIColor.black
+            textView.textColor = UIColor.white
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = TRStrings.enterDescription.localizedString
-            textView.textColor = #colorLiteral(red: 0.8039215686, green: 0.8039215686, blue: 0.8039215686, alpha: 1)
+            textView.textColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
         }
     }
 

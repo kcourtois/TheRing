@@ -44,7 +44,9 @@ class TournamentDateController: UIViewController {
                 if let error = error {
                     self.presentAlert(title: TRStrings.error.localizedString, message: error)
                 } else {
-                    self.presentAlertDelay(title: "Success", message: "Tournament Created successfully", delay: 2, completion: {
+                    self.presentAlertDelay(title: TRStrings.success.localizedString,
+                                           message: TRStrings.tournamentCreated.localizedString,
+                                           delay: 2, completion: {
                         self.navigationController?.popToRootViewController(animated: false)
                     })
                 }

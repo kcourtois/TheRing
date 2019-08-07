@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileController: UIViewController {
     @IBOutlet weak var bioTextField: UITextField!
@@ -19,18 +20,24 @@ class ProfileController: UIViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var modifyEmail: UIButton!
     @IBOutlet weak var modifyPassword: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
 
     let preferences = Preferences()
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setFields()
+        //set texts for this screen
         setTexts()
+        //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
     }
 
+     //keyboard disappear after tap
     private func setTexts() {
+        bioTextField.text = preferences.user.bio
+        nameTextField.text = preferences.user.name
+        genderControl.selectedSegmentIndex = preferences.user.gender.rawValue
         usernameLabel.text = TRStrings.username.localizedString
         genderLabel.text = TRStrings.gender.localizedString
         bioLabel.text = TRStrings.bio.localizedString
@@ -43,6 +50,7 @@ class ProfileController: UIViewController {
         genderControl.setTitle(TRStrings.male.localizedString, forSegmentAt: 0)
         genderControl.setTitle(TRStrings.female.localizedString, forSegmentAt: 1)
         genderControl.setTitle(TRStrings.other.localizedString, forSegmentAt: 2)
+        logoutButton.setTitle(TRStrings.logout.localizedString, for: .normal)
     }
 
     @IBAction func modifyEmailTapped() {
@@ -53,7 +61,18 @@ class ProfileController: UIViewController {
         performSegue(withIdentifier: "updatePasswordSegue", sender: self)
     }
 
+    @IBAction func logoutTapped(_ sender: Any) {
+        do {
+            try Auth.auth().signOut()
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } catch {
+            print("can't disconnect user")
+        }
+    }
+
+    //Save profile update
     @IBAction func saveTapped(_ sender: Any) {
+        //show loading alert
         alert = loadingAlert()
         if let name = nameTextField.text {
             if name.isEmpty {
@@ -61,8 +80,10 @@ class ProfileController: UIViewController {
                                                  message: TRStrings.emptyFields.localizedString)
                 return
             } else if name != preferences.user.name {
+                //if username changed, check if new one is available and save
                 checkUsernameAndSave(name: name)
             } else {
+                //else, save
                 saveUser()
             }
         } else {
@@ -71,12 +92,7 @@ class ProfileController: UIViewController {
         }
     }
 
-    private func setFields() {
-        bioTextField.text = preferences.user.bio
-        nameTextField.text = preferences.user.name
-        genderControl.selectedSegmentIndex = preferences.user.gender.rawValue
-    }
-
+    //save user to databse
     private func saveUser() {
         guard let bio = bioTextField.text, let name = nameTextField.text else {
             dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
@@ -92,6 +108,7 @@ class ProfileController: UIViewController {
         registerUserInfo(values: values)
     }
 
+    //save user to preferences
     private func savePreferences() {
         if let bio = bioTextField.text, let name = nameTextField.text {
             let user = TRUser(uid: preferences.user.uid,
@@ -106,6 +123,7 @@ class ProfileController: UIViewController {
 
 // MARK: - Network
 extension ProfileController {
+    //replace username by new one, and save user to database
     private func replaceUsernameAndSave(name: String) {
         UserService.replaceUsername(old: self.preferences.user.name, new: name,
                                         uid: self.preferences.user.uid, completion: { (error) in
@@ -118,6 +136,7 @@ extension ProfileController {
         })
     }
 
+    //check if username is available, then save user to database
     private func checkUsernameAndSave(name: String) {
         UserService.isUsernameAvailable(name: name) { available in
             if available {
@@ -130,6 +149,7 @@ extension ProfileController {
         }
     }
 
+    //save user to database
     private func registerUserInfo(values: [String: Any]) {
         UserService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
@@ -146,11 +166,6 @@ extension ProfileController {
 
 // MARK: - Keyboard
 extension ProfileController: UITextFieldDelegate {
-    @IBAction func dismissKeyboard(_ sender: UITapGestureRecognizer) {
-        bioTextField.resignFirstResponder()
-        nameTextField.resignFirstResponder()
-    }
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         bioTextField.resignFirstResponder()
         nameTextField.resignFirstResponder()

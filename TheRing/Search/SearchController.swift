@@ -14,7 +14,7 @@ class SearchController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     private let preferences = Preferences()
-    private var tournaments: [Tournament] = []
+    private var tournaments: [TournamentData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,18 +45,21 @@ class SearchController: UIViewController {
         }
     }
 
+    @IBAction func createTapped(_ sender: Any) {
+        performSegue(withIdentifier: "createTournamentSegue", sender: self)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard segue.identifier == "DetailTournamentSegue",
+        if segue.identifier == "DetailTournamentSegue",
             let tournamentDetailVC = segue.destination as? TournamentDetailController,
-            let tournamentIndex = tableView.indexPathForSelectedRow?.row else {
-                return
+            let tournamentIndex = tableView.indexPathForSelectedRow?.row {
+                tournamentDetailVC.tournament = tournaments[tournamentIndex]
         }
-        tournamentDetailVC.tid = tournaments[tournamentIndex].tid
     }
 
     private func searchTournaments(search: String) {
         TournamentService.getAllTournaments(completion: { (tournaments) in
-            var tmp = [Tournament]()
+            var tmp = [TournamentData]()
             for tournament in tournaments {
                 if tournament.title.lowercased().contains(search.lowercased()) {
                     tmp.append(tournament)
@@ -80,13 +83,12 @@ class SearchController: UIViewController {
 extension SearchController {
     //sets label texts
     private func setTexts() {
-        self.title = TRStrings.search.localizedString
+        self.title = TRStrings.tournaments.localizedString
         searchBar.placeholder = TRStrings.search.localizedString
         if let items = tabBarController?.tabBar.items {
             items[0].title = TRStrings.home.localizedString
             items[1].title = TRStrings.user.localizedString
-            items[2].title = TRStrings.create.localizedString
-            items[3].title = TRStrings.search.localizedString
+            items[2].title = TRStrings.tournaments.localizedString
         }
     }
 
@@ -135,8 +137,8 @@ extension SearchController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TournamentCell", for: indexPath)
-            as? TournamentCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "OverviewCell", for: indexPath)
+            as? OverviewCell else {
                 return UITableViewCell()
         }
 
