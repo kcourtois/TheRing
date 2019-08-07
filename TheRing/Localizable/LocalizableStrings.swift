@@ -9,36 +9,30 @@
 import Foundation
 
 struct LocalizedString: ExpressibleByStringLiteral, Equatable {
-
     let val: String
 
     init(key: String) {
         self.val = NSLocalizedString(key, comment: "")
     }
-    init(localized: String) {
-        self.val = localized
-    }
+
     init(stringLiteral value: String) {
-        self.init(key: value)
-    }
-    init(extendedGraphemeClusterLiteral value: String) {
-        self.init(key: value)
-    }
-    init(unicodeScalarLiteral value: String) {
         self.init(key: value)
     }
 }
 
 enum TRStrings: LocalizedString {
+    //ALERT TITLES
     case saved = "SAVED"
     case error = "ERROR"
     case back = "BACK"
     case shareFailed = "SHARE_FAILED"
     case shareSucceeded = "SHARE_SUCCEEDED"
     case permissionDenied = "PERMISSION_DENIED"
+    case permissionGranted = "PERMISSION_GRANTED"
     case scanNotSupported = "SCAN_NOT_SUPPORTED"
     case success = "SUCCESS"
 
+    //ALERT MESSAGES
     case modifSaved = "MODIF_SAVED"
     case errorOccured = "ERROR_OCCURED"
     case confirmWrong = "CONFIRM_WRONG"
@@ -54,6 +48,7 @@ enum TRStrings: LocalizedString {
     case userNotRetrieved = "USER_NOT_RETRIEVED"
     case deviceNoCamera = "DEVICE_NO_CAMERA"
     case tournamentCreated = "TOURNAMENT_CREATED"
+    case shareAuthorized = "SHARE_AUTHORIZED"
 
     //FIREBASE AUTH ERROR
     case mailUsed = "MAIL_USED"
@@ -168,30 +163,4 @@ enum TRStrings: LocalizedString {
     var localizedString: String {
         return self.rawValue.val
     }
-
-    init?(localizedString: String) {
-        self.init(rawValue: LocalizedString(localized: localizedString))
-    }
 }
-
-//let option1 = DietWithoutResidueOption.saved
-//let option2 = DietWithoutResidueOption(rawValue: "SAVED") // as Optional
-//let option3 = DietWithoutResidueOption(localizedString: "Sauvegardé")
-//let option4 = DietWithoutResidueOption(localizedString: "Saved")
-//print(option1)
-//print(option2)
-//print(option3)
-//print(option4)
-//print(option1.localizedString)
-//print(option2?.localizedString)
-//print(option3?.localizedString)
-//print(option4?.localizedString)
-
-//saved
-//Optional(TheRing.DietWithoutResidueOption.saved)
-//Optional(TheRing.DietWithoutResidueOption.saved)
-//nil
-//Sauvegardé
-//Optional("Sauvegardé")
-//Optional("Sauvegardé")
-//nil

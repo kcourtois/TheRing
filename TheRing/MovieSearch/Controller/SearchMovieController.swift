@@ -17,17 +17,16 @@ class SearchMovieController: UIViewController {
     weak var searchMovieDelegate: SearchMovieDelegate?
 
     override func viewDidLoad() {
+        //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
+        //load trending movies in table view
         searchMovies()
+        //set texts for this screen
         self.title = TRStrings.pickContestant.localizedString
         searchBar.placeholder = TRStrings.search.localizedString
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-
+    //when search tapped, get search text and call searchMovies
     @IBAction func searchTapped(_ sender: Any) {
         guard let text = searchBar.text else {
             return
@@ -38,8 +37,10 @@ class SearchMovieController: UIViewController {
         searchMovies(search: text)
     }
 
+    //if empty search, gives trending movies. else gives a list of matching movies
     func searchMovies(search: String = "") {
-        MovieService.shared.getMovies(search: search) { (success, movieList) in
+        let movieService = MovieService()
+        movieService.getMovies(search: search) { (success, movieList) in
             if success, let movieList = movieList {
                 self.movies = movieList
                 self.tableView.reloadData()
@@ -51,6 +52,7 @@ class SearchMovieController: UIViewController {
     }
 }
 
+// MARK: - Tableview datasource
 extension SearchMovieController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -74,6 +76,7 @@ extension SearchMovieController: UITableViewDataSource {
     }
 }
 
+// MARK: - Tableview delegare
 extension SearchMovieController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
@@ -94,6 +97,7 @@ extension SearchMovieController: UITextFieldDelegate {
     }
 }
 
+//gives the selected movie to previous controller
 protocol SearchMovieDelegate: class {
     func passMovie(movie: Movie)
 }

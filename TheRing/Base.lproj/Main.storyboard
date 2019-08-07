@@ -401,7 +401,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="687"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="8mm-3A-hB6">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1121"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="1071"/>
                                         <subviews>
                                             <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="82x-cM-trc" customClass="TournamentView" customModule="TheRing" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
@@ -491,10 +491,10 @@
                                                 </constraints>
                                             </view>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="991-r0-B6y">
-                                                <rect key="frame" x="0.0" y="621" width="320" height="500"/>
+                                                <rect key="frame" x="0.0" y="621" width="320" height="450"/>
                                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="500" id="jTD-K6-HYR"/>
+                                                    <constraint firstAttribute="height" constant="450" id="jTD-K6-HYR"/>
                                                 </constraints>
                                                 <connections>
                                                     <segue destination="7rQ-Nm-ofF" kind="embed" identifier="commentSegue" id="xa3-04-grA"/>
@@ -933,7 +933,7 @@
                                     <action selector="goTapped:" destination="zqx-uc-xBK" eventType="touchUpInside" id="LSc-4G-jXH"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-HM-Npq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-HM-Npq">
                                 <rect key="frame" x="8" y="110" width="304" height="401"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <prototypes>
@@ -941,7 +941,7 @@
                                         <rect key="frame" x="0.0" y="28" width="304" height="131"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Lx6-bm-Qo8" id="DE8-MB-MBV">
-                                            <rect key="frame" x="0.0" y="0.0" width="304" height="130.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="304" height="131"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-8S-5wz" customClass="TournamentOverview" customModule="TheRing" customModuleProvider="target">
@@ -1910,9 +1910,6 @@
                             <constraint firstItem="RpQ-3o-gK3" firstAttribute="top" secondItem="WrM-tc-HDu" secondAttribute="topMargin" id="sGh-w0-AAR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YCl-Aq-7iV"/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="5KW-mZ-4Xg" appends="YES" id="6is-iv-8oQ"/>
-                        </connections>
                     </view>
                     <size key="freeformSize" width="288" height="500"/>
                     <connections>
@@ -1925,11 +1922,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BbE-ce-jeH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="5KW-mZ-4Xg">
-                    <connections>
-                        <action selector="dismissKeyboard:" destination="7rQ-Nm-ofF" id="a4f-YC-YOQ"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="5972" y="-1150"/>
         </scene>
@@ -1999,7 +1991,7 @@
         <image name="xuan-nguyen-725109-unsplash" width="5024" height="3349"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zMa-SI-6oa"/>
+        <segue reference="aOK-rP-b17"/>
         <segue reference="unn-mL-icd"/>
         <segue reference="6Nj-ej-58f"/>
     </inferredMetricsTieBreakers>

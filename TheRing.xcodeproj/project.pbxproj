@@ -39,7 +39,7 @@
 		9E4F968B22EBB183006959FF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968A22EBB183006959FF /* UserCell.swift */; };
 		9E4F968D22EBB453006959FF /* UserListType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968C22EBB453006959FF /* UserListType.swift */; };
 		9E4F968F22EBB5B6006959FF /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968E22EBB5B6006959FF /* UserDetailController.swift */; };
-		9E4F969422EF4353006959FF /* DateFormatting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969322EF4353006959FF /* DateFormatting.swift */; };
+		9E4F969422EF4353006959FF /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969322EF4353006959FF /* DateExtension.swift */; };
 		9E4F969622F00F12006959FF /* TapDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969522F00F12006959FF /* TapDismiss.swift */; };
 		9E4F969922F06A1D006959FF /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969822F06A1D006959FF /* ScannerController.swift */; };
 		9E4F969B22F0998E006959FF /* QRCodeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F969A22F0998E006959FF /* QRCodeController.swift */; };
@@ -50,6 +50,7 @@
 		9E4F96A622F398AF006959FF /* TournamentOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F96A522F398AF006959FF /* TournamentOverview.swift */; };
 		9E4F96A922F89EE6006959FF /* OverviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F96A822F89EE6006959FF /* OverviewCell.swift */; };
 		9E4F96AB22F994C5006959FF /* ImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F96AA22F994C4006959FF /* ImageViewExtension.swift */; };
+		9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E73412922FACCA4008F4405 /* PreferencesTests.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -124,7 +125,7 @@
 		9E4F968A22EBB183006959FF /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		9E4F968C22EBB453006959FF /* UserListType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListType.swift; sourceTree = "<group>"; };
 		9E4F968E22EBB5B6006959FF /* UserDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
-		9E4F969322EF4353006959FF /* DateFormatting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatting.swift; sourceTree = "<group>"; };
+		9E4F969322EF4353006959FF /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		9E4F969522F00F12006959FF /* TapDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapDismiss.swift; sourceTree = "<group>"; };
 		9E4F969822F06A1D006959FF /* ScannerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerController.swift; sourceTree = "<group>"; };
 		9E4F969A22F0998E006959FF /* QRCodeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeController.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		9E4F96A522F398AF006959FF /* TournamentOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentOverview.swift; sourceTree = "<group>"; };
 		9E4F96A822F89EE6006959FF /* OverviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewCell.swift; sourceTree = "<group>"; };
 		9E4F96AA22F994C4006959FF /* ImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewExtension.swift; sourceTree = "<group>"; };
+		9E73412922FACCA4008F4405 /* PreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTests.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		9E064E4222CB06D2009FE905 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9E4F969322EF4353006959FF /* DateExtension.swift */,
 				9E064E4322CB06FB009FE905 /* FirebaseExtension.swift */,
 				9EA2719222C38CA500AAC06B /* AlertExtension.swift */,
 				9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */,
@@ -238,12 +241,9 @@
 		9E06BB6022B840F40098E148 /* TheRingTests */ = {
 			isa = PBXGroup;
 			children = (
+				9E73412822FACC57008F4405 /* GeneralModel */,
+				9E73412722FACC12008F4405 /* MovieSearch */,
 				9E06BB6322B840F40098E148 /* Info.plist */,
-				9E064E4722CCE87E009FE905 /* Movie.json */,
-				9E064E4922CCE8AB009FE905 /* MovieServiceTests.swift */,
-				9E064E4B22CCE972009FE905 /* UrlSession.swift */,
-				9E064E4D22CCE992009FE905 /* FakeResponseData.swift */,
-				9E334E3E22D8D04F00CB3257 /* Popular.json */,
 			);
 			path = TheRingTests;
 			sourceTree = "<group>";
@@ -255,7 +255,6 @@
 				9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */,
 				9E334E3822D873CD00CB3257 /* FirebaseAuthService.swift */,
 				9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */,
-				9E4F969322EF4353006959FF /* DateFormatting.swift */,
 			);
 			path = GeneralModel;
 			sourceTree = "<group>";
@@ -472,6 +471,26 @@
 			children = (
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9E73412722FACC12008F4405 /* MovieSearch */ = {
+			isa = PBXGroup;
+			children = (
+				9E064E4B22CCE972009FE905 /* UrlSession.swift */,
+				9E064E4D22CCE992009FE905 /* FakeResponseData.swift */,
+				9E334E3E22D8D04F00CB3257 /* Popular.json */,
+				9E064E4722CCE87E009FE905 /* Movie.json */,
+				9E064E4922CCE8AB009FE905 /* MovieServiceTests.swift */,
+			);
+			path = MovieSearch;
+			sourceTree = "<group>";
+		};
+		9E73412822FACC57008F4405 /* GeneralModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E73412922FACCA4008F4405 /* PreferencesTests.swift */,
+			);
+			path = GeneralModel;
 			sourceTree = "<group>";
 		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
@@ -733,7 +752,7 @@
 				9EFE1FCC22D35F9D003A0410 /* TournamentDateController.swift in Sources */,
 				9E064E3722C7A53F009FE905 /* PasswordController.swift in Sources */,
 				9E4F968B22EBB183006959FF /* UserCell.swift in Sources */,
-				9E4F969422EF4353006959FF /* DateFormatting.swift in Sources */,
+				9E4F969422EF4353006959FF /* DateExtension.swift in Sources */,
 				9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */,
 				9E4F968F22EBB5B6006959FF /* UserDetailController.swift in Sources */,
 				9EA2719922C4E1E400AAC06B /* ProfileController.swift in Sources */,
@@ -747,6 +766,7 @@
 			files = (
 				9E064E4C22CCE972009FE905 /* UrlSession.swift in Sources */,
 				9E064E4E22CCE992009FE905 /* FakeResponseData.swift in Sources */,
+				9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */,
 				9E064E4A22CCE8AB009FE905 /* MovieServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

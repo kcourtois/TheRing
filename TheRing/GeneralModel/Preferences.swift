@@ -16,10 +16,12 @@ class Preferences {
 
     private let defaults: UserDefaults
 
+    //default init is standard
     init(defaults: UserDefaults = .standard) {
         self.defaults = defaults
     }
 
+    //access preferences storage and read with this var
     public var user: TRUser {
         get {
             guard let data = defaults.value(forKey: Keys.user) as? Data else {

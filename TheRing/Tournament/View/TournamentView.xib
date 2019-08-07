@@ -104,13 +104,13 @@
                     <gestureRecognizers/>
                 </imageView>
                 <imageView clipsSubviews="YES" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unknown" translatesAutoresizingMaskIntoConstraints="NO" id="Bee-xb-RlB">
-                    <rect key="frame" x="32" y="232" width="55" height="55"/>
+                    <rect key="frame" x="52" y="232" width="55" height="55"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                 </imageView>
                 <imageView clipsSubviews="YES" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="unknown" translatesAutoresizingMaskIntoConstraints="NO" id="pcn-nC-9k7">
-                    <rect key="frame" x="327" y="232" width="55" height="55"/>
+                    <rect key="frame" x="307" y="232" width="55" height="55"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <gestureRecognizers/>
                 </imageView>
@@ -126,7 +126,7 @@
             <constraints>
                 <constraint firstItem="bD8-ag-E9X" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="1l9-f3-YAG"/>
                 <constraint firstItem="hCz-Ed-CIZ" firstAttribute="top" secondItem="UQj-qs-02x" secondAttribute="bottom" constant="8" id="3ec-7m-031"/>
-                <constraint firstItem="pcn-nC-9k7" firstAttribute="leading" secondItem="PVU-jE-Tow" secondAttribute="trailing" id="4Q6-aO-70S"/>
+                <constraint firstItem="pcn-nC-9k7" firstAttribute="leading" secondItem="PVU-jE-Tow" secondAttribute="trailing" constant="-20" id="4Q6-aO-70S"/>
                 <constraint firstItem="bD8-ag-E9X" firstAttribute="top" secondItem="2PX-Uc-bBY" secondAttribute="bottom" id="4Sl-Bz-lvl"/>
                 <constraint firstItem="PVU-jE-Tow" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="8KS-aS-PEB"/>
                 <constraint firstItem="hCz-Ed-CIZ" firstAttribute="width" secondItem="UQj-qs-02x" secondAttribute="width" constant="40" id="9ct-cy-JqB"/>
@@ -140,7 +140,7 @@
                 <constraint firstItem="hCz-Ed-CIZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VRK-WV-fyf"/>
                 <constraint firstItem="2PX-Uc-bBY" firstAttribute="top" secondItem="n7k-NY-Upk" secondAttribute="bottom" constant="8" id="XpS-t7-NfU"/>
                 <constraint firstItem="Bee-xb-RlB" firstAttribute="height" secondItem="S6Z-dC-cEY" secondAttribute="height" id="aQ9-e3-rlw"/>
-                <constraint firstItem="PVU-jE-Tow" firstAttribute="leading" secondItem="Bee-xb-RlB" secondAttribute="trailing" id="bOw-Sg-1f7"/>
+                <constraint firstItem="PVU-jE-Tow" firstAttribute="leading" secondItem="Bee-xb-RlB" secondAttribute="trailing" constant="-20" id="bOw-Sg-1f7"/>
                 <constraint firstItem="pcn-nC-9k7" firstAttribute="centerY" secondItem="PVU-jE-Tow" secondAttribute="centerY" id="cKj-1m-xRv"/>
                 <constraint firstItem="pfN-iU-826" firstAttribute="top" secondItem="S6Z-dC-cEY" secondAttribute="bottom" id="edg-7H-Udh"/>
                 <constraint firstItem="S6Z-dC-cEY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="fRL-ee-yZc"/>

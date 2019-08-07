@@ -24,8 +24,8 @@ class MovieCell: UITableViewCell {
 
     //func to localize release date
     private func localizedDetail(from string: String) -> String {
-        if let date = DateFormatting.yearMonthDayStrToDate(str: string) {
-            let dateStr = DateFormatting.dateToLocalizedString(date: date)
+        if let date = Date(dateString: string) {
+            let dateStr = date.dateToLocalizedString()
             let final = String(dateStr.split(separator: " ")[0])
             if final.last == "," {
                 return String(final.prefix(final.count-1))

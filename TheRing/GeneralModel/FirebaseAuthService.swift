@@ -10,6 +10,7 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseAuthService {
+    //Updates email for current user in firebase auth. Needs to reauthenticate to proceed
     static func updateEmail(password: String, mail: String, completion: @escaping (String?) -> Void) {
         if let user = Auth.auth().currentUser {
             reauthenticate(user: user, password: password, completion: { authError in
@@ -26,6 +27,7 @@ class FirebaseAuthService {
         }
     }
 
+    //Updates password for current user in firebase auth. Needs to reauthenticate to proceed
     static func updatePassword(oldPwd: String, newPwd: String, completion: @escaping (String?) -> Void) {
         if let user = Auth.auth().currentUser {
             reauthenticate(user: user, password: oldPwd, completion: { authError in
@@ -42,6 +44,7 @@ class FirebaseAuthService {
         }
     }
 
+    //func to reauthenticate the current user. Requires the password to do so
     static func reauthenticate(user: User, password: String, completion: @escaping (String?) -> Void) {
         if let user = Auth.auth().currentUser {
             let preferences = Preferences()
@@ -52,6 +55,7 @@ class FirebaseAuthService {
         }
     }
 
+    //return localized string for given error
     static func getAuthError(error: Error?) -> String? {
         guard let error = error else {
             return nil

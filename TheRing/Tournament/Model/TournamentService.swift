@@ -93,7 +93,7 @@ class TournamentService {
                 let startTime = value?["startTime"] as? String,
                 let creator = value?["creator"] as? String {
                 //converts the date from string to date type
-                if let date = DateFormatting.stringToDate(str: startTime) {
+                if let date = Date(dateStringWithHMS: startTime) {
                     completion(Tournament(tid: tid, title: title, description: description, contestants: [],
                                           startTime: date, roundDuration: 0, creator: creator))
                 } else {
@@ -143,7 +143,7 @@ class TournamentService {
                 let value = data.value as? NSDictionary
                 if let endDate = value?["endDate"] as? String {
                     //gets date from string to date type
-                    if let end = DateFormatting.stringToDate(str: endDate) {
+                    if let end = Date(dateStringWithHMS: endDate) {
                         //add the round
                         rounds.append(Round(rid: data.key, endDate: end))
                     }
@@ -344,7 +344,7 @@ extension TournamentService {
         let reference = Database.database().reference()
         let pref = Preferences()
         //get current date to string
-        guard let date = DateFormatting.dateToString(date: Date()) else {
+        guard let date = Date().dateToString() else {
             return
         }
         let values = ["uid": pref.user.uid, "username": pref.user.name, "comment": comment, "date": date]
@@ -393,7 +393,7 @@ extension TournamentService {
         let date = calendar.date(byAdding: .day, value: duration, to: start)
 
         if let result = date {
-            return DateFormatting.dateToString(date: result)
+            return result.dateToString()
         } else {
             return nil
         }

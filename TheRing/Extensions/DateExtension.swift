@@ -8,33 +8,42 @@
 
 import Foundation
 
-class DateFormatting {
+extension Date {
     //Takes a date and return a localized string
-    static func dateToLocalizedString(date: Date) -> String {
+    func dateToLocalizedString() -> String {
         let formatDate = DateFormatter()
         formatDate.dateStyle = .short
         formatDate.timeStyle = .short
         formatDate.locale = Locale(identifier: NSLocale.current.identifier)
-        return formatDate.string(from: date)
+        return formatDate.string(from: self)
     }
 
     //Takes a date and returns a string formated in a specific order
-    static func dateToString(date: Date) -> String? {
+    func dateToString() -> String? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        return dateFormatter.string(from: date)
+        return dateFormatter.string(from: self)
     }
 
     //Takes a string formated in a specific order and returns a date
-    static func stringToDate(str: String) -> Date? {
+    init?(dateStringWithHMS: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        return dateFormatter.date(from: str)
+        if let date = dateFormatter.date(from: dateStringWithHMS) {
+            self.init(timeInterval: 0, since: date)
+        } else {
+            return nil
+        }
     }
 
-    static func yearMonthDayStrToDate(str: String) -> Date? {
+    //Takes a string formated in a specific order and returns a date
+    init?(dateString: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
-        return dateFormatter.date(from: str)
+        if let date = dateFormatter.date(from: dateString) {
+            self.init(timeInterval: 0, since: date)
+        } else {
+            return nil
+        }
     }
 }

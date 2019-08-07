@@ -52,7 +52,7 @@ class TournamentView: UIView {
             } else {
                 roundLabel.text = "\(TRStrings.round.localizedString) \(idx+1)"
                 endDateLabel.text = "\(TRStrings.endsOn.localizedString) " +
-                DateFormatting.dateToLocalizedString(date: tournament.rounds[idx].endDate)
+                tournament.rounds[idx].endDate.dateToLocalizedString()
             }
             titleLabel.text = tournament.title
         }

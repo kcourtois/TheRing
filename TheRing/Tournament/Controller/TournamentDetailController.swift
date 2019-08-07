@@ -23,34 +23,45 @@ class TournamentDetailController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //if tournament is set, we can set the view
         if let tournament = tournament {
-            self.setTexts()
-            self.tournamentView.setView(tournament: tournament)
-            self.loadVotes()
-            self.loadStages()
+            //set texts for this screen
+            setTexts()
+            //set tournamentView xib
+            tournamentView.setView(tournament: tournament)
+            //load votes of the user
+            loadVotes()
+            //load stages for contestant winners
+            loadStages()
         } else {
+            //else, show error and pop view
             presentAlertPopRootVC(title: TRStrings.error.localizedString,
                                   message: TRStrings.errorCreator.localizedString)
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        //Notification observer for didTapContestant
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //Notification observer for didTapContestant added when view appears
         let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapContestant(_:)),
                                                name: nameTapContNotif, object: nil)
     }
 
-    deinit {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //Notification observer for didTapContestant removed when view disappears
         let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
         NotificationCenter.default.removeObserver(self, name: nameTapContNotif, object: nil)
     }
 
     @IBAction func shareTapped(_ sender: Any) {
+        //check permission if needed, and shares tournament if not
         checkPermission()
     }
 
     @IBAction func creatorTapped(_ sender: Any) {
+        //segue to creator details
         performSegue(withIdentifier: "DetailUserSegue", sender: self)
     }
 
@@ -63,15 +74,18 @@ class TournamentDetailController: UIViewController {
         }
     }
 
+    //vote for the tapped contestant if possible
     private func contestantTapped(tag: Int) {
         if let tournament = tournament {
             let round = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
             switch round {
+            //if first round and image tapped < 4, vote
             case 0:
                 if tag < 4 {
                     tournamentView.colorBackground(index: tag)
                     vote(round: round, cid: tournament.contestants[tag].cid)
                 }
+            //if second round and image tapped > 3 and < 6, vote
             case 1:
                 if tag > 3 && tag < 6 && tournament.rounds[round].endDate > Date() {
                     tournamentView.colorBackground(index: tag)
@@ -87,17 +101,21 @@ class TournamentDetailController: UIViewController {
         }
     }
 
+    //vote in database through tournament service
     private func vote(round: Int, cid: String) {
         guard let tournament = tournament else {
             return
         }
         let pref = Preferences()
+        //check if user already had a registered vote
         TournamentService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[round].rid) { (result) in
             if let contId = result {
+                //if he had, remove it
                 TournamentService.removeUserVote(uid: pref.user.uid,
                                                  rid: tournament.rounds[round].rid, cid: contId)
             }
 
+            //vote for the new contestant
             TournamentService.registerVote(rid: tournament.rounds[round].rid,
                                            uid: pref.user.uid,
                                            cid: cid) { (error) in
@@ -122,7 +140,7 @@ class TournamentDetailController: UIViewController {
             contRes.append(0)
         }
 
-        //get votes count
+        //get votes count for all contestants
         for ind in 0..<cids.count {
             dispatchGroup.enter()
             TournamentService.getVotes(cid: cids[ind],
@@ -136,6 +154,7 @@ class TournamentDetailController: UIViewController {
 
         dispatchGroup.notify(queue: .main) {
             var result = [String]()
+            //check winner of each duel
             for index in stride(from: 0, to: cids.count-1, by: 2) {
                 if contRes[index] >= contRes[index+1] {
                     result.append(cids[index])
@@ -151,6 +170,7 @@ class TournamentDetailController: UIViewController {
     private func loadVotes() {
         let pref = Preferences()
         if let tournament = tournament {
+            //get vote for round 1
             TournamentService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[0].rid) { (cid) in
                 if let cid = cid {
                     for (index, cont) in tournament.contestants.enumerated() where cid == cont.cid {
@@ -158,6 +178,7 @@ class TournamentDetailController: UIViewController {
                     }
                 }
             }
+            //get vote for round 2
             TournamentService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[1].rid) { (cid) in
                 if let cid = cid {
                     switch cid {
@@ -197,38 +218,18 @@ class TournamentDetailController: UIViewController {
         }
     }
 
+    //set texts for this screen
     private func setTexts() {
         startTimeLabel.text = TRStrings.startTime.localizedString
         creatorLabel.text = TRStrings.creator.localizedString
         self.title = TRStrings.tournament.localizedString
         guard let tournament = tournament else { return }
         descDataLabel.text = tournament.description
-        startTimeDataLabel.text = DateFormatting.dateToLocalizedString(date: tournament.startTime)
+        startTimeDataLabel.text = tournament.startTime.dateToLocalizedString()
         creatorDataButton.setTitle(tournament.creator.name, for: .normal)
     }
 
     //Present view to user for image share
-    private func shareTournament() {
-        guard let url = URL(string: "https://github.com/kcourtois/TheRing") else {
-            presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
-            return
-        }
-        let text = TRStrings.shareTournament.localizedString
-        let items = [text, url, getTournamentAsImage()] as [Any]
-        let act = UIActivityViewController(activityItems: items, applicationActivities: nil)
-        act.completionWithItemsHandler = { activity, completed, items, error in
-            if !completed {
-                self.presentAlert(title: TRStrings.shareFailed.localizedString,
-                                  message: TRStrings.failedToShare.localizedString)
-            } else {
-                self.presentAlert(title: TRStrings.shareSucceeded.localizedString,
-                                  message: TRStrings.successShare.localizedString)
-            }
-        }
-
-        present(act, animated: true, completion: nil)
-    }
-
     private func shareWithUrlAndText() {
         guard let url = URL(string: "https://github.com/kcourtois/TheRing") else {
             presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
@@ -280,8 +281,8 @@ extension TournamentDetailController {
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization { result in
                 if result == .authorized {
-                    self.presentAlert(title: "Permission accordée",
-                                      message: "Vous pouvez maintenant partager les tournois.")
+                    self.presentAlert(title: TRStrings.permissionGranted.localizedString,
+                                      message: TRStrings.shareAuthorized.localizedString)
                 } else {
                     self.presentPermissionDeniedAlert()
                 }

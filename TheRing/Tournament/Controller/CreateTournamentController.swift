@@ -22,17 +22,22 @@ class CreateTournamentController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //sets keyboard to dark theme
         descriptionField.keyboardAppearance = .dark
+        //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        //sets color for description field
         descriptionField.textColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
         descriptionField.layer.borderColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
+        //set texts for this screen
         setTexts()
     }
 
+    //adds tournament, and does a segue if it was created successfully
     @IBAction func nextTapped(_ sender: Any) {
         addTournament()
         if tournament != nil {
@@ -40,6 +45,7 @@ class CreateTournamentController: UIViewController {
         }
     }
 
+    //gives tournament to next screen to continue the creation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "contestantSegue",
             let selectContestantVC = segue.destination as? SelectContestantController {
@@ -51,6 +57,7 @@ class CreateTournamentController: UIViewController {
         }
     }
 
+    //creates tournament with this screen's data
     private func addTournament() {
         guard let title = titleField.text else {
             presentAlert(title: TRStrings.error.localizedString,
@@ -58,6 +65,7 @@ class CreateTournamentController: UIViewController {
             return
         }
 
+        //check if fields are not empty
         if title.isEmpty || descriptionField.text == TRStrings.enterDescription.localizedString {
             presentAlert(title: TRStrings.error.localizedString,
                          message: TRStrings.emptyFields.localizedString)
@@ -70,7 +78,7 @@ class CreateTournamentController: UIViewController {
 
 // MARK: - UI & Preferences setup
 extension CreateTournamentController {
-    //sets label texts
+    //set texts for this screen
     private func setTexts() {
         descriptionField.text = TRStrings.enterDescription.localizedString
         titleField.placeholder = TRStrings.enterTitle.localizedString

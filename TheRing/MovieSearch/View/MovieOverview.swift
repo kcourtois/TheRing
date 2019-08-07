@@ -33,6 +33,7 @@ class MovieOverview: UIView {
         addSubview(contentView)
     }
 
+    //set view with given movie (load image, title, overview, genre...)
     func setView(movie: Movie?) {
         if let movie = movie {
             let url = URL(string: movie.image)
@@ -54,6 +55,7 @@ class MovieOverview: UIView {
         }
     }
 
+    //set movie genre, with a list of categories defined by the api.
     private func setGenre(ids: [Int]) {
         if ids.isEmpty {
             genres.text = nil

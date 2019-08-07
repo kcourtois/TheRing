@@ -9,6 +9,7 @@
 import Foundation
 
 class NotificationStrings {
+    //Strings (const) for notification names and parameter keys in the app
     static let didTapContestantNotificationName: String = "didTapContestant"
     static let didTapContestantParameterKey: String = "tag"
     static let didTapSubscribersNotificationName: String = "didTapSubscribers"

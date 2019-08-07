@@ -18,10 +18,15 @@ class SearchController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set texts for this screen
         setTexts()
+        //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
+        //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
+        //Check if user logged
         if let currUser = Auth.auth().currentUser {
+            //Check if user pref are up to date
             if preferences.user.uid != currUser.uid {
                 loadUserPref(uid: currUser.uid)
             }
@@ -32,9 +37,11 @@ class SearchController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //refresh tournaments on view appear
         getAllTournaments()
     }
 
+    //Search tournaments when go tapped
     @IBAction func goTapped(_ sender: Any) {
         if let text = searchBar.text {
             if !text.isEmpty {
@@ -45,10 +52,12 @@ class SearchController: UIViewController {
         }
     }
 
+    //to create a new tournament, we need to segue to CreateTournamentController
     @IBAction func createTapped(_ sender: Any) {
         performSegue(withIdentifier: "createTournamentSegue", sender: self)
     }
 
+    //prepare detail view with tournament data
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailTournamentSegue",
             let tournamentDetailVC = segue.destination as? TournamentDetailController,
@@ -57,6 +66,7 @@ class SearchController: UIViewController {
         }
     }
 
+    //gets all tournaments and select only those who contains the search string in title
     private func searchTournaments(search: String) {
         TournamentService.getAllTournaments(completion: { (tournaments) in
             var tmp = [TournamentData]()
@@ -65,23 +75,24 @@ class SearchController: UIViewController {
                     tmp.append(tournament)
                 }
             }
+            //sorts tournament form newest to oldest
             self.tournaments = tmp.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
             self.tableView.reloadData()
         })
     }
 
+    //gets all tournaments, sort them from newest to oldest and reloads tableview
     private func getAllTournaments() {
         TournamentService.getAllTournaments(completion: { (tournaments) in
             self.tournaments = tournaments.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
             self.tableView.reloadData()
         })
     }
-
 }
 
 // MARK: - UI & Preferences setup
 extension SearchController {
-    //sets label texts
+    //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.tournaments.localizedString
         searchBar.placeholder = TRStrings.search.localizedString
@@ -126,6 +137,7 @@ extension SearchController: UITextFieldDelegate {
     }
 }
 
+// MARK: - Tableview datasource
 extension SearchController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -149,6 +161,7 @@ extension SearchController: UITableViewDataSource {
     }
 }
 
+// MARK: - Tableview delegare
 extension SearchController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: "DetailTournamentSegue", sender: self)

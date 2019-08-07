@@ -20,14 +20,18 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //set movie view to print nothing on first load
         contestantView.setView(movie: movie)
+        //replace back arrow to do our own things
         let customBackButton = UIBarButtonItem(image: UIImage(named: "backArrow"), style: .plain,
                                                target: self, action: #selector(backAction(sender:)))
         customBackButton.imageInsets = UIEdgeInsets(top: 2, left: -8, bottom: 0, right: 0)
         navigationItem.leftBarButtonItem = customBackButton
+        //set texts for this screen
         setTexts()
     }
 
+    //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.createTournaments.localizedString
         pickButton.setTitle(TRStrings.pick.localizedString, for: .normal)
@@ -36,11 +40,13 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
         contestantLabel.text = "\(TRStrings.contestant.localizedString) 1"
     }
 
+    //replace of back arrow action
     @objc func backAction(sender: UIBarButtonItem) {
         guard var tournament = tournament else {
             return
         }
 
+        //check current step in contestant picking
         if step == tournament.contestants.count {
             tournament.contestants.removeLast()
             self.tournament = tournament
@@ -48,11 +54,13 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
 
         step -= 1
 
+        //if there are no contestant, do like the regular back arrow
         if tournament.contestants.isEmpty {
             navigationController?.popViewController(animated: true)
             return
         }
 
+        //else, we go back to previous contestant picking view
         sentenceLabel.text = "\(TRStrings.selectContestant.localizedString)\(tournament.contestants.count)."
         contestantLabel.text = "\(TRStrings.contestant.localizedString) \(tournament.contestants.count)"
         contestantView.setView(movie: tournament.contestants.last)
@@ -61,6 +69,7 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
         self.tournament = tournament
     }
 
+    //pick next contestant or segue to final step of tournament creation
     private func nextContestantPick() {
         guard var tournament = tournament, let movie = movie else {
             return
@@ -84,15 +93,18 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
         self.movie = nil
     }
 
+    //pick contestant in movie search view
     @IBAction func pickTapped(_ sender: Any) {
         performSegue(withIdentifier: "contestantPickerSegue", sender: self)
     }
 
+    //pick next contestant
     @IBAction func nextTapped(_ sender: Any) {
         nextContestantPick()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //datepick is the final step of tournament creation. pass tournament data before segue
         if segue.identifier == "datepickSegue",
             let tournamentDateVC = segue.destination as? TournamentDateController {
             if let tournament = tournament {
@@ -100,12 +112,14 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
             } else {
                 return
             }
+        //contestant pick brings movie search view, to find a contestant
         } else if segue.identifier == "contestantPickerSegue",
             let contestantPickerVC = segue.destination as? SearchMovieController {
             contestantPickerVC.searchMovieDelegate = self
         }
     }
 
+    //used by moviesearch to give back the picked movie
     func passMovie(movie: Movie) {
         self.movie = movie
         contestantView.setView(movie: movie)

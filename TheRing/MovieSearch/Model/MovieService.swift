@@ -49,13 +49,11 @@ struct Movie: Codable {
 }
 
 class MovieService {
-    static var shared = MovieService()
-    private var movieSession = URLSession(configuration: .default)
+    private var movieSession: URLSession
     private var task: URLSessionDataTask?
-    private init() {}
 
     //Init used for tests
-    init(movieSession: URLSession) {
+    init(movieSession: URLSession = URLSession(configuration: .default)) {
         self.movieSession = movieSession
     }
 
@@ -63,10 +61,11 @@ class MovieService {
     func getMovies(search: String = "", callback: @escaping (Bool, [Movie]?) -> Void) {
 
         var components: URLComponents?
-
+        //if search string is empty, get trending movie list
         if search.isEmpty {
             components = URLComponents(string: "https://api.themoviedb.org/3/trending/movie/day")
         } else {
+            //else search the movie
             components = URLComponents(string: "https://api.themoviedb.org/3/search/movie")
         }
 

@@ -20,22 +20,28 @@ class TournamentDateController: UIViewController {
     @IBOutlet weak var startTimeLabel: UILabel!
 
     override func viewDidLoad() {
+        //set date picker min and max date
         datePicker.minimumDate = Date()
         datePicker.maximumDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
+        //set texts for this screen
         setTexts()
+        //set days per round label
         updateDays(self)
     }
 
+    //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.createTournaments.localizedString
         lastStepLabel.text = TRStrings.lastStep.localizedString
         startTimeLabel.text = TRStrings.startTime.localizedString
     }
 
+    //set days per round label
     @IBAction func updateDays(_ sender: Any) {
         daysPerRound.text = "\(TRStrings.roundDays.localizedString): \(Int(stepperRound.value))"
     }
 
+    //create tournament in DB and pop to root view
     @IBAction func doneTapped(_ sender: Any) {
         updateTournament()
         if let tournament = tournament { //Put var instead of let
@@ -54,6 +60,7 @@ class TournamentDateController: UIViewController {
         }
     }
 
+    //set round duration and start time for tournament
     private func updateTournament() {
         if var tournament = tournament {
             tournament.roundDuration = Int(stepperRound.value)
