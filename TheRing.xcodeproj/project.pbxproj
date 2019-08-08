@@ -63,6 +63,7 @@
 		9EA2719722C48AD900AAC06B /* TRUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2719622C48AD900AAC06B /* TRUser.swift */; };
 		9EA2719922C4E1E400AAC06B /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2719822C4E1E400AAC06B /* ProfileController.swift */; };
 		9EA2719B22C5020300AAC06B /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA2719A22C5020300AAC06B /* Preferences.swift */; };
+		9EA846DE22FC520000572A38 /* DateExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846DD22FC520000572A38 /* DateExtensionTests.swift */; };
 		9EFE1F9A22CCEDFF003A0410 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */; };
 		9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */; };
 		9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */; };
@@ -149,6 +150,7 @@
 		9EA2719622C48AD900AAC06B /* TRUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TRUser.swift; sourceTree = "<group>"; };
 		9EA2719822C4E1E400AAC06B /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		9EA2719A22C5020300AAC06B /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		9EA846DD22FC520000572A38 /* DateExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensionTests.swift; sourceTree = "<group>"; };
 		9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTournamentController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		9E06BB6022B840F40098E148 /* TheRingTests */ = {
 			isa = PBXGroup;
 			children = (
+				9EA846DC22FC517500572A38 /* Extension */,
 				9E73412822FACC57008F4405 /* GeneralModel */,
 				9E73412722FACC12008F4405 /* MovieSearch */,
 				9E06BB6322B840F40098E148 /* Info.plist */,
@@ -491,6 +494,14 @@
 				9E73412922FACCA4008F4405 /* PreferencesTests.swift */,
 			);
 			path = GeneralModel;
+			sourceTree = "<group>";
+		};
+		9EA846DC22FC517500572A38 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9EA846DD22FC520000572A38 /* DateExtensionTests.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
@@ -767,6 +778,7 @@
 				9E064E4C22CCE972009FE905 /* UrlSession.swift in Sources */,
 				9E064E4E22CCE992009FE905 /* FakeResponseData.swift in Sources */,
 				9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */,
+				9EA846DE22FC520000572A38 /* DateExtensionTests.swift in Sources */,
 				9E064E4A22CCE8AB009FE905 /* MovieServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

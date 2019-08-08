@@ -31,8 +31,8 @@ class CreateTournamentController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //sets color for description field
-        descriptionField.textColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
-        descriptionField.layer.borderColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
+        descriptionField.textColor = #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.8, alpha: 1)
+        descriptionField.layer.borderColor = #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.8, alpha: 1)
         //set texts for this screen
         setTexts()
     }
@@ -92,16 +92,16 @@ extension CreateTournamentController {
 // MARK: - Keyboard dismiss and placeholders setup
 extension CreateTournamentController: UITextViewDelegate, UITextFieldDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1) {
+        if textView.textColor == #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.8, alpha: 1) {
             textView.text = nil
-            textView.textColor = UIColor.white
+            textView.textColor = UIColor.black
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = TRStrings.enterDescription.localizedString
-            textView.textColor = #colorLiteral(red: 0.5137254902, green: 0.5137254902, blue: 0.5137254902, alpha: 1)
+            textView.textColor = #colorLiteral(red: 0.7803921569, green: 0.7803921569, blue: 0.8, alpha: 1)
         }
     }
 

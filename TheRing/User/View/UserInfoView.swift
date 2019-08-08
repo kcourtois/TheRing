@@ -8,7 +8,6 @@
 import UIKit
 
 class UserInfoView: UIView {
-
     @IBOutlet weak var usernameDesc: UILabel!
     @IBOutlet weak var emailDesc: UILabel!
     @IBOutlet weak var genderDesc: UILabel!

@@ -10,11 +10,11 @@ import Foundation
 
 extension Date {
     //Takes a date and return a localized string
-    func dateToLocalizedString() -> String {
+    func dateToLocalizedString(locale: Locale = Locale(identifier: NSLocale.current.identifier)) -> String {
         let formatDate = DateFormatter()
         formatDate.dateStyle = .short
         formatDate.timeStyle = .short
-        formatDate.locale = Locale(identifier: NSLocale.current.identifier)
+        formatDate.locale = locale
         return formatDate.string(from: self)
     }
 
@@ -26,10 +26,10 @@ extension Date {
     }
 
     //Takes a string formated in a specific order and returns a date
-    init?(dateStringWithHMS: String) {
+    init?(dateStringWithHM: String) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd hh:mm a"
-        if let date = dateFormatter.date(from: dateStringWithHMS) {
+        if let date = dateFormatter.date(from: dateStringWithHM) {
             self.init(timeInterval: 0, since: date)
         } else {
             return nil

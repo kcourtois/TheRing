@@ -93,7 +93,7 @@ class TournamentService {
                 let startTime = value?["startTime"] as? String,
                 let creator = value?["creator"] as? String {
                 //converts the date from string to date type
-                if let date = Date(dateStringWithHMS: startTime) {
+                if let date = Date(dateStringWithHM: startTime) {
                     completion(Tournament(tid: tid, title: title, description: description, contestants: [],
                                           startTime: date, roundDuration: 0, creator: creator))
                 } else {
@@ -143,7 +143,7 @@ class TournamentService {
                 let value = data.value as? NSDictionary
                 if let endDate = value?["endDate"] as? String {
                     //gets date from string to date type
-                    if let end = Date(dateStringWithHMS: endDate) {
+                    if let end = Date(dateStringWithHM: endDate) {
                         //add the round
                         rounds.append(Round(rid: data.key, endDate: end))
                     }
