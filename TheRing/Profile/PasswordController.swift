@@ -17,7 +17,8 @@ class PasswordController: UIViewController {
     @IBOutlet weak var newPassLabel: UILabel!
     @IBOutlet weak var confirmPassLabel: UILabel!
 
-    let preferences = Preferences()
+    private let preferences = Preferences()
+    private let authService: AuthService = FirebaseAuth()
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
@@ -76,7 +77,7 @@ extension PasswordController {
 extension PasswordController {
     //update user password
     private func updatePassword(oldPwd: String, newPwd: String) {
-        FirebaseAuthService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
+        authService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                             message: error)

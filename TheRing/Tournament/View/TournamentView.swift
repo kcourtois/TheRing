@@ -20,6 +20,7 @@ class TournamentView: UIView {
     @IBOutlet var contestantImg: [UIImageView]!
 
     var tournament: TournamentData?
+    private let tournamentService: TournamentService = FirebaseTournament()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,7 +41,7 @@ class TournamentView: UIView {
     func setView(tournament: TournamentData?) {
         if let tournament = tournament {
             self.tournament = tournament
-            let idx = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
+            let idx = tournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
             //fetch all images with KingFisher
             for index in 0..<4 {
                 contestantImg[index].kf.setImage(with: URL(string: tournament.contestants[index].image))

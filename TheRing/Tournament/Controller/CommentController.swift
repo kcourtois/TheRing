@@ -19,6 +19,7 @@ class CommentController: UIViewController {
 
     var tid: String?
     private var comments: [Comment] = []
+    private let commentService: CommentService = FirebaseComment()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,7 @@ class CommentController: UIViewController {
         tableView.tableFooterView = UIView()
         //If tid is set, get comments
         if let tid = tid {
-            TournamentService.getComments(tid: tid, completion: { (result) in
+            commentService.getComments(tid: tid, completion: { (result) in
                 self.comments = result
                 self.tableView.reloadData()
             })
@@ -71,12 +72,12 @@ class CommentController: UIViewController {
     //when send is tapped, register comment and reload comments
     @IBAction func sendComment(_ sender: Any) {
         if let tid = tid, let comment = commentField.text {
-            TournamentService.registerComment(tid: tid, comment: comment) { (error) in
+            commentService.registerComment(tid: tid, comment: comment) { (error) in
                 if let error = error {
                     self.presentAlert(title: TRStrings.error.localizedString, message: error)
                 }
                 self.commentField.text = ""
-                TournamentService.getComments(tid: tid, completion: { (result) in
+                self.commentService.getComments(tid: tid, completion: { (result) in
                     self.comments = result
                     self.tableView.reloadData()
                 })

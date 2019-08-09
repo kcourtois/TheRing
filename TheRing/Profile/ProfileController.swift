@@ -22,7 +22,8 @@ class ProfileController: UIViewController {
     @IBOutlet weak var modifyPassword: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
 
-    let preferences = Preferences()
+    private let userService: UserService = FirebaseUser()
+    private let preferences = Preferences()
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
@@ -125,7 +126,7 @@ class ProfileController: UIViewController {
 extension ProfileController {
     //replace username by new one, and save user to database
     private func replaceUsernameAndSave(name: String) {
-        UserService.replaceUsername(old: self.preferences.user.name, new: name,
+        userService.replaceUsername(old: self.preferences.user.name, new: name,
                                         uid: self.preferences.user.uid, completion: { (error) in
             if error != nil {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
@@ -138,7 +139,7 @@ extension ProfileController {
 
     //check if username is available, then save user to database
     private func checkUsernameAndSave(name: String) {
-        UserService.isUsernameAvailable(name: name) { available in
+        userService.isUsernameAvailable(name: name) { available in
             if available {
                 self.replaceUsernameAndSave(name: name)
             } else {
@@ -151,7 +152,7 @@ extension ProfileController {
 
     //save user to database
     private func registerUserInfo(values: [String: Any]) {
-        UserService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
+        userService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)

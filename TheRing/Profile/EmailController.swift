@@ -17,7 +17,9 @@ class EmailController: UIViewController {
     @IBOutlet weak var newMailLabel: UILabel!
     @IBOutlet weak var confirmLabel: UILabel!
 
-    let preferences = Preferences()
+    private let preferences = Preferences()
+    private let authService: AuthService = FirebaseAuth()
+    private let userService: UserService = FirebaseUser()
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
@@ -105,7 +107,7 @@ extension EmailController {
                       "gender": preferences.user.gender.rawValue,
                       "username": preferences.user.name] as [String: Any]
 
-        UserService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
+        userService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                             message: error)
@@ -118,7 +120,7 @@ extension EmailController {
 
     //updates email and saves user
     private func updateMailAndSave(password: String, mail: String) {
-        FirebaseAuthService.updateEmail(password: password, mail: mail) { error in
+        authService.updateEmail(password: password, mail: mail) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)

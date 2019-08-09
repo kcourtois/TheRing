@@ -11,6 +11,8 @@ import UIKit
 class TournamentDateController: UIViewController {
 
     var tournament: Tournament?
+    private let tournamentService: TournamentService = FirebaseTournament()
+
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var stepperRound: UIStepper!
     @IBOutlet weak var daysPerRound: UILabel!
@@ -46,7 +48,7 @@ class TournamentDateController: UIViewController {
         updateTournament()
         if let tournament = tournament { //Put var instead of let
             //tournament.startTime = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-            TournamentService.createTournament(tournament: tournament) { (error) in
+            tournamentService.createTournament(tournament: tournament) { (error) in
                 if let error = error {
                     self.presentAlert(title: TRStrings.error.localizedString, message: error)
                 } else {

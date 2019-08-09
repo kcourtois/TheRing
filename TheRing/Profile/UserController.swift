@@ -15,6 +15,7 @@ class UserController: UIViewController {
     @IBOutlet weak var myCodeButton: UIButton!
 
     private let preferences = Preferences()
+    private let userService: UserService = FirebaseUser()
     private var userType: UserListType = .subscriptions
 
     override func viewWillAppear(_ animated: Bool) {
@@ -103,12 +104,12 @@ extension UserController {
     //sets data label texts
     private func setLabels() {
         userInfoView.setUser(user: preferences.user)
-        UserService.getSubsciptionsCount(uid: preferences.user.uid) { (num) in
+        userService.getSubsciptionsCount(uid: preferences.user.uid) { (num) in
             if let num = num {
                 self.userInfoView.setSubscriptionsCount(count: num)
             }
         }
-        UserService.getSubscribersCount(uid: preferences.user.uid) { (num) in
+        userService.getSubscribersCount(uid: preferences.user.uid) { (num) in
             if let num = num {
                 self.userInfoView.setSubscribersCount(count: num)
             }
@@ -127,7 +128,7 @@ extension UserController {
     //loads user in preferences
     private func loadUserPref(uid: String) {
         let alert = loadingAlert()
-        UserService.getUserInfo(uid: uid) { (userData) in
+        userService.getUserInfo(uid: uid) { (userData) in
             if let user = userData {
                 self.preferences.user = user
                 alert.dismiss(animated: true, completion: {

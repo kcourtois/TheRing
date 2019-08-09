@@ -15,6 +15,8 @@ class SearchController: UIViewController {
 
     private let preferences = Preferences()
     private var tournaments: [TournamentData] = []
+    private let userService: UserService = FirebaseUser()
+    private let tournamentService: TournamentService = FirebaseTournament()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,7 +70,7 @@ class SearchController: UIViewController {
 
     //gets all tournaments and select only those who contains the search string in title
     private func searchTournaments(search: String) {
-        TournamentService.getAllTournaments(completion: { (tournaments) in
+        tournamentService.getAllTournaments(completion: { (tournaments) in
             var tmp = [TournamentData]()
             for tournament in tournaments {
                 if tournament.title.lowercased().contains(search.lowercased()) {
@@ -83,7 +85,7 @@ class SearchController: UIViewController {
 
     //gets all tournaments, sort them from newest to oldest and reloads tableview
     private func getAllTournaments() {
-        TournamentService.getAllTournaments(completion: { (tournaments) in
+        tournamentService.getAllTournaments(completion: { (tournaments) in
             self.tournaments = tournaments.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
             self.tableView.reloadData()
         })
@@ -115,7 +117,7 @@ extension SearchController {
     //loads user in preferences
     private func loadUserPref(uid: String) {
         let alert = loadingAlert()
-        UserService.getUserInfo(uid: uid) { (userData) in
+        userService.getUserInfo(uid: uid) { (userData) in
             if let user = userData {
                 self.preferences.user = user
                 alert.dismiss(animated: true, completion: nil)

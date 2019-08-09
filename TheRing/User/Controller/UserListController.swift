@@ -10,6 +10,8 @@ import UIKit
 
 class UserListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
+
+    private let userService: UserService = FirebaseUser()
     private var users: [TRUser] = []
     var userType: UserListType?
     var userTapped: TRUser?
@@ -24,14 +26,14 @@ class UserListController: UIViewController {
             case .subscribers:
                 self.title = TRStrings.mySubscribers.localizedString
                 //Get list of subscribers for current user
-                UserService.getUserSubscribers(completion: { (users) in
+                userService.getUserSubscribers(completion: { (users) in
                     self.users = users
                     self.tableView.reloadData()
                 })
             case .subscriptions:
                 self.title = TRStrings.mySubscriptions.localizedString
                 //Get list of subscriptions for current user
-                UserService.getUserSubscriptions(completion: { (users) in
+                userService.getUserSubscriptions(completion: { (users) in
                     self.users = users
                     self.tableView.reloadData()
                 })
@@ -78,7 +80,7 @@ extension UserListController: UITableViewDataSource {
 extension UserListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //on clic, get user info and show detail view
-        UserService.getUserInfo(uid: users[indexPath.row].uid) { (user) in
+        userService.getUserInfo(uid: users[indexPath.row].uid) { (user) in
             self.userTapped = user
             self.performSegue(withIdentifier: "DetailUserSegue", sender: self)
         }

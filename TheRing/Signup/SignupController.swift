@@ -20,6 +20,7 @@ class SignupController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
 
     private var alert: UIAlertController?
+    private let userService: UserService = FirebaseUser()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +77,7 @@ class SignupController: UIViewController {
 
     //Check if username is available
     private func usernameAvailable(username: String, email: String, password: String) {
-        UserService.isUsernameAvailable(name: username) { available in
+        userService.isUsernameAvailable(name: username) { available in
             if available {
                 self.createUser(email: email, password: password, username: username)
             } else {
@@ -118,7 +119,7 @@ class SignupController: UIViewController {
 
     //register user data in firebase database
     private func registerUserInfo(uid: String, username: String, values: [String: Any]) {
-        UserService.registerUserInfo(uid: uid, values: values) { error in
+        userService.registerUserInfo(uid: uid, values: values) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)
@@ -130,7 +131,7 @@ class SignupController: UIViewController {
 
     //register username, which is used when checking if username is available
     private func registerUsername(username: String, uid: String) {
-        UserService.registerUsername(name: username, uid: uid) { error in
+        userService.registerUsername(name: username, uid: uid) { error in
             if let error = error {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)

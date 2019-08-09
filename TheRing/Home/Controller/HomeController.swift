@@ -12,9 +12,11 @@ import FirebaseAuth
 class HomeController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    private let preferences = Preferences()
 
+    private let preferences = Preferences()
     private var tournaments = [TournamentData]()
+    private let userService: UserService = FirebaseUser()
+    private let tournamentService: TournamentService = FirebaseTournament()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,7 @@ class HomeController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Load user tournaments
-        TournamentService.getUserTournamentsWithData(completion: { (tournaments) in
+        tournamentService.getUserTournamentsWithData(completion: { (tournaments) in
             //sort tournaments from most recent to oldest
             self.tournaments = tournaments.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
             self.tableView.reloadData()
@@ -78,7 +80,7 @@ extension HomeController {
     //loads user in preferences
     private func loadUserPref(uid: String) {
         let alert = loadingAlert()
-        UserService.getUserInfo(uid: uid) { (userData) in
+        userService.getUserInfo(uid: uid) { (userData) in
             if let user = userData {
                 self.preferences.user = user
                 alert.dismiss(animated: true, completion: nil)

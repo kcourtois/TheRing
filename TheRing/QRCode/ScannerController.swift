@@ -10,9 +10,10 @@ import AVFoundation
 import UIKit
 
 class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
-    var captureSession: AVCaptureSession!
-    var previewLayer: AVCaptureVideoPreviewLayer!
-    var user: TRUser?
+    private var captureSession: AVCaptureSession!
+    private var previewLayer: AVCaptureVideoPreviewLayer!
+    private let userService: UserService = FirebaseUser()
+    private var user: TRUser?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +97,7 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
 
     //get user info with code given, and present an alert if code invalid
     private func found(code: String) {
-        UserService.getUserInfo(uid: code) { (user) in
+        userService.getUserInfo(uid: code) { (user) in
             if let user = user {
                 self.user = user
                 self.performSegue(withIdentifier: "DetailUserSegue", sender: self)

@@ -20,6 +20,8 @@ class TournamentDetailController: UIViewController {
     @IBOutlet weak var tournamentView: TournamentView!
 
     var tournament: TournamentData?
+    private let tournamentService: TournamentService = FirebaseTournament()
+    private let voteService: VoteService = FirebaseVote()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,7 +79,7 @@ class TournamentDetailController: UIViewController {
     //vote for the tapped contestant if possible
     private func contestantTapped(tag: Int) {
         if let tournament = tournament {
-            let round = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
+            let round = tournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
             switch round {
             //if first round and image tapped < 4, vote
             case 0:
@@ -108,15 +110,15 @@ class TournamentDetailController: UIViewController {
         }
         let pref = Preferences()
         //check if user already had a registered vote
-        TournamentService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[round].rid) { (result) in
+        voteService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[round].rid) { (result) in
             if let contId = result {
                 //if he had, remove it
-                TournamentService.removeUserVote(uid: pref.user.uid,
+                self.voteService.removeUserVote(uid: pref.user.uid,
                                                  rid: tournament.rounds[round].rid, cid: contId)
             }
 
             //vote for the new contestant
-            TournamentService.registerVote(rid: tournament.rounds[round].rid,
+            self.voteService.registerVote(rid: tournament.rounds[round].rid,
                                            uid: pref.user.uid,
                                            cid: cid) { (error) in
                 if let error = error {
@@ -143,7 +145,7 @@ class TournamentDetailController: UIViewController {
         //get votes count for all contestants
         for ind in 0..<cids.count {
             dispatchGroup.enter()
-            TournamentService.getVotes(cid: cids[ind],
+            voteService.getVotes(cid: cids[ind],
                                        rid: tournament.rounds[round].rid) { (res) in
                 if let res = res {
                     contRes[ind] = res
@@ -171,7 +173,7 @@ class TournamentDetailController: UIViewController {
         let pref = Preferences()
         if let tournament = tournament {
             //get vote for round 1
-            TournamentService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[0].rid) { (cid) in
+            voteService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[0].rid) { (cid) in
                 if let cid = cid {
                     for (index, cont) in tournament.contestants.enumerated() where cid == cont.cid {
                         self.tournamentView.colorBackground(index: index)
@@ -179,7 +181,7 @@ class TournamentDetailController: UIViewController {
                 }
             }
             //get vote for round 2
-            TournamentService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[1].rid) { (cid) in
+            voteService.getUserVote(uid: pref.user.uid, rid: tournament.rounds[1].rid) { (cid) in
                 if let cid = cid {
                     switch cid {
                     case tournament.contestants[0].cid, tournament.contestants[1].cid:
@@ -199,7 +201,7 @@ class TournamentDetailController: UIViewController {
         guard let tournament = tournament else {
             return
         }
-        let round = TournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
+        let round = tournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
         if round > 0 {
             getWinner(round: round-1, cids: tournament.getCids()) { (result) in
                 if let cids = result {
