@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class UserController: UIViewController {
 
@@ -16,17 +15,17 @@ class UserController: UIViewController {
 
     private let preferences = Preferences()
     private let userService: UserService = FirebaseUser()
+    private let authService: AuthService = FirebaseAuth()
     private var userType: UserListType = .subscriptions
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //set texts for this screen
         setTexts()
-        //Check if user logged
-        if let currUser = Auth.auth().currentUser {
+        if let uid = authService.getLoggedUserUID() {
             //Check if user pref are up to date
-            if preferences.user.uid != currUser.uid {
-                loadUserPref(uid: currUser.uid)
+            if preferences.user.uid != uid {
+                loadUserPref(uid: uid)
             } else {
                 //set texts that requires data
                 setLabels()

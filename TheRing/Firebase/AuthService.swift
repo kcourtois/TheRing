@@ -9,6 +9,10 @@
 import Foundation
 
 protocol AuthService {
+    //Sign in user with given credentials, returns an error or nil in completion
+    func signIn(email: String, password: String, completion: @escaping (String?) -> Void)
+    //Get uid for current logged user if any
+    func getLoggedUserUID() -> String?
     //Updates email for current user
     func updateEmail(password: String, mail: String, completion: @escaping (String?) -> Void)
     //Updates password for current user

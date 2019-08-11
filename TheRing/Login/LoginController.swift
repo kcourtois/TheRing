@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class LoginController: UIViewController {
 
@@ -18,6 +17,7 @@ class LoginController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
 
     private var alert: UIAlertController?
+    private let authService: AuthService = FirebaseAuth()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class LoginController: UIViewController {
         //set texts for this screen
         setTexts()
         //Skip login page if user signed
-        if Auth.auth().currentUser != nil {
+        if authService.getLoggedUserUID() != nil {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
             }
@@ -47,7 +47,7 @@ class LoginController: UIViewController {
         alert = loadingAlert()
         if let email = emailField.text, let password = passwordField.text {
             //Log the user in
-            Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+            authService.signIn(email: email, password: password) { (error) in
                 self.signInHandler(error: error)
             }
         } else {
@@ -57,17 +57,10 @@ class LoginController: UIViewController {
         }
     }
 
-    private func signInHandler(error: Error?) {
+    private func signInHandler(error: String?) {
         if let error = error {
-            guard let authError = AuthErrorCode(rawValue: error._code) else {
-                //If we can't get the error details, show generic error
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                                 message: TRStrings.errorOccured.localizedString)
-                return
-            }
-            //show detailed error
             self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                             message: LocalizedString(key: authError.errorMessage).val )
+                                             message: error)
         } else {
             //If there was no error, perfom segue to log in
             if let alert = self.alert {

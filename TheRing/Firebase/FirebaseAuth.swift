@@ -10,6 +10,23 @@ import Foundation
 import FirebaseAuth
 
 class FirebaseAuth: AuthService {
+
+    //Get uid for current signed in user, if any
+    func getLoggedUserUID() -> String? {
+        if let user = Auth.auth().currentUser {
+            return user.uid
+        } else {
+            return nil
+        }
+    }
+
+    //Sign in user with given credentials, returns an error or nil in completion
+    func signIn(email: String, password: String, completion: @escaping (String?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (_, error) in
+            completion(self.getAuthError(error: error))
+        }
+    }
+
     //Updates email for current user in firebase auth. Needs to reauthenticate to proceed
     func updateEmail(password: String, mail: String, completion: @escaping (String?) -> Void) {
         if let user = Auth.auth().currentUser {
@@ -23,7 +40,7 @@ class FirebaseAuth: AuthService {
                 }
             })
         } else {
-            completion("User not found.")
+            completion(TRStrings.errorOccured.localizedString)
         }
     }
 

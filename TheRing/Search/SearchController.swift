@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 
 class SearchController: UIViewController {
     @IBOutlet weak var searchBar: UITextField!
@@ -16,6 +15,7 @@ class SearchController: UIViewController {
     private let preferences = Preferences()
     private var tournaments: [TournamentData] = []
     private let userService: UserService = FirebaseUser()
+    private let authService: AuthService = FirebaseAuth()
     private let tournamentService: TournamentService = FirebaseTournament()
 
     override func viewDidLoad() {
@@ -27,10 +27,10 @@ class SearchController: UIViewController {
         //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
         //Check if user logged
-        if let currUser = Auth.auth().currentUser {
+        if let uid = authService.getLoggedUserUID() {
             //Check if user pref are up to date
-            if preferences.user.uid != currUser.uid {
-                loadUserPref(uid: currUser.uid)
+            if preferences.user.uid != uid {
+                loadUserPref(uid: uid)
             }
         } else {
             userNotLogged()
