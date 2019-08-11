@@ -9,6 +9,23 @@
 /* Begin PBXBuildFile section */
 		292376D6822B13660E98F980 /* Pods_TheRingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DECCD407A332AE3E978890AA /* Pods_TheRingTests.framework */; };
 		8E5E84CAC738FD5317FC62B9 /* Pods_TheRing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC3F306C6FFEC5D0CAE2A586 /* Pods_TheRing.framework */; };
+		9E05204B2300C5E8003EF504 /* SignupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05204A2300C5E8003EF504 /* SignupModel.swift */; };
+		9E05204D2300C60B003EF504 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05204C2300C60B003EF504 /* HomeModel.swift */; };
+		9E0520502300C639003EF504 /* UserListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05204F2300C639003EF504 /* UserListModel.swift */; };
+		9E0520522300C64C003EF504 /* UserDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520512300C64C003EF504 /* UserDetailModel.swift */; };
+		9E0520562300C68B003EF504 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520552300C68B003EF504 /* UserModel.swift */; };
+		9E0520582300C699003EF504 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520572300C699003EF504 /* ProfileModel.swift */; };
+		9E05205A2300C6A2003EF504 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520592300C6A2003EF504 /* PasswordModel.swift */; };
+		9E05205C2300C6B8003EF504 /* EmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05205B2300C6B8003EF504 /* EmailModel.swift */; };
+		9E0520602300C722003EF504 /* ScannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05205F2300C722003EF504 /* ScannerModel.swift */; };
+		9E0520622300C735003EF504 /* QRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520612300C735003EF504 /* QRCodeModel.swift */; };
+		9E0520652300C753003EF504 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520642300C753003EF504 /* SearchModel.swift */; };
+		9E0520672300C766003EF504 /* CreateTournamentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520662300C766003EF504 /* CreateTournamentModel.swift */; };
+		9E0520692300C773003EF504 /* SelectContestantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520682300C773003EF504 /* SelectContestantModel.swift */; };
+		9E05206B2300C780003EF504 /* TournamentDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206A2300C780003EF504 /* TournamentDateModel.swift */; };
+		9E05206D2300C793003EF504 /* TournamentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206C2300C793003EF504 /* TournamentDetailModel.swift */; };
+		9E05206F2300C79E003EF504 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206E2300C79E003EF504 /* CommentModel.swift */; };
+		9E0520722300C7FA003EF504 /* SearchMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520712300C7FA003EF504 /* SearchMovieModel.swift */; };
 		9E064E3422C541E8009FE905 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E064E3322C541E8009FE905 /* UserService.swift */; };
 		9E064E3722C7A53F009FE905 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E064E3622C7A53F009FE905 /* PasswordController.swift */; };
 		9E064E3922C7A55D009FE905 /* EmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E064E3822C7A55D009FE905 /* EmailController.swift */; };
@@ -72,6 +89,7 @@
 		9EA846F122FDB7E300572A38 /* FirebaseComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F022FDB7E300572A38 /* FirebaseComment.swift */; };
 		9EA846F322FDB86800572A38 /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F222FDB86800572A38 /* VoteService.swift */; };
 		9EA846F522FDB88100572A38 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F422FDB88100572A38 /* CommentService.swift */; };
+		9EDF21B82300C58700BD95AF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDF21B72300C58700BD95AF /* LoginModel.swift */; };
 		9EFE1F9A22CCEDFF003A0410 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */; };
 		9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */; };
 		9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */; };
@@ -97,6 +115,23 @@
 /* Begin PBXFileReference section */
 		021BE83EAA67625D72101B8F /* Pods-TheRing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheRing.release.xcconfig"; path = "Target Support Files/Pods-TheRing/Pods-TheRing.release.xcconfig"; sourceTree = "<group>"; };
 		462B2695F3CF82F7F9900CDE /* Pods-TheRing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheRing.debug.xcconfig"; path = "Target Support Files/Pods-TheRing/Pods-TheRing.debug.xcconfig"; sourceTree = "<group>"; };
+		9E05204A2300C5E8003EF504 /* SignupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModel.swift; sourceTree = "<group>"; };
+		9E05204C2300C60B003EF504 /* HomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModel.swift; sourceTree = "<group>"; };
+		9E05204F2300C639003EF504 /* UserListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListModel.swift; sourceTree = "<group>"; };
+		9E0520512300C64C003EF504 /* UserDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModel.swift; sourceTree = "<group>"; };
+		9E0520552300C68B003EF504 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		9E0520572300C699003EF504 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
+		9E0520592300C6A2003EF504 /* PasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
+		9E05205B2300C6B8003EF504 /* EmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModel.swift; sourceTree = "<group>"; };
+		9E05205F2300C722003EF504 /* ScannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerModel.swift; sourceTree = "<group>"; };
+		9E0520612300C735003EF504 /* QRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeModel.swift; sourceTree = "<group>"; };
+		9E0520642300C753003EF504 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		9E0520662300C766003EF504 /* CreateTournamentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTournamentModel.swift; sourceTree = "<group>"; };
+		9E0520682300C773003EF504 /* SelectContestantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectContestantModel.swift; sourceTree = "<group>"; };
+		9E05206A2300C780003EF504 /* TournamentDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDateModel.swift; sourceTree = "<group>"; };
+		9E05206C2300C793003EF504 /* TournamentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDetailModel.swift; sourceTree = "<group>"; };
+		9E05206E2300C79E003EF504 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
+		9E0520712300C7FA003EF504 /* SearchMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieModel.swift; sourceTree = "<group>"; };
 		9E064E3322C541E8009FE905 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9E064E3622C7A53F009FE905 /* PasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
 		9E064E3822C7A55D009FE905 /* EmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailController.swift; sourceTree = "<group>"; };
@@ -167,6 +202,7 @@
 		9EA846F022FDB7E300572A38 /* FirebaseComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseComment.swift; sourceTree = "<group>"; };
 		9EA846F222FDB86800572A38 /* VoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
 		9EA846F422FDB88100572A38 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		9EDF21B72300C58700BD95AF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTournamentController.swift; sourceTree = "<group>"; };
@@ -203,6 +239,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E05204E2300C619003EF504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E05204F2300C639003EF504 /* UserListModel.swift */,
+				9E0520512300C64C003EF504 /* UserDetailModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9E0520532300C66A003EF504 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2719422C3D11D00AAC06B /* UserController.swift */,
+				9EA2719822C4E1E400AAC06B /* ProfileController.swift */,
+				9E064E3622C7A53F009FE905 /* PasswordController.swift */,
+				9E064E3822C7A55D009FE905 /* EmailController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9E0520542300C675003EF504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E0520552300C68B003EF504 /* UserModel.swift */,
+				9E0520572300C699003EF504 /* ProfileModel.swift */,
+				9E0520592300C6A2003EF504 /* PasswordModel.swift */,
+				9E05205B2300C6B8003EF504 /* EmailModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9E05205D2300C70A003EF504 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9E4F969822F06A1D006959FF /* ScannerController.swift */,
+				9E4F969A22F0998E006959FF /* QRCodeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9E05205E2300C713003EF504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E05205F2300C722003EF504 /* ScannerModel.swift */,
+				9E0520612300C735003EF504 /* QRCodeModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9E0520632300C741003EF504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E0520642300C753003EF504 /* SearchModel.swift */,
+				9E0520662300C766003EF504 /* CreateTournamentModel.swift */,
+				9E0520682300C773003EF504 /* SelectContestantModel.swift */,
+				9E05206A2300C780003EF504 /* TournamentDateModel.swift */,
+				9E05206C2300C793003EF504 /* TournamentDetailModel.swift */,
+				9E05206E2300C79E003EF504 /* CommentModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9E0520702300C7E2003EF504 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E0520712300C7FA003EF504 /* SearchMovieModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9E064E4222CB06D2009FE905 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,7 +403,8 @@
 		9E334E2C22D8719200CB3257 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				9EA2718C22BE5A7000AAC06B /* LoginController.swift */,
+				9EDF21B52300C4C400BD95AF /* ViewModel */,
+				9EDF21B62300C4CE00BD95AF /* Controller */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -305,7 +412,8 @@
 		9E334E2D22D8719900CB3257 /* Signup */ = {
 			isa = PBXGroup;
 			children = (
-				9EA2718E22BE5AAA00AAC06B /* SignupController.swift */,
+				9EDF21BA2300C59F00BD95AF /* ViewModel */,
+				9EDF21B92300C59000BD95AF /* Controller */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -313,10 +421,8 @@
 		9E334E2E22D871A000CB3257 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9EA2719422C3D11D00AAC06B /* UserController.swift */,
-				9EA2719822C4E1E400AAC06B /* ProfileController.swift */,
-				9E064E3622C7A53F009FE905 /* PasswordController.swift */,
-				9E064E3822C7A55D009FE905 /* EmailController.swift */,
+				9E0520542300C675003EF504 /* ViewModel */,
+				9E0520532300C66A003EF504 /* Controller */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -324,6 +430,7 @@
 		9E334E2F22D871A800CB3257 /* Tournament */ = {
 			isa = PBXGroup;
 			children = (
+				9E0520632300C741003EF504 /* ViewModel */,
 				9E334E3722D872FC00CB3257 /* Model */,
 				9E334E4622DDCF1700CB3257 /* View */,
 				9E334E3422D872C200CB3257 /* Controller */,
@@ -334,7 +441,7 @@
 		9E334E3322D8729B00CB3257 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				9E4F96AE22F9B981006959FF /* Model */,
+				9E4F96AE22F9B981006959FF /* ViewModel */,
 				9E4F96AD22F9B97B006959FF /* View */,
 				9E4F96AC22F9B973006959FF /* Controller */,
 			);
@@ -370,6 +477,7 @@
 		9E334E3A22D8C1B200CB3257 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
+				9E0520702300C7E2003EF504 /* ViewModel */,
 				9E334E3D22D8C1E500CB3257 /* Model */,
 				9E334E3C22D8C1DF00CB3257 /* View */,
 				9E334E3B22D8C1D800CB3257 /* Controller */,
@@ -425,6 +533,7 @@
 		9E4F968222EBA1A4006959FF /* User */ = {
 			isa = PBXGroup;
 			children = (
+				9E05204E2300C619003EF504 /* ViewModel */,
 				9E4F968522EBA3A6006959FF /* Model */,
 				9E4F968722EBA3B8006959FF /* View */,
 				9E4F968622EBA3AF006959FF /* Controller */,
@@ -464,8 +573,8 @@
 		9E4F969722F06973006959FF /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
-				9E4F969822F06A1D006959FF /* ScannerController.swift */,
-				9E4F969A22F0998E006959FF /* QRCodeController.swift */,
+				9E05205E2300C713003EF504 /* ViewModel */,
+				9E05205D2300C70A003EF504 /* Controller */,
 			);
 			path = QRCode;
 			sourceTree = "<group>";
@@ -488,11 +597,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		9E4F96AE22F9B981006959FF /* Model */ = {
+		9E4F96AE22F9B981006959FF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9E05204C2300C60B003EF504 /* HomeModel.swift */,
 			);
-			path = Model;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9E73412722FACC12008F4405 /* MovieSearch */ = {
@@ -534,6 +644,38 @@
 				9EA846F022FDB7E300572A38 /* FirebaseComment.swift */,
 			);
 			path = Firebase;
+			sourceTree = "<group>";
+		};
+		9EDF21B52300C4C400BD95AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9EDF21B72300C58700BD95AF /* LoginModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9EDF21B62300C4CE00BD95AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2718C22BE5A7000AAC06B /* LoginController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9EDF21B92300C59000BD95AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9EA2718E22BE5AAA00AAC06B /* SignupController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9EDF21BA2300C59F00BD95AF /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9E05204A2300C5E8003EF504 /* SignupModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
@@ -755,7 +897,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E05204B2300C5E8003EF504 /* SignupModel.swift in Sources */,
 				9EA2719B22C5020300AAC06B /* Preferences.swift in Sources */,
+				9EDF21B82300C58700BD95AF /* LoginModel.swift in Sources */,
 				9E36669E22E9E4100041B51E /* CommentController.swift in Sources */,
 				9EA2719522C3D11D00AAC06B /* UserController.swift in Sources */,
 				9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */,
@@ -763,27 +907,39 @@
 				9EA846EB22FDB06500572A38 /* FirebaseUser.swift in Sources */,
 				9E4F96A622F398AF006959FF /* TournamentOverview.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
+				9E05206F2300C79E003EF504 /* CommentModel.swift in Sources */,
+				9E0520602300C722003EF504 /* ScannerModel.swift in Sources */,
 				9E334E5222E0B2C800CB3257 /* TournamentView.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
 				9EA846E022FC758100572A38 /* UserInfoView.swift in Sources */,
+				9E05204D2300C60B003EF504 /* HomeModel.swift in Sources */,
 				9EA846E622FDA10800572A38 /* FirebaseAuth.swift in Sources */,
 				9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */,
 				9E064E4422CB06FB009FE905 /* FirebaseExtension.swift in Sources */,
 				9E4F96A922F89EE6006959FF /* OverviewCell.swift in Sources */,
 				9EA2718F22BE5AAA00AAC06B /* SignupController.swift in Sources */,
+				9E0520622300C735003EF504 /* QRCodeModel.swift in Sources */,
 				9E36669C22E7AD2C0041B51E /* NotificationStrings.swift in Sources */,
 				9EA846ED22FDB07600572A38 /* FirebaseTournament.swift in Sources */,
 				9EA846F122FDB7E300572A38 /* FirebaseComment.swift in Sources */,
+				9E0520522300C64C003EF504 /* UserDetailModel.swift in Sources */,
 				9EA846F522FDB88100572A38 /* CommentService.swift in Sources */,
 				9E064E4622CCD830009FE905 /* MovieService.swift in Sources */,
 				9EFE1FCF22D3A640003A0410 /* SearchMovieController.swift in Sources */,
 				9EA2718D22BE5A7000AAC06B /* LoginController.swift in Sources */,
+				9E0520502300C639003EF504 /* UserListModel.swift in Sources */,
 				9E4F969B22F0998E006959FF /* QRCodeController.swift in Sources */,
 				9E064E3422C541E8009FE905 /* UserService.swift in Sources */,
+				9E0520692300C773003EF504 /* SelectContestantModel.swift in Sources */,
+				9E0520672300C766003EF504 /* CreateTournamentModel.swift in Sources */,
 				9E334E4B22DE005400CB3257 /* BarButtonExtension.swift in Sources */,
 				9EFE1FCA22D35F4A003A0410 /* SelectContestantController.swift in Sources */,
+				9E0520562300C68B003EF504 /* UserModel.swift in Sources */,
 				9E06BB4D22B840F10098E148 /* AppDelegate.swift in Sources */,
+				9E05205A2300C6A2003EF504 /* PasswordModel.swift in Sources */,
+				9E0520582300C699003EF504 /* ProfileModel.swift in Sources */,
 				9E064E3922C7A55D009FE905 /* EmailController.swift in Sources */,
+				9E0520722300C7FA003EF504 /* SearchMovieModel.swift in Sources */,
 				9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */,
 				9E334E4E22E04B6300CB3257 /* TournamentDetailController.swift in Sources */,
 				9E334E5422E31C0800CB3257 /* TournamentData.swift in Sources */,
@@ -794,14 +950,18 @@
 				9E4F969622F00F12006959FF /* TapDismiss.swift in Sources */,
 				9E4F96AB22F994C5006959FF /* ImageViewExtension.swift in Sources */,
 				9E4F968D22EBB453006959FF /* UserListType.swift in Sources */,
+				9E05206D2300C793003EF504 /* TournamentDetailModel.swift in Sources */,
 				9E4F969922F06A1D006959FF /* ScannerController.swift in Sources */,
 				9E4F969E22F24CD9006959FF /* SearchController.swift in Sources */,
+				9E0520652300C753003EF504 /* SearchModel.swift in Sources */,
 				9EA846E822FDAB6000572A38 /* AuthService.swift in Sources */,
 				9EFE1FDE22D4BDB7003A0410 /* Tournament.swift in Sources */,
 				9EFE1FCC22D35F9D003A0410 /* TournamentDateController.swift in Sources */,
 				9E064E3722C7A53F009FE905 /* PasswordController.swift in Sources */,
+				9E05205C2300C6B8003EF504 /* EmailModel.swift in Sources */,
 				9E4F968B22EBB183006959FF /* UserCell.swift in Sources */,
 				9E4F969422EF4353006959FF /* DateExtension.swift in Sources */,
+				9E05206B2300C780003EF504 /* TournamentDateModel.swift in Sources */,
 				9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */,
 				9EA846EF22FDB7D500572A38 /* FirebaseVote.swift in Sources */,
 				9E4F968F22EBB5B6006959FF /* UserDetailController.swift in Sources */,
