@@ -29,6 +29,7 @@ class UserController: UIViewController {
             } else {
                 //set texts that requires data
                 setLabels()
+                //set observers for notifications
                 setObservers()
             }
         } else {
@@ -36,27 +37,21 @@ class UserController: UIViewController {
         }
     }
 
+    //set observers for notifications
     private func setObservers() {
-        super.viewDidLoad()
         //Notification observer for didTapSubscribers
-        let subscribersNotif = Notification.Name(rawValue: NotificationStrings.didTapSubscribersNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapSubscribers),
-                                               name: subscribersNotif, object: nil)
+                                               name: .didTapSubscribers, object: nil)
         //Notification observer for didTapSubscriptions
-        let subscriptionsNotif = Notification.Name(rawValue:
-            NotificationStrings.didTapSubscriptionsNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapSubscriptions),
-                                               name: subscriptionsNotif, object: nil)
+                                               name: .didTapSubscriptions, object: nil)
     }
 
     //removes observers on deinit
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        let subscribersNotif = Notification.Name(rawValue: NotificationStrings.didTapSubscribersNotificationName)
-        let subscriptionsNotif = Notification.Name(rawValue:
-            NotificationStrings.didTapSubscriptionsNotificationName)
-        NotificationCenter.default.removeObserver(self, name: subscribersNotif, object: nil)
-        NotificationCenter.default.removeObserver(self, name: subscriptionsNotif, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didTapSubscribers, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didTapSubscriptions, object: nil)
     }
 
     //Triggers on notification didTapSubscribers

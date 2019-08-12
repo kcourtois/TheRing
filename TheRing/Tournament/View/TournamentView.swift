@@ -111,9 +111,8 @@ class TournamentView: UIView {
     //func triggered when an imageview is tapped. Sends a notification to the viewcontroller
     @objc private func contestantTapped(sender: UITapGestureRecognizer) {
         if let view = sender.view {
-            let name = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
-            NotificationCenter.default.post(name: name, object: nil,
-                                            userInfo: [NotificationStrings.didTapContestantParameterKey: view.tag])
+            NotificationCenter.default.post(name: .didTapContestant, object: nil,
+                                            userInfo: [NotificationStrings.didTapContestantKey: view.tag])
         }
     }
 

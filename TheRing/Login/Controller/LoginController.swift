@@ -17,7 +17,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
 
     private var alert: UIAlertController?
-    private let authService: AuthService = FirebaseAuth()
+
+    private let loginModel = LoginModel(authService: FirebaseAuth())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +26,21 @@ class LoginController: UIViewController {
         hideKeyboardWhenTappedAround()
         //set texts for this screen
         setTexts()
+        //set observers for notifications
+        setObservers()
         //Skip login page if user signed
-        if authService.getLoggedUserUID() != nil {
+        if loginModel.alearyLogged() {
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
             }
         }
+    }
+
+    //removes observers on deinit
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .didSignIn, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
     }
 
     //set texts for this screen
@@ -42,14 +52,22 @@ class LoginController: UIViewController {
         passwordField.placeholder = TRStrings.password.localizedString
     }
 
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSignIn
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSignIn),
+                                               name: .didSignIn, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+    }
+
     @IBAction func loginTapped() {
         //Show a loading alert
         alert = loadingAlert()
         if let email = emailField.text, let password = passwordField.text {
             //Log the user in
-            authService.signIn(email: email, password: password) { (error) in
-                self.signInHandler(error: error)
-            }
+            loginModel.signIn(email: email, password: password)
         } else {
             //Hide load alert and show error
             dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
@@ -57,18 +75,24 @@ class LoginController: UIViewController {
         }
     }
 
-    private func signInHandler(error: String?) {
-        if let error = error {
-            self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                             message: error)
-        } else {
-            //If there was no error, perfom segue to log in
-            if let alert = self.alert {
-                alert.dismiss(animated: true) {
-                    self.performSegue(withIdentifier: "loginSegue", sender: self)
-                }
-            } else {
+    //Triggers on notification didSignIn
+    @objc private func onDidSignIn(_ notification: Notification) {
+        //when sign in notif recieved, perfom segue to log in
+        if let alert = self.alert {
+            alert.dismiss(animated: true) {
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
+            }
+        } else {
+            self.performSegue(withIdentifier: "loginSegue", sender: self)
+        }
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                                 message: error)
             }
         }
     }

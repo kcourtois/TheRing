@@ -45,16 +45,14 @@ class TournamentDetailController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //Notification observer for didTapContestant added when view appears
-        let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapContestant(_:)),
-                                               name: nameTapContNotif, object: nil)
+                                               name: .didTapContestant, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         //Notification observer for didTapContestant removed when view disappears
-        let nameTapContNotif = Notification.Name(rawValue: NotificationStrings.didTapContestantNotificationName)
-        NotificationCenter.default.removeObserver(self, name: nameTapContNotif, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didTapContestant, object: nil)
     }
 
     @IBAction func shareTapped(_ sender: Any) {

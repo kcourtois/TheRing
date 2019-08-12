@@ -90,6 +90,9 @@
 		9EA846F322FDB86800572A38 /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F222FDB86800572A38 /* VoteService.swift */; };
 		9EA846F522FDB88100572A38 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F422FDB88100572A38 /* CommentService.swift */; };
 		9EDF21B82300C58700BD95AF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDF21B72300C58700BD95AF /* LoginModel.swift */; };
+		9EF988AC2301616B00AC0F30 /* TestAuthBadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */; };
+		9EF988B02301707100AC0F30 /* LoginModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF988AF2301707100AC0F30 /* LoginModelTests.swift */; };
+		9EF988B2230173C500AC0F30 /* TestAuthGoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF988B1230173C500AC0F30 /* TestAuthGoodData.swift */; };
 		9EFE1F9A22CCEDFF003A0410 /* ApiKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */; };
 		9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */; };
 		9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */; };
@@ -203,6 +206,9 @@
 		9EA846F222FDB86800572A38 /* VoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
 		9EA846F422FDB88100572A38 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
 		9EDF21B72300C58700BD95AF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
+		9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthBadData.swift; sourceTree = "<group>"; };
+		9EF988AF2301707100AC0F30 /* LoginModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModelTests.swift; sourceTree = "<group>"; };
+		9EF988B1230173C500AC0F30 /* TestAuthGoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthGoodData.swift; sourceTree = "<group>"; };
 		9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiKeys.swift; sourceTree = "<group>"; };
 		9EFE1FC222CFE24F003A0410 /* LocalizableStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizableStrings.swift; sourceTree = "<group>"; };
 		9EFE1FC622D35F14003A0410 /* CreateTournamentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTournamentController.swift; sourceTree = "<group>"; };
@@ -366,9 +372,11 @@
 		9E06BB6022B840F40098E148 /* TheRingTests */ = {
 			isa = PBXGroup;
 			children = (
-				9EA846DC22FC517500572A38 /* Extension */,
-				9E73412822FACC57008F4405 /* GeneralModel */,
+				9EF988AD2301704B00AC0F30 /* Login */,
 				9E73412722FACC12008F4405 /* MovieSearch */,
+				9EA846DC22FC517500572A38 /* Extension */,
+				9EF988AA2301612900AC0F30 /* ProtocolMocks */,
+				9E73412822FACC57008F4405 /* GeneralModel */,
 				9E06BB6322B840F40098E148 /* Info.plist */,
 			);
 			path = TheRingTests;
@@ -678,6 +686,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		9EF988AA2301612900AC0F30 /* ProtocolMocks */ = {
+			isa = PBXGroup;
+			children = (
+				9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */,
+				9EF988B1230173C500AC0F30 /* TestAuthGoodData.swift */,
+			);
+			path = ProtocolMocks;
+			sourceTree = "<group>";
+		};
+		9EF988AD2301704B00AC0F30 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				9EF988AF2301707100AC0F30 /* LoginModelTests.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,8 +1003,11 @@
 				9E064E4E22CCE992009FE905 /* FakeResponseData.swift in Sources */,
 				9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */,
 				9EA846DE22FC520000572A38 /* DateExtensionTests.swift in Sources */,
+				9EF988AC2301616B00AC0F30 /* TestAuthBadData.swift in Sources */,
 				9EA846E322FC9B2800572A38 /* UserDefaultsExtension.swift in Sources */,
 				9E064E4A22CCE8AB009FE905 /* MovieServiceTests.swift in Sources */,
+				9EF988B02301707100AC0F30 /* LoginModelTests.swift in Sources */,
+				9EF988B2230173C500AC0F30 /* TestAuthGoodData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

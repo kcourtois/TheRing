@@ -10,10 +10,17 @@ import Foundation
 
 class NotificationStrings {
     //Strings (const) for notification names and parameter keys in the app
-    static let didTapContestantNotificationName: String = "didTapContestant"
-    static let didTapContestantParameterKey: String = "tag"
-    static let didTapSubscribersNotificationName: String = "didTapSubscribers"
-    static let didTapSubscribersParameterKey: String = UserListType.subscribers.rawValue
-    static let didTapSubscriptionsNotificationName: String = "didTapSubscriptions"
-    static let didTapSubscriptionsParameterKey: String = UserListType.subscriptions.rawValue
+    static let didTapContestantKey: String = "tag"
+    static let didTapSubscribersKey: String = UserListType.subscribers.rawValue
+    static let didTapSubscriptionsKey: String = UserListType.subscriptions.rawValue
+    static let didSignInKey: String = "signIn"
+    static let didSendErrorKey: String = "error"
+}
+
+extension Notification.Name {
+    static let didTapContestant = Notification.Name("didTapContestant")
+    static let didTapSubscribers = Notification.Name("didTapSubscribers")
+    static let didTapSubscriptions = Notification.Name("didTapSubscriptions")
+    static let didSignIn = Notification.Name("didSignIn")
+    static let didSendError = Notification.Name("didSendError")
 }

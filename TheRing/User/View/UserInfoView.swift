@@ -93,17 +93,15 @@ class UserInfoView: UIView {
 
     //send notification for subscriptions button tapped
     @objc func subscriptionsNotification() {
-        let name = Notification.Name(rawValue: NotificationStrings.didTapSubscriptionsNotificationName)
-        NotificationCenter.default.post(name: name, object: nil,
-                                        userInfo: [NotificationStrings.didTapSubscriptionsParameterKey:
-                                            NotificationStrings.didTapSubscriptionsParameterKey])
+        NotificationCenter.default.post(name: .didTapSubscriptions, object: nil,
+                                        userInfo: [NotificationStrings.didTapSubscriptionsKey:
+                                            NotificationStrings.didTapSubscriptionsKey])
     }
 
     //send notification for subscribers button tapped
     @objc func subscribersNotification() {
-        let name = Notification.Name(rawValue: NotificationStrings.didTapSubscribersNotificationName)
-        NotificationCenter.default.post(name: name, object: nil,
-                                        userInfo: [NotificationStrings.didTapSubscribersParameterKey:
-                                            NotificationStrings.didTapSubscribersParameterKey])
+        NotificationCenter.default.post(name: .didTapSubscribers, object: nil,
+                                        userInfo: [NotificationStrings.didTapSubscribersKey:
+                                            NotificationStrings.didTapSubscribersKey])
     }
 }
