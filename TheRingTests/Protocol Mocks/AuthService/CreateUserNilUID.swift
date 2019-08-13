@@ -1,5 +1,5 @@
 //
-//  TestAuthGoodData.swift
+//  CreateUserNilUID.swift
 //  TheRingTests
 //
 //  Created by Kévin Courtois on 12/08/2019.
@@ -9,17 +9,22 @@
 import Foundation
 @testable import TheRing
 
-class TestAuthGoodData: AuthService {
+class CreateUserNilUID: AuthService {
+    func createUser(email: String, password: String, username: String,
+                    completion: @escaping (String?, String?) -> Void) {
+        completion(nil, nil)
+    }
+
     func signIn(email: String, password: String, completion: @escaping (String?) -> Void) {
         completion(nil)
     }
 
     func updateEmail(password: String, mail: String, completion: @escaping (String?) -> Void) {
-
+        completion(nil)
     }
 
     func updatePassword(oldPwd: String, newPwd: String, completion: @escaping (String?) -> Void) {
-
+        completion(nil)
     }
 
     //Get uid for current signed in user, if any

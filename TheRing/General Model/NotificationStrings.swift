@@ -13,14 +13,17 @@ class NotificationStrings {
     static let didTapContestantKey: String = "tag"
     static let didTapSubscribersKey: String = UserListType.subscribers.rawValue
     static let didTapSubscriptionsKey: String = UserListType.subscriptions.rawValue
-    static let didSignInKey: String = "signIn"
     static let didSendErrorKey: String = "error"
+    static let didSignInKey: String = "signIn"
+    static let didSignUpKey: String = "signUp"
+
 }
 
 extension Notification.Name {
     static let didTapContestant = Notification.Name("didTapContestant")
     static let didTapSubscribers = Notification.Name("didTapSubscribers")
     static let didTapSubscriptions = Notification.Name("didTapSubscriptions")
-    static let didSignIn = Notification.Name("didSignIn")
     static let didSendError = Notification.Name("didSendError")
+    static let didSignIn = Notification.Name("didSignIn")
+    static let didSignUp = Notification.Name("didSignUp")
 }

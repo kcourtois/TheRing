@@ -18,7 +18,7 @@ class QRCodeController: UIViewController {
         //generate qr code from uid
         QRImageView.image = generateQRCode(from: Preferences().user.uid)
         scanButton.setTitle(TRStrings.scanCode.localizedString, for: .normal)
-        self.title = TRStrings.myCode.localizedString
+        self.title = TRStrings.addFriends.localizedString
     }
 
     //func to generate qr code

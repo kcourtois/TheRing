@@ -158,7 +158,7 @@ enum TRStrings: LocalizedString {
     case logout = "LOGOUT"
     case typeComment = "TYPE_COMMENT"
     case scanCode = "SCAN_CODE"
-    case myCode = "MY_CODE"
+    case addFriends = "ADD_FRIENDS"
 
     var localizedString: String {
         return self.rawValue.val

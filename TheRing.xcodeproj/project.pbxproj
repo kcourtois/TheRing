@@ -40,6 +40,14 @@
 		9E06BB5222B840F10098E148 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5022B840F10098E148 /* Main.storyboard */; };
 		9E06BB5422B840F40098E148 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5322B840F40098E148 /* Assets.xcassets */; };
 		9E06BB5722B840F40098E148 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E06BB5522B840F40098E148 /* LaunchScreen.storyboard */; };
+		9E18322623018CB0005BC358 /* SignupModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18322523018CB0005BC358 /* SignupModelTests.swift */; };
+		9E18322823018D53005BC358 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18322723018D53005BC358 /* StringExtension.swift */; };
+		9E18322A23018E19005BC358 /* StringExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18322923018E19005BC358 /* StringExtensionTests.swift */; };
+		9E18322E23018FC0005BC358 /* UsernameNotAvailble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18322D23018FC0005BC358 /* UsernameNotAvailble.swift */; };
+		9E18323023018FD9005BC358 /* TestUserGoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18322F23018FD9005BC358 /* TestUserGoodData.swift */; };
+		9E1832322301AE39005BC358 /* CreateUserNilUID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1832312301AE39005BC358 /* CreateUserNilUID.swift */; };
+		9E18323423036680005BC358 /* UserRegisterInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18323323036680005BC358 /* UserRegisterInfo.swift */; };
+		9E18323623036693005BC358 /* UserRegisterUsername.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E18323523036693005BC358 /* UserRegisterUsername.swift */; };
 		9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E2822D67C6700CB3257 /* TournamentService.swift */; };
 		9E334E3F22D8D04F00CB3257 /* Popular.json in Resources */ = {isa = PBXBuildFile; fileRef = 9E334E3E22D8D04F00CB3257 /* Popular.json */; };
 		9E334E4B22DE005400CB3257 /* BarButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */; };
@@ -155,6 +163,14 @@
 		9E06BB5822B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E06BB5D22B840F40098E148 /* TheRingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheRingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E06BB6322B840F40098E148 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9E18322523018CB0005BC358 /* SignupModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupModelTests.swift; sourceTree = "<group>"; };
+		9E18322723018D53005BC358 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		9E18322923018E19005BC358 /* StringExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensionTests.swift; sourceTree = "<group>"; };
+		9E18322D23018FC0005BC358 /* UsernameNotAvailble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsernameNotAvailble.swift; sourceTree = "<group>"; };
+		9E18322F23018FD9005BC358 /* TestUserGoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserGoodData.swift; sourceTree = "<group>"; };
+		9E1832312301AE39005BC358 /* CreateUserNilUID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserNilUID.swift; sourceTree = "<group>"; };
+		9E18323323036680005BC358 /* UserRegisterInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterInfo.swift; sourceTree = "<group>"; };
+		9E18323523036693005BC358 /* UserRegisterUsername.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegisterUsername.swift; sourceTree = "<group>"; };
 		9E334E2822D67C6700CB3257 /* TournamentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentService.swift; sourceTree = "<group>"; };
 		9E334E3E22D8D04F00CB3257 /* Popular.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Popular.json; sourceTree = "<group>"; };
 		9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarButtonExtension.swift; sourceTree = "<group>"; };
@@ -324,6 +340,7 @@
 				9E334E4A22DE005400CB3257 /* BarButtonExtension.swift */,
 				9E4F969522F00F12006959FF /* TapDismiss.swift */,
 				9E4F96AA22F994C4006959FF /* ImageViewExtension.swift */,
+				9E18322723018D53005BC358 /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -363,7 +380,7 @@
 				9E334E4C22DE179F00CB3257 /* Localizable */,
 				9E064E4222CB06D2009FE905 /* Extensions */,
 				9EA846E422FDA0D100572A38 /* Firebase */,
-				9E06BB6F22B841A20098E148 /* GeneralModel */,
+				9E06BB6F22B841A20098E148 /* General Model */,
 				9E06BB7022B841A80098E148 /* Supporting files */,
 			);
 			path = TheRing;
@@ -373,16 +390,17 @@
 			isa = PBXGroup;
 			children = (
 				9EF988AD2301704B00AC0F30 /* Login */,
+				9EF988B323018BEC00AC0F30 /* Signup */,
 				9E73412722FACC12008F4405 /* MovieSearch */,
 				9EA846DC22FC517500572A38 /* Extension */,
-				9EF988AA2301612900AC0F30 /* ProtocolMocks */,
+				9EF988AA2301612900AC0F30 /* Protocol Mocks */,
 				9E73412822FACC57008F4405 /* GeneralModel */,
 				9E06BB6322B840F40098E148 /* Info.plist */,
 			);
 			path = TheRingTests;
 			sourceTree = "<group>";
 		};
-		9E06BB6F22B841A20098E148 /* GeneralModel */ = {
+		9E06BB6F22B841A20098E148 /* General Model */ = {
 			isa = PBXGroup;
 			children = (
 				9EA846E722FDAB6000572A38 /* AuthService.swift */,
@@ -390,7 +408,7 @@
 				9EFE1F9922CCEDFF003A0410 /* ApiKeys.swift */,
 				9E36669B22E7AD2C0041B51E /* NotificationStrings.swift */,
 			);
-			path = GeneralModel;
+			path = "General Model";
 			sourceTree = "<group>";
 		};
 		9E06BB7022B841A80098E148 /* Supporting files */ = {
@@ -406,6 +424,27 @@
 				9E334E5522E76DD400CB3257 /* GoogleService-Info.plist */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		9E18322B23018F6F005BC358 /* AuthService */ = {
+			isa = PBXGroup;
+			children = (
+				9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */,
+				9EF988B1230173C500AC0F30 /* TestAuthGoodData.swift */,
+				9E1832312301AE39005BC358 /* CreateUserNilUID.swift */,
+			);
+			path = AuthService;
+			sourceTree = "<group>";
+		};
+		9E18322C23018F78005BC358 /* UserService */ = {
+			isa = PBXGroup;
+			children = (
+				9E18322F23018FD9005BC358 /* TestUserGoodData.swift */,
+				9E18323323036680005BC358 /* UserRegisterInfo.swift */,
+				9E18323523036693005BC358 /* UserRegisterUsername.swift */,
+				9E18322D23018FC0005BC358 /* UsernameNotAvailble.swift */,
+			);
+			path = UserService;
 			sourceTree = "<group>";
 		};
 		9E334E2C22D8719200CB3257 /* Login */ = {
@@ -638,6 +677,7 @@
 			isa = PBXGroup;
 			children = (
 				9EA846DD22FC520000572A38 /* DateExtensionTests.swift */,
+				9E18322923018E19005BC358 /* StringExtensionTests.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -686,13 +726,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		9EF988AA2301612900AC0F30 /* ProtocolMocks */ = {
+		9EF988AA2301612900AC0F30 /* Protocol Mocks */ = {
 			isa = PBXGroup;
 			children = (
-				9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */,
-				9EF988B1230173C500AC0F30 /* TestAuthGoodData.swift */,
+				9E18322C23018F78005BC358 /* UserService */,
+				9E18322B23018F6F005BC358 /* AuthService */,
 			);
-			path = ProtocolMocks;
+			path = "Protocol Mocks";
 			sourceTree = "<group>";
 		};
 		9EF988AD2301704B00AC0F30 /* Login */ = {
@@ -701,6 +741,14 @@
 				9EF988AF2301707100AC0F30 /* LoginModelTests.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		9EF988B323018BEC00AC0F30 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				9E18322523018CB0005BC358 /* SignupModelTests.swift */,
+			);
+			path = Signup;
 			sourceTree = "<group>";
 		};
 		A7137FA705FA3BEB1F515C9A /* Frameworks */ = {
@@ -937,6 +985,7 @@
 				9E334E5222E0B2C800CB3257 /* TournamentView.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
 				9EA846E022FC758100572A38 /* UserInfoView.swift in Sources */,
+				9E18322823018D53005BC358 /* StringExtension.swift in Sources */,
 				9E05204D2300C60B003EF504 /* HomeModel.swift in Sources */,
 				9EA846E622FDA10800572A38 /* FirebaseAuth.swift in Sources */,
 				9EFE1FE222D5036F003A0410 /* MovieOverview.swift in Sources */,
@@ -1000,14 +1049,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E064E4C22CCE972009FE905 /* UrlSession.swift in Sources */,
+				9E18322623018CB0005BC358 /* SignupModelTests.swift in Sources */,
+				9E18322A23018E19005BC358 /* StringExtensionTests.swift in Sources */,
 				9E064E4E22CCE992009FE905 /* FakeResponseData.swift in Sources */,
+				9E18322E23018FC0005BC358 /* UsernameNotAvailble.swift in Sources */,
 				9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */,
 				9EA846DE22FC520000572A38 /* DateExtensionTests.swift in Sources */,
 				9EF988AC2301616B00AC0F30 /* TestAuthBadData.swift in Sources */,
 				9EA846E322FC9B2800572A38 /* UserDefaultsExtension.swift in Sources */,
+				9E18323623036693005BC358 /* UserRegisterUsername.swift in Sources */,
 				9E064E4A22CCE8AB009FE905 /* MovieServiceTests.swift in Sources */,
 				9EF988B02301707100AC0F30 /* LoginModelTests.swift in Sources */,
+				9E1832322301AE39005BC358 /* CreateUserNilUID.swift in Sources */,
+				9E18323023018FD9005BC358 /* TestUserGoodData.swift in Sources */,
 				9EF988B2230173C500AC0F30 /* TestAuthGoodData.swift in Sources */,
+				9E18323423036680005BC358 /* UserRegisterInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

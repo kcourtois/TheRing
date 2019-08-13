@@ -126,7 +126,7 @@
 "LOGOUT" = "Déconnexion";
 "TYPE_COMMENT" = "Entrez votre commentaire ici...";
 "SCAN_CODE" = "Scanner un code";
-"MY_CODE" = "Mon code";
+"ADD_FRIENDS" = "Ajouter des amis";
 
 //GENRES
 "ACTION" = "Action";

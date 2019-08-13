@@ -87,7 +87,7 @@ extension UserController {
     //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.profile.localizedString
-        myCodeButton.setTitle(TRStrings.myCode.localizedString, for: .normal)
+        myCodeButton.setTitle(TRStrings.addFriends.localizedString, for: .normal)
         if let items = tabBarController?.tabBar.items {
             items[0].title = TRStrings.home.localizedString
             items[1].title = TRStrings.user.localizedString

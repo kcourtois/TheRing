@@ -27,6 +27,24 @@ class FirebaseAuth: AuthService {
         }
     }
 
+    //Create user with all given parameters
+    func createUser(email: String, password: String, username: String,
+                    completion: @escaping (String?, String?) -> Void) {
+        //Create user in firebase auth
+        Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+            if let error = error {
+                if let authError = AuthErrorCode(rawValue: error._code) {
+                    completion(nil, LocalizedString(key: authError.errorMessage).val)
+                } else {
+                    completion(nil, TRStrings.errorOccured.localizedString)
+                }
+                return
+            } else {
+                completion(result?.user.uid, nil)
+            }
+        }
+    }
+
     //Updates email for current user in firebase auth. Needs to reauthenticate to proceed
     func updateEmail(password: String, mail: String, completion: @escaping (String?) -> Void) {
         if let user = Auth.auth().currentUser {

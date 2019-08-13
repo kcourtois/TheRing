@@ -11,6 +11,8 @@ import Foundation
 protocol AuthService {
     //Sign in user with given credentials, returns an error or nil in completion
     func signIn(email: String, password: String, completion: @escaping (String?) -> Void)
+    //Create user with all given parameters
+    func createUser(email: String, password: String, username: String, completion: @escaping (String?, String?) -> Void)
     //Get uid for current logged user if any
     func getLoggedUserUID() -> String?
     //Updates email for current user

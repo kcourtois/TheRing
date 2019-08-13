@@ -9,5 +9,6 @@
 import Foundation
 
 class ApiKeys {
-    static let tmdbKey: String = "TMDB_API_KEY_HERE"
+    //TMDB API KEY
+    static let tmdbKey: String = ""
 }
