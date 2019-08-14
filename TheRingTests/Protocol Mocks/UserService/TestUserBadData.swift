@@ -11,7 +11,7 @@ import Foundation
 
 class TestUserBadData: UserService {
     func getUserInfo(uid: String, completion: @escaping (TRUser?) -> Void) {
-        
+
     }
 
     func isUsernameAvailable(name: String, completion: @escaping (Bool) -> Void) {

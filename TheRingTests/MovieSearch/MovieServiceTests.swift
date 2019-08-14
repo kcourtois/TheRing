@@ -26,7 +26,7 @@ class MovieTests: XCTestCase {
             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testGetMovieShouldPostFailedCallbackIfNoData() {
@@ -43,7 +43,7 @@ class MovieTests: XCTestCase {
             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testGetMovieShouldPostFailedCallbackIfIncorrectResponse() {
@@ -63,7 +63,7 @@ class MovieTests: XCTestCase {
             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testGetMovieShouldPostFailedCallbackIfIncorrectData() {
@@ -83,7 +83,7 @@ class MovieTests: XCTestCase {
             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testGetMovieShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
@@ -112,7 +112,7 @@ class MovieTests: XCTestCase {
             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1)
     }
 
     func testGetMovieNoSearchShouldPostSuccessCallbackIfNoErrorAndCorrectData() {
@@ -141,6 +141,6 @@ class MovieTests: XCTestCase {
             expectation.fulfill()
         })
 
-        wait(for: [expectation], timeout: 0.01)
+        wait(for: [expectation], timeout: 1)
     }
 }

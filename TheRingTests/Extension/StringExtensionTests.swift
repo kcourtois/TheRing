@@ -10,11 +10,11 @@ import XCTest
 @testable import TheRing
 
 class StringExtensionTests: XCTestCase {
-    func givenEmptyStringWithWhiteSpaceWhenCallingIsEmptyAfterTrimThenShouldReturnTrue() {
+    func testGivenEmptyStringWithWhiteSpaceWhenCallingIsEmptyAfterTrimThenShouldReturnTrue() {
         XCTAssertTrue(" ".isEmptyAfterTrim)
     }
 
-    func givenNotEmptyStringWithWhiteSpaceWhenCallingIsEmptyAfterTrimThenShouldReturnFalse() {
-        XCTAssertTrue(" Hello ".isEmptyAfterTrim)
+    func testGivenNotEmptyStringWithWhiteSpaceWhenCallingIsEmptyAfterTrimThenShouldReturnFalse() {
+        XCTAssertFalse(" Hello ".isEmptyAfterTrim)
     }
 }

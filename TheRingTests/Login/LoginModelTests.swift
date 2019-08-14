@@ -59,28 +59,3 @@ class LoginModelTests: XCTestCase {
         NotificationCenter.default.removeObserver(notif)
     }
 }
-
-
-//Preferences().user = TRUser(uid: uid, name: username, gender: .other, email: email, bio: "")
-//
-////register user data in firebase database
-//private func registerUserInfo(uid: String, username: String, values: [String: Any]) {
-//    userService.registerUserInfo(uid: uid, values: values) { error in
-//        if let error = error {
-//            self.postErrorNotification(error: error)
-//        } else {
-//            self.registerUsername(username: username, uid: uid)
-//        }
-//    }
-//}
-//
-////register username, which is used when checking if username is available
-//private func registerUsername(username: String, uid: String) {
-//    userService.registerUsername(name: username, uid: uid) { error in
-//        if let error = error {
-//            self.postErrorNotification(error: error)
-//        } else {
-//            self.postSignUpNotification()
-//        }
-//    }
-//}
