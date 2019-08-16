@@ -26,6 +26,10 @@ class LoginController: UIViewController {
         hideKeyboardWhenTappedAround()
         //set texts for this screen
         setTexts()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         //set observers for notifications
         setObservers()
         //Skip login page if user signed
@@ -36,9 +40,9 @@ class LoginController: UIViewController {
         }
     }
 
-    //removes observers on deinit
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //remove observers on view disappear
         NotificationCenter.default.removeObserver(self, name: .didSignIn, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
     }

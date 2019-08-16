@@ -16,6 +16,7 @@ class NotificationStrings {
     static let didSendErrorKey: String = "error"
     static let didSignInKey: String = "signIn"
     static let didSignUpKey: String = "signUp"
+    static let didSendTournamentDataKey: String = "tournamentData"
 
 }
 
@@ -26,4 +27,5 @@ extension Notification.Name {
     static let didSendError = Notification.Name("didSendError")
     static let didSignIn = Notification.Name("didSignIn")
     static let didSignUp = Notification.Name("didSignUp")
+    static let didSendTournamentData = Notification.Name("didSendTournamentData")
 }

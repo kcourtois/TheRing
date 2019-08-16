@@ -26,13 +26,18 @@ class SignupController: UIViewController {
         hideKeyboardWhenTappedAround()
         //set texts for this screen
         setTexts()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        //set observers on view appear
+        super.viewWillAppear(animated)
         //set observers for notifications
         setObservers()
     }
 
-    //removes observers on deinit
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //remove observers on view disappear
         NotificationCenter.default.removeObserver(self, name: .didSignUp, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
     }
@@ -86,7 +91,7 @@ class SignupController: UIViewController {
         }
     }
 
-    //Triggers on notification didSendError
+    //Triggers on notification didSignup
     @objc private func onDidSignUp(_ notification: Notification) {
         if let alert = self.alert {
             alert.dismiss(animated: true) {

@@ -41,7 +41,6 @@ class LoginModel {
     //send error notification
     private func postErrorNotification(error: String) {
         NotificationCenter.default.post(name: .didSendError, object: nil,
-                                        userInfo: [NotificationStrings.didSendErrorKey:
-                                            error])
+                                        userInfo: [NotificationStrings.didSendErrorKey: error])
     }
 }

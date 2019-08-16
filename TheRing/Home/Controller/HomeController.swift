@@ -12,11 +12,9 @@ class HomeController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    private let preferences = Preferences()
     private var tournaments = [TournamentData]()
-    private let userService: UserService = FirebaseUser()
-    private let authService: AuthService = FirebaseAuth()
-    private let tournamentService: TournamentService = FirebaseTournament()
+    private let homeModel = HomeModel(authService: FirebaseAuth(), userService: FirebaseUser(),
+                                      tournamentService: FirebaseTournament())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,25 +22,32 @@ class HomeController: UIViewController {
         setTexts()
         //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
-        //Check if user logged
-        if let uid = authService.getLoggedUserUID() {
-            //Check if user pref are up to date
-            if preferences.user.uid != uid {
-                loadUserPref(uid: uid)
-            }
-        } else {
-            userNotLogged()
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        checkUserLogged()
         //Load user tournaments
-        tournamentService.getUserTournamentsWithData(completion: { (tournaments) in
-            //sort tournaments from most recent to oldest
-            self.tournaments = tournaments.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
-            self.tableView.reloadData()
-        })
+        homeModel.getUserTournaments()
+        //set observers for notifications
+        setObservers()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendTournamentData, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendTournamentData
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendTournamentData),
+                                               name: .didSendTournamentData, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,6 +58,28 @@ class HomeController: UIViewController {
                 return
         }
         tournamentDetailVC.tournament = tournaments[tournamentIndex]
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                //dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
+                //                            message: error)
+                presentAlert(title: TRStrings.error.localizedString,
+                             message: error)
+            }
+        }
+    }
+
+    //Triggers on notification didSendTournamentData
+    @objc private func onDidSendTournamentData(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: [TournamentData]] {
+            for (_, tournaments) in data {
+                self.tournaments = tournaments
+                tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -65,31 +92,6 @@ extension HomeController {
             items[0].title = TRStrings.home.localizedString
             items[1].title = TRStrings.user.localizedString
             items[2].title = TRStrings.tournaments.localizedString
-        }
-    }
-
-    //sends user back to login screen
-    private func userNotLogged() {
-        presentAlertDelay(title: TRStrings.error.localizedString,
-                               message: TRStrings.notLogged.localizedString,
-                               delay: 2.0, completion: {
-            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        })
-    }
-
-    //loads user in preferences
-    private func loadUserPref(uid: String) {
-        let alert = loadingAlert()
-        userService.getUserInfo(uid: uid) { (userData) in
-            if let user = userData {
-                self.preferences.user = user
-                alert.dismiss(animated: true, completion: nil)
-            } else {
-                alert.dismiss(animated: true, completion: {
-                    self.presentAlert(title: TRStrings.error.localizedString,
-                                      message: TRStrings.userNotRetrieved.localizedString)
-                })
-            }
         }
     }
 }
