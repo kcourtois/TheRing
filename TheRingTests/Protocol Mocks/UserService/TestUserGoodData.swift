@@ -41,7 +41,8 @@ class TestUserGoodData: UserService {
 
     func getUserSubscriptions(completion: @escaping ([TRUser]) -> Void) {
         completion([TRUser(uid: "uid0", name: "name0", gender: .other, email: "email0", bio: "bio0"),
-                    TRUser(uid: "uid1", name: "name1", gender: .other, email: "email1", bio: "bio1")])
+                    TRUser(uid: "uid1", name: "name1", gender: .other, email: "email1", bio: "bio1"),
+                    TRUser(uid: "uid2", name: "name2", gender: .other, email: "email2", bio: "bio2")])
     }
 
     func isUserSubbedToUid(uid: String, completion: @escaping (Bool) -> Void) {
@@ -52,15 +53,15 @@ class TestUserGoodData: UserService {
         completion(nil)
     }
 
-    func unsubToUser(uid: String) {
-
+    func unsubToUser(uid: String, completion: @escaping (String?) -> Void) {
+        completion(nil)
     }
 
     func getSubscribersCount(uid: String, completion: @escaping (UInt?) -> Void) {
-        completion(1)
+        completion(5)
     }
 
-    func getSubsciptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
-        completion(1)
+    func getSubscriptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
+        completion(3)
     }
 }

@@ -98,7 +98,7 @@ extension UserController {
     //sets data label texts
     private func setLabels() {
         userInfoView.setUser(user: preferences.user)
-        userService.getSubsciptionsCount(uid: preferences.user.uid) { (num) in
+        userService.getSubscriptionsCount(uid: preferences.user.uid) { (num) in
             if let num = num {
                 self.userInfoView.setSubscriptionsCount(count: num)
             }

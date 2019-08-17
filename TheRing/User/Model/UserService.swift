@@ -40,11 +40,11 @@ protocol UserService {
     func subToUser(uid: String, completion: @escaping (String?) -> Void)
 
     //unsub current user to provided user
-    func unsubToUser(uid: String)
+    func unsubToUser(uid: String, completion: @escaping (String?) -> Void)
 
     //returns subscribers count for given user
     func getSubscribersCount(uid: String, completion: @escaping (UInt?) -> Void)
 
     //returns subscriptions count for given user
-    func getSubsciptionsCount(uid: String, completion: @escaping (UInt?) -> Void)
+    func getSubscriptionsCount(uid: String, completion: @escaping (UInt?) -> Void)
 }

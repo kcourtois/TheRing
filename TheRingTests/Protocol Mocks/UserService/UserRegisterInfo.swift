@@ -52,15 +52,15 @@ class UserRegisterInfo: UserService {
         completion(nil)
     }
 
-    func unsubToUser(uid: String) {
-
+    func unsubToUser(uid: String, completion: @escaping (String?) -> Void) {
+        completion(nil)
     }
 
     func getSubscribersCount(uid: String, completion: @escaping (UInt?) -> Void) {
         completion(1)
     }
 
-    func getSubsciptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
+    func getSubscriptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
         completion(1)
     }
 }

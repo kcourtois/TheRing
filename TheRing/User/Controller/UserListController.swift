@@ -11,7 +11,7 @@ import UIKit
 class UserListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
-    private let userService: UserService = FirebaseUser()
+    private let userListModel = UserListModel(userService: FirebaseUser())
     private var users: [TRUser] = []
     var userType: UserListType?
     var userTapped: TRUser?
@@ -25,20 +25,42 @@ class UserListController: UIViewController {
             switch userType {
             case .subscribers:
                 self.title = TRStrings.mySubscribers.localizedString
-                //Get list of subscribers for current user
-                userService.getUserSubscribers(completion: { (users) in
-                    self.users = users
-                    self.tableView.reloadData()
-                })
             case .subscriptions:
                 self.title = TRStrings.mySubscriptions.localizedString
-                //Get list of subscriptions for current user
-                userService.getUserSubscriptions(completion: { (users) in
-                    self.users = users
-                    self.tableView.reloadData()
-                })
             }
+            userListModel.getSubs(userType: userType)
+        } else {
+            presentAlert(title: TRStrings.error.localizedString,
+                         message: TRStrings.errorOccured.localizedString)
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        //set observers on view appear
+        super.viewWillAppear(animated)
+        //set observers for notifications
+        setObservers()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendSubs, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendUserInfo, object: nil)
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendSubs
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendSubs),
+                                               name: .didSendSubs, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+        //Notification observer for didSendUserInfo
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendUserInfo),
+                                               name: .didSendUserInfo, object: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -49,6 +71,35 @@ class UserListController: UIViewController {
                 return
         }
         userDetailVC.user = theUser
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                presentAlert(title: TRStrings.error.localizedString, message: error)
+            }
+        }
+    }
+
+    //Triggers on notification didSendSubs
+    @objc private func onDidSendSubs(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: [TRUser]] {
+            for (_, users) in data {
+                self.users = users
+                self.tableView.reloadData()
+            }
+        }
+    }
+
+    //Triggers on notification didSendUserInfo
+    @objc private func onDidSendUserInfo(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: TRUser] {
+            for (_, user) in data {
+                userTapped = user
+                performSegue(withIdentifier: "DetailUserSegue", sender: self)
+            }
+        }
     }
 }
 
@@ -80,9 +131,6 @@ extension UserListController: UITableViewDataSource {
 extension UserListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //on clic, get user info and show detail view
-        userService.getUserInfo(uid: users[indexPath.row].uid) { (user) in
-            self.userTapped = user
-            self.performSegue(withIdentifier: "DetailUserSegue", sender: self)
-        }
+        userListModel.getUserInfo(uid: users[indexPath.row].uid)
     }
 }

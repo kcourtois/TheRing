@@ -78,6 +78,9 @@
 		9E626BF42304950D0088256C /* TestTournamentGoodData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E626BF32304950D0088256C /* TestTournamentGoodData.swift */; };
 		9E626BF62304986B0088256C /* TestTournamentBadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E626BF52304986B0088256C /* TestTournamentBadData.swift */; };
 		9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E73412922FACCA4008F4405 /* PreferencesTests.swift */; };
+		9E81A41F2308354D0066E8E7 /* UserListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A41E2308354D0066E8E7 /* UserListModelTests.swift */; };
+		9E81A4212308356A0066E8E7 /* UserDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */; };
+		9E81A42323083C2A0066E8E7 /* TestUserBadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
@@ -206,6 +209,9 @@
 		9E626BF32304950D0088256C /* TestTournamentGoodData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTournamentGoodData.swift; sourceTree = "<group>"; };
 		9E626BF52304986B0088256C /* TestTournamentBadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTournamentBadData.swift; sourceTree = "<group>"; };
 		9E73412922FACCA4008F4405 /* PreferencesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTests.swift; sourceTree = "<group>"; };
+		9E81A41E2308354D0066E8E7 /* UserListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListModelTests.swift; sourceTree = "<group>"; };
+		9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModelTests.swift; sourceTree = "<group>"; };
+		9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserBadData.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -398,6 +404,7 @@
 		9E06BB6022B840F40098E148 /* TheRingTests */ = {
 			isa = PBXGroup;
 			children = (
+				9E81A41D230835230066E8E7 /* User */,
 				9E626BF1230494640088256C /* HomeModelTests.swift */,
 				9EF988AF2301707100AC0F30 /* LoginModelTests.swift */,
 				9E18322523018CB0005BC358 /* SignupModelTests.swift */,
@@ -453,6 +460,7 @@
 				9E18323323036680005BC358 /* UserRegisterInfo.swift */,
 				9E18323523036693005BC358 /* UserRegisterUsername.swift */,
 				9E18322D23018FC0005BC358 /* UsernameNotAvailble.swift */,
+				9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */,
 			);
 			path = UserService;
 			sourceTree = "<group>";
@@ -690,6 +698,15 @@
 				9EA846E222FC9B2800572A38 /* UserDefaultsExtension.swift */,
 			);
 			path = GeneralModel;
+			sourceTree = "<group>";
+		};
+		9E81A41D230835230066E8E7 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				9E81A41E2308354D0066E8E7 /* UserListModelTests.swift */,
+				9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */,
+			);
+			path = User;
 			sourceTree = "<group>";
 		};
 		9EA846DC22FC517500572A38 /* Extension */ = {
@@ -1059,8 +1076,11 @@
 				9E064E4E22CCE992009FE905 /* FakeResponseData.swift in Sources */,
 				9E626BF62304986B0088256C /* TestTournamentBadData.swift in Sources */,
 				9E18322E23018FC0005BC358 /* UsernameNotAvailble.swift in Sources */,
+				9E81A41F2308354D0066E8E7 /* UserListModelTests.swift in Sources */,
 				9E626BF42304950D0088256C /* TestTournamentGoodData.swift in Sources */,
+				9E81A4212308356A0066E8E7 /* UserDetailModelTests.swift in Sources */,
 				9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */,
+				9E81A42323083C2A0066E8E7 /* TestUserBadData.swift in Sources */,
 				9EA846DE22FC520000572A38 /* DateExtensionTests.swift in Sources */,
 				9EF988AC2301616B00AC0F30 /* TestAuthBadData.swift in Sources */,
 				9EA846E322FC9B2800572A38 /* UserDefaultsExtension.swift in Sources */,

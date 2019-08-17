@@ -22,6 +22,7 @@ class HomeModel {
         self.preferences = preferences
     }
 
+    //get all tournaments for the current user
     func getUserTournaments() {
         tournamentService.getUserTournamentsWithData(completion: { (tournaments) in
             //sort tournaments from most recent to oldest
@@ -30,7 +31,7 @@ class HomeModel {
         })
     }
 
-    //send error notification
+    //send tournamentdata notification
     private func postTournamentDataNotification(data: [TournamentData]) {
         NotificationCenter.default.post(name: .didSendTournamentData, object: nil,
                                         userInfo: [NotificationStrings.didSendTournamentDataKey: data])

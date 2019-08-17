@@ -50,15 +50,14 @@ class UsernameNotAvailable: UserService {
 
     }
 
-    func unsubToUser(uid: String) {
+    func unsubToUser(uid: String, completion: @escaping (String?) -> Void) {
 
     }
-
     func getSubscribersCount(uid: String, completion: @escaping (UInt?) -> Void) {
 
     }
 
-    func getSubsciptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
+    func getSubscriptionsCount(uid: String, completion: @escaping (UInt?) -> Void) {
 
     }
 }

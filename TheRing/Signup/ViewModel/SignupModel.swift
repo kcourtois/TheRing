@@ -106,7 +106,7 @@ class SignupModel {
                                         userInfo: [NotificationStrings.didSendErrorKey: error])
     }
 
-    //send error notification
+    //send signup notification
     private func postSignUpNotification() {
         NotificationCenter.default.post(name: .didSignUp, object: nil,
                                         userInfo: [NotificationStrings.didSignUpKey:
