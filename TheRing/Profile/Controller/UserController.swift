@@ -13,28 +13,20 @@ class UserController: UIViewController {
     @IBOutlet weak var userInfoView: UserInfoView!
     @IBOutlet weak var myCodeButton: UIButton!
 
-    private let preferences = Preferences()
-    private let userService: UserService = FirebaseUser()
-    private let authService: AuthService = FirebaseAuth()
+    private let userDetailModel = UserDetailModel(userService: FirebaseUser())
     private var userType: UserListType = .subscriptions
+    private let preferences = Preferences()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //set texts for this screen
         setTexts()
-        if let uid = authService.getLoggedUserUID() {
-            //Check if user pref are up to date
-            if preferences.user.uid != uid {
-                loadUserPref(uid: uid)
-            } else {
-                //set texts that requires data
-                setLabels()
-                //set observers for notifications
-                setObservers()
-            }
-        } else {
-            userNotLogged()
-        }
+        //check if user is logged in
+        checkUserLogged()
+        //set texts that requires data
+        setLabels()
+        //set observers for notifications
+        setObservers()
     }
 
     //set observers for notifications
@@ -45,11 +37,20 @@ class UserController: UIViewController {
         //Notification observer for didTapSubscriptions
         NotificationCenter.default.addObserver(self, selector: #selector(onDidTapSubscriptions),
                                                name: .didTapSubscriptions, object: nil)
+        //Notification observer for didSendCount
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendCount),
+                                               name: .didSendCount, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
     }
 
     //removes observers on deinit
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendCount, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didTapSubscribers, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didTapSubscriptions, object: nil)
     }
@@ -80,6 +81,28 @@ class UserController: UIViewController {
             userListVC.userType = userType
         }
     }
+
+    //Triggers on notification didSendCount
+    @objc private func onDidSendCount(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: UInt] {
+            for (label, num) in data {
+                if label == NotificationStrings.didSendSubscribersCountKey {
+                    self.userInfoView.setSubscribersCount(count: num)
+                } else if label == NotificationStrings.didSendSubscriptionsCountKey {
+                    self.userInfoView.setSubscriptionsCount(count: num)
+                }
+            }
+        }
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                presentAlert(title: TRStrings.error.localizedString, message: error)
+            }
+        }
+    }
 }
 
 // MARK: - UI & Preferences setup
@@ -98,42 +121,7 @@ extension UserController {
     //sets data label texts
     private func setLabels() {
         userInfoView.setUser(user: preferences.user)
-        userService.getSubscriptionsCount(uid: preferences.user.uid) { (num) in
-            if let num = num {
-                self.userInfoView.setSubscriptionsCount(count: num)
-            }
-        }
-        userService.getSubscribersCount(uid: preferences.user.uid) { (num) in
-            if let num = num {
-                self.userInfoView.setSubscribersCount(count: num)
-            }
-        }
-    }
-
-    //sends user back to login screen
-    private func userNotLogged() {
-        self.presentAlertDelay(title: TRStrings.error.localizedString,
-                               message: TRStrings.notLogged.localizedString,
-                               delay: 2.0, completion: {
-                                self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        })
-    }
-
-    //loads user in preferences
-    private func loadUserPref(uid: String) {
-        let alert = loadingAlert()
-        userService.getUserInfo(uid: uid) { (userData) in
-            if let user = userData {
-                self.preferences.user = user
-                alert.dismiss(animated: true, completion: {
-                    self.setLabels()
-                })
-            } else {
-                alert.dismiss(animated: true, completion: {
-                    self.presentAlert(title: TRStrings.error.localizedString,
-                                      message: TRStrings.userNotRetrieved.localizedString)
-                })
-            }
-        }
+        userDetailModel.getSubscriptionsCount(uid: preferences.user.uid)
+        userDetailModel.getSubscribersCount(uid: preferences.user.uid)
     }
 }

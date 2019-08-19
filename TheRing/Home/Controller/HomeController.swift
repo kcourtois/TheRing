@@ -26,11 +26,12 @@ class HomeController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //check if user is logged in
         checkUserLogged()
-        //Load user tournaments
-        homeModel.getUserTournaments()
         //set observers for notifications
         setObservers()
+        //Load user tournaments
+        homeModel.getUserTournaments()
     }
 
     override func viewWillDisappear(_ animated: Bool) {

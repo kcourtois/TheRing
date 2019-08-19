@@ -39,7 +39,6 @@ class UserListModel {
             } else {
                 self.postErrorNotification(error: TRStrings.errorOccured.localizedString)
             }
-
         }
     }
 

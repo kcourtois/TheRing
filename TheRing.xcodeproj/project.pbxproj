@@ -17,8 +17,6 @@
 		9E0520582300C699003EF504 /* ProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520572300C699003EF504 /* ProfileModel.swift */; };
 		9E05205A2300C6A2003EF504 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520592300C6A2003EF504 /* PasswordModel.swift */; };
 		9E05205C2300C6B8003EF504 /* EmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05205B2300C6B8003EF504 /* EmailModel.swift */; };
-		9E0520602300C722003EF504 /* ScannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05205F2300C722003EF504 /* ScannerModel.swift */; };
-		9E0520622300C735003EF504 /* QRCodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520612300C735003EF504 /* QRCodeModel.swift */; };
 		9E0520652300C753003EF504 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520642300C753003EF504 /* SearchModel.swift */; };
 		9E0520672300C766003EF504 /* CreateTournamentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520662300C766003EF504 /* CreateTournamentModel.swift */; };
 		9E0520692300C773003EF504 /* SelectContestantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520682300C773003EF504 /* SelectContestantModel.swift */; };
@@ -141,8 +139,6 @@
 		9E0520572300C699003EF504 /* ProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModel.swift; sourceTree = "<group>"; };
 		9E0520592300C6A2003EF504 /* PasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
 		9E05205B2300C6B8003EF504 /* EmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModel.swift; sourceTree = "<group>"; };
-		9E05205F2300C722003EF504 /* ScannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerModel.swift; sourceTree = "<group>"; };
-		9E0520612300C735003EF504 /* QRCodeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeModel.swift; sourceTree = "<group>"; };
 		9E0520642300C753003EF504 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
 		9E0520662300C766003EF504 /* CreateTournamentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTournamentModel.swift; sourceTree = "<group>"; };
 		9E0520682300C773003EF504 /* SelectContestantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectContestantModel.swift; sourceTree = "<group>"; };
@@ -302,24 +298,6 @@
 				9E0520572300C699003EF504 /* ProfileModel.swift */,
 				9E0520592300C6A2003EF504 /* PasswordModel.swift */,
 				9E05205B2300C6B8003EF504 /* EmailModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		9E05205D2300C70A003EF504 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				9E4F969822F06A1D006959FF /* ScannerController.swift */,
-				9E4F969A22F0998E006959FF /* QRCodeController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		9E05205E2300C713003EF504 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9E05205F2300C722003EF504 /* ScannerModel.swift */,
-				9E0520612300C735003EF504 /* QRCodeModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -638,8 +616,8 @@
 		9E4F969722F06973006959FF /* QRCode */ = {
 			isa = PBXGroup;
 			children = (
-				9E05205E2300C713003EF504 /* ViewModel */,
-				9E05205D2300C70A003EF504 /* Controller */,
+				9E4F969822F06A1D006959FF /* ScannerController.swift */,
+				9E4F969A22F0998E006959FF /* QRCodeController.swift */,
 			);
 			path = QRCode;
 			sourceTree = "<group>";
@@ -1002,7 +980,6 @@
 				9E4F96A622F398AF006959FF /* TournamentOverview.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
 				9E05206F2300C79E003EF504 /* CommentModel.swift in Sources */,
-				9E0520602300C722003EF504 /* ScannerModel.swift in Sources */,
 				9E334E5222E0B2C800CB3257 /* TournamentView.swift in Sources */,
 				9EA2719122C3790C00AAC06B /* HomeController.swift in Sources */,
 				9EA846E022FC758100572A38 /* UserInfoView.swift in Sources */,
@@ -1013,7 +990,6 @@
 				9E064E4422CB06FB009FE905 /* FirebaseExtension.swift in Sources */,
 				9E4F96A922F89EE6006959FF /* OverviewCell.swift in Sources */,
 				9EA2718F22BE5AAA00AAC06B /* SignupController.swift in Sources */,
-				9E0520622300C735003EF504 /* QRCodeModel.swift in Sources */,
 				9E36669C22E7AD2C0041B51E /* NotificationStrings.swift in Sources */,
 				9EA846ED22FDB07600572A38 /* FirebaseTournament.swift in Sources */,
 				9EA846F122FDB7E300572A38 /* FirebaseComment.swift in Sources */,

@@ -12,7 +12,7 @@ import UIKit
 class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!
-    private let userService: UserService = FirebaseUser()
+    private let userModel = UserListModel(userService: FirebaseUser())
     private var user: TRUser?
 
     override func viewDidLoad() {
@@ -65,6 +65,18 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
         if captureSession?.isRunning == false {
             captureSession.startRunning()
         }
+        //set observers for notifications
+        setObservers()
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+        //Notification observer for didSendUserInfo
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendUserInfo),
+                                               name: .didSendUserInfo, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -73,6 +85,9 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
         if captureSession?.isRunning == true {
             captureSession.stopRunning()
         }
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendUserInfo, object: nil)
     }
 
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject],
@@ -97,17 +112,7 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
 
     //get user info with code given, and present an alert if code invalid
     private func found(code: String) {
-        userService.getUserInfo(uid: code) { (user) in
-            if let user = user {
-                self.user = user
-                self.performSegue(withIdentifier: "DetailUserSegue", sender: self)
-            } else {
-                self.presentAlertDelay(title: "Invalid code", message: "The code wasn't recognized.",
-                                       delay: 1, completion: {
-                    self.captureSession.startRunning()
-                })
-            }
-        }
+        userModel.getUserInfo(uid: code)
     }
 
     //set user before segue to detail view
@@ -118,6 +123,24 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
                 userDetailVC.user = user
             } else {
                 return
+            }
+        }
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        self.presentAlertDelay(title: "Invalid code", message: "The code wasn't recognized.",
+                               delay: 1, completion: {
+                                self.captureSession.startRunning()
+        })
+    }
+
+    //Triggers on notification didSendUserInfo
+    @objc private func onDidSendUserInfo(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: TRUser] {
+            for (_, user) in data {
+                self.user = user
+                performSegue(withIdentifier: "DetailUserSegue", sender: self)
             }
         }
     }

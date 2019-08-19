@@ -197,7 +197,6 @@ class FirebaseUser: UserService {
             //get children count for user subscribers at given uid
             completion(snapshot.childrenCount)
         })
-        completion(nil)
     }
 
     //returns subscriptions count for given user
@@ -207,7 +206,6 @@ class FirebaseUser: UserService {
         reference.child("user_subscriptions").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             completion(snapshot.childrenCount)
         })
-        completion(nil)
     }
 
     //register a subscriber for the given uid
