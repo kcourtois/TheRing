@@ -18,7 +18,7 @@ class PasswordController: UIViewController {
     @IBOutlet weak var confirmPassLabel: UILabel!
 
     private let preferences = Preferences()
-    private let authService: AuthService = FirebaseAuth()
+    private let passwordModel: PasswordModel = PasswordModel(authService: FirebaseAuth())
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
@@ -26,6 +26,30 @@ class PasswordController: UIViewController {
         setTexts()
         //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //set observers for notifications
+        setObservers()
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didUpdatePassword
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidUpdatePassword),
+                                               name: .didUpdatePassword, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+    }
+
+    //removes observers on deinit
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didUpdatePassword, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
     }
 
     //set texts for this screen
@@ -45,49 +69,30 @@ class PasswordController: UIViewController {
 
         //get all fields to variables
         if let oldPwd = oldPasswordField.text, let newPwd = newPasswordField.text, let confirm = confirmField.text {
-            if fieldsEmpty(oldPwd: oldPwd, newPwd: newPwd, confirm: confirm) {
-                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.emptyFields.localizedString)
-                return
-            //check if new password matches confirm field
-            } else if newPwd != confirm {
-                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.confirmWrong.localizedString)
-                return
-            } else {
-                //updates password
-                updatePassword(oldPwd: oldPwd, newPwd: newPwd)
-            }
+            //updates password
+            passwordModel.updatePassword(oldPwd: oldPwd, newPwd: newPwd, confirm: confirm)
         } else {
             dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                         message: TRStrings.errorOccured.localizedString)
         }
     }
-}
 
-// MARK: - Utilities
-extension PasswordController {
-    //Check if fields are empty or not
-    private func fieldsEmpty(oldPwd: String, newPwd: String, confirm: String) -> Bool {
-        return oldPwd.isEmpty || newPwd.isEmpty || confirm.isEmpty
+    //Triggers on notification didUpdatePassword
+    @objc private func onDidUpdatePassword(_ notification: Notification) {
+        if let alert = self.alert {
+            alert.dismiss(animated: true) {
+                self.presentAlertPopRootVC(title: TRStrings.saved.localizedString,
+                                           message: TRStrings.modifSaved.localizedString)
+            }
+        }
     }
-}
 
-// MARK: - Network
-extension PasswordController {
-    //update user password
-    private func updatePassword(oldPwd: String, newPwd: String) {
-        authService.updatePassword(oldPwd: oldPwd, newPwd: newPwd) { error in
-            if let error = error {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                             message: error)
-            } else {
-                if let alert = self.alert {
-                    alert.dismiss(animated: true) {
-                        self.presentAlertPopRootVC(title: TRStrings.saved.localizedString,
-                                                   message: TRStrings.modifSaved.localizedString)
-                    }
-                }
             }
         }
     }
