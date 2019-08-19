@@ -33,7 +33,7 @@ class SignupModelTests: XCTestCase {
 
         signupModel.registerUser(email: "test@gmail.com", password: "qwerty", confirm: "qwerty", username: "test")
 
-        waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 1, handler: nil)
         XCTAssertTrue(didSendNotif)
         NotificationCenter.default.removeObserver(notif)
     }

@@ -14,7 +14,9 @@ class TestUserBadData: UserService {
         completion(nil)
     }
 
-    func isUsernameAvailable(name: String, completion: @escaping (Bool) -> Void) {}
+    func isUsernameAvailable(name: String, completion: @escaping (Bool) -> Void) {
+        completion(false)
+    }
 
     func registerUserInfo(uid: String, values: [String: Any], completion: @escaping (String?) -> Void) {
         completion(TRStrings.errorOccured.localizedString)

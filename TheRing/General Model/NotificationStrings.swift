@@ -24,6 +24,8 @@ class NotificationStrings {
     static let didSubKey: String = "subbed"
     static let didUnsubKey: String = "unsubbed"
     static let didSendIsUserSubbedKey: String = "isSubbed"
+    static let didRegisterUserInfoKey: String = "registerUserInfo"
+    static let didSendSaveUserKey: String = "saveUser"
 }
 
 extension Notification.Name {
@@ -40,4 +42,6 @@ extension Notification.Name {
     static let didSendCount = Notification.Name("didSendCount")
     static let didSendSub = Notification.Name("didSendSub")
     static let didSendIsUserSubbed = Notification.Name("didSendIsUserSubbed")
+    static let didRegisterUserInfo = Notification.Name("didRegisterUserInfo")
+    static let didSendSaveUser = Notification.Name("didSendSaveUser")
 }

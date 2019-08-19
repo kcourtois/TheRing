@@ -31,7 +31,7 @@ class UserRegisterUsername: UserService {
     }
 
     func replaceUsername(old: String, new: String, uid: String, completion: @escaping (String?) -> Void) {
-        completion(nil)
+        completion(TRStrings.errorOccured.localizedString)
     }
 
     func getUserSubscribers(completion: @escaping ([TRUser]) -> Void) {

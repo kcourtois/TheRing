@@ -22,7 +22,7 @@ class ProfileController: UIViewController {
     @IBOutlet weak var modifyPassword: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
 
-    private let userService: UserService = FirebaseUser()
+    private let profileModel = ProfileModel(userService: FirebaseUser())
     private let preferences = Preferences()
     private var alert: UIAlertController?
 
@@ -34,7 +34,35 @@ class ProfileController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
 
-     //keyboard disappear after tap
+    override func viewWillAppear(_ animated: Bool) {
+        //set observers on view appear
+        super.viewWillAppear(animated)
+        //set observers for notifications
+        setObservers()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didRegisterUserInfo, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendSaveUser, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendUserInfo, object: nil)
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendSubs
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidRegisterUserInfo),
+                                               name: .didRegisterUserInfo, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+        //Notification observer for didSendUserInfo
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendSaveUser),
+                                               name: .didSendSaveUser, object: nil)
+    }
+
+    //set texts for this screen
     private func setTexts() {
         bioTextField.text = preferences.user.bio
         nameTextField.text = preferences.user.name
@@ -82,7 +110,7 @@ class ProfileController: UIViewController {
                 return
             } else if name != preferences.user.name {
                 //if username changed, check if new one is available and save
-                checkUsernameAndSave(name: name)
+                profileModel.checkUsernameAndSave(name: name)
             } else {
                 //else, save
                 saveUser()
@@ -90,6 +118,18 @@ class ProfileController: UIViewController {
         } else {
             dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                              message: TRStrings.errorOccured.localizedString)
+        }
+    }
+
+    //save user to preferences
+    private func savePreferences() {
+        if let bio = bioTextField.text, let name = nameTextField.text {
+            let user = TRUser(uid: preferences.user.uid,
+                            name: name,
+                            gender: Gender(rawValue: genderControl.selectedSegmentIndex) ?? .other,
+                            email: preferences.user.email,
+                            bio: bio)
+            preferences.user = user
         }
     }
 
@@ -106,60 +146,27 @@ class ProfileController: UIViewController {
                       "gender": genderControl.selectedSegmentIndex,
                       "username": name] as [String: Any]
 
-        registerUserInfo(values: values)
+        profileModel.registerUserInfo(values: values)
     }
 
-    //save user to preferences
-    private func savePreferences() {
-        if let bio = bioTextField.text, let name = nameTextField.text {
-            let user = TRUser(uid: preferences.user.uid,
-                            name: name,
-                            gender: Gender(rawValue: genderControl.selectedSegmentIndex) ?? .other,
-                            email: preferences.user.email,
-                            bio: bio)
-            preferences.user = user
-        }
-    }
-}
-
-// MARK: - Network
-extension ProfileController {
-    //replace username by new one, and save user to database
-    private func replaceUsernameAndSave(name: String) {
-        userService.replaceUsername(old: self.preferences.user.name, new: name,
-                                        uid: self.preferences.user.uid, completion: { (error) in
-            if error != nil {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.errorOccured.localizedString)
-            } else {
-                self.saveUser()
-            }
-        })
+    //Triggers on notification didRegisterUserInfo
+    @objc private func onDidRegisterUserInfo(_ notification: Notification) {
+        savePreferences()
+        dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.saved.localizedString,
+                                    message: TRStrings.modifSaved.localizedString)
     }
 
-    //check if username is available, then save user to database
-    private func checkUsernameAndSave(name: String) {
-        userService.isUsernameAvailable(name: name) { available in
-            if available {
-                self.replaceUsernameAndSave(name: name)
-            } else {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.usernameUsed.localizedString)
-                return
-            }
-        }
+    //Triggers on notification didSendSaveUser
+    @objc private func onDidSendSaveUser(_ notification: Notification) {
+        saveUser()
     }
 
-    //save user to database
-    private func registerUserInfo(values: [String: Any]) {
-        userService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
-            if let error = error {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                                 message: error)
-            } else {
-                self.savePreferences()
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.saved.localizedString,
-                                                 message: TRStrings.modifSaved.localizedString)
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                            message: error)
             }
         }
     }
