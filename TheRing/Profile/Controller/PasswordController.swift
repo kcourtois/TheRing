@@ -18,7 +18,7 @@ class PasswordController: UIViewController {
     @IBOutlet weak var confirmPassLabel: UILabel!
 
     private let preferences = Preferences()
-    private let passwordModel: PasswordModel = PasswordModel(authService: FirebaseAuth())
+    private let passwordModel = PasswordModel(authService: FirebaseAuth())
     private var alert: UIAlertController?
 
     override func viewDidLoad() {

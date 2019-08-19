@@ -17,8 +17,21 @@ class ProfileModel {
         self.preferences = preferences
     }
 
+    ///check all preconditions before saving username
+    func updateUsername(name: String) {
+        if name.isEmptyAfterTrim {
+            postErrorNotification(error: TRStrings.emptyFields.localizedString)
+        } else if name != preferences.user.name {
+            //if username changed, check if new one is available and save
+            checkUsernameAndSave(name: name)
+        } else {
+            //else, save
+            replaceUsernameAndSave(name: name)
+        }
+    }
+
     //check if username is available, and call replace & save
-    func checkUsernameAndSave(name: String) {
+    private func checkUsernameAndSave(name: String) {
         userService.isUsernameAvailable(name: name) { available in
             if available {
                 self.replaceUsernameAndSave(name: name)

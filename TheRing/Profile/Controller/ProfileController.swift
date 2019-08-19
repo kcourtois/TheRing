@@ -104,17 +104,7 @@ class ProfileController: UIViewController {
         //show loading alert
         alert = loadingAlert()
         if let name = nameTextField.text {
-            if name.isEmpty {
-                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
-                                                 message: TRStrings.emptyFields.localizedString)
-                return
-            } else if name != preferences.user.name {
-                //if username changed, check if new one is available and save
-                profileModel.checkUsernameAndSave(name: name)
-            } else {
-                //else, save
-                saveUser()
-            }
+            profileModel.updateUsername(name: name)
         } else {
             dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                              message: TRStrings.errorOccured.localizedString)

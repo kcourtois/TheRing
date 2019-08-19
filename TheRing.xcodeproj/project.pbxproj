@@ -22,7 +22,6 @@
 		9E05206B2300C780003EF504 /* TournamentDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206A2300C780003EF504 /* TournamentDateModel.swift */; };
 		9E05206D2300C793003EF504 /* TournamentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206C2300C793003EF504 /* TournamentDetailModel.swift */; };
 		9E05206F2300C79E003EF504 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206E2300C79E003EF504 /* CommentModel.swift */; };
-		9E0520722300C7FA003EF504 /* SearchMovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520712300C7FA003EF504 /* SearchMovieModel.swift */; };
 		9E064E3422C541E8009FE905 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E064E3322C541E8009FE905 /* UserService.swift */; };
 		9E064E3722C7A53F009FE905 /* PasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E064E3622C7A53F009FE905 /* PasswordController.swift */; };
 		9E064E3922C7A55D009FE905 /* EmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E064E3822C7A55D009FE905 /* EmailController.swift */; };
@@ -57,6 +56,7 @@
 		9E36669E22E9E4100041B51E /* CommentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36669D22E9E4100041B51E /* CommentController.swift */; };
 		9E37396F230AA30900CC86A6 /* ProfileModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E37396E230AA30900CC86A6 /* ProfileModelTests.swift */; };
 		9E373971230AC6EC00CC86A6 /* PasswordModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E373970230AC6EC00CC86A6 /* PasswordModelTests.swift */; };
+		9E373973230AE26900CC86A6 /* EmailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E373972230AE26900CC86A6 /* EmailModelTests.swift */; };
 		9E4F967D22EA7207006959FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F967F22EA7207006959FF /* InfoPlist.strings */; };
 		9E4F968422EBA1F5006959FF /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968322EBA1F5006959FF /* UserListController.swift */; };
 		9E4F968B22EBB183006959FF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968A22EBB183006959FF /* UserCell.swift */; };
@@ -145,7 +145,6 @@
 		9E05206A2300C780003EF504 /* TournamentDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDateModel.swift; sourceTree = "<group>"; };
 		9E05206C2300C793003EF504 /* TournamentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDetailModel.swift; sourceTree = "<group>"; };
 		9E05206E2300C79E003EF504 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
-		9E0520712300C7FA003EF504 /* SearchMovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovieModel.swift; sourceTree = "<group>"; };
 		9E064E3322C541E8009FE905 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9E064E3622C7A53F009FE905 /* PasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordController.swift; sourceTree = "<group>"; };
 		9E064E3822C7A55D009FE905 /* EmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailController.swift; sourceTree = "<group>"; };
@@ -186,6 +185,7 @@
 		9E36669D22E9E4100041B51E /* CommentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentController.swift; sourceTree = "<group>"; };
 		9E37396E230AA30900CC86A6 /* ProfileModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModelTests.swift; sourceTree = "<group>"; };
 		9E373970230AC6EC00CC86A6 /* PasswordModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModelTests.swift; sourceTree = "<group>"; };
+		9E373972230AE26900CC86A6 /* EmailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModelTests.swift; sourceTree = "<group>"; };
 		9E4F968022EA720A006959FF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4F968122EA721B006959FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4F968322EBA1F5006959FF /* UserListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
@@ -312,14 +312,6 @@
 				9E05206A2300C780003EF504 /* TournamentDateModel.swift */,
 				9E05206C2300C793003EF504 /* TournamentDetailModel.swift */,
 				9E05206E2300C79E003EF504 /* CommentModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		9E0520702300C7E2003EF504 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				9E0520712300C7FA003EF504 /* SearchMovieModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -522,7 +514,6 @@
 		9E334E3A22D8C1B200CB3257 /* MovieSearch */ = {
 			isa = PBXGroup;
 			children = (
-				9E0520702300C7E2003EF504 /* ViewModel */,
 				9E334E3D22D8C1E500CB3257 /* Model */,
 				9E334E3C22D8C1DF00CB3257 /* View */,
 				9E334E3B22D8C1D800CB3257 /* Controller */,
@@ -580,6 +571,7 @@
 			children = (
 				9E37396E230AA30900CC86A6 /* ProfileModelTests.swift */,
 				9E373970230AC6EC00CC86A6 /* PasswordModelTests.swift */,
+				9E373972230AE26900CC86A6 /* EmailModelTests.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1020,7 +1012,6 @@
 				9E05205A2300C6A2003EF504 /* PasswordModel.swift in Sources */,
 				9E0520582300C699003EF504 /* ProfileModel.swift in Sources */,
 				9E064E3922C7A55D009FE905 /* EmailController.swift in Sources */,
-				9E0520722300C7FA003EF504 /* SearchMovieModel.swift in Sources */,
 				9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */,
 				9E334E4E22E04B6300CB3257 /* TournamentDetailController.swift in Sources */,
 				9E334E5422E31C0800CB3257 /* TournamentData.swift in Sources */,
@@ -1068,6 +1059,7 @@
 				9E626BF42304950D0088256C /* TestTournamentGoodData.swift in Sources */,
 				9E81A4212308356A0066E8E7 /* UserDetailModelTests.swift in Sources */,
 				9E73412A22FACCA4008F4405 /* PreferencesTests.swift in Sources */,
+				9E373973230AE26900CC86A6 /* EmailModelTests.swift in Sources */,
 				9E81A42323083C2A0066E8E7 /* TestUserBadData.swift in Sources */,
 				9EA846DE22FC520000572A38 /* DateExtensionTests.swift in Sources */,
 				9EF988AC2301616B00AC0F30 /* TestAuthBadData.swift in Sources */,

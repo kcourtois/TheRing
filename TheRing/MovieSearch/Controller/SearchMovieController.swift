@@ -31,7 +31,7 @@ class SearchMovieController: UIViewController {
         guard let text = searchBar.text else {
             return
         }
-        guard !text.isEmpty else {
+        guard !text.isEmptyAfterTrim else {
             return
         }
         searchMovies(search: text)

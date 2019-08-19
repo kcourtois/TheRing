@@ -30,7 +30,7 @@ class ProfileModelTests: XCTestCase {
         let notif = NotificationCenter.default.addObserver(forName: .didSendSaveUser,
                                                            object: nil, queue: nil, using: handler)
 
-        profileModel.checkUsernameAndSave(name: "test")
+        profileModel.updateUsername(name: "test")
 
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertTrue(didSendNotif)
@@ -53,7 +53,7 @@ class ProfileModelTests: XCTestCase {
         let notif = NotificationCenter.default.addObserver(forName: .didSendError,
                                                            object: nil, queue: nil, using: handler)
 
-        profileModel.checkUsernameAndSave(name: "test")
+        profileModel.updateUsername(name: "test")
 
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertTrue(didSendNotif)
@@ -67,7 +67,7 @@ class ProfileModelTests: XCTestCase {
         let notif = NotificationCenter.default.addObserver(forName: .didSendError,
                                                            object: nil, queue: nil, using: handler)
 
-        profileModel.checkUsernameAndSave(name: "test")
+        profileModel.updateUsername(name: "test")
 
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertTrue(didSendNotif)
@@ -97,6 +97,30 @@ class ProfileModelTests: XCTestCase {
 
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenEmptyUsernameWhenCallingCheckUsernameAndSaveThenShouldSendErrorNotification() {
+        let profileModel = ProfileModel(userService: TestUserGoodData(),
+                                        preferences: Preferences(defaults: .makeClearedInstance()))
+        var error = ""
+        self.handler = { (notification: Notification) -> Void in
+            if let data = notification.userInfo as? [String: String] {
+                for (_, errorStr) in data {
+                    error = errorStr
+                }
+            }
+            self.didSendNotif = true
+            self.testExpectation.fulfill()
+        }
+        let notif = NotificationCenter.default.addObserver(forName: .didSendError,
+                                                           object: nil, queue: nil, using: handler)
+
+        profileModel.updateUsername(name: " ")
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        XCTAssertEqual(error, TRStrings.emptyFields.localizedString)
         NotificationCenter.default.removeObserver(notif)
     }
 }

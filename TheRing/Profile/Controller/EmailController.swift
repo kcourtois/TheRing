@@ -17,9 +17,8 @@ class EmailController: UIViewController {
     @IBOutlet weak var newMailLabel: UILabel!
     @IBOutlet weak var confirmLabel: UILabel!
 
+    private let emailModel = EmailModel(authService: FirebaseAuth(), userService: FirebaseUser())
     private let preferences = Preferences()
-    private let authService: AuthService = FirebaseAuth()
-    private let userService: UserService = FirebaseUser()
     private var alert: UIAlertController?
 
     override func viewDidLoad() {
@@ -29,6 +28,30 @@ class EmailController: UIViewController {
         hideKeyboardWhenTappedAround()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        //set observers on view appear
+        super.viewWillAppear(animated)
+        //set observers for notifications
+        setObservers()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didRegisterUserInfo, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendUserInfo, object: nil)
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendSubs
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidRegisterUserInfo),
+                                               name: .didRegisterUserInfo, object: nil)
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+    }
+    
     //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.updateEmail.localizedString
@@ -46,86 +69,37 @@ class EmailController: UIViewController {
 
         //get all fields to variables
         if let password = passwordField.text, let newMail = newEmailField.text, let confirm = confirmEmailField.text {
-            if fieldsEmpty(password: password, mail: newMail, confirm: confirm) {
-                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.emptyFields.localizedString)
-                return
-            //check if new mail is not equal to old one
-            } else if newMail == preferences.user.email {
-                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.mailSelfUse.localizedString)
-                return
-            //check if new mail matches confirm field
-            } else if newMail != confirm {
-                dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
-                                            message: TRStrings.confirmWrong.localizedString)
-                return
-            } else {
-                //update mail
-                updateMailAndSave(password: password, mail: newMail)
-            }
+            emailModel.updateEmail(password: password, mail: newMail, confirm: confirm)
         } else {
             dismissLoadAlertWithMessage(alert: alert, title: TRStrings.error.localizedString,
                                         message: TRStrings.errorOccured.localizedString)
+        }
+    }
+
+    //Triggers on notification didRegisterUserInfo
+    @objc private func onDidRegisterUserInfo(_ notification: Notification) {
+        dismissAndSaveAlert()
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
+                                            message: error)
+            }
         }
     }
 }
 
 // MARK: - Utilities
 extension EmailController {
-    private func savePreferences(mail: String) {
-        let user = TRUser(uid: preferences.user.uid,
-                          name: preferences.user.name,
-                          gender: preferences.user.gender,
-                          email: mail,
-                          bio: preferences.user.bio)
-        preferences.user = user
-    }
-
-    //Check if fields are empty or not
-    private func fieldsEmpty(password: String, mail: String, confirm: String) -> Bool {
-        return password.isEmpty || mail.isEmpty || confirm.isEmpty
-    }
-
     //Dismiss loading alert and show save message
     private func dismissAndSaveAlert() {
         if let alert = self.alert {
             alert.dismiss(animated: true) {
                 self.presentAlertPopRootVC(title: TRStrings.saved.localizedString,
                                            message: TRStrings.modifSaved.localizedString)
-            }
-        }
-    }
-}
-
-// MARK: - Network
-extension EmailController {
-    //save user to update with provided email
-    private func saveUser(mail: String) {
-        let values = ["bio": preferences.user.bio,
-                      "email": mail,
-                      "gender": preferences.user.gender.rawValue,
-                      "username": preferences.user.name] as [String: Any]
-
-        userService.registerUserInfo(uid: preferences.user.uid, values: values) { (error) in
-            if let error = error {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                            message: error)
-            } else {
-                self.savePreferences(mail: mail)
-                self.dismissAndSaveAlert()
-            }
-        }
-    }
-
-    //updates email and saves user
-    private func updateMailAndSave(password: String, mail: String) {
-        authService.updateEmail(password: password, mail: mail) { error in
-            if let error = error {
-                self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
-                                                 message: error)
-            } else {
-                self.saveUser(mail: mail)
             }
         }
     }
