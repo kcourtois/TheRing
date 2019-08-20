@@ -27,6 +27,12 @@ class NotificationStrings {
     static let didRegisterUserInfoKey: String = "registerUserInfo"
     static let didSendSaveUserKey: String = "saveUser"
     static let didUpdatePasswordKey: String = "updatePassword"
+    static let didCreateTournamentKey: String = "createTournament"
+    static let didSendCommentsKey: String = "sendComments"
+    static let didRegisterCommentKey: String = "registerComment"
+    static let didLoadVoteKey: String = "loadVote"
+    static let didSendSetFirstStageKey: String =  "setFirstStage"
+    static let didSendSetSecondStageKey: String = "setSecondStage"
 }
 
 extension Notification.Name {
@@ -46,4 +52,10 @@ extension Notification.Name {
     static let didRegisterUserInfo = Notification.Name("didRegisterUserInfo")
     static let didSendSaveUser = Notification.Name("didSendSaveUser")
     static let didUpdatePassword = Notification.Name("didUpdatePassword")
+    static let didCreateTournament = Notification.Name("didCreateTournament")
+    static let didSendComments = Notification.Name("didSendComments")
+    static let didRegisterComment = Notification.Name("didRegisterComment")
+    static let didLoadVote = Notification.Name("didLoadVote")
+    static let didSendSetFirstStage = Notification.Name("didSendSetFirstStage")
+    static let didSendSetSecondStage = Notification.Name("didSendSetSecondStage")
 }

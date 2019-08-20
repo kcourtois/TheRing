@@ -15,5 +15,5 @@ protocol VoteService {
 
     func getVotes(cid: String, rid: String, completion: @escaping (UInt?) -> Void)
 
-    func removeUserVote(uid: String, rid: String, cid: String)
+    func removeUserVote(uid: String, rid: String, cid: String, completion: @escaping (String?) -> Void)
 }

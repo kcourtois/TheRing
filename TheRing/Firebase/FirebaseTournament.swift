@@ -196,16 +196,6 @@ class FirebaseTournament: TournamentService {
         }
     }
 
-    //return current round index
-    func getCurrentRoundIndex(rounds: [Round]) -> Int {
-        for (index, round) in rounds.enumerated() {
-            if Date() < round.endDate {
-                return index
-            }
-        }
-        return rounds.count-1
-    }
-
     //register a tournament for the given user (creator)
     private func registerUserTournament(tid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()

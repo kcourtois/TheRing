@@ -57,6 +57,7 @@
 		9E37396F230AA30900CC86A6 /* ProfileModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E37396E230AA30900CC86A6 /* ProfileModelTests.swift */; };
 		9E373971230AC6EC00CC86A6 /* PasswordModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E373970230AC6EC00CC86A6 /* PasswordModelTests.swift */; };
 		9E373973230AE26900CC86A6 /* EmailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E373972230AE26900CC86A6 /* EmailModelTests.swift */; };
+		9E373975230C555500CC86A6 /* PhotoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E373974230C555500CC86A6 /* PhotoExtension.swift */; };
 		9E4F967D22EA7207006959FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9E4F967F22EA7207006959FF /* InfoPlist.strings */; };
 		9E4F968422EBA1F5006959FF /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968322EBA1F5006959FF /* UserListController.swift */; };
 		9E4F968B22EBB183006959FF /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4F968A22EBB183006959FF /* UserCell.swift */; };
@@ -186,6 +187,7 @@
 		9E37396E230AA30900CC86A6 /* ProfileModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModelTests.swift; sourceTree = "<group>"; };
 		9E373970230AC6EC00CC86A6 /* PasswordModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModelTests.swift; sourceTree = "<group>"; };
 		9E373972230AE26900CC86A6 /* EmailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModelTests.swift; sourceTree = "<group>"; };
+		9E373974230C555500CC86A6 /* PhotoExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoExtension.swift; sourceTree = "<group>"; };
 		9E4F968022EA720A006959FF /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4F968122EA721B006959FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		9E4F968322EBA1F5006959FF /* UserListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				9E4F969522F00F12006959FF /* TapDismiss.swift */,
 				9E4F96AA22F994C4006959FF /* ImageViewExtension.swift */,
 				9E18322723018D53005BC358 /* StringExtension.swift */,
+				9E373974230C555500CC86A6 /* PhotoExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -980,6 +983,7 @@
 				9EFE1FC322CFE24F003A0410 /* LocalizableStrings.swift in Sources */,
 				9E334E2922D67C6700CB3257 /* TournamentService.swift in Sources */,
 				9EA846EB22FDB06500572A38 /* FirebaseUser.swift in Sources */,
+				9E373975230C555500CC86A6 /* PhotoExtension.swift in Sources */,
 				9E4F96A622F398AF006959FF /* TournamentOverview.swift in Sources */,
 				9EA2719322C38CA500AAC06B /* AlertExtension.swift in Sources */,
 				9E05206F2300C79E003EF504 /* CommentModel.swift in Sources */,

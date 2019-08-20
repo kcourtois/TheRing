@@ -39,7 +39,7 @@ class EmailController: UIViewController {
         super.viewWillDisappear(animated)
         //remove observers on view disappear
         NotificationCenter.default.removeObserver(self, name: .didRegisterUserInfo, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .didSendUserInfo, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
     }
 
     //set observers for notifications
@@ -51,7 +51,7 @@ class EmailController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
                                                name: .didSendError, object: nil)
     }
-    
+
     //set texts for this screen
     private func setTexts() {
         self.title = TRStrings.updateEmail.localizedString

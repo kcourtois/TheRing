@@ -48,9 +48,11 @@ class FirebaseVote: VoteService {
     }
 
     //remove a vote for given user/round/contestant
-    func removeUserVote(uid: String, rid: String, cid: String) {
+    func removeUserVote(uid: String, rid: String, cid: String, completion: @escaping (String?) -> Void) {
         let reference = Database.database().reference()
-        reference.child("votes").child(rid).child(cid).child(uid).removeValue()
+        reference.child("votes").child(rid).child(cid).child(uid).removeValue { (error, _) in
+            completion(self.getAuthError(error: error))
+        }
     }
 }
 

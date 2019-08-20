@@ -19,7 +19,7 @@ class CommentController: UIViewController {
 
     var tid: String?
     private var comments: [Comment] = []
-    private let commentService: CommentService = FirebaseComment()
+    private let commentModel = CommentModel(commentService: FirebaseComment())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,29 +29,59 @@ class CommentController: UIViewController {
         hideKeyboardWhenTappedAround()
         //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
-        //If tid is set, get comments
-        if let tid = tid {
-            commentService.getComments(tid: tid, completion: { (result) in
-                self.comments = result
-                self.tableView.reloadData()
-            })
-        }
-        //set observers to know if keyboard shows or hides
-        setKeyboardObservers()
     }
 
-    //set observers to know if keyboard shows or hides
-    private func setKeyboardObservers() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //set observers for notifications
+        setObservers()
+        //If tid is set, get comments
+        if let tid = tid {
+            commentModel.getComments(tid: tid)
+        } else {
+            presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
+        }
+    }
+
+    //set observers for notifications
+    private func setObservers() {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidRegisterComment),
+                                               name: .didRegisterComment, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendComments),
+                                               name: .didSendComments, object: nil)
     }
 
-    //remove observers to know if keyboard shows or hides
-    deinit {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didRegisterComment, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didSendComments, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+
+    //when send is tapped, register comment and reload comments
+    @IBAction func sendComment(_ sender: Any) {
+        if let tid = tid, let comment = commentField.text {
+            commentModel.registerComment(tid: tid, comment: comment)
+        } else {
+            presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
+        }
+    }
+
+    //set texts for this screen
+    private func setTexts() {
+        titleLabel.text = TRStrings.comments.localizedString
+        sendButton.setTitle(TRStrings.send.localizedString, for: .normal)
+        commentField.attributedPlaceholder = NSAttributedString(string: TRStrings.typeComment.localizedString,
+                                                                attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.9999018312, green: 1, blue: 0.9998798966, alpha: 0.6)])
     }
 
     //when keyboard shows, put bottomcomment on top of it
@@ -69,28 +99,33 @@ class CommentController: UIViewController {
         self.view.layoutIfNeeded()
     }
 
-    //when send is tapped, register comment and reload comments
-    @IBAction func sendComment(_ sender: Any) {
-        if let tid = tid, let comment = commentField.text {
-            commentService.registerComment(tid: tid, comment: comment) { (error) in
-                if let error = error {
-                    self.presentAlert(title: TRStrings.error.localizedString, message: error)
-                }
-                self.commentField.text = ""
-                self.commentService.getComments(tid: tid, completion: { (result) in
-                    self.comments = result
-                    self.tableView.reloadData()
-                })
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                presentAlert(title: TRStrings.error.localizedString, message: error)
             }
         }
     }
 
-    //set texts for this screen
-    private func setTexts() {
-        titleLabel.text = TRStrings.comments.localizedString
-        sendButton.setTitle(TRStrings.send.localizedString, for: .normal)
-        commentField.attributedPlaceholder = NSAttributedString(string: TRStrings.typeComment.localizedString,
-                                                                attributes: [NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.9999018312, green: 1, blue: 0.9998798966, alpha: 0.6)])
+    //Triggers on notification didSendComments
+    @objc private func onDidSendComments(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: [Comment]] {
+            for (_, comments) in data {
+                self.comments = comments
+                tableView.reloadData()
+            }
+        }
+    }
+
+    //Triggers on notification didRegisterComment
+    @objc private func onDidRegisterComment(_ notification: Notification) {
+        commentField.text = ""
+        if let tid = tid {
+            commentModel.getComments(tid: tid)
+        } else {
+            presentAlert(title: TRStrings.error.localizedString, message: TRStrings.errorOccured.localizedString)
+        }
     }
 }
 

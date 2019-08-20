@@ -25,6 +25,4 @@ protocol TournamentService {
     func getContestant(tid: String, cid: String, completion: @escaping (Contestant?) -> Void)
 
     func getContestants(tid: String, completion: @escaping ([Contestant]) -> Void)
-
-    func getCurrentRoundIndex(rounds: [Round]) -> Int
 }

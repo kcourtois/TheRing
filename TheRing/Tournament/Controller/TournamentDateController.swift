@@ -11,7 +11,7 @@ import UIKit
 class TournamentDateController: UIViewController {
 
     var tournament: Tournament?
-    private let tournamentService: TournamentService = FirebaseTournament()
+    private let tournamentDateModel = TournamentDateModel(tournamentService: FirebaseTournament())
 
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var stepperRound: UIStepper!
@@ -21,7 +21,10 @@ class TournamentDateController: UIViewController {
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
 
-    override func viewDidLoad() {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //set observers for notifications
+        setObservers()
         //set date picker min and max date
         datePicker.minimumDate = Date()
         datePicker.maximumDate = Calendar.current.date(byAdding: .month, value: 1, to: Date())
@@ -29,6 +32,23 @@ class TournamentDateController: UIViewController {
         setTexts()
         //set days per round label
         updateDays(self)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didCreateTournament, object: nil)
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendError
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendError),
+                                               name: .didSendError, object: nil)
+        //Notification observer for didCreateTournament
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidCreateTournament),
+                                               name: .didCreateTournament, object: nil)
     }
 
     //set texts for this screen
@@ -46,19 +66,11 @@ class TournamentDateController: UIViewController {
     //create tournament in DB and pop to root view
     @IBAction func doneTapped(_ sender: Any) {
         updateTournament()
-        if let tournament = tournament { //Put var instead of let
-            //tournament.startTime = Calendar.current.date(byAdding: .day, value: -1, to: Date())!
-            tournamentService.createTournament(tournament: tournament) { (error) in
-                if let error = error {
-                    self.presentAlert(title: TRStrings.error.localizedString, message: error)
-                } else {
-                    self.presentAlertDelay(title: TRStrings.success.localizedString,
-                                           message: TRStrings.tournamentCreated.localizedString,
-                                           delay: 2, completion: {
-                        self.navigationController?.popToRootViewController(animated: false)
-                    })
-                }
-            }
+        if let tournament = tournament {
+            tournamentDateModel.createTournament(tournament: tournament)
+        } else {
+            presentAlert(title: TRStrings.error.localizedString,
+                         message: TRStrings.errorOccured.localizedString)
         }
     }
 
@@ -69,5 +81,23 @@ class TournamentDateController: UIViewController {
             tournament.startTime = datePicker.date
             self.tournament = tournament
         }
+    }
+
+    //Triggers on notification didSendError
+    @objc private func onDidSendError(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: String] {
+            for (_, error) in data {
+                presentAlert(title: TRStrings.error.localizedString, message: error)
+            }
+        }
+    }
+
+    //Triggers on notification didCreateTournament
+    @objc private func onDidCreateTournament(_ notification: Notification) {
+        presentAlertDelay(title: TRStrings.success.localizedString,
+                               message: TRStrings.tournamentCreated.localizedString,
+                               delay: 2, completion: {
+            self.navigationController?.popToRootViewController(animated: false)
+        })
     }
 }

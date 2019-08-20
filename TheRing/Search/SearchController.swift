@@ -12,11 +12,8 @@ class SearchController: UIViewController {
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
-    private let preferences = Preferences()
     private var tournaments: [TournamentData] = []
-    private let userService: UserService = FirebaseUser()
-    private let authService: AuthService = FirebaseAuth()
-    private let tournamentService: TournamentService = FirebaseTournament()
+    private let searchModel = SearchModel(tournamentService: FirebaseTournament())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,30 +23,49 @@ class SearchController: UIViewController {
         hideKeyboardWhenTappedAround()
         //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
-        //Check if user logged
-        if let uid = authService.getLoggedUserUID() {
-            //Check if user pref are up to date
-            if preferences.user.uid != uid {
-                loadUserPref(uid: uid)
-            }
-        } else {
-            userNotLogged()
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        //check if user is logged in
+        checkUserLogged()
+        //set observers for notifications
+        setObservers()
         //refresh tournaments on view appear
-        getAllTournaments()
+        searchModel.getAllTournaments()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //remove observers on view disappear
+        NotificationCenter.default.removeObserver(self, name: .didSendTournamentData, object: nil)
+    }
+
+    //set observers for notifications
+    private func setObservers() {
+        //Notification observer for didSendTournamentData
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidSendTournamentData),
+                                               name: .didSendTournamentData, object: nil)
+    }
+
+    //set texts for this screen
+    private func setTexts() {
+        self.title = TRStrings.tournaments.localizedString
+        searchBar.placeholder = TRStrings.search.localizedString
+        if let items = tabBarController?.tabBar.items {
+            items[0].title = TRStrings.home.localizedString
+            items[1].title = TRStrings.user.localizedString
+            items[2].title = TRStrings.tournaments.localizedString
+        }
     }
 
     //Search tournaments when go tapped
     @IBAction func goTapped(_ sender: Any) {
         if let text = searchBar.text {
-            if !text.isEmpty {
-                searchTournaments(search: text)
+            if !text.isEmptyAfterTrim {
+                searchModel.getAllTournaments(search: text)
             } else {
-                getAllTournaments()
+                searchModel.getAllTournaments()
             }
         }
     }
@@ -68,64 +84,12 @@ class SearchController: UIViewController {
         }
     }
 
-    //gets all tournaments and select only those who contains the search string in title
-    private func searchTournaments(search: String) {
-        tournamentService.getAllTournaments(completion: { (tournaments) in
-            var tmp = [TournamentData]()
-            for tournament in tournaments {
-                if tournament.title.lowercased().contains(search.lowercased()) {
-                    tmp.append(tournament)
-                }
-            }
-            //sorts tournament form newest to oldest
-            self.tournaments = tmp.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
-            self.tableView.reloadData()
-        })
-    }
-
-    //gets all tournaments, sort them from newest to oldest and reloads tableview
-    private func getAllTournaments() {
-        tournamentService.getAllTournaments(completion: { (tournaments) in
-            self.tournaments = tournaments.sorted(by: { $0.startTime.compare($1.startTime) == .orderedDescending})
-            self.tableView.reloadData()
-        })
-    }
-}
-
-// MARK: - UI & Preferences setup
-extension SearchController {
-    //set texts for this screen
-    private func setTexts() {
-        self.title = TRStrings.tournaments.localizedString
-        searchBar.placeholder = TRStrings.search.localizedString
-        if let items = tabBarController?.tabBar.items {
-            items[0].title = TRStrings.home.localizedString
-            items[1].title = TRStrings.user.localizedString
-            items[2].title = TRStrings.tournaments.localizedString
-        }
-    }
-
-    //sends user back to login screen
-    private func userNotLogged() {
-        presentAlertDelay(title: TRStrings.error.localizedString,
-                          message: TRStrings.notLogged.localizedString,
-                          delay: 2.0, completion: {
-                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
-        })
-    }
-
-    //loads user in preferences
-    private func loadUserPref(uid: String) {
-        let alert = loadingAlert()
-        userService.getUserInfo(uid: uid) { (userData) in
-            if let user = userData {
-                self.preferences.user = user
-                alert.dismiss(animated: true, completion: nil)
-            } else {
-                alert.dismiss(animated: true, completion: {
-                    self.presentAlert(title: TRStrings.error.localizedString,
-                                      message: TRStrings.userNotRetrieved.localizedString)
-                })
+    //Triggers on notification didSendTournamentData
+    @objc private func onDidSendTournamentData(_ notification: Notification) {
+        if let data = notification.userInfo as? [String: [TournamentData]] {
+            for (_, tournaments) in data {
+                self.tournaments = tournaments
+                tableView.reloadData()
             }
         }
     }
