@@ -28,11 +28,8 @@ class TournamentDetailModel {
     }
 
     //Returns the winner of a given round
-    func getWinner(tournament: TournamentData?, round: Int, cids: [String]) {
-        guard let tournament = tournament else {
-            //completion(nil)
-            return
-        }
+    func getWinner(round: Int, cids: [String], tournament: TournamentData,
+                   completion: @escaping ([String]?) -> Void) {
         var contRes = [UInt]()
         let dispatchGroup = DispatchGroup()
 
@@ -63,11 +60,53 @@ class TournamentDetailModel {
                     result.append(cids[index+1])
                 }
             }
-            //completion(result)
-            if round == 0 {
-                self.postSetFirstStageNotification(cids: result)
-            } else {
-                self.postSetSecondStageNotification(cids: result)
+            completion(result)
+        }
+    }
+
+    //vote for the tapped contestant if possible
+    func contestantTapped(uid: String, tag: Int, tournament: TournamentData) {
+        let round = getCurrentRoundIndex(rounds: tournament.rounds)
+        switch round {
+        //if first round and image tapped < 4, vote
+        case 0:
+            if tag < 4 {
+                postLoadVoteNotification(tag: tag)
+                registerVote(uid: uid, rid: tournament.rounds[round].rid, cid: tournament.contestants[tag].cid)
+            }
+        //if second round and image tapped > 3 and < 6, vote
+        case 1:
+            if tag > 3 && tag < 6 && tournament.rounds[round].endDate > Date() {
+                postLoadVoteNotification(tag: tag)
+                getWinner(round: 0, cids: tournament.getCids(),
+                          tournament: tournament) { (res) in
+                    if let cid = res {
+                        self.registerVote(uid: uid, rid: tournament.rounds[round].rid, cid: cid[tag-4])
+                    }
+                }
+            }
+        default:
+            break
+        }
+    }
+
+    //load UI for stages of the tournament, showing winner of rounds etc.
+    func loadStages(tournament: TournamentData) {
+        let round = getCurrentRoundIndex(rounds: tournament.rounds)
+        if round > 0 {
+            getWinner(round: round-1, cids: tournament.getCids(), tournament: tournament) { (result) in
+                if let cids = result {
+                    self.postSetFirstStageNotification(cids: cids)
+                    if tournament.rounds[round].endDate < Date() {
+                        self.getWinner(round: round, cids: cids, tournament: tournament) { (result) in
+                            if let res = result {
+                                self.postSetSecondStageNotification(cids: res)
+                            }
+                        }
+                    }
+                } else {
+                    self.postErrorNotification(error: TRStrings.errorOccured.localizedString)
+                }
             }
         }
     }
@@ -98,21 +137,16 @@ class TournamentDetailModel {
     }
 
     //get current user vote for given uid/rid
-    func vote(uid: String, rid: String, cid: String) {
+    private func registerVote(uid: String, rid: String, cid: String) {
         voteService.getUserVote(uid: uid, rid: rid) { (result) in
             if let contId = result {
                 //remove previous cid
                 self.removeUserVote(uid: uid, rid: rid, cid: contId)
             }
-            self.registerVote(rid: rid, uid: uid, cid: cid)
-        }
-    }
-
-    //register vote for given parameters
-    private func registerVote(rid: String, uid: String, cid: String) {
-        voteService.registerVote(rid: rid, uid: uid, cid: cid) { (error) in
-            if let error = error {
-                self.postErrorNotification(error: error)
+            self.voteService.registerVote(rid: rid, uid: uid, cid: cid) { (error) in
+                if let error = error {
+                    self.postErrorNotification(error: error)
+                }
             }
         }
     }
