@@ -11,7 +11,7 @@ import Foundation
 
 class TestTournamentBadData: TournamentService {
     func createTournament(tournament: Tournament, completion: @escaping (String?) -> Void) {
-
+        completion(TRStrings.errorOccured.localizedString)
     }
 
     func getUserTournamentsWithData(completion: @escaping ([TournamentData]) -> Void) {
@@ -40,9 +40,5 @@ class TestTournamentBadData: TournamentService {
 
     func getContestants(tid: String, completion: @escaping ([Contestant]) -> Void) {
 
-    }
-
-    func getCurrentRoundIndex(rounds: [Round]) -> Int {
-        return 0
     }
 }

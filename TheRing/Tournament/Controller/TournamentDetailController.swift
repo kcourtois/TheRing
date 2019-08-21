@@ -20,6 +20,8 @@ class TournamentDetailController: UIViewController {
     @IBOutlet weak var tournamentView: TournamentView!
 
     var tournament: TournamentData?
+    private let tournamentDetailModel = TournamentDetailModel(tournamentService: FirebaseTournament(),
+                                                              voteService: FirebaseVote())
     private let tournamentService: TournamentService = FirebaseTournament()
     private let voteService: VoteService = FirebaseVote()
 
@@ -30,7 +32,9 @@ class TournamentDetailController: UIViewController {
             //set texts for this screen
             setTexts()
             //set tournamentView xib
-            tournamentView.setView(tournament: tournament)
+            tournamentView.setView(tournament: tournament,
+                                   currentRound: tournamentDetailModel.getCurrentRoundIndex(
+                                   rounds: tournament.rounds))
             //load votes of the user
             loadVotes()
             //load stages for contestant winners
@@ -77,7 +81,7 @@ class TournamentDetailController: UIViewController {
     //vote for the tapped contestant if possible
     private func contestantTapped(tag: Int) {
         if let tournament = tournament {
-            let round = tournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
+            let round = tournamentDetailModel.getCurrentRoundIndex(rounds: tournament.rounds)
             switch round {
             //if first round and image tapped < 4, vote
             case 0:
@@ -112,7 +116,9 @@ class TournamentDetailController: UIViewController {
             if let contId = result {
                 //if he had, remove it
                 self.voteService.removeUserVote(uid: pref.user.uid,
-                                                 rid: tournament.rounds[round].rid, cid: contId)
+                                                rid: tournament.rounds[round].rid, cid: contId,
+                                                completion: { (_) in
+                })
             }
 
             //vote for the new contestant
@@ -199,7 +205,7 @@ class TournamentDetailController: UIViewController {
         guard let tournament = tournament else {
             return
         }
-        let round = tournamentService.getCurrentRoundIndex(rounds: tournament.rounds)
+        let round = tournamentDetailModel.getCurrentRoundIndex(rounds: tournament.rounds)
         if round > 0 {
             getWinner(round: round-1, cids: tournament.getCids()) { (result) in
                 if let cids = result {
@@ -271,48 +277,49 @@ class TournamentDetailController: UIViewController {
 
 // MARK: - Photo permission
 
-extension TournamentDetailController {
-    //Check photo library permission
-    private func checkPermission() {
-        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
-        switch photoAuthorizationStatus {
-        case .authorized:
-            shareWithUrlAndText()
-        case .notDetermined:
-            PHPhotoLibrary.requestAuthorization { result in
-                if result == .authorized {
-                    self.presentAlert(title: TRStrings.permissionGranted.localizedString,
-                                      message: TRStrings.shareAuthorized.localizedString)
-                } else {
-                    self.presentPermissionDeniedAlert()
-                }
-            }
-        case .restricted:
-            presentPermissionDeniedAlert()
-        case .denied:
-            presentPermissionDeniedAlert()
-        @unknown default:
-            presentPermissionDeniedAlert()
-        }
-    }
-
-    //Shows a popup to access settings if user denied photolibrary permission
-    private func presentPermissionDeniedAlert() {
-        //Initialisation of the alert
-        let alertController = UIAlertController(title: TRStrings.permissionDenied.localizedString,
-                                                message: TRStrings.goToSettings.localizedString,
-                                                preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: TRStrings.settings.localizedString, style: .default) { (_) -> Void in
-            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
-                }
-            }
-        }
-        let cancelAction = UIAlertAction(title: TRStrings.cancel.localizedString, style: .default, handler: nil)
-        alertController.addAction(cancelAction)
-        alertController.addAction(settingsAction)
-        //Shows alert
-        present(alertController, animated: true, completion: nil)
-    }
-}
+//extension TournamentDetailController {
+//    //Check photo library permission
+//    private func checkPermission() {
+//        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+//        switch photoAuthorizationStatus {
+//        case .authorized:
+//            shareWithUrlAndText()
+//        case .notDetermined:
+//            PHPhotoLibrary.requestAuthorization { result in
+//                if result == .authorized {
+//                    self.presentAlert(title: TRStrings.permissionGranted.localizedString,
+//                                      message: TRStrings.shareAuthorized.localizedString)
+//                } else {
+//                    self.presentPermissionDeniedAlert()
+//                }
+//            }
+//        case .restricted:
+//            presentPermissionDeniedAlert()
+//        case .denied:
+//            presentPermissionDeniedAlert()
+//        @unknown default:
+//            presentPermissionDeniedAlert()
+//        }
+//    }
+//
+//    //Shows a popup to access settings if user denied photolibrary permission
+//    private func presentPermissionDeniedAlert() {
+//        //Initialisation of the alert
+//        let alertController = UIAlertController(title: TRStrings.permissionDenied.localizedString,
+//                                                message: TRStrings.goToSettings.localizedString,
+//                                                preferredStyle: .alert)
+//        let settingsAction = UIAlertAction(title: TRStrings.settings.localizedString,
+//                                           style: .default) { (_) -> Void in
+//            if let settingsUrl = URL(string: UIApplication.openSettingsURLString) {
+//                if UIApplication.shared.canOpenURL(settingsUrl) {
+//                    UIApplication.shared.open(settingsUrl, completionHandler: { (_) in })
+//                }
+//            }
+//        }
+//        let cancelAction = UIAlertAction(title: TRStrings.cancel.localizedString, style: .default, handler: nil)
+//        alertController.addAction(cancelAction)
+//        alertController.addAction(settingsAction)
+//        //Shows alert
+//        present(alertController, animated: true, completion: nil)
+//    }
+//}

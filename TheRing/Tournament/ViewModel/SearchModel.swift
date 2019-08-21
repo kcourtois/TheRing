@@ -18,6 +18,7 @@ class SearchModel {
     //get all tournaments in db and filter them with search string if provided
     func getAllTournaments(search: String? = nil) {
         if let search = search {
+            //if there is a search filter, loop through tournament to get matching title
             tournamentService.getAllTournaments(completion: { (tournaments) in
                 var tmp = [TournamentData]()
                 for tournament in tournaments {

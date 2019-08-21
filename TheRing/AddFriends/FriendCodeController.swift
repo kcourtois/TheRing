@@ -1,5 +1,5 @@
 //
-//  QRCodeController.swift
+//  FriendCodeController.swift
 //  TheRing
 //
 //  Created by Kévin Courtois on 30/07/2019.
@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class QRCodeController: UIViewController {
+class FriendCodeController: UIViewController {
     @IBOutlet weak var QRImageView: UIImageView!
     @IBOutlet weak var scanButton: UIButton!
 
@@ -45,7 +45,7 @@ class QRCodeController: UIViewController {
 }
 
 // MARK: - Camera permission
-extension QRCodeController {
+extension FriendCodeController {
     //ask permission for camera if not done, and perform segue
     func proceedWithCameraAccess(identifier: String) {
         AVCaptureDevice.requestAccess(for: .video) { success in
