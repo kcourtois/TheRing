@@ -12,7 +12,7 @@ With The Ring, you can create a contest for it.
 
 Let's say you have a few movies in your head, but don't know which is the best. You can list them and create rounds, where people will vote.
 
-<img src="Images/rounds.png" width="50%" height="50%"/>
+<img src="Images/movies.png" width="50%" height="50%"/>
 
 Here, 4 movies were listed. Movie 1 and 4 were the winners of the first round, and Movie 1 won the second round. It seems like we know which movie is the best !
 
@@ -29,5 +29,40 @@ Here, 4 movies were listed. Movie 1 and 4 were the winners of the first round, a
 - [x] Vote
 - [x] Comments on tournaments
 - [x] Support of french language
-- [ ] Tournament search by titles
-- [ ] Home feed
+- [x] Tournament search by titles
+- [x] Home feed with user tournaments
+
+# Login & Signup
+
+<img src="Images/login.jpg" width="50%" height="50%"/> <img src="Images/signup.jpg" width="50%" height="50%"/>
+
+
+# Home
+
+<img src="Images/home.jpg" width="50%" height="50%"/>
+
+
+# Profile
+
+<img src="Images/profile.jpg" width="50%" height="50%"/> <img src="Images/editProfile.jpg" width="50%" height="50%"/>
+<img src="Images/updateEmail.jpg" width="50%" height="50%"/> <img src="Images/updatePassword.jpg" width="50%" height="50%"/>
+
+
+# Friends
+
+<img src="Images/friendCode.jpg" width="50%" height="50%"/> <img src="Images/userList.jpg" width="50%" height="50%"/> <img src="Images/userDetail.jpg" width="50%" height="50%"/>
+
+
+# Tournament creation
+
+<img src="Images/createTournament1.jpg" width="50%" height="50%"/> <img src="Images/createTournament2.jpg" width="50%" height="50%"/> 
+<img src="Images/pickContestant.jpg" width="50%" height="50%"/> <img src="Images/createTournament3.jpg" width="50%" height="50%"/>
+
+# Tournament search & detailed view
+
+<img src="Images/tournamentSearch.jpg" width="50%" height="50%"/> <img src="Images/tournamentDetail1.jpg" width="50%" height="50%"/> 
+
+
+# Comment tournaments
+
+<img src="Images/tournamentDetail2.jpg" width="50%" height="50%"/>
