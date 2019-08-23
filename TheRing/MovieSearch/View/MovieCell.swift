@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+//shows movies poster and release date
 class MovieCell: UITableViewCell {
 
     @IBOutlet weak var poster: UIImageView!

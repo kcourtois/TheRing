@@ -8,6 +8,7 @@
 
 import UIKit
 
+//password controller handles password modification for the current user
 class PasswordController: UIViewController {
 
     @IBOutlet weak var oldPasswordField: UITextField!

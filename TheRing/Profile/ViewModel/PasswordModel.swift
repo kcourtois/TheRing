@@ -8,6 +8,7 @@
 
 import Foundation
 
+//model for password controller
 class PasswordModel {
     private let authService: AuthService
 

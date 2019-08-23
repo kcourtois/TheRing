@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth.FIRAuthErrors
 
+//Implements TournamentService to fetch data with firebase
 class FirebaseTournament: TournamentService {
 
     private let userService: UserService = FirebaseUser()

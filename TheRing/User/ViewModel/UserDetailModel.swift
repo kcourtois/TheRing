@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for UserDetail Controller
 class UserDetailModel {
     private let userService: UserService
 

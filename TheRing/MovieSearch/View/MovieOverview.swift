@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+//Shows movie title, poster, release date, genres, note, and overview.
 class MovieOverview: UIView {
 
     @IBOutlet weak var imageView: UIImageView!

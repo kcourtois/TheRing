@@ -8,6 +8,7 @@
 
 import UIKit
 
+//user detail controller, will show the profile of a given user
 class UserDetailController: UIViewController {
 
     @IBOutlet weak var userInfoView: UserInfoView!
@@ -64,7 +65,6 @@ class UserDetailController: UIViewController {
         if let user = user {
             if subbed {
                 userDetailModel.unsubToUser(uid: user.uid)
-                subbed = !subbed
             } else {
                 userDetailModel.subToUser(uid: user.uid)
             }

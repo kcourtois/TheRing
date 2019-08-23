@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for LoginController
 class LoginModel {
     private var authService: AuthService
 

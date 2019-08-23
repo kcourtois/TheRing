@@ -20,6 +20,7 @@ struct LocalizedString: ExpressibleByStringLiteral, Equatable {
     }
 }
 
+//Enum for all localized strings of the app
 enum TRStrings: LocalizedString {
     //ALERT TITLES
     case saved = "SAVED"

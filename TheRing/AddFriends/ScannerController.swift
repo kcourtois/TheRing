@@ -9,6 +9,7 @@
 import AVFoundation
 import UIKit
 
+//scanner controller handles qr code detection to add a friend
 class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     private var captureSession: AVCaptureSession!
     private var previewLayer: AVCaptureVideoPreviewLayer!

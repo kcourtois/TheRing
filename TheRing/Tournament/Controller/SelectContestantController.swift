@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Controller for second step of tournament creation, where you select the four contestants of the tournament
 class SelectContestantController: UIViewController, SearchMovieDelegate {
     @IBOutlet weak var sentenceLabel: UILabel!
     @IBOutlet weak var contestantLabel: UILabel!

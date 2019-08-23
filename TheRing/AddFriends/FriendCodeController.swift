@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 
+//friendcode controller will show a qr code that can be scanned to be added by followed by someone
 class FriendCodeController: UIViewController {
     @IBOutlet weak var QRImageView: UIImageView!
     @IBOutlet weak var scanButton: UIButton!

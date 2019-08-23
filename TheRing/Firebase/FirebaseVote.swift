@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth.FIRAuthErrors
 
+//Implements VoteService to fetch data with firebase
 class FirebaseVote: VoteService {
     //register a vote in the database
     func registerVote(rid: String, uid: String, cid: String,

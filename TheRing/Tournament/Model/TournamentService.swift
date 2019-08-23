@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseDatabase
 
+//Protocol for tournament service, that will be implemented by a network class to retrieve all the data
 protocol TournamentService {
     func createTournament(tournament: Tournament, completion: @escaping (String?) -> Void)
 

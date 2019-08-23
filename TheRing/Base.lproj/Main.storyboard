@@ -238,10 +238,10 @@
             </objects>
             <point key="canvasLocation" x="2021.25" y="792.25352112676057"/>
         </scene>
-        <!--Code Controller-->
+        <!--Friend Code Controller-->
         <scene sceneID="aDO-Qq-s38">
             <objects>
-                <viewController id="WzY-hC-xeZ" customClass="QRCodeController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="WzY-hC-xeZ" customClass="FriendCodeController" customModule="TheRing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r0Z-HV-RAd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -945,7 +945,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GIz-8S-5wz" customClass="TournamentOverview" customModule="TheRing" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="130.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="304" height="131"/>
                                                     <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                 </view>
                                             </subviews>
@@ -1991,9 +1991,9 @@
         <image name="xuan-nguyen-725109-unsplash" width="5024" height="3349"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aOK-rP-b17"/>
+        <segue reference="kOm-Ob-RQE"/>
         <segue reference="572-hB-pf5"/>
-        <segue reference="6Nj-ej-58f"/>
+        <segue reference="qE4-eq-dx2"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

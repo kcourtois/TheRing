@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth.FIRAuthErrors
 
+//Implements UserService to fetch data with firebase
 class FirebaseUser: UserService {
     //get user info online
     func getUserInfo(uid: String, completion: @escaping (TRUser?) -> Void) {

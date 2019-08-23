@@ -10,6 +10,7 @@ import Foundation
 import FirebaseDatabase
 import FirebaseAuth.FIRAuthErrors
 
+//Implements CommentService to fetch data with firebase
 class FirebaseComment: CommentService {
     //registers a comment for the current user
     func registerComment(tid: String, comment: String,

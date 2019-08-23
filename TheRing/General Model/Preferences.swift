@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Preferences interacts with userdefaults to store the user profile on the phone
 class Preferences {
 
     private struct Keys {

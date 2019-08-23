@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Controller for login screen, to log the user into the app
 class LoginController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!

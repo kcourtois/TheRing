@@ -69,7 +69,6 @@ class TournamentDetailModelTests: XCTestCase {
     }
 }
 
-
 ////Returns the winner of a given round
 //func getWinner(round: Int, cids: [String], tournament: TournamentData,
 //               completion: @escaping ([String]?) -> Void) {

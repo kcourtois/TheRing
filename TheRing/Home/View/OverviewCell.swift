@@ -8,6 +8,7 @@
 
 import UIKit
 
+//cell for movie overview, used by home controller to display all the movies of a tournament
 class OverviewCell: UITableViewCell {
     @IBOutlet weak var overview: TournamentOverview!
 

@@ -8,12 +8,14 @@
 
 import UIKit
 
+//Controller used to search through all the tournaments that were created
 class SearchController: UIViewController {
     @IBOutlet weak var searchBar: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
     private var tournaments: [TournamentData] = []
     private let searchModel = SearchModel(tournamentService: FirebaseTournament())
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,12 @@ class SearchController: UIViewController {
         hideKeyboardWhenTappedAround()
         //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
+        //refresh tournaments on view appear
+        searchModel.getAllTournaments()
+        //setup refresh control
+        refreshControl.tintColor = .white
+        refreshControl.addTarget(self, action: #selector(onDidAskRefresh), for: .valueChanged)
+        tableView.refreshControl = refreshControl
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -31,8 +39,6 @@ class SearchController: UIViewController {
         checkUserLogged()
         //set observers for notifications
         setObservers()
-        //refresh tournaments on view appear
-        searchModel.getAllTournaments()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -90,8 +96,14 @@ class SearchController: UIViewController {
             for (_, tournaments) in data {
                 self.tournaments = tournaments
                 tableView.reloadData()
+                refreshControl.endRefreshing()
             }
         }
+    }
+
+    //Triggers on notification didSendTournamentData
+    @objc private func onDidAskRefresh() {
+        searchModel.getAllTournaments()
     }
 }
 

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//View that is used in overviewcell, with the title of the tournament and the four movies
 class TournamentOverview: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet var contestantImg: [UIImageView]!

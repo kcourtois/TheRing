@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Home controller, used by home tab. Will display all the tournaments created by current user
 class HomeController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -76,7 +77,7 @@ class HomeController: UIViewController {
     //Triggers on notification didSendTournamentData
     @objc private func onDidSendTournamentData(_ notification: Notification) {
         if let data = notification.userInfo as? [String: [TournamentData]] {
-            for (_, tournaments) in data {
+            for (_, tournaments) in data where tournaments.count > self.tournaments.count {
                 self.tournaments = tournaments
                 tableView.reloadData()
             }

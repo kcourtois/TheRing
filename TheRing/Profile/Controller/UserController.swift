@@ -8,6 +8,7 @@
 
 import UIKit
 
+//User controller shows current user profile, and gives access to add friends or update profile options
 class UserController: UIViewController {
 
     @IBOutlet weak var userInfoView: UserInfoView!

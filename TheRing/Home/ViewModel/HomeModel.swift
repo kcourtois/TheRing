@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for home controller
 class HomeModel {
     private let authService: AuthService
     private let userService: UserService

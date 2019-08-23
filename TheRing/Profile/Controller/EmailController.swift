@@ -8,6 +8,7 @@
 
 import UIKit
 
+//email controller handles email modification for the current user
 class EmailController: UIViewController {
 
     @IBOutlet weak var passwordField: UITextField!

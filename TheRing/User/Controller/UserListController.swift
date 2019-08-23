@@ -8,6 +8,7 @@
 
 import UIKit
 
+//controller used by userlist, to show a subscribers list or a subscriptions list
 class UserListController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 

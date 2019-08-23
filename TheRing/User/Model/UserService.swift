@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Protocol for User service, that will be implemented by a network class to retrieve all the data
 protocol UserService {
     //get user info online
     func getUserInfo(uid: String, completion: @escaping (TRUser?) -> Void)

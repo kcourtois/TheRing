@@ -8,6 +8,7 @@
 
 import Foundation
 
+//model for comment controller
 class CommentModel {
     private let commentService: CommentService
 

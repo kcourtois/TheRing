@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Signup controller, to create a new user account
 class SignupController: UIViewController {
     @IBOutlet weak var descLabel: UILabel!
     @IBOutlet weak var emailField: UITextField!

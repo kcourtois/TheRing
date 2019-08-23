@@ -8,6 +8,7 @@
 
 import Foundation
 
+//model for email controller
 class EmailModel {
     private let authService: AuthService
     private let userService: UserService

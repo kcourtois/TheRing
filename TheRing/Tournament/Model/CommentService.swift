@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Protocol for comment service, that will be implemented by a network class to retrieve all the data
 protocol CommentService {
     func registerComment(tid: String, comment: String, completion: @escaping (String?) -> Void)
 

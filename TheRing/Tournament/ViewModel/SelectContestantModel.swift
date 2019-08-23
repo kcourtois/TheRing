@@ -8,6 +8,7 @@
 
 import Foundation
 
+//model for select contestant controller
 class SelectContestantModel {
 
 }

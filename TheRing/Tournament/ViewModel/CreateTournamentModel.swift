@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for create tournament controller
 class CreateTournamentModel {
 
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Controller that let the user do a research in tmdb api, to find a specific movie
 class SearchMovieController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -24,6 +25,8 @@ class SearchMovieController: UIViewController {
         //set texts for this screen
         self.title = TRStrings.pickContestant.localizedString
         searchBar.placeholder = TRStrings.search.localizedString
+        //gives uiview instead of empty cells in the end of a tableview
+        tableView.tableFooterView = UIView()
     }
 
     //when search tapped, get search text and call searchMovies

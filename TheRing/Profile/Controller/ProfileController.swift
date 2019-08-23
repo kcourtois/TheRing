@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 
+//Profile controller is used to edit profile data for the current user
 class ProfileController: UIViewController {
     @IBOutlet weak var bioTextField: UITextField!
     @IBOutlet weak var genderControl: UISegmentedControl!
@@ -95,7 +96,8 @@ class ProfileController: UIViewController {
             try Auth.auth().signOut()
             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
         } catch {
-            print("can't disconnect user")
+            presentAlert(title: TRStrings.error.localizedString,
+                         message: TRStrings.errorOccured.localizedString)
         }
     }
 

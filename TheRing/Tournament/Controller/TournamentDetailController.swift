@@ -8,7 +8,7 @@
 
 import UIKit
 import Photos
-
+//Controller that shows tournament detais, including the tournament view, the comments, and the vote system.
 class TournamentDetailController: UIViewController {
 
     @IBOutlet weak var descriptionLabel: UILabel!

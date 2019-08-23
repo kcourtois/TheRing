@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for tournament date controller
 class TournamentDateModel {
     private let tournamentService: TournamentService
 

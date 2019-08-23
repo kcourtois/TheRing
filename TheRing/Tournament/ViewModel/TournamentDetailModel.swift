@@ -8,6 +8,7 @@
 
 import Foundation
 
+//model for tournament detail controller
 class TournamentDetailModel {
     private let tournamentService: TournamentService
     private let voteService: VoteService

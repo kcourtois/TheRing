@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for search controller
 class SearchModel {
     private let tournamentService: TournamentService
 

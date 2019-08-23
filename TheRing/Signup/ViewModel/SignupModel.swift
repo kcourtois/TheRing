@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for SignupController
 class SignupModel {
     private let authService: AuthService
     private let userService: UserService

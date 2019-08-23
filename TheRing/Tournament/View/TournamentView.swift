@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+//Tournament view is the view that shows a tournament, with the rounds, movies winning and user votes
 class TournamentView: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!

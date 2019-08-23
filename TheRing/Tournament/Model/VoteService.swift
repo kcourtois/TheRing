@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Protocol for vote service, that will be implemented by a network class to retrieve all the data
 protocol VoteService {
     func registerVote(rid: String, uid: String, cid: String, completion: @escaping (String?) -> Void)
 

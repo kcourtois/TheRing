@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Protocol for Auth service, that will be implemented by a network class to retrieve all the data
 protocol AuthService {
     //Sign in user with given credentials, returns an error or nil in completion
     func signIn(email: String, password: String, completion: @escaping (String?) -> Void)

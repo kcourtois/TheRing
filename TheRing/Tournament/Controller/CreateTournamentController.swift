@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 
+//Controller for first step of tournament creation, where you give a title and a description
 class CreateTournamentController: UIViewController {
 
     @IBOutlet weak var titleField: UITextField!

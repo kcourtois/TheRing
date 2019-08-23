@@ -8,6 +8,8 @@
 
 import UIKit
 
+//Controller for final step of tournament creation, where you give a round duration and a starting date.
+//Will then create the tournament and send you back to search controller
 class TournamentDateController: UIViewController {
 
     var tournament: Tournament?

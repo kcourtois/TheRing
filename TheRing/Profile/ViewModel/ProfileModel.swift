@@ -8,6 +8,7 @@
 
 import Foundation
 
+//Model for profile controller
 class ProfileModel {
     private let userService: UserService
     private let preferences: Preferences

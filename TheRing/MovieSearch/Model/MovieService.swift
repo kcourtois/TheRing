@@ -48,6 +48,7 @@ struct Movie: Codable {
     }
 }
 
+//Access to TMDB Api to search movies
 class MovieService {
     private var movieSession: URLSession
     private var task: URLSessionDataTask?

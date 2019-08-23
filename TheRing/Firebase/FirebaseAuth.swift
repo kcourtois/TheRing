@@ -9,6 +9,7 @@
 import Foundation
 import FirebaseAuth
 
+//Implements AuthService to fetch data with firebase
 class FirebaseAuth: AuthService {
 
     //Get uid for current signed in user, if any

@@ -8,6 +8,7 @@
 
 import UIKit
 
+//Handles comments loading, and adding new comments to a tournament
 class CommentController: UIViewController {
 
     @IBOutlet weak var commentField: UITextField!
