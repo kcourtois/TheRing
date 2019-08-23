@@ -34,35 +34,35 @@ Here, 4 movies were listed. Movie 1 and 4 were the winners of the first round, a
 
 # Login & Signup
 
-<img src="Images/login.jpg" width="50%" height="50%"/> <img src="Images/signup.jpg" width="50%" height="50%"/>
+<img src="Images/login.jpg" width="30%" height="30%"/> <img src="Images/signup.jpg" width="30%" height="30%"/>
 
 
 # Home
 
-<img src="Images/home.jpg" width="50%" height="50%"/>
+<img src="Images/home.jpg" width="30%" height="30%"/>
 
 
 # Profile
 
-<img src="Images/profile.jpg" width="50%" height="50%"/> <img src="Images/editProfile.jpg" width="50%" height="50%"/>
-<img src="Images/updateEmail.jpg" width="50%" height="50%"/> <img src="Images/updatePassword.jpg" width="50%" height="50%"/>
+<img src="Images/profile.jpg" width="30%" height="30%"/> <img src="Images/editProfile.jpg" width="30%" height="30%"/>
+<img src="Images/updateEmail.jpg" width="30%" height="30%"/> <img src="Images/updatePassword.jpg" width="30%" height="30%"/>
 
 
 # Friends
 
-<img src="Images/friendCode.jpg" width="50%" height="50%"/> <img src="Images/userList.jpg" width="50%" height="50%"/> <img src="Images/userDetail.jpg" width="50%" height="50%"/>
+<img src="Images/friendCode.jpg" width="30%" height="30%"/> <img src="Images/userList.jpg" width="30%" height="30%"/> <img src="Images/userDetail.jpg" width="30%" height="30%"/>
 
 
 # Tournament creation
 
-<img src="Images/createTournament1.jpg" width="50%" height="50%"/> <img src="Images/createTournament2.jpg" width="50%" height="50%"/> 
-<img src="Images/pickContestant.jpg" width="50%" height="50%"/> <img src="Images/createTournament3.jpg" width="50%" height="50%"/>
+<img src="Images/createTournament1.jpg" width="30%" height="30%"/> <img src="Images/createTournament2.jpg" width="30%" height="30%"/> 
+<img src="Images/pickContestant.jpg" width="30%" height="30%"/> <img src="Images/createTournament3.jpg" width="30%" height="30%"/>
 
 # Tournament search & detailed view
 
-<img src="Images/tournamentSearch.jpg" width="50%" height="50%"/> <img src="Images/tournamentDetail1.jpg" width="50%" height="50%"/> 
+<img src="Images/tournamentSearch.jpg" width="30%" height="30%"/> <img src="Images/tournamentDetail1.jpg" width="30%" height="30%"/> 
 
 
 # Comment tournaments
 
-<img src="Images/tournamentDetail2.jpg" width="50%" height="50%"/>
+<img src="Images/tournamentDetail2.jpg" width="30%" height="30%"/>
