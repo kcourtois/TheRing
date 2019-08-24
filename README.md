@@ -2,7 +2,9 @@
 The Ring is a social app where you can create movie contests and vote for a winner.  
 I use TMDB API for all the movie searching part, and to gather movie data.  
 [If you want to hear more about it, check their website.](https://www.themoviedb.org/)
-
+  
+I also use [KingFisher](https://cocoapods.org/pods/Kingfisher) to fetch images easily, and [Firebase Realtime Database](https://firebase.google.com/docs/database/?&gclid=Cj0KCQjwwIPrBRCJARIsAFlVT88SAdKVKlt_Zz9t_KjsDVEWg0WZB66iEXLIhJrGDcMi2yhUM5RJN4YaArfzEALw_wcB) to store The Ring data.  
+  
 [![Build Status](https://travis-ci.com/kcourtois/TheRing.svg?branch=master)](https://travis-ci.com/kcourtois/TheRing) [![codecov](https://codecov.io/gh/kcourtois/TheRing/branch/master/graph/badge.svg)](https://codecov.io/gh/kcourtois/TheRing)
 
 # Example
