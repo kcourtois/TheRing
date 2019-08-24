@@ -110,6 +110,8 @@
 		9EA846F122FDB7E300572A38 /* FirebaseComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F022FDB7E300572A38 /* FirebaseComment.swift */; };
 		9EA846F322FDB86800572A38 /* VoteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F222FDB86800572A38 /* VoteService.swift */; };
 		9EA846F522FDB88100572A38 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA846F422FDB88100572A38 /* CommentService.swift */; };
+		9ED9BE4823118B8500B6BF90 /* TestFailRegisterVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9BE4723118B8400B6BF90 /* TestFailRegisterVote.swift */; };
+		9ED9BE4C23118D3800B6BF90 /* TestFailRemoveVote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED9BE4B23118D3800B6BF90 /* TestFailRemoveVote.swift */; };
 		9EDF21B82300C58700BD95AF /* LoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EDF21B72300C58700BD95AF /* LoginModel.swift */; };
 		9EF988AC2301616B00AC0F30 /* TestAuthBadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */; };
 		9EF988B02301707100AC0F30 /* LoginModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF988AF2301707100AC0F30 /* LoginModelTests.swift */; };
@@ -247,6 +249,8 @@
 		9EA846F022FDB7E300572A38 /* FirebaseComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseComment.swift; sourceTree = "<group>"; };
 		9EA846F222FDB86800572A38 /* VoteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteService.swift; sourceTree = "<group>"; };
 		9EA846F422FDB88100572A38 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		9ED9BE4723118B8400B6BF90 /* TestFailRegisterVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFailRegisterVote.swift; sourceTree = "<group>"; };
+		9ED9BE4B23118D3800B6BF90 /* TestFailRemoveVote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFailRemoveVote.swift; sourceTree = "<group>"; };
 		9EDF21B72300C58700BD95AF /* LoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModel.swift; sourceTree = "<group>"; };
 		9EF988AB2301616B00AC0F30 /* TestAuthBadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestAuthBadData.swift; sourceTree = "<group>"; };
 		9EF988AF2301707100AC0F30 /* LoginModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginModelTests.swift; path = Login/LoginModelTests.swift; sourceTree = "<group>"; };
@@ -454,6 +458,8 @@
 			children = (
 				9E110EDB230DAD9C00B267B5 /* TestVoteBadData.swift */,
 				9E110EDD230DADEC00B267B5 /* TestVoteGoodData.swift */,
+				9ED9BE4723118B8400B6BF90 /* TestFailRegisterVote.swift */,
+				9ED9BE4B23118D3800B6BF90 /* TestFailRemoveVote.swift */,
 			);
 			path = VoteService;
 			sourceTree = "<group>";
@@ -1091,6 +1097,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9ED9BE4C23118D3800B6BF90 /* TestFailRemoveVote.swift in Sources */,
+				9ED9BE4823118B8500B6BF90 /* TestFailRegisterVote.swift in Sources */,
 				9E064E4C22CCE972009FE905 /* UrlSession.swift in Sources */,
 				9E110ED0230D4E0800B267B5 /* CommentModelTests.swift in Sources */,
 				9E18322623018CB0005BC358 /* SignupModelTests.swift in Sources */,

@@ -1,15 +1,15 @@
 //
-//  TestVoteGoodData.swift
+//  TestFailRemoveVote.swift
 //  TheRingTests
 //
-//  Created by Kévin Courtois on 21/08/2019.
+//  Created by Kévin Courtois on 24/08/2019.
 //  Copyright © 2019 Kévin Courtois. All rights reserved.
 //
 
 import Foundation
 @testable import TheRing
 
-class TestVoteGoodData: VoteService {
+class TestFailRemoveVote: VoteService {
     func registerVote(rid: String, uid: String, cid: String, completion: @escaping (String?) -> Void) {
         completion(nil)
     }
@@ -34,6 +34,6 @@ class TestVoteGoodData: VoteService {
     }
 
     func removeUserVote(uid: String, rid: String, cid: String, completion: @escaping (String?) -> Void) {
-        completion(nil)
+        completion(TRStrings.errorOccured.localizedString)
     }
 }

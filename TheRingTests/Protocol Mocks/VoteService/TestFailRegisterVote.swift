@@ -1,21 +1,21 @@
 //
-//  TestVoteGoodData.swift
+//  TestFailRegisterVote.swift
 //  TheRingTests
 //
-//  Created by Kévin Courtois on 21/08/2019.
+//  Created by Kévin Courtois on 24/08/2019.
 //  Copyright © 2019 Kévin Courtois. All rights reserved.
 //
 
 import Foundation
 @testable import TheRing
 
-class TestVoteGoodData: VoteService {
+class TestFailRegisterVote: VoteService {
     func registerVote(rid: String, uid: String, cid: String, completion: @escaping (String?) -> Void) {
-        completion(nil)
+        completion(TRStrings.errorOccured.localizedString)
     }
 
     func getUserVote(uid: String, rid: String, completion: @escaping (String?) -> Void) {
-        completion("cid0")
+        completion(nil)
     }
 
     func getVotes(cid: String, rid: String, completion: @escaping (UInt?) -> Void) {

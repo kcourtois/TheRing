@@ -79,6 +79,97 @@ class TournamentDetailModelTests: XCTestCase {
         NotificationCenter.default.removeObserver(notif)
     }
 
+    func testGivenTournamentFirstRoundWhenCallingContestantTappedThenShouldSendLoadVoteNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestVoteGoodData())
+        let notif = NotificationCenter.default.addObserver(forName: .didLoadVote,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: 1, addSecond: 2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.contestantTapped(uid: "uid", tag: 0, tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenTournamentSecondRoundWhenCallingContestantTappedThenShouldSendLoadVoteNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestVoteGoodData())
+        let notif = NotificationCenter.default.addObserver(forName: .didLoadVote,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: -1, addSecond: 2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.contestantTapped(uid: "uid", tag: 4, tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenBadDataWhenCallingContestantTappedThenShouldSendErrorNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestFailRegisterVote())
+        let notif = NotificationCenter.default.addObserver(forName: .didSendError,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: -1, addSecond: 2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.contestantTapped(uid: "uid", tag: 4, tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenRemoveVoteBugWhenCallingContestantTappedThenShouldSendErrorNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestFailRemoveVote())
+        let notif = NotificationCenter.default.addObserver(forName: .didSendError,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: -1, addSecond: 2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.contestantTapped(uid: "uid", tag: 4, tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenGoodDataWhenCallingGetUserVotesThenShouldSendLoadVoteNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestVoteGoodData())
+        handler = { (notification: Notification) -> Void in
+            if !self.didSendNotif {
+                self.didSendNotif = true
+                self.testExpectation.fulfill()
+            }
+        }
+        let notif = NotificationCenter.default.addObserver(forName: .didLoadVote,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: -1, addSecond: 2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.getUserVotes(uid: "uid", tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
     //creates a TRUser with fake data
     private func getFakeUser() -> TRUser {
         return TRUser(uid: "uid", name: "test", gender: .other, email: "email", bio: "bio")
@@ -101,93 +192,3 @@ class TournamentDetailModelTests: XCTestCase {
                 Contestant(cid: "cid3", image: "image3", name: "name3")]
     }
 }
-
-////Returns the winner of a given round
-//func getWinner(round: Int, cids: [String], tournament: TournamentData,
-//               completion: @escaping ([String]?) -> Void) {
-//    var contRes = [UInt]()
-//    let dispatchGroup = DispatchGroup()
-//
-//    //Append blank votes results for each contestant
-//    for _ in 0..<cids.count {
-//        contRes.append(0)
-//    }
-//
-//    //get votes count for all contestants
-//    for ind in 0..<cids.count {
-//        dispatchGroup.enter()
-//        voteService.getVotes(cid: cids[ind],
-//                             rid: tournament.rounds[round].rid) { (res) in
-//                                if let res = res {
-//                                    contRes[ind] = res
-//                                    dispatchGroup.leave()
-//                                }
-//        }
-//    }
-//
-//    dispatchGroup.notify(queue: .main) {
-//        var result = [String]()
-//        //check winner of each duel
-//        for index in stride(from: 0, to: cids.count-1, by: 2) {
-//            if contRes[index] >= contRes[index+1] {
-//                result.append(cids[index])
-//            } else {
-//                result.append(cids[index+1])
-//            }
-//        }
-//        completion(result)
-//    }
-//}
-
-////vote for the tapped contestant if possible
-//func contestantTapped(uid: String, tag: Int, tournament: TournamentData) {
-//    let round = getCurrentRoundIndex(rounds: tournament.rounds)
-//    switch round {
-//    //if first round and image tapped < 4, vote
-//    case 0:
-//        if tag < 4 {
-//            postLoadVoteNotification(tag: tag)
-//            registerVote(uid: uid, rid: tournament.rounds[round].rid, cid: tournament.contestants[tag].cid)
-//        }
-//    //if second round and image tapped > 3 and < 6, vote
-//    case 1:
-//        if tag > 3 && tag < 6 && tournament.rounds[round].endDate > Date() {
-//            postLoadVoteNotification(tag: tag)
-//            getWinner(round: 0, cids: tournament.getCids(),
-//                      tournament: tournament) { (res) in
-//                        if let cid = res {
-//                            self.registerVote(uid: uid, rid: tournament.rounds[round].rid, cid: cid[tag-4])
-//                        }
-//            }
-//        }
-//    default:
-//        break
-//    }
-//}
-//
-
-//
-////get user votes for round 1 & 2
-//func getUserVotes(uid: String, tournament: TournamentData) {
-//    //get vote for round 1
-//    voteService.getUserVote(uid: uid, rid: tournament.rounds[0].rid) { (cid) in
-//        if let cid = cid {
-//            for (index, cont) in tournament.contestants.enumerated() where cid == cont.cid {
-//                self.postLoadVoteNotification(tag: index)
-//            }
-//        }
-//    }
-//    //get vote for round 2
-//    voteService.getUserVote(uid: uid, rid: tournament.rounds[1].rid) { (cid) in
-//        if let cid = cid {
-//            switch cid {
-//            case tournament.contestants[0].cid, tournament.contestants[1].cid:
-//                self.postLoadVoteNotification(tag: 4)
-//            case tournament.contestants[2].cid, tournament.contestants[3].cid:
-//                self.postLoadVoteNotification(tag: 5)
-//            default:
-//                break
-//            }
-//        }
-//    }
-//}
