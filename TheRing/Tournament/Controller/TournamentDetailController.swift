@@ -23,6 +23,12 @@ class TournamentDetailController: UIViewController {
                                                               voteService: FirebaseVote())
     var tournament: TournamentData?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //check if user is logged in
+        checkUserLogged()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //if tournament is set, we can set the view

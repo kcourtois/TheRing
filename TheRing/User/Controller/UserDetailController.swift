@@ -31,6 +31,8 @@ class UserDetailController: UIViewController {
         super.viewWillAppear(animated)
         //set observers for notifications
         setObservers()
+        //check if user is logged in
+        checkUserLogged()
         //set texts for this screen
         setTexts()
     }
@@ -75,6 +77,7 @@ class UserDetailController: UIViewController {
     private func setTexts() {
         if let user = user {
             userInfoView.setUser(user: user)
+            userInfoView.subLabelInteractable = false
             self.title = user.name
             //fetch subscriptions count
             userDetailModel.getSubscriptionsCount(uid: user.uid)

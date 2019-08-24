@@ -19,6 +19,9 @@ class ScannerController: UIViewController, AVCaptureMetadataOutputObjectsDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //check if user is logged in
+        checkUserLogged()
+
         //SETUP OF THE VIEW AND CAPTURE
         view.backgroundColor = UIColor.black
         captureSession = AVCaptureSession()

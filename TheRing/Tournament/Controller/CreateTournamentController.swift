@@ -27,6 +27,8 @@ class CreateTournamentController: UIViewController {
         descriptionField.keyboardAppearance = .dark
         //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
+        //check if user is logged in
+        checkUserLogged()
     }
 
     override func viewWillAppear(_ animated: Bool) {

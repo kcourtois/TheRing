@@ -20,6 +20,8 @@ class SearchMovieController: UIViewController {
     override func viewDidLoad() {
         //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
+        //check if user is logged in
+        checkUserLogged()
         //load trending movies in table view
         searchMovies()
         //set texts for this screen

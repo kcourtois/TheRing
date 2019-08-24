@@ -31,6 +31,8 @@ class ProfileController: UIViewController {
         super.viewDidLoad()
         //set texts for this screen
         setTexts()
+        //check if user is logged in
+        checkUserLogged()
         //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
     }

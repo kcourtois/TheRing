@@ -16,6 +16,8 @@ class FriendCodeController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        //check if user is logged in
+        checkUserLogged()
         //generate qr code from uid
         QRImageView.image = generateQRCode(from: Preferences().user.uid)
         scanButton.setTitle(TRStrings.scanCode.localizedString, for: .normal)

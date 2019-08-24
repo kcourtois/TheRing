@@ -23,7 +23,7 @@ class Preferences {
     }
 
     //access preferences storage and read with this var
-    public var user: TRUser {
+    var user: TRUser {
         get {
             guard let data = defaults.value(forKey: Keys.user) as? Data else {
                 return TRUser(uid: "Unknown", name: "Unknown", gender: .other, email: "Unknown", bio: "Unknown")

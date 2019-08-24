@@ -21,6 +21,8 @@ class SearchController: UIViewController {
         super.viewDidLoad()
         //set texts for this screen
         setTexts()
+        //check if user is logged in
+        checkUserLogged()
         //keyboard disappear after tap
         hideKeyboardWhenTappedAround()
         //gives uiview instead of empty cells in the end of a tableview

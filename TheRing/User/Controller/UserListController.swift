@@ -21,6 +21,8 @@ class UserListController: UIViewController {
         super.viewDidLoad()
         //gives uiview instead of empty cells in the end of a tableview
         tableView.tableFooterView = UIView()
+        //check if user is logged in
+        checkUserLogged()
         //if usertype is set
         if let userType = userType {
             switch userType {

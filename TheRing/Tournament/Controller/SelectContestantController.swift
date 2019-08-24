@@ -23,6 +23,8 @@ class SelectContestantController: UIViewController, SearchMovieDelegate {
         super.viewDidLoad()
         //set movie view to print nothing on first load
         contestantView.setView(movie: movie)
+        //check if user is logged in
+        checkUserLogged()
         //replace back arrow to do our own things
         let customBackButton = UIBarButtonItem(image: UIImage(named: "backArrow"), style: .plain,
                                                target: self, action: #selector(backAction(sender:)))

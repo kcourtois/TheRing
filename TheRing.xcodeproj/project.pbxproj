@@ -90,6 +90,7 @@
 		9E81A4212308356A0066E8E7 /* UserDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */; };
 		9E81A42323083C2A0066E8E7 /* TestUserBadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
+		9E94C7C02311335500156B97 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E94C7BF2311335500156B97 /* SigninModel.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
 		9EA2718B22BD494B00AAC06B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */; };
@@ -229,6 +230,7 @@
 		9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModelTests.swift; sourceTree = "<group>"; };
 		9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserBadData.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		9E94C7BF2311335500156B97 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 		9EDF21B52300C4C400BD95AF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9E94C7BF2311335500156B97 /* SigninModel.swift */,
 				9EDF21B72300C58700BD95AF /* LoginModel.swift */,
 			);
 			path = ViewModel;
@@ -1086,6 +1089,7 @@
 				9E05205C2300C6B8003EF504 /* EmailModel.swift in Sources */,
 				9E4F968B22EBB183006959FF /* UserCell.swift in Sources */,
 				9E4F969422EF4353006959FF /* DateExtension.swift in Sources */,
+				9E94C7C02311335500156B97 /* SigninModel.swift in Sources */,
 				9E05206B2300C780003EF504 /* TournamentDateModel.swift in Sources */,
 				9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */,
 				9EA846EF22FDB7D500572A38 /* FirebaseVote.swift in Sources */,

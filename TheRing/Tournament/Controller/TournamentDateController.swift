@@ -23,6 +23,12 @@ class TournamentDateController: UIViewController {
     @IBOutlet weak var daysLabel: UILabel!
     @IBOutlet weak var startTimeLabel: UILabel!
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //check if user is logged in
+        checkUserLogged()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //set observers for notifications

@@ -21,6 +21,17 @@ class UserInfoView: UIView {
     @IBOutlet weak var subscribersLabel: UILabel!
     @IBOutlet weak var subscriptionsLabel: UILabel!
 
+    // set subscriptions and subscribers labels color, so the user can tell if he can click or not
+    var subLabelInteractable: Bool = true {
+        didSet {
+            if subLabelInteractable {
+                setSubTextColor(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+            } else {
+                setSubTextColor(color: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
+            }
+        }
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
@@ -83,6 +94,14 @@ class UserInfoView: UIView {
         subscribersDesc.addGestureRecognizer(UITapGestureRecognizer(target: self,
                                                                     action: #selector(subscribersNotification)))
         subscribersDesc.isUserInteractionEnabled = true
+    }
+
+    //set subscribers and subscription text color
+    private func setSubTextColor(color: UIColor) {
+        subscribersLabel.textColor = color
+        subscribersDesc.textColor = color
+        subscriptionsDesc.textColor = color
+        subscriptionsLabel.textColor = color
     }
 
     //Get class name and turn it to a string

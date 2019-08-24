@@ -33,12 +33,9 @@ class LoginController: UIViewController {
         super.viewWillAppear(animated)
         //set observers for notifications
         setObservers()
-        //Skip login page if user signed
-        if loginModel.alearyLogged() {
-            DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "loginSegue", sender: self)
-            }
-        }
+        //empty login fields
+        emailField.text = ""
+        passwordField.text = ""
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,6 +43,13 @@ class LoginController: UIViewController {
         //remove observers on view disappear
         NotificationCenter.default.removeObserver(self, name: .didSignIn, object: nil)
         NotificationCenter.default.removeObserver(self, name: .didSendError, object: nil)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        //Skip login page if user signed
+        if loginModel.alearyLogged() {
+            signIn()
+        }
     }
 
     //set texts for this screen
@@ -82,14 +86,7 @@ class LoginController: UIViewController {
 
     //Triggers on notification didSignIn
     @objc private func onDidSignIn(_ notification: Notification) {
-        //when sign in notif recieved, perfom segue to log in
-        if let alert = self.alert {
-            alert.dismiss(animated: true) {
-                self.performSegue(withIdentifier: "loginSegue", sender: self)
-            }
-        } else {
-            self.performSegue(withIdentifier: "loginSegue", sender: self)
-        }
+        signIn()
     }
 
     //Triggers on notification didSendError
@@ -98,6 +95,23 @@ class LoginController: UIViewController {
             for (_, error) in data {
                 self.dismissLoadAlertWithMessage(alert: self.alert, title: TRStrings.error.localizedString,
                                                  message: error)
+            }
+        }
+    }
+
+    private func signIn() {
+        let signInModel = SigninModel(userService: FirebaseUser())
+        signInModel.checkUserLogged { (error) in
+            if error == nil {
+                //when sign in notif recieved, perfom segue to log in
+                if let alert = self.alert {
+                    alert.dismiss(animated: true) {
+                        self.performSegue(withIdentifier: "loginSegue", sender: self)
+                    }
+                } else {
+                    self.performSegue(withIdentifier: "loginSegue", sender: self)
+                }
+            } else {
             }
         }
     }
