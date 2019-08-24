@@ -17,8 +17,6 @@
 		9E05205A2300C6A2003EF504 /* PasswordModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520592300C6A2003EF504 /* PasswordModel.swift */; };
 		9E05205C2300C6B8003EF504 /* EmailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05205B2300C6B8003EF504 /* EmailModel.swift */; };
 		9E0520652300C753003EF504 /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520642300C753003EF504 /* SearchModel.swift */; };
-		9E0520672300C766003EF504 /* CreateTournamentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520662300C766003EF504 /* CreateTournamentModel.swift */; };
-		9E0520692300C773003EF504 /* SelectContestantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0520682300C773003EF504 /* SelectContestantModel.swift */; };
 		9E05206B2300C780003EF504 /* TournamentDateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206A2300C780003EF504 /* TournamentDateModel.swift */; };
 		9E05206D2300C793003EF504 /* TournamentDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206C2300C793003EF504 /* TournamentDetailModel.swift */; };
 		9E05206F2300C79E003EF504 /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E05206E2300C79E003EF504 /* CommentModel.swift */; };
@@ -90,7 +88,6 @@
 		9E81A4212308356A0066E8E7 /* UserDetailModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */; };
 		9E81A42323083C2A0066E8E7 /* TestUserBadData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */; };
 		9E8EBE7A22D60B89001A8FE4 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8EBE7922D60B89001A8FE4 /* Genre.swift */; };
-		9E94C7C02311335500156B97 /* SigninModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E94C7BF2311335500156B97 /* SigninModel.swift */; };
 		9EA2718722BD466400AAC06B /* moltors.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718622BD466400AAC06B /* moltors.ttf */; };
 		9EA2718922BD48AE00AAC06B /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */; };
 		9EA2718B22BD494B00AAC06B /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */; };
@@ -150,8 +147,6 @@
 		9E0520592300C6A2003EF504 /* PasswordModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordModel.swift; sourceTree = "<group>"; };
 		9E05205B2300C6B8003EF504 /* EmailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailModel.swift; sourceTree = "<group>"; };
 		9E0520642300C753003EF504 /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
-		9E0520662300C766003EF504 /* CreateTournamentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTournamentModel.swift; sourceTree = "<group>"; };
-		9E0520682300C773003EF504 /* SelectContestantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectContestantModel.swift; sourceTree = "<group>"; };
 		9E05206A2300C780003EF504 /* TournamentDateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDateModel.swift; sourceTree = "<group>"; };
 		9E05206C2300C793003EF504 /* TournamentDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TournamentDetailModel.swift; sourceTree = "<group>"; };
 		9E05206E2300C79E003EF504 /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
@@ -230,7 +225,6 @@
 		9E81A4202308356A0066E8E7 /* UserDetailModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailModelTests.swift; sourceTree = "<group>"; };
 		9E81A42223083C2A0066E8E7 /* TestUserBadData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestUserBadData.swift; sourceTree = "<group>"; };
 		9E8EBE7922D60B89001A8FE4 /* Genre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
-		9E94C7BF2311335500156B97 /* SigninModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigninModel.swift; sourceTree = "<group>"; };
 		9EA2718622BD466400AAC06B /* moltors.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = moltors.ttf; sourceTree = "<group>"; };
 		9EA2718822BD48AE00AAC06B /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		9EA2718A22BD494B00AAC06B /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
@@ -327,8 +321,6 @@
 			isa = PBXGroup;
 			children = (
 				9E0520642300C753003EF504 /* SearchModel.swift */,
-				9E0520662300C766003EF504 /* CreateTournamentModel.swift */,
-				9E0520682300C773003EF504 /* SelectContestantModel.swift */,
 				9E05206A2300C780003EF504 /* TournamentDateModel.swift */,
 				9E05206C2300C793003EF504 /* TournamentDetailModel.swift */,
 				9E05206E2300C79E003EF504 /* CommentModel.swift */,
@@ -765,7 +757,6 @@
 		9EDF21B52300C4C400BD95AF /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				9E94C7BF2311335500156B97 /* SigninModel.swift */,
 				9EDF21B72300C58700BD95AF /* LoginModel.swift */,
 			);
 			path = ViewModel;
@@ -1059,8 +1050,6 @@
 				9E0520502300C639003EF504 /* UserListModel.swift in Sources */,
 				9E4F969B22F0998E006959FF /* FriendCodeController.swift in Sources */,
 				9E064E3422C541E8009FE905 /* UserService.swift in Sources */,
-				9E0520692300C773003EF504 /* SelectContestantModel.swift in Sources */,
-				9E0520672300C766003EF504 /* CreateTournamentModel.swift in Sources */,
 				9E334E4B22DE005400CB3257 /* BarButtonExtension.swift in Sources */,
 				9EFE1FCA22D35F4A003A0410 /* SelectContestantController.swift in Sources */,
 				9E06BB4D22B840F10098E148 /* AppDelegate.swift in Sources */,
@@ -1089,7 +1078,6 @@
 				9E05205C2300C6B8003EF504 /* EmailModel.swift in Sources */,
 				9E4F968B22EBB183006959FF /* UserCell.swift in Sources */,
 				9E4F969422EF4353006959FF /* DateExtension.swift in Sources */,
-				9E94C7C02311335500156B97 /* SigninModel.swift in Sources */,
 				9E05206B2300C780003EF504 /* TournamentDateModel.swift in Sources */,
 				9EFE1FC722D35F14003A0410 /* CreateTournamentController.swift in Sources */,
 				9EA846EF22FDB7D500572A38 /* FirebaseVote.swift in Sources */,

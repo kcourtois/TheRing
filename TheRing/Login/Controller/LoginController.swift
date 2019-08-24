@@ -19,7 +19,7 @@ class LoginController: UIViewController {
 
     private var alert: UIAlertController?
 
-    private let loginModel = LoginModel(authService: FirebaseAuth())
+    private let loginModel = LoginModel(authService: FirebaseAuth(), userService: FirebaseUser())
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,8 +100,7 @@ class LoginController: UIViewController {
     }
 
     private func signIn() {
-        let signInModel = SigninModel(userService: FirebaseUser())
-        signInModel.checkUserLogged { (error) in
+        loginModel.checkUserLogged { (error) in
             if error == nil {
                 //when sign in notif recieved, perfom segue to log in
                 if let alert = self.alert {

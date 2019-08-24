@@ -23,29 +23,11 @@ class TournamentDetailModelTests: XCTestCase {
         }
     }
 
-//    func testGivenBadDataWhenCallingRemoveUserVoteThenShouldSendErrorNotification() {
-//        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
-//                                                          voteService: TestVoteBadData())
-//        let notif = NotificationCenter.default.addObserver(forName: .didSendComments,
-//                                                           object: nil, queue: nil, using: handler)
-//
-//        //tournamentDetailModel.removeUserVote()
-//
-//        waitForExpectations(timeout: 1, handler: nil)
-//        XCTAssertTrue(didSendNotif)
-//        NotificationCenter.default.removeObserver(notif)
-//    }
-
     func testGivenDateBeforeRoundsEndWhenCallingGetCurrentRoundIndexThenShouldReturnZero() {
         let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
                                                           voteService: TestVoteBadData())
 
-        let firstEndDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-        let secondEndDate = Calendar.current.date(byAdding: .day, value: 2, to: Date())!
-        let rounds: [Round] = [Round(rid: "round1", endDate: firstEndDate),
-                               Round(rid: "round2", endDate: secondEndDate)]
-
-        let index = tournamentDetailModel.getCurrentRoundIndex(rounds: rounds)
+        let index = tournamentDetailModel.getCurrentRoundIndex(rounds: getFakeRounds(addFirst: 1, addSecond: 2))
 
         testExpectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
@@ -56,16 +38,67 @@ class TournamentDetailModelTests: XCTestCase {
         let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
                                                           voteService: TestVoteBadData())
 
-        let firstEndDate = Date()
-        let secondEndDate = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
-        let rounds: [Round] = [Round(rid: "round1", endDate: firstEndDate),
-                               Round(rid: "round2", endDate: secondEndDate)]
-
-        let index = tournamentDetailModel.getCurrentRoundIndex(rounds: rounds)
+        let index = tournamentDetailModel.getCurrentRoundIndex(rounds: getFakeRounds(addFirst: 0, addSecond: 1))
 
         testExpectation.fulfill()
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertEqual(index, 1)
+    }
+
+    func testGivenTournamentInFirstRoundWhenCallingLoadStagesShouldThenShouldSendFirstStageNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestVoteGoodData())
+        let notif = NotificationCenter.default.addObserver(forName: .didSendSetFirstStage,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: -1, addSecond: 2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.loadStages(tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenTournamentInSecondRoundWhenCallingLoadStagesShouldThenShouldSendSecondStageNotification() {
+        let tournamentDetailModel = TournamentDetailModel(tournamentService: TestTournamentGoodData(),
+                                                          voteService: TestVoteGoodData())
+        let notif = NotificationCenter.default.addObserver(forName: .didSendSetSecondStage,
+                                                           object: nil, queue: nil, using: handler)
+        let tournament = TournamentData(tid: "tid", title: "title", description: "desc",
+                                        creator: getFakeUser(), startTime: Date(),
+                                        rounds: getFakeRounds(addFirst: -1, addSecond: -2),
+                                        contestants: getFakeContestants())
+
+        tournamentDetailModel.loadStages(tournament: tournament)
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertTrue(didSendNotif)
+        NotificationCenter.default.removeObserver(notif)
+    }
+
+    //creates a TRUser with fake data
+    private func getFakeUser() -> TRUser {
+        return TRUser(uid: "uid", name: "test", gender: .other, email: "email", bio: "bio")
+    }
+
+    //creates two rounds with fake data
+    private func getFakeRounds(addFirst: Int, addSecond: Int) -> [Round] {
+        let firstEndDate = Calendar.current.date(byAdding: .day, value: addFirst, to: Date())!
+        let secondEndDate = Calendar.current.date(byAdding: .day, value: addSecond, to: Date())!
+        let rounds: [Round] = [Round(rid: "round1", endDate: firstEndDate),
+                               Round(rid: "round2", endDate: secondEndDate)]
+        return rounds
+    }
+
+    //create four contestants with fake data
+    private func getFakeContestants() -> [Contestant] {
+        return [Contestant(cid: "cid0", image: "image0", name: "name0"),
+                Contestant(cid: "cid1", image: "image1", name: "name1"),
+                Contestant(cid: "cid2", image: "image2", name: "name2"),
+                Contestant(cid: "cid3", image: "image3", name: "name3")]
     }
 }
 
@@ -105,7 +138,7 @@ class TournamentDetailModelTests: XCTestCase {
 //        completion(result)
 //    }
 //}
-//
+
 ////vote for the tapped contestant if possible
 //func contestantTapped(uid: String, tag: Int, tournament: TournamentData) {
 //    let round = getCurrentRoundIndex(rounds: tournament.rounds)
@@ -132,26 +165,7 @@ class TournamentDetailModelTests: XCTestCase {
 //    }
 //}
 //
-////load UI for stages of the tournament, showing winner of rounds etc.
-//func loadStages(tournament: TournamentData) {
-//    let round = getCurrentRoundIndex(rounds: tournament.rounds)
-//    if round > 0 {
-//        getWinner(round: round-1, cids: tournament.getCids(), tournament: tournament) { (result) in
-//            if let cids = result {
-//                self.postSetFirstStageNotification(cids: cids)
-//                if tournament.rounds[round].endDate < Date() {
-//                    self.getWinner(round: round, cids: cids, tournament: tournament) { (result) in
-//                        if let res = result {
-//                            self.postSetSecondStageNotification(cids: res)
-//                        }
-//                    }
-//                }
-//            } else {
-//                self.postErrorNotification(error: TRStrings.errorOccured.localizedString)
-//            }
-//        }
-//    }
-//}
+
 //
 ////get user votes for round 1 & 2
 //func getUserVotes(uid: String, tournament: TournamentData) {

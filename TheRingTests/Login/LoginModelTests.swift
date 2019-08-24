@@ -12,19 +12,22 @@ import XCTest
 class LoginModelTests: XCTestCase {
 
     func testGivenUserLoggedWhenCallingAlreadyLoggedThenShouldBeTrue() {
-        let loginModel = LoginModel(authService: TestAuthGoodData())
+        let loginModel = LoginModel(authService: TestAuthGoodData(), userService: TestUserGoodData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
 
         XCTAssertTrue(loginModel.alearyLogged())
     }
 
     func testGivenUserNotLoggedWhenCallingAlreadyLoggedThenShouldBeFalse() {
-        let loginModel = LoginModel(authService: TestAuthBadData())
+        let loginModel = LoginModel(authService: TestAuthBadData(), userService: TestUserGoodData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
 
         XCTAssertFalse(loginModel.alearyLogged())
     }
 
     func testGivenValidCredentialsWhenCallingSignInThenShouldSendSignInNotification() {
-        let loginModel = LoginModel(authService: TestAuthGoodData())
+        let loginModel = LoginModel(authService: TestAuthGoodData(), userService: TestUserGoodData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
         var didSendNotif = false
         let testExpectation = expectation(description: "Did finish operation expectation")
         let handler = { (notification: Notification) -> Void in
@@ -42,7 +45,8 @@ class LoginModelTests: XCTestCase {
     }
 
     func testGivenInvalidCredentialsWhenCallingSignInThenShouldSendErrorNotification() {
-        let loginModel = LoginModel(authService: TestAuthBadData())
+        let loginModel = LoginModel(authService: TestAuthBadData(), userService: TestUserGoodData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
         var didSendNotif = false
         let testExpectation = expectation(description: "Did finish operation expectation")
         let handler = { (notification: Notification) -> Void in
@@ -57,5 +61,50 @@ class LoginModelTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
         XCTAssertTrue(didSendNotif)
         NotificationCenter.default.removeObserver(notif)
+    }
+
+    func testGivenUserLoggedWhenCallingCheckUserLoggedThenShouldCompleteNil() {
+        let loginModel = LoginModel(authService: TestAuthGoodData(), userService: TestUserGoodData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
+        let testExpectation = expectation(description: "Did finish operation expectation")
+        var error: String?
+
+        loginModel.checkUserLogged { (result) in
+            error = result
+            testExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertNil(error)
+    }
+
+    func testGivenUserNotLoggedWhenCallingCheckUserLoggedThenShouldCompleteUserNotRetrieved() {
+        let loginModel = LoginModel(authService: TestAuthBadData(), userService: TestUserGoodData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
+        let testExpectation = expectation(description: "Did finish operation expectation")
+        var error: String?
+
+        loginModel.checkUserLogged { (result) in
+            error = result
+            testExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertNotNil(error)
+    }
+
+    func testGivenUserLoggedButNoUserInfoWhenCallingCheckUserLoggedThenShouldCompleteUserNotRetrieved() {
+        let loginModel = LoginModel(authService: TestAuthGoodData(), userService: TestUserBadData(),
+                                    preferences: Preferences(defaults: .makeClearedInstance()))
+        let testExpectation = expectation(description: "Did finish operation expectation")
+        var error: String?
+
+        loginModel.checkUserLogged { (result) in
+            error = result
+            testExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 1, handler: nil)
+        XCTAssertNotNil(error)
     }
 }

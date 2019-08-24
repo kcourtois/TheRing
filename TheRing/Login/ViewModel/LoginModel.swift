@@ -11,9 +11,13 @@ import Foundation
 //Model for LoginController
 class LoginModel {
     private var authService: AuthService
+    private var userService: UserService
+    private var preferences: Preferences
 
-    init(authService: AuthService) {
+    init(authService: AuthService, userService: UserService, preferences: Preferences = Preferences()) {
         self.authService = authService
+        self.userService = userService
+        self.preferences = preferences
     }
 
     //check if a user is aleady logged
@@ -28,6 +32,35 @@ class LoginModel {
                 self.postErrorNotification(error: error)
             } else {
                 self.postSignInNotification()
+            }
+        }
+    }
+
+    //check if a user is logged in, and load user in preferences if needed
+    func checkUserLogged(completion: @escaping (String?) -> Void) {
+        //Check if user logged
+        if let uid = authService.getLoggedUserUID() {
+            //Check if user pref are up to date
+            if preferences.user.uid != uid {
+                loadUserPref(uid: uid) { (result) in
+                    completion(result)
+                }
+            } else {
+                completion(nil)
+            }
+        } else {
+            completion(TRStrings.userNotRetrieved.localizedString)
+        }
+    }
+
+    //loads user in preferences
+    private func loadUserPref(uid: String, completion: @escaping (String?) -> Void) {
+        userService.getUserInfo(uid: uid) { (userData) in
+            if let user = userData {
+                self.preferences.user = user
+                completion(nil)
+            } else {
+                completion(TRStrings.userNotRetrieved.localizedString)
             }
         }
     }

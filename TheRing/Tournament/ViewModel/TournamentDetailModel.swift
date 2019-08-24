@@ -105,8 +105,6 @@ class TournamentDetailModel {
                             }
                         }
                     }
-                } else {
-                    self.postErrorNotification(error: TRStrings.errorOccured.localizedString)
                 }
             }
         }
